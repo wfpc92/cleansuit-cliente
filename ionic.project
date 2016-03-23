@@ -1,10 +1,6 @@
 {
   "name": "Prototipos CleanSuit",
   "app_id": "5bc43db8",
-  "gulpStartupTasks": [
-    "sass",
-    "watch"
-  ],
   "watchPatterns": [
     "www/**/*",
     "!www/lib/**/*"
