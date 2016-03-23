@@ -1,0 +1,50 @@
+<ion-view >
+  <ion-content class="has-subheader has-footer" padding="true" >
+    <ion-list can-swipe="false" show-delete="false" show-reorder="false">
+      
+      <ion-item collection-repeat="item in carrito.items" 
+          class="item fondo-gris"
+          ng-class="{'item-thumbnail-left' : item.tipo=='PRODUCTO'}">
+
+        <img ng-src="http://lorempixel.com/70/70" ng-show="item.tipo=='PRODUCTO'"/>
+        
+        <div class="row"><h2>{{item.nombre}}</h2></div>
+        
+        <div class="row">
+          <div class="col">
+            <h2>{{item.precio || 0  | currency : "$ " : 0 }}</h2>
+          </div>
+          
+          <div class="col text-center col-center">
+            <div class="row" >
+              <div class="col fuente-2" >
+                <i ng-click="item.tipo=='PRODUCTO' ? disminuirProducto(item) : disminuirServicio(item)" class="icon ion-minus-circled positive"></i>
+              </div>
+              <div class="col col-center fondo-gris-claro">{{item.cantidad || 0}}</div>
+              <div class="col fuente-2">
+                <i ng-click="item.tipo=='PRODUCTO' ? aumentarProducto(item) : aumentarServicio(item)" class="icon ion-plus-circled positive "></i>
+              </div>  
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <resumen-totales totales="carrito.totales()"></resumen-totales>
+
+    <elemento-centrado>
+      <a ui-sref="app.cancelar-orden" class="positive">- Cancelar Orden -</a>
+    </elemento-centrado>
+
+    <br/>
+    <br/>
+    
+  </ion-content>
+
+  <ion-footer-bar>
+        <a ui-sref="app.informacion-orden" class="button button-positive button-full" ng-disabled="carrito.items.length==0">
+          SIGUIENTE
+        </a>
+   </ion-footer-bar>
+
+</ion-view>

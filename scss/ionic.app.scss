@@ -1,0 +1,222 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+/* Empty. Add your own CSS if you like */
+.bar-footer {
+    display: inline-table;
+    padding: 0px;
+}
+
+.bar-footer .row{
+    padding : 0px;
+}
+
+.bar-footer > .button , .bar-footer .row > .col .button, .bar-footer .row .col{
+    padding: 0px;
+    margin-top: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 10px;
+    border-bottom-width: 0px;
+    margin-bottom: 0px;
+    min-width: 52px;
+    min-height: 47px;
+    line-height: 42px;
+    border-radius: 0px;
+    font-size: 16px;
+ }
+
+.bar-footer .row > .col .button {
+    margin-top: 2px;
+}
+
+.bar-footer .row > .col:first-child .button {
+    border-radius: 0px;
+    margin-right: 1px;
+}
+
+.bar-footer .row > .col:last-child .button {
+    border-radius: 0px;
+    margin-left: 1px;
+}   
+
+/**
+ * para que se muestre a la derecha de un thumbnail
+ */
+.item-thumbnail-left > .item-content span.badge{
+    right: auto;
+    left: 76px;
+    top: 2px;
+}
+
+.fuente-2 {
+    font-size:2em
+}
+
+
+.fondo-gris{
+    background-color: #D9D9D9;
+}
+
+.fondo-gris-claro{
+    background-color: #ECECEC;
+}
+
+#ppFormaPago {
+    height: 9em;
+}
+
+.tab-item > .badge {
+    //para que se mantenga al lado del texto
+    position: static;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* div y texto centrado verticalmente 
+.div-centrado-pagina {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -25%;
+    margin-left: -25%;
+    text-align: center;
+}
+
+/* div y texto centrado horizontalmente
+.centrado {
+    /*position: absolute;
+    left: 50%;
+    margin-left: -25%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+/*
+.un-boton {
+    padding: 0px;
+    display: block;
+    height: auto;
+}
+
+.bar-footer-grid {
+    display: inline-table;
+    padding: 0px;
+}
+
+.bar .button + .button-bar {
+	margin-left: 0px;
+}
+
+.bar-footer > .button {
+	margin: 2px 0px 0px 0px;
+	padding: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+}
+
+.button-bar > .button:first-child {
+	border-radius: 0px;
+	margin-right: 1px;
+	border-right-width: 0px;
+    border-bottom-width: 0px;
+}
+
+.button-bar > .button:last-child{
+	border-radius: 0px;
+	margin-left: 1px;
+	border-left-width: 0px;
+    border-bottom-width: 0px;
+}
+
+ 
+.bar-footer > .row {
+    padding: 0px;
+}
+
+.bar-footer .row > .col {
+    padding: 0px;
+}
+
+
+
+/*
+
+/*
+
+
+
+/* fondo gris para items de una lista
+.item > .item-content {
+    background-color: #D9D9D9;   
+}
+
+.fondo-foto {
+    height:100px;
+    background-image: url('http://lorempixel.com/200/50/business')
+}
+
+.col.text-center.col-center.fondo-gris.ng-binding{
+    padding:0px;
+}
+
+ion-option-button > .row {
+    padding:0px;
+}
+
+
+
+
+//default
+.your-search{
+  @extend .ion-android-search
+}
+.platform-android {
+  .your-search{
+    @extend .ion-android-search
+  }
+}
+
+.platform-ios {
+  .your-search {
+    @extend .ion-ios7-search
+  }
+}  
+
+*/

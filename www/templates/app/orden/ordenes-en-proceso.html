@@ -1,0 +1,22 @@
+<ion-view >
+  <ion-content class="has-subheader" overflow-scroll="true" padding="true" scroll="true">
+    <div class="row ">
+      <div class="col text-center ">
+        ORDENES EN PROCESO
+      </div>
+    </div>
+
+    <ion-list>
+    	<ion-item collection-repeat="orden in ordenes" 
+        ui-sref="app.orden-en-proceso({idOrden: orden.id})"
+        class="item-icon-right fondo-gris">
+    		<h2><b>{{orden.fecha | date}}</b></h2>
+            <p>Orden {{orden.codigo}}</p>
+            <i class="icon ion-chevron-right positive" ></i>
+    	</ion-item>
+    </ion-list>
+    
+  </ion-content>
+ 
+
+</ion-view>

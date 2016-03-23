@@ -1,0 +1,12 @@
+<ion-footer-bar ng-show="carrito.items.length > 0"> 
+  <a ui-sref="app.carrito" class="button button-positive button-full">
+	<div class="row fondo-gris" >
+	    <div class="col col-80 text-center col-center ">
+	      Tus productos suman {{carrito.totales().subtotal | currency : "$"}}
+	    </div>
+	    <div class="col">
+	    	<i class="icon ion-ios-cart " ></i>
+	    </div>
+	</div>
+  </a>
+</ion-footer-bar>

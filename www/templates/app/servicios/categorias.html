@@ -1,0 +1,24 @@
+<ion-view >
+  <ion-content class="has-subheader" overflow-scroll="true" padding="true" scroll="true"
+        ng-class="{'has-footer': carrito.items.length > 0}">
+    
+    <ion-list can-swipe="false" show-delete="false" show-reorder="false">
+    	<ion-item collection-repeat="categoria in categorias"
+    				ui-sref="app.servicios({idCategoria: categoria.id})"
+    				class="item-icon-right">
+    		<div>
+    			<h2>{{categoria.nombre}}</h2>
+    			<p>{{categoria.resumen}}</p>
+    			
+    		</div>
+    		<i class="icon ion-chevron-right positive" ></i>
+    	</ion-item>
+
+
+    </ion-list>
+
+  </ion-content>
+  
+  <footer-solicitar-servicio servicios-en-curso="serviciosEnCurso"></footer-solicitar-servicio>
+
+</ion-view>

@@ -1,0 +1,123 @@
+<ion-view >
+  <ion-content class="has-header has-subheader has-footer" scroll="true" padding="false" >
+    <div class="row ">
+      <div class="col text-center">
+        INFORMACIÓN DE ORDEN
+      </div>
+    </div>
+
+    <ion-list>
+    <div class="item row">
+      <div class="col">
+        <label class="item-input item-stacked-label">
+          <span class="input-label">Nombre</span>
+          <input type="text" placeholder="su nombre" value=" {{usuario.nombre}} " disabled>
+        </label>
+      </div>
+      <div class="col">
+        <label class="item-input item-stacked-label">
+          <span class="input-label">Apellidos</span>
+          <input type="text" placeholder="sus apellidos" value=" {{usuario.apellidos}} " disabled>
+        </label>
+      </div>
+    </div>
+
+    <div class="item row">
+      <div class="col">
+        <label class="item-input item-stacked-label">
+          <span class="input-label">Departamento</span>
+          <input type="text" placeholder="departamento" value=" {{usuario.direccion.departamento}} " disabled>
+        </label>
+      </div>
+      <div class="col">
+        <label class="item-input item-stacked-label">
+          <span class="input-label">Ciudad</span>
+          <input type="text" placeholder="ciudad" value=" {{usuario.direccion.ciudad}} " disabled>
+        </label>
+      </div>
+    </div>
+
+    <div class="item row" ng-hide="soloProductos">
+      <div class="col item-icon-right">
+        <label class="item-input item-stacked-label">
+          <span class="input-label item-icon-right">Dirección de Recolección de Prendas</span>
+          <input type="text" placeholder="su dirección" value=" {{orden.direccionRecoleccion.direccion}} ">
+        </label>
+        <i class="icon ion-edit positive"></i>
+      </div>
+    </div> 
+
+
+    <div class="item row" ng-hide="soloProductos">
+      <div class="col item-icon-right">
+        <label class="item-input item-stacked-label">
+          <span class="input-label item-icon-right">Hora de Recolección de Prendas</span>
+          <input type="text" placeholder="hora de recolección" value=" {{orden.direccionRecoleccion.hora}} ">
+        </label>
+        <i class="icon ion-edit positive"></i>
+      </div>
+    </div> 
+
+
+    <div class="item row">
+      <div class="col item-icon-right">
+        <label class="item-input item-stacked-label">
+          <span class="input-label item-icon-right">Dirección de Entrega</span>
+          <input type="text" placeholder="dirección de entrega" value=" {{orden.direccionEntrega.direccion}} ">
+        </label>
+        <i class="icon ion-edit positive"></i>
+      </div>
+    </div> 
+
+
+    <div class="item row" ng-hide="soloProductos">
+      <div class="col item-icon-right">
+        <label class="item-input item-stacked-label">
+          <span class="input-label item-icon-right">Hora de Entrega</span>
+          <input type="text" placeholder="hora de entrega" value=" {{orden.direccionRecoleccion.hora}} ">
+        </label>
+        <i class="icon ion-edit positive"></i>
+      </div>
+    </div> 
+
+    
+    
+    <div class="item row">
+      <div class="col item-icon-right">
+        <label class="item-input item-stacked-label">
+          <span class="input-label item-icon-right">Teléfono de contacto</span>
+          <input type="text" placeholder="su teléfono" value=" {{usuario.telefono}} ">
+        </label>
+        <i class="icon ion-edit positive"></i>
+      </div>
+    </div>
+
+    <div class="item row">
+      <div class="col item-icon-right">
+        <label class="item-input item-stacked-label">
+          <span class="input-label item-icon-right">Forma de Pago</span>
+          <input type="text" placeholder="Seleccione" value=" {{orden.formaPago}} " >
+        </label>
+        <i class="icon ion-android-arrow-dropdown-circle positive" ng-click="openPopover($event)"></i>
+      </div>
+    </div>
+    </ion-list>
+
+    <resumen-totales totales="carrito.totales()"></resumen-totales>
+
+    <ion-list>
+      <ion-checkbox ng-model="terminosCondiciones">Acepto los Términos y Condiciones de CleanSuit</ion-checkbox>
+    </ion-list>
+
+    <elemento-centrado>
+      <a ui-sref="app.cancelar-orden" class="positive">- Cancelar Orden -</a>
+    </elemento-centrado>
+  </ion-content>
+
+  <ion-footer-bar id="footer" class="un-boton">
+        <a ui-sref="app.realizar-orden" class="button button-positive button-full" ng-disabled="formIncompleto">
+          REALIZAR ORDEN
+        </a>
+   </ion-footer-bar>
+
+</ion-view>

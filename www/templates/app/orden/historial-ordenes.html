@@ -1,0 +1,23 @@
+<ion-view >
+  <ion-content class="has-subheader" overflow-scroll="true" padding="true" scroll="true">
+    <div class="row ">
+      <div class="col text-center ">
+        HISTORIAL DE ORDENES
+      </div>
+    </div>
+
+    <ion-list>
+    	<ion-item collection-repeat="orden in ordenes" 
+        ui-sref="app.historial-orden({tipo:orden.tipo, idOrden: orden.id})"
+        class="item-icon-right fondo-gris">
+    		<h2><b>{{orden.fecha}}</b></h2>
+            <p>{{orden.titulo}} {{orden.estado}}</p>
+            <p>Orden {{orden.codigo}}</p>
+            <i class="icon ion-chevron-right positive" ></i>
+    	</ion-item>
+    </ion-list>
+    
+  </ion-content>
+ 
+
+</ion-view>

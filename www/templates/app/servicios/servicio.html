@@ -1,0 +1,49 @@
+<ion-view >
+  <ion-content class="has-subheader " overflow-scroll="false" padding="true" scroll="true"
+        ng-class="{'has-footer': carrito.items.length > 0}">    
+    <div class="card" layout="column" layout-align="center">
+        <div layout="row" layout-align="center center">
+          <img ng-src="http://lorempixel.com/700/200" />
+        </div>
+        <div layout="row" layout-align="center center">
+            <h1>{{servicio.nombre}}</h1>
+        </div>
+        
+        <div layout="row" layout-align="start start">
+            <p>{{servicio.descripcion}}</p>    
+        </div>
+        <div layout="row" layout-align="start start">
+        	<h2>{{servicio.precio | currency : "$ " : 0}}</h2>
+        </div>
+        
+        <div layout="row" layout-align="start start">
+            <h1>Titulo Principal</h1>
+            <h2>Titulo </h2>
+            <h3>Subtitulo</h3>
+            <h4>Titulo 4</h4>
+            <h5>Titulo 5</h5>
+            <h6>Titulo 6</h6>
+        </div>
+    </div>   
+
+    <div class="row row-center text-center">
+        <div class="col col-30"></div>
+        <div class="col col-10 fuente-2" >
+            <i ng-click="disminuirServicio(servicio)" class="icon ion-minus-circled positive"></i>
+        </div>
+        <div class="col col-10 col-center fondo-gris-claro">{{carrito.get(servicio.id).cantidad || 0}}</div>
+        <div class="col col-10 fuente-2">
+            <i ng-click="aumentarServicio(servicio)" class="icon ion-plus-circled positive "></i>
+        </div>
+        <div class="col col-30"></div>
+    </div>
+
+    <elemento-centrado>
+        <button class="button button-positive" ui-sref="app.categorias">Regresar al Catálogo de Servicios</button>
+    </elemento-centrado>
+
+  </ion-content>
+
+  <footer-carrito carrito="carrito"></footer-carrito> 
+
+</ion-view>
