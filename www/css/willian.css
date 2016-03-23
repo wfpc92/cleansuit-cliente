@@ -63,6 +63,9 @@
 }
 
 .tab-item > .badge {
-    
     position: static;
+}
+
+.nuevaClase {
+    height: 0px;
 }
