@@ -4,11 +4,11 @@
     
     <ion-list can-swipe="false" show-delete="false" show-reorder="false">
     	<ion-item collection-repeat="categoria in categorias"
-    				ui-sref="app.servicios({idCategoria: categoria.id})"
+    				href="#/app/servicios/{{categoria.id}}"
     				class="item-icon-right">
     		<div>
-    			<h2>{{categoria.nombre}}</h2>
-    			<p>{{categoria.resumen}}</p>
+    			<h2>{{::categoria.nombre}}</h2>
+    			<p>{{::categoria.resumen}}</p>
     			
     		</div>
     		<i class="icon ion-chevron-right positive" ></i>
@@ -19,6 +19,6 @@
 
   </ion-content>
   
-  <footer-solicitar-servicio servicios-en-curso="serviciosEnCurso"></footer-solicitar-servicio>
+  <footer-carrito carrito="carrito"></footer-carrito> 
 
 </ion-view>

@@ -53,7 +53,7 @@ angular.module('ClienteCleanSuit.directives', [])
   return {
     restrict: 'AEC',//'AEC' - matches either attribute or element or class name
     scope: {
-        totales: '&'//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+        totales: '='//cunado @ es unidireccional & para llamar funciones, = para hacer binding
     },
     replace: false, //para reemplazar el contenedor 
     transclude: false, //reinserta el contenido original

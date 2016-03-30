@@ -4,16 +4,16 @@
     
     <ion-list can-swipe="true" show-delete="false" show-reorder="false">
       <ion-item collection-repeat="producto in productos" 
-          ui-sref="app.producto({idProducto: producto.id})"
+          href="#/app/productos/{{producto.id}}"
           class="item item-thumbnail-left item-icon-right ">
 
-        <img ng-src="http://lorempixel.com/50/50" class="badge-container" />
+        <img ng-src="img/producto.png" class="badge-container" ng-cloack/>
         <span ng-if="carrito.get(producto.id).cantidad > 0" class="badge badge-dark icon-badge">
           {{carrito.get(producto.id).cantidad || 0}}
         </span>  
-        <h2>{{producto.nombre}}</h2>
-        <p>{{producto.resumen}}</p>
-        <h2>{{producto.precio | currency : "$ " : 0}}</h2>
+        <h2>{{::producto.nombre}}</h2>
+        <p>{{::producto.resumen}}</p>
+        <h2>{{::producto.precio | currency : "$ " : 0}}</h2>
         <i class="icon ion-chevron-right positive"></i>
          
         <ion-option-button class="positive" ng-click="disminuirProducto(producto)">

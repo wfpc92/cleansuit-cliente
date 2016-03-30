@@ -8,7 +8,7 @@
 
     <ion-list>
     	<ion-item collection-repeat="orden in ordenes" 
-        ui-sref="app.historial-orden({tipo:orden.tipo, idOrden: orden.id})"
+        href="#/app/historial-ordenes/{{orden.id}}"
         class="item-icon-right fondo-gris">
     		<h2><b>{{orden.fecha}}</b></h2>
             <p>{{orden.titulo}} {{orden.estado}}</p>

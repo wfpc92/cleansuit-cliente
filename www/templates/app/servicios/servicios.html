@@ -4,15 +4,15 @@
     
     <ion-list can-swipe="true" show-delete="false" show-reorder="false">
       <ion-item collection-repeat="servicio in servicios" 
-          ui-sref="app.servicio({idCategoria: idCategoria, idServicio: servicio.id})"
+          href="#/app/servicios/{{idCategoria}}/{{servicio.id}}"
           class="item item-icon-right">
 
-        <h2>{{servicio.nombre}}</h2>
+        <h2>{{::servicio.nombre}}</h2>
         <span ng-if="carrito.get(servicio.id).cantidad > 0" class="badge badge-dark icon-badge">
           {{carrito.get(servicio.id).cantidad || 0}}
-        </span>  
-        <p>{{servicio.descripcion}}</p>
-        <h2>{{servicio.precio | currency : "$ " : 0}}</h2>
+        </span>   
+        <p>{{::servicio.descripcion}}</p>
+        <h2>{{::servicio.precio | currency : "$ " : 0}}</h2>
         <i class="icon ion-chevron-right positive"></i>
          
         <ion-option-button class="positive" ng-click="disminuirServicio(servicio)">

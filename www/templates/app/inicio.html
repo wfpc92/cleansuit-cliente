@@ -4,9 +4,9 @@
   <ion-content class="has-subheader" overflow-scroll="true" padding="false" scroll="true"
         ng-class="{'has-footer': carrito.items.length > 0}" >
     
-    <div class="card" collection-repeat="promo in promociones track by $index">
+    <div class="list card" collection-repeat="promo in promociones">
       <div class="item item-image">
-	    <img ng-src="http://lorempixel.com/200/50" />
+	    <img ng-src="img/promociones.png" ng-cloak/>
 	  </div>
 	  <div class="item item-divider item-text-wrap">
 	    {{promo.descuento}}

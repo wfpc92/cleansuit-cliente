@@ -101,12 +101,12 @@
       <ion-item collection-repeat="item in ordenHistorica.items" 
           class="item-thumbnail-left fondo-gris " style="margin:10px">
 
-        <img ng-src="http://lorempixel.com/100/100" />
-            <h2>{{item.nombre}}</h2>
-            <h2>{{item.precio | currency : "$ ": 0}}</h2>
-          <div style="    float: right; padding:10px; background-color: white">
-            {{item.cantidad || 0}}
-          </div>
+        <img ng-src="img/producto.png" ng-show="item.tipo=='PRODUCTO'"/>
+        <h2>{{item.nombre}}</h2>
+        <h2>{{item.precio | currency : "$ ": 0}}</h2>
+        <div style="    float: right; padding:10px; background-color: white">
+          {{item.cantidad || 0}}
+        </div>
       </ion-item>       
     </ion-list>
 

@@ -4,14 +4,14 @@
     
     <div class="card" layout="column" layout-align="center">
         <div layout="row" layout-align="center center">
-          <img ng-src="http://lorempixel.com/700/200" />
+          <img ng-src="img/producto-detalle.png" ng-cloack/>
         </div>
         <div layout="row" layout-align="center center">
-            <h1>{{producto.titulo}}</h1>
+            <h1>{{::producto.titulo}}</h1>
         </div>
         
         <div layout="row" layout-align="start start">
-            <p>{{producto.descripcion}}</p>    
+            <p>{{::producto.descripcion}}</p>    
         </div>
         
         <div layout="row" layout-align="start start">
@@ -37,7 +37,7 @@
     </div>
 
     <elemento-centrado>
-        <button class="button button-positive" ui-sref="app.productos">Regresar al Catálogo de Productos</button>
+        <button class="button button-positive" href="#/app/productos">Regresar al Catálogo de Productos</button>
     </elemento-centrado>
 
   </ion-content>

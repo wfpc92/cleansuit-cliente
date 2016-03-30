@@ -103,19 +103,19 @@
     </div>
     </ion-list>
 
-    <resumen-totales totales="carrito.totales()"></resumen-totales>
+    <resumen-totales totales="carrito.totales"></resumen-totales>
 
     <ion-list>
       <ion-checkbox ng-model="terminosCondiciones">Acepto los Términos y Condiciones de CleanSuit</ion-checkbox>
     </ion-list>
 
     <elemento-centrado>
-      <a ui-sref="app.cancelar-orden" class="positive">- Cancelar Orden -</a>
+      <a href="#/app/cancelar-orden" class="positive">- Cancelar Orden -</a>
     </elemento-centrado>
   </ion-content>
 
   <ion-footer-bar id="footer" class="un-boton">
-        <a ui-sref="app.realizar-orden" class="button button-positive button-full" ng-disabled="formIncompleto">
+        <a href="#/app/realizar-orden" class="button button-positive button-full" ng-disabled="formIncompleto">
           REALIZAR ORDEN
         </a>
    </ion-footer-bar>

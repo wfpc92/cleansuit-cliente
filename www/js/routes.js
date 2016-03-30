@@ -1,6 +1,13 @@
 angular.module('ClienteCleanSuit.routes', [])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $logProvider, $compileProvider, $ionicConfigProvider) {
+
+  $logProvider.debugEnabled(true);
+  $compileProvider.debugInfoEnabled(false);
+  $ionicConfigProvider.scrolling.jsScrolling(false);
+  $ionicConfigProvider.backButton.text('Atras');
+  $ionicConfigProvider.views.forwardCache(true);
+  $ionicConfigProvider.views.maxCache(5);
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -31,6 +38,7 @@ angular.module('ClienteCleanSuit.routes', [])
 
   .state('autenticacion.registrar-manual', {
     url: '/registrar-manual',
+    cache: false,
     views: {
         'menuContent': {
           templateUrl: 'templates/autenticacion/registrar-manual.html',
@@ -41,6 +49,7 @@ angular.module('ClienteCleanSuit.routes', [])
 
   .state('autenticacion.ingresar-manual', {
     url: '/ingresar-manual',
+    cache: false,
     views: {
         'menuContent': {
           templateUrl: 'templates/autenticacion/ingresar-manual.html',
@@ -51,6 +60,7 @@ angular.module('ClienteCleanSuit.routes', [])
 
   .state('autenticacion.recuperar-contrasena', {
     url: '/recuperar-contrasena',
+    cache: false,
     views: {
         'menuContent': {
           templateUrl: 'templates/autenticacion/recuperar-contrasena.html',
@@ -138,6 +148,7 @@ angular.module('ClienteCleanSuit.routes', [])
 
   .state('app.carrito', {
     url: '/carrito',
+    //cache: false,
     views: {
         'menuContent': {
           templateUrl: 'templates/app/orden/carrito.html',
@@ -149,6 +160,7 @@ angular.module('ClienteCleanSuit.routes', [])
 
   .state('app.informacion-orden', {
     url: '/informacion-orden',
+    //cache: false,
     views: {
         'menuContent': {
           templateUrl: 'templates/app/orden/informacion-orden.html',
@@ -159,6 +171,7 @@ angular.module('ClienteCleanSuit.routes', [])
 
   .state('app.cancelar-orden', {
     url: '/cancelar-orden',
+    //cache: false,
     views: {
         'menuContent': {
           templateUrl: 'templates/app/inicio.html',
@@ -169,6 +182,7 @@ angular.module('ClienteCleanSuit.routes', [])
 
   .state('app.realizar-orden', {
     url: '/realizar-orden',
+    //cache: false,
     views: {
         'menuContent': {
           templateUrl: 'templates/app/orden/realizar-orden.html',

@@ -13,11 +13,11 @@
       </ion-nav-buttons>
 
       <ion-tabs class="tabs-light ">
-        <a class="tab-item" title="SERVICIOS" ui-sref="app.categorias" >
-          SERVICIOS <span class="badge badge-dark icon-badge" ng-if="carrito.contadorServicios >0">{{carrito.contadorServicios}}</span>
+        <a class="tab-item" title="SERVICIOS" href="#/app/categorias" >
+          SERVICIOS <span class="badge badge-dark icon-badge" ng-if="carrito.contServicios >0">{{carrito.contServicios}}</span>
         </a>
-        <a class="tab-item" title="PRODUCTOS" ui-sref="app.productos" >
-          PRODUCTOS <span class="badge badge-dark icon-badge" ng-if="carrito.contadorProductos > 0">{{carrito.contadorProductos}}</span>
+        <a class="tab-item" title="PRODUCTOS" href="#app/productos" >
+          PRODUCTOS <span class="badge badge-dark icon-badge" ng-if="carrito.contProductos > 0">{{carrito.contProductos}}</span>
         </a>
       </ion-tabs>   
     </ion-nav-bar>
@@ -39,24 +39,24 @@
           <h2>{{usuario.nombre + ' ' + usuario.apellidos | uppercase}}</h2>
         </ion-item>
 
-        <ion-item menu-close ui-sref="app.ordenes-en-proceso" class="item-icon-left">
+        <ion-item menu-close href="#/app/ordenes-en-proceso" class="item-icon-left">
           Orden en proceso 
           <i class="icon ion-ionic"></i>
-          <span class="badge badge-dark icon-badge" ng-if="contOrdenesEnProceso>0">{{usuario.ordenesEnProceso.length}}</span>
+          <span class="badge badge-dark icon-badge" >{{contOrdenesEnProceso}}</span>
         </ion-item>
-        <ion-item menu-close ui-sref="app.historial-ordenes" class="item-icon-left">
+        <ion-item menu-close href="#/app/historial-ordenes" class="item-icon-left">
           Historial de ordenes
           <i class="icon ion-ionic"></i>
         </ion-item>
-        <ion-item menu-close ui-sref="app.perfil" class="item-icon-left">
+        <ion-item menu-close href="#/app/perfil" class="item-icon-left">
           Perfil
           <i class="icon ion-ionic"></i>
         </ion-item>
-        <ion-item menu-close ui-sref="app.sobre-esta-aplicacion" class="item-icon-left">
+        <ion-item menu-close href="#/app/sobre-esta-aplicacion" class="item-icon-left">
           Sobre esta aplicación
           <i class="icon ion-ionic"></i>
         </ion-item>
-        <ion-item menu-close ui-sref="app.cerrar-sesion" class="item-icon-left">
+        <ion-item menu-close href="#/app/cerrar-sesion" class="item-icon-left">
           Cerrar sesión
           <i class="icon ion-ionic"></i>
         </ion-item>

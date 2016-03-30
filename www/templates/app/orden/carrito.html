@@ -6,7 +6,7 @@
           class="item fondo-gris"
           ng-class="{'item-thumbnail-left' : item.tipo=='PRODUCTO'}">
 
-        <img ng-src="http://lorempixel.com/70/70" ng-show="item.tipo=='PRODUCTO'"/>
+        <img ng-src="img/producto.png" ng-show="item.tipo=='PRODUCTO'"/>
         
         <div class="row"><h2>{{item.nombre}}</h2></div>
         
@@ -30,10 +30,10 @@
       </ion-item>
     </ion-list>
 
-    <resumen-totales totales="carrito.totales()"></resumen-totales>
+    <resumen-totales totales="carrito.totales"></resumen-totales>
 
     <elemento-centrado>
-      <a ui-sref="app.cancelar-orden" class="positive">- Cancelar Orden -</a>
+      <a href="#/app/cancelar-orden" class="positive">- Cancelar Orden -</a>
     </elemento-centrado>
 
     <br/>
@@ -42,7 +42,7 @@
   </ion-content>
 
   <ion-footer-bar>
-        <a ui-sref="app.informacion-orden" class="button button-positive button-full" ng-disabled="carrito.items.length==0">
+        <a href="#/app/informacion-orden" class="button button-positive button-full" ng-disabled="carrito.items.length==0">
           SIGUIENTE
         </a>
    </ion-footer-bar>

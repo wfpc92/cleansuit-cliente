@@ -3,17 +3,17 @@
         ng-class="{'has-footer': carrito.items.length > 0}">    
     <div class="card" layout="column" layout-align="center">
         <div layout="row" layout-align="center center">
-          <img ng-src="http://lorempixel.com/700/200" />
+          <img ng-src="img/producto-detalle.png" ng-cloak />
         </div>
         <div layout="row" layout-align="center center">
-            <h1>{{servicio.nombre}}</h1>
+            <h1>{{::servicio.nombre}}</h1>
         </div>
         
         <div layout="row" layout-align="start start">
-            <p>{{servicio.descripcion}}</p>    
+            <p>{{::servicio.descripcion}}</p>    
         </div>
         <div layout="row" layout-align="start start">
-        	<h2>{{servicio.precio | currency : "$ " : 0}}</h2>
+        	<h2>{{::servicio.precio | currency : "$ " : 0}}</h2>
         </div>
         
         <div layout="row" layout-align="start start">
@@ -39,7 +39,7 @@
     </div>
 
     <elemento-centrado>
-        <button class="button button-positive" ui-sref="app.categorias">Regresar al Catálogo de Servicios</button>
+        <button class="button button-positive" href="#/app/categorias">Regresar al Catálogo de Servicios</button>
     </elemento-centrado>
 
   </ion-content>
