@@ -5,14 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('ClienteCleanSuit', ['ionic', 
-                                'ClienteCleanSuit.routes', 
-                                'autenticacion.controllers', 
-                                'autenticacion.services', 
-                                'autenticacion.directives',
-                                'ClienteCleanSuit.controllers',
-                                'ClienteCleanSuit.directives',
-                                'ClienteCleanSuit.services'])
+var app = angular.module('ClienteCleanSuit', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -26,5 +19,4 @@ angular.module('ClienteCleanSuit', ['ionic',
       StatusBar.styleDefault();
     }
   });
-
-})
+});

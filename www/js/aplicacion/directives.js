@@ -1,6 +1,4 @@
-angular.module('ClienteCleanSuit.directives', [])
-
-.directive('elementoCentrado', function(){
+app.directive('elementoCentrado', function(){
   return {
     restrict: 'AEC',//'AEC' - matches either attribute or element or class name
     scope: {

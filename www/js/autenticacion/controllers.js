@@ -1,7 +1,7 @@
-angular.module('autenticacion.controllers', [])
   
-.controller('inicioCtrl', function($scope) {
-
+app.controller('AutenticacionInicioCtrl', function($scope, $ionicSideMenuDelegate) {
+	
+	$ionicSideMenuDelegate.canDragContent(false);
 })
    
 .controller('registrarManualCtrl', function($scope) {
@@ -18,5 +18,4 @@ angular.module('autenticacion.controllers', [])
    
 .controller('panelPrincipalCtrl', function($scope, Productos) {
 	$scope.productos = Productos;
-})
- 
+}); 

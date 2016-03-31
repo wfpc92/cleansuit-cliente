@@ -1,6 +1,4 @@
-angular.module('ClienteCleanSuit.controllers', ['ClienteCleanSuit.services'])
-  
-.controller('AppCtrl', function($scope, CarritoFactory, HistorialOrdenFactory) {
+app.controller('AppCtrl', function($scope, CarritoFactory, HistorialOrdenFactory) {
 	$scope.carrito = CarritoFactory;
 	$scope.contOrdenesEnProceso = HistorialOrdenFactory.ordenesEnProceso.length;
 	//$rootScope.usuario = FabricaDatos.usuario;
@@ -16,9 +14,10 @@ angular.module('ClienteCleanSuit.controllers', ['ClienteCleanSuit.services'])
 
 })
  
-.controller('AppInicioCtrl', function($scope, PromocionesFactory, CarritoFactory, $log) {
+.controller('AppInicioCtrl', function($scope, PromocionesFactory, CarritoFactory, $log, $ionicTabsDelegate) {
 	$scope.promociones = PromocionesFactory.promociones;
 	$scope.carrito = CarritoFactory;
+	$ionicTabsDelegate.select(2);
 })
 
 
@@ -181,6 +180,3 @@ angular.module('ClienteCleanSuit.controllers', ['ClienteCleanSuit.services'])
 	var idOrden = $stateParams.idOrden;
 	$scope.ordenHistorica = HistorialOrdenFactory.getOrdenHistorica(idOrden);
 })
-
-
-

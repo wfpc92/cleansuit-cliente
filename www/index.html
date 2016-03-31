@@ -30,9 +30,9 @@
     <script src="js/aplicacion/directives.js"></script>
 
   </head>
-  <body>
+<body>
 
-    <div ng-app="ClienteCleanSuit">
+	<div ng-app="ClienteCleanSuit">
       <!--
         The nav bar that will be updated as we navigate between views. class="button-icon icon ion-ios-arrow-back
       -->
@@ -42,7 +42,59 @@
         Templates are in the /templates folder (but you could also
         have templates inline in this html file if you'd like).
       -->
-      <ion-nav-view></ion-nav-view>
+    	<ion-side-menus>
+
+			<ion-side-menu-content>
+				<ion-nav-bar>
+					<ion-nav-back-button></ion-nav-back-button>
+					<ion-nav-buttons side="primary">
+						<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+						</button>
+			  		</ion-nav-buttons>
+				</ion-nav-bar>
+				<ion-nav-view></ion-nav-view>
+			</ion-side-menu-content>
+
+			
+		  	<ion-side-menu side="left">
+			    <ion-header-bar class="bar-stable">
+			      <h1 class="title">Men&#xFA;</h1>
+			    </ion-header-bar>
+
+			    <ion-content overflow-scroll="true" padding="false" scroll="false">
+			      	<ion-list>
+
+				        <ion-item class="item-avatar">
+				          <img ng-src="{{usuario.fotoPerfil}}">
+				          <h2>{{usuario.nombre + &apos; &apos; + usuario.apellidos | uppercase}}</h2>
+				        </ion-item>
+
+				        <ion-item menu-close="" href="#/app/ordenes-en-proceso" class="item-icon-left">
+				          Orden en proceso 
+				          <i class="icon ion-ionic"></i>
+				          <span class="badge badge-dark icon-badge">{{contOrdenesEnProceso}}</span>
+				        </ion-item>
+				        <ion-item menu-close="" href="#/app/historial-ordenes" class="item-icon-left">
+				          Historial de ordenes
+				          <i class="icon ion-ionic"></i>
+				        </ion-item>
+				        <ion-item menu-close="" href="#/app/perfil" class="item-icon-left">
+				          Perfil
+				          <i class="icon ion-ionic"></i>
+				        </ion-item>
+				        <ion-item menu-close="" href="#/app/sobre-esta-aplicacion" class="item-icon-left">
+				          Sobre esta aplicaci&#xF3;n
+				          <i class="icon ion-ionic"></i>
+				        </ion-item>
+				        <ion-item menu-close="" href="#/app/cerrar-sesion" class="item-icon-left">
+				          Cerrar sesi&#xF3;n
+				          <i class="icon ion-ionic"></i>
+				        </ion-item>
+			      	</ion-list>
+			    </ion-content>
+			</ion-side-menu>
+		</ion-side-menus>
+
     </div>
     
   </body>

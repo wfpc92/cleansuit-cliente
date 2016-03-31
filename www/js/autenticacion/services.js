@@ -1,6 +1,5 @@
-angular.module('autenticacion.services', [])
 
-.factory('BlankFactory', [function(){
+app.factory('BlankFactory', [function(){
 
 }])
 

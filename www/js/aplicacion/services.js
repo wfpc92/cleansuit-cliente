@@ -1,6 +1,5 @@
-angular.module('ClienteCleanSuit.services', [])
 
-.factory('UsuarioFactory',[function(){
+app.factory('UsuarioFactory',[function(){
 	return {
 		getUsuario: {
 			nombre : 'Dany Alejandro',
