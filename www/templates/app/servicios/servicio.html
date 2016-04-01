@@ -1,6 +1,7 @@
 <ion-view title="Cleansuit">
-  <ion-content overflow-scroll="false" padding="true" scroll="true"
-        ng-class="{'has-footer': carrito.items.length > 0}">    
+  <ion-content overflow-scroll="true" padding="true" scroll="true"
+        ng-class="{'has-footer': carrito.items.length > 0}">
+
     <div class="card" layout="column" layout-align="center">
         <div layout="row" layout-align="center center">
           <img ng-src="img/producto-detalle.png" ng-cloak />
@@ -39,7 +40,7 @@
     </div>
 
     <elemento-centrado>
-        <button class="button button-positive" href="#/app/categorias">Regresar al Catálogo de Servicios</button>
+        <button class="button button-positive" ui-sref="app.categorias">Regresar al Catálogo de Servicios</button>
     </elemento-centrado>
 
   </ion-content>

@@ -3,9 +3,9 @@
         ng-class="{'has-footer': carrito.items.length > 0}">
     
     <ion-list can-swipe="false" show-delete="false" show-reorder="false">
-    	<ion-item collection-repeat="categoria in categorias"
-    				href="#/app/servicios/{{categoria.id}}"
-    				class="item-icon-right">
+    	<ion-item collection-repeat="categoria in categorias track by $index"
+    				href="#/app/servicios/{{$index}}"
+    				class="item-icon-right item-text-wrap" >
     		<div>
     			<h2>{{::categoria.nombre}}</h2>
     			<p>{{::categoria.resumen}}</p>

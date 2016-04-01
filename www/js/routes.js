@@ -82,7 +82,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 
 
 	.state('app.servicios', {
-		url: '/servicios/:idCategoria',
+		url: '/servicios/:indexCategoria',
 		views: {
 			'mis-categorias': {
 				templateUrl: 'templates/app/servicios/servicios.html',
@@ -93,7 +93,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 
 
 	.state('app.servicio', {
-		url: '/servicios/:idCategoria/:idServicio',
+		url: '/servicios/:indexCategoria/:indexServicio',
 		views: {
 			'mis-categorias': {
 				templateUrl: 'templates/app/servicios/servicio.html',
@@ -113,7 +113,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 	})
 
 	.state('app.producto', {
-		url: '/productos/:idProducto',
+		url: '/productos/:indexProducto',
 		views: {
 			'mis-productos': {
 				templateUrl: 'templates/app/productos/producto.html',
@@ -127,7 +127,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 		url: '/carrito',
 		//cache: false,
 		views: {
-			'menuContent': {
+			'mis-promociones': {
 				templateUrl: 'templates/app/orden/carrito.html',
 				controller: 'CarritoCtrl'
 			}
