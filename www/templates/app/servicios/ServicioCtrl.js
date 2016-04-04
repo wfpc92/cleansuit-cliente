@@ -6,10 +6,12 @@ app.controller('ServicioCtrl', function($scope, $stateParams, ServiciosFactory, 
 
 	$scope.aumentarServicio = function(servicio){
 		CarritoFactory.agregar(servicio, "SERVICIO", 1);
+		CarritoFactory.limpiar();
 	};
 
 	$scope.disminuirServicio = function(servicio){
 		CarritoFactory.disminuir(servicio, "SERVICIO", 1);
+		CarritoFactory.limpiar();
 	};
 	$scope.carrito = CarritoFactory;	
 })

@@ -2,7 +2,7 @@
     <ion-content overflow-scroll="true" padding="true" scroll="true"
         ng-class="{'has-footer': carrito.items.length > 0}">
     
-        <ion-list can-swipe="false" show-delete="false" show-reorder="false">
+        <ion-list can-swipe="true" show-delete="false" show-reorder="false">
             <ion-item collection-repeat="servicio in servicios track by $index" 
                 href="#/app/servicios/{{indexCategoria}}/{{$index}}"
                 class="item item-icon-right item-text-wrap" >
@@ -14,7 +14,6 @@
                 <p>{{::servicio.descripcion}}</p>
                 <h2>{{::servicio.precio | currency : "$ " : 0}}</h2>
                 <i class="icon ion-chevron-right positive"></i>
-
 
 
                 <ion-option-button class="positive" ng-click="disminuirServicio(servicio)">
