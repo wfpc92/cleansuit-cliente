@@ -1,31 +1,29 @@
 <ion-view title="">
-    <ion-content class="has-footer" overflow-scroll="true" padding="true" scroll="false" >
-        <elemento-centrado height-percent="30">
-            <icono-empresa height="xpx"> </icono-empresa> 
-            <h4>CleanSuit</h4>
-        </elemento-centrado>
+    <ion-content class="has-footer" overflow-scroll="true" padding="false" scroll="false" >
+        <img class="logo" src="../../img/logo.svg" />
 
-        <elemento-centrado height-percent="50">
-            <p>Ingrese su correo electrónico y contraseña<br>para ingresar</p>
+        <div class="formulario">
+            <!--<p>Ingrese su correo electrónico y contraseña<br>para ingresar</p>-->
+            <div class="burbujas"></div>
             <form class="list">
                  <ion-list>
-                    <label class="item item-input" name="email">
+                    <label class="item item-input item-floating-label" name="email">
+                        <span class="input-label">Correo Electrónico</span>
                         <input type="text" placeholder="Correo Electrónico">
                     </label>
-                    <label class="item item-input" name="contrasena">
+                    <label class="item item-input item-floating-label" name="contrasena">
+                        <span class="input-label">Contraseña</span>
                         <input type="password" placeholder="Contraseña">
                     </label>
                 </ion-list>
-                <div>
-                    <a href="#/autenticacion-recuperar-contrasena">
-                        ¿Olvidaste tu Contraseña?
-                    </a>
-                </div>
+                <a href="#/autenticacion-recuperar-contrasena">
+                    ¿Olvidaste tu contraseña?
+                </a>
             </form>
-        </elemento-centrado>
+        </div>
 
     </ion-content>
     <ion-footer-bar>
-        <a href="#/app/inicio" class="button button-positive button-full">INGRESAR</a>
+        <a href="#/app/inicio" class="button button-calm button-full">INGRESAR</a>
     </ion-footer-bar>
 </ion-view>

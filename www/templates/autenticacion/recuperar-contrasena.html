@@ -1,23 +1,25 @@
 <ion-view title="">
-    <ion-content class="has-footer" overflow-scroll="true" padding="true" scroll="false">
-        <elemento-centrado height-percent="60">
-            <h2>
-                <b>¿No recuerdas tu contraseña?</b><br><b>¡No te precoupes!</b>
-            </h2>
-            <p>Escribe tu correo electrónico y te haremos<br>llegar la forma para recuperarla.</p>
-            <br/>
+    <ion-content class="has-footer" overflow-scroll="true" padding="false" scroll="false">
+        <img class="logo" src="../../img/logo.svg" />
+        <div class="formulario">
+            <div class="burbujas"></div>            
             <form class="list">
+                <h2>¿No recuerdas tu contraseña?<br>¡No te precoupes!</h2>
+                <p>
+                    Escribe tu correo electrónico y te enviaremos<br>información para recuperar tu contraseña
+                </p>
                 <ion-list>
-                    <label class="item item-input">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Correo Electrónico</span>
                         <input type="email" placeholder="Correo electrónico">
                     </label>
                 </ion-list>
             </form>
-        </elemento-centrado>
+        </div>
                  
     </ion-content>
     
     <ion-footer-bar>
-        <a href="#/autenticacion-inicio" class="button button-positive button-full">ENVIAR</a>
+        <a href="#/autenticacion-inicio" class="button button-calm button-full">ENVIAR</a>
     </ion-footer-bar>
 </ion-view>

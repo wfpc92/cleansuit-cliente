@@ -1,31 +1,32 @@
 <ion-view title="">
-    <ion-content class="has-footer" overflow-scroll="true" padding="true" scroll="false" >
+    <ion-content class="has-footer" overflow-scroll="true" padding="false" scroll="false" >
             
-        <elemento-centrado height-percent="30">
-            <icono-empresa height="xpx"> </icono-empresa> 
-            <h4>CleanSuit</h4>
-        </elemento-centrado>
+        <img class="logo" src="../../img/logo.svg" />
 
-        <elemento-centrado height-percent="50">
-            <p>Ingrese los siguientes datos<br>para registrarse</p>
+        <div class="formulario">
+            <!--<p>Ingrese los siguientes datos<br>para registrarse</p>-->
+            <div class="burbujas"></div>
             <form class="list">
                 <ion-list>
-                    <label class="item item-input" name="Nombre Completo">
-                        <input type="text" placeholder="Nombre Completo">
+                    <label class="item item-input item-floating-label" name="Nombre Completo">
+                        <span class="input-label">Nombre Completo</span>
+                        <input type="text" placeholder="NOMBRE COMPLETO">
                     </label>
-                    <label class="item item-input" name="email">
-                        <input type="text" placeholder="Correo Electrónico">
+                    <label class="item item-input item-floating-label" name="email">
+                        <span class="input-label">Correo Electrónico</span>
+                        <input type="text" placeholder="CORREO ELECTRÓNICO">
                     </label>
-                    <label class="item item-input" name="contrasena">
-                        <input type="password" placeholder="Contraseña">
+                    <label class="item item-input item-floating-label" name="contrasena">
+                        <span class="input-label">Contraseña</span>
+                        <input type="password" placeholder="CONTRASEÑA">
                     </label>
                 </ion-list>
             </form>
-        </elemento-centrado>
+        </div>
 
     </ion-content>
     
     <ion-footer-bar>
-        <a href="#/app/inicio" class="button button-positive button-full">REGISTRARME</a>
+        <a href="#/app/inicio" class="button button-balanced button-full">REGISTRARME</a>
     </ion-footer-bar >
 </ion-view>
