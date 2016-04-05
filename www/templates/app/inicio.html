@@ -4,12 +4,12 @@
   <ion-content overflow-scroll="true" padding="false" scroll="true"
         ng-class="{'has-footer': carrito.items.length > 0}" >
     
-    <div class="list card" collection-repeat="promo in promociones" item-height="300px" item-width="95%">
+    <div class="list card" collection-repeat="promo in promociones" item-height="30%" item-width="95%">
       <div class="item item-image">
 	    <img ng-src="img/promociones.png" ng-cloak/>
 	  </div>
 	  <div class="item item-divider item-text-wrap">
-	    {{promo.descuento}}
+	    {{promo.descuento}} 
 	  </div>
 	</div>
 	

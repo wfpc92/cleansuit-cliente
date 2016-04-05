@@ -32,7 +32,7 @@
         <div class="col col-10 fuente-2" >
             <i ng-click="disminuirServicio(servicio)" class="icon ion-minus-circled positive"></i>
         </div>
-        <div class="col col-10 col-center fondo-gris-claro">{{carrito.get(servicio.id).cantidad || 0}}</div>
+        <div class="col col-10 col-center fondo-gris-claro">{{cantidadEnCarrito(servicio.id)}}</div>
         <div class="col col-10 fuente-2">
             <i ng-click="aumentarServicio(servicio)" class="icon ion-plus-circled positive "></i>
         </div>
@@ -40,7 +40,7 @@
     </div>
 
     <elemento-centrado>
-        <button class="button button-positive" ui-sref="app.categorias">Regresar al Catálogo de Servicios</button>
+        <button class="button button-positive" ng-click="regresarCatalogo()">Regresar al Catálogo de Servicios</button>
     </elemento-centrado>
 
   </ion-content>

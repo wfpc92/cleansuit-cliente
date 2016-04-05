@@ -4,17 +4,14 @@
 		<ion-tab title="Promociones" href="#/app/inicio">
 			<ion-nav-view name="mis-promociones"></ion-nav-view>
 		</ion-tab>
-		<ion-tab title="Servicios" href="#/app/categorias">
-			<span class="badge badge-dark icon-badge" ng-if="carrito.contServicios >0">{{carrito.contServicios}}</span>
+		<ion-tab title="Servicios" href="#/app/categorias" badge="carrito.contServicios" badge-style="badge-dark">
 			<ion-nav-view name="mis-categorias"></ion-nav-view>
 		</ion-tab>
-		<ion-tab title="Productos" href="#/app/productos">
-			<span class="badge badge-dark icon-badge" ng-if="carrito.contProductos > 0">{{carrito.contProductos}}</span>
+		<ion-tab title="Productos" href="#/app/productos" badge="carrito.contProductos">
 			<ion-nav-view name="mis-productos"></ion-nav-view>
 		</ion-tab>
-		<ion-tab title="Carrito" href="#/app/productos">
-			<span class="badge badge-dark icon-badge" ng-if="carrito.contProductos > 0">{{carrito.contProductos}}</span>
-			<ion-nav-view name="mis-productos"></ion-nav-view>
+		<ion-tab title="Carrito" href="#/app/carrito">
+			<ion-nav-view name="mi-carrito"></ion-nav-view>
 		</ion-tab>
-	</ion-tabs>   
+	</ion-tabs>    
   </ion-view>

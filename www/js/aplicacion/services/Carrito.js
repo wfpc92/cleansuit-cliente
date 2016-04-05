@@ -2,13 +2,13 @@ app.factory('CarritoFactory', [function(){
 	return {
 		domicilio: 2300,
 
-		items: [
+		items: {
 		//id: {
 		//  producto o servicio object +
 		//	tipo: "PRODUCTO" o "SERVICIO"
 		//	cantidad: cantidad agregada
 		//}
-		],
+		},
 
 		totales : {
 			subtotal: 0,
@@ -19,62 +19,75 @@ app.factory('CarritoFactory', [function(){
 		contProductos: 0,
 		contServicios: 0,
 
-		get : function(id){
-			for(var i = 0; i < this.items.length; i++){
-				if(this.items[i].id == id){
-					return this.items[i];
-				}
+		hayItems : function(){
+			var cont = 0; 
+			for(var i in this.items){
+				cont += 1;
 			}
-			return null;
+			if(cont>0){
+				return true;
+			}else{
+				return false;
+			}
 		},
 
-		agregar : function(nuevoItem, tipo, cantidad){
-			var existe = false;
+		/**
+		 * agregar un item a la lista de items del carrito
+		 * @param  {object} item item de producto o servicio
+		 * @param  {string} tipo      'PRODUCTO' o 'SERVICIO'
+		 * @param  {int} cantidad  cantidad que se adiciona al carrito 
+		 * @return {void}
+		 */
+		agregar : function(item, tipo, cantidad){
+			var nuevoItem = this.items[item.id];
+			console.log("agregar item al carrito")
+			console.log(item)
 
-			for(var i = 0; i < this.items.length; i++){
-				if(this.items[i].id == nuevoItem.id){
-					this.items[i].cantidad += cantidad;
-					existe = true;
-				}
+			//existe el item en el carrito de compra, aumentar cantidad
+			if(typeof nuevoItem !== 'undefined'){
+				this.items[item.id].cantidad += cantidad;
 			}
-
-			if (!existe) {
-				nuevoItem.tipo = tipo;
-				nuevoItem.cantidad = cantidad;
-				this.items.push(nuevoItem);
+			//no existe hay que agregarlo al carrito de compras
+			else {
+				console.log("no existe el item... creando")
+				this.items[item.id] = item;
+				this.items[item.id].tipo = tipo;
+				this.items[item.id].cantidad = cantidad;
+				console.log("items:")
+				console.log(this.items)
 			}
+			
 			this.actualizarContadores();
 			this.calcularPedido();
 		},
 
-		disminuir : function(nuevoItem, tipo, cantidad){
-			var existe = false;
+		disminuir : function(item, tipo, cantidad){
+			var nuevoItem = this.items[item.id];
+			console.log("disminuir item al carrito")
+			console.log(item)
 
-			for(var i = 0; i < this.items.length; i++){
-				if(this.items[i].id == nuevoItem.id){
-					this.items[i].cantidad -= cantidad;
-					if(this.items[i].cantidad <= 0){
-						this.items[i].cantidad = 0;
-					//this.items.splice(i, 1);
-						
-					}
-					existe = true;
+			//existe el item en el carrito de compra, disminuri cantidad
+			if(typeof nuevoItem !== 'undefined'){
+				this.items[item.id].cantidad -= cantidad;
+				if(this.items[item.id].cantidad <= 0){
+					this.items[item.id].cantidad = 0;
 				}
 			}
+			//si no existe no se hace nada
 
-			if (!existe) {
-				nuevoItem.tipo = tipo;
-				nuevoItem.cantidad = cantidad;
-				this.items.push(nuevoItem);
-			}
 			this.actualizarContadores();
 			this.calcularPedido();
 		},
 
 		limpiar : function(){//limpiar los items que no tienen cantidades.
-			for(var i = 0; i < this.items.length; i++){
-				if(this.items[i].cantidad == 0){
-					this.items.splice(i, 1);
+			console.log("limpiar...")
+			for(var i in this.items){
+				console.log(this.items[i])
+				console.log("cantidad: "+this.items[i].cantidad)
+				if(this.items[i].cantidad == 0 ){
+					console.log("borrando... ")
+					delete this.items[i];
+					console.log(this.items)
 				}
 			}
 			this.actualizarContadores();
@@ -83,7 +96,7 @@ app.factory('CarritoFactory', [function(){
 		actualizarContadores : function(){
 			this.contProductos = 0;
 			this.contServicios = 0;
-			for (var i = 0; i < this.items.length; i++) {
+			for (var i in this.items) {
 				switch(this.items[i].tipo){
 					case "PRODUCTO":
 						this.contProductos += this.items[i].cantidad;
@@ -99,7 +112,7 @@ app.factory('CarritoFactory', [function(){
 		
 		calcularPedido : function(){//calcular precios de total y subtotal
 			var subtotal = 0;
-			for (var i = this.items.length - 1; i >= 0; i--) {
+			for (var i in this.items) {
 			 	//precio * cantidad
 				subtotal += this.items[i].precio * this.items[i].cantidad;
 			}

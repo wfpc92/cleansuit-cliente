@@ -1,4 +1,4 @@
-app.controller('CarritoCtrl', function($scope, CarritoFactory, $log) {
+app.controller('CarritoCtrl', function($scope, CarritoFactory, $log, $ionicHistory, $state) {
 	/*$rootScope.$on('$ionicView.leave', function(event, view){
 		console.log('left..', view.stateName);
 	});*/
@@ -27,4 +27,16 @@ app.controller('CarritoCtrl', function($scope, CarritoFactory, $log) {
 	$scope.disminuirProducto = function(producto){
 		CarritoFactory.disminuir(producto, "PRODUCTO", 1);
 	};
+
+	$scope.$on('$ionicView.afterEnter', function(event) {
+		$scope.cancelarOrden = function() {
+			CarritoFactory.items = [];
+			CarritoFactory.actualizarContadores();
+			$state.go("app.inicio");
+			$ionicHistory.clearHistory();
+			$ionicHistory.nextViewOptions({
+				disableBack:'true'
+			});
+		};
+	});
 })

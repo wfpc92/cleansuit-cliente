@@ -33,10 +33,16 @@
 		</ion-item>
 	</ion-list>
 
-	<resumen-totales totales="carrito.totales"></resumen-totales>
+	<resumen-totales totales="carrito.totales" ng-show="carrito.hayItems()"></resumen-totales>
+
+	<div clas="card" ng-hide="carrito.hayItems()">
+		<div class="item item-text-wrap">
+			No hay Items en el carrito de compra.
+		</div>
+	</div>
 
 	<elemento-centrado>
-	  <a href="#/app/cancelar-orden" class="positive">- Cancelar Orden -</a>
+	  <a ng-click="cancelarOrden()" class="positive" ng-show="carrito.hayItems()">- Cancelar Orden -</a>
 	</elemento-centrado>
 
 	<br/>

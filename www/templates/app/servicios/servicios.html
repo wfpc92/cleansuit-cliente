@@ -3,13 +3,13 @@
         ng-class="{'has-footer': carrito.items.length > 0}">
     
         <ion-list can-swipe="true" show-delete="false" show-reorder="false">
-            <ion-item collection-repeat="servicio in servicios track by $index" 
+            <ion-item collection-repeat="servicio in servicios track by $index" item-height="96px" item-width="98%"
                 href="#/app/servicios/{{indexCategoria}}/{{$index}}"
                 class="item item-icon-right item-text-wrap" >
 
                 <h2>{{::servicio.nombre}}</h2>
-                <span ng-if="carrito.get(servicio.id).cantidad > 0" class="badge badge-dark icon-badge">
-                {{carrito.get(servicio.id).cantidad || 0}}
+                <span ng-if="cantidadEnCarrito(servicio.id) > 0" class="badge badge-dark icon-badge">
+                {{cantidadEnCarrito(servicio.id)}}
                 </span>   
                 <p>{{::servicio.descripcion}}</p>
                 <h2>{{::servicio.precio | currency : "$ " : 0}}</h2>
@@ -23,7 +23,7 @@
                 <ion-option-button >
                     <div class="row">
                     <div class="col text-center col-center fondo-gris">
-                    {{carrito.get(servicio.id).cantidad || 0}}
+                    {{cantidadEnCarrito(servicio.id)}}
                     </div>
                     </div>
                 </ion-option-button>

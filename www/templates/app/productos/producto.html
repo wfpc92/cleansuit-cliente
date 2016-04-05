@@ -29,7 +29,7 @@
 		<div class="col col-10 fuente-2" >
 			<i ng-click="disminuirProducto()" class="icon ion-minus-circled positive"></i>
 		</div>
-		<div class="col col-10 col-center fondo-gris-claro">{{carrito.get(producto.id).cantidad || 0}}</div>
+		<div class="col col-10 col-center fondo-gris-claro">{{cantidadEnCarrito(producto.id)}}</div>
 		<div class="col col-10 fuente-2">
 			<i ng-click="aumentarProducto()" class="icon ion-plus-circled positive "></i>
 		</div>
@@ -37,7 +37,7 @@
 	</div>
 
 	<elemento-centrado>
-		<button class="button button-positive" href="#/app/productos">Regresar al Catálogo de Productos</button>
+		<button class="button button-positive" ng-click="regresarCatalogo()">Regresar al Catálogo de Productos</button>
 	</elemento-centrado>
 
   </ion-content>

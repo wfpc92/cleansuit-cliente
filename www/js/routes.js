@@ -127,7 +127,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 		url: '/carrito',
 		//cache: false,
 		views: {
-			'mis-promociones': {
+			'mi-carrito': {
 				templateUrl: 'templates/app/orden/carrito.html',
 				controller: 'CarritoCtrl'
 			}
@@ -146,16 +146,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 		}
 	})
 
-	.state('app.cancelar-orden', {
-		url: '/cancelar-orden',
-		//cache: false,
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/app/inicio.html',
-				controller: 'CancelarOrdenCtrl'
-			}
-		}
-	})
+	
 
 	.state('app.realizar-orden', {
 		url: '/realizar-orden',
