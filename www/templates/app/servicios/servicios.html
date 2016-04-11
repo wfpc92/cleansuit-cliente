@@ -1,6 +1,6 @@
 <ion-view title="Cleansuit">
     <ion-content overflow-scroll="true" padding="true" scroll="true"
-        ng-class="{'has-footer': carrito.items.length > 0}">
+        ng-class="{'has-footer': carrito.contProductos + carrito.contServicios > 0}">
     
         <ion-list can-swipe="true" show-delete="false" show-reorder="false">
             <ion-item collection-repeat="servicio in servicios track by $index" item-height="96px" item-width="98%"

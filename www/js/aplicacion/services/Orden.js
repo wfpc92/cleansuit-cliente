@@ -6,7 +6,7 @@ app.factory('OrdenFactory',[function(){
 				hora:''
 			},
 			direccionEntrega : {
-				direccion:'',
+				direccion: '',
 				hora:''
 			},
 			formaPago : '',
