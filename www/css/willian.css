@@ -1,0 +1,75 @@
+.bar-footer {
+    display: inline-table;
+    padding: 0px;
+}
+
+.claseDany {
+	/* Hola Willian! */
+}
+
+.bar-footer .row{
+    padding : 0px;
+}
+
+.bar-footer > .button , .bar-footer .row > .col .button, .bar-footer .row .col{
+    padding: 0px;
+    margin-top: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 10px;
+    border-bottom-width: 0px;
+    margin-bottom: 0px;
+    min-width: 52px;
+    min-height: 47px;
+    line-height: 42px;
+    border-radius: 0px;
+    font-size: 16px;
+ }
+
+.bar-footer .row > .col .button {
+    margin-top: 2px;
+}
+
+.bar-footer .row > .col:first-child .button {
+    border-radius: 0px;
+    margin-right: 1px;
+}
+
+.bar-footer .row > .col:last-child .button {
+    border-radius: 0px;
+    margin-left: 1px;
+}   
+
+/**
+ * para que se muestre a la derecha de un thumbnail
+ */
+.item-thumbnail-left > .item-content span.badge{
+    right: auto;
+    left: 76px;
+    top: 2px;
+}
+
+.fuente-2 {
+    font-size:2em
+}
+
+
+.fondo-gris{
+    background-color: #D9D9D9;
+}
+
+.fondo-gris-claro{
+    background-color: #ECECEC;
+}
+
+#ppFormaPago {
+    height: 9em;
+}
+
+.tab-item > .badge {
+    position: static;
+}
+
+.nuevaClase {
+    height: 0px;
+} 

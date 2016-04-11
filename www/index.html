@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title></title>
 
 
-    <!-- compiled css output -->
-    <link href="css/fonts.css" rel="stylesheet">
+	<!-- compiled css output -->
+	<link href="css/fonts.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
-	<link href="css/wilian.css" rel="stylesheet">
+	<link href="css/willian.css" rel="stylesheet">
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+	<!-- ionic/angularjs js -->
+	<script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
-    <script src="cordova.js"></script>
+	<!-- cordova script (this will be a 404 during development) -->
+	<script src="lib/ngCordova/dist/ng-cordova.js"></script>
+	<script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/routes.js"></script>
+	<!-- your app's js -->
+	<script src="js/app.js"></script>
+	<script src="js/routes.js"></script>
 
-    <script src="js/autenticacion/controllers.js"></script>
-    <script src="js/autenticacion/services.js"></script>
-    <script src="js/autenticacion/directives.js"></script>
+	<script src="js/autenticacion/controllers.js"></script>
+	<script src="js/autenticacion/services.js"></script>
+	<script src="js/autenticacion/directives.js"></script>
 
-    <script src="js/aplicacion/directives.js"></script>
+	<script src="js/aplicacion/directives.js"></script>
 
-    <!--Controllers de la aplicacion. -->
+	<!--Controllers de la aplicacion. -->
 	<script src="templates/app/AppCtrl.js"></script>
 	<script src="templates/app/AppInicioCtrl.js"></script>
 
@@ -47,7 +47,7 @@
 	<script src="templates/app/historial/OrdenEnProcesoCtrl.js"></script>
 	<script src="templates/app/historial/HistorialOrdenesCtrl.js"></script>
 	<script src="templates/app/historial/HistorialOrdenCtrl.js"></script>
-	
+
 	<!--factories de la aplicacion-->
 	<script src="js/aplicacion/services/Usuario.js"></script>
 	<script src="js/aplicacion/services/Promociones.js"></script>
@@ -58,76 +58,76 @@
 	<script src="js/aplicacion/services/RealizarOrden.js"></script>
 	<script src="js/aplicacion/services/HistorialOrden.js"></script>
 	<script src="js/aplicacion/services/Estados.js"></script>
-	
-	
 
-  </head>
+
+
+</head>
 <body>
 
-	<div ng-app="ClienteCleanSuit">
-      <!--
-        The nav bar that will be updated as we navigate between views. class="button-icon icon ion-ios-arrow-back
-      -->
-      
-      <!--
-        The views will be rendered in the <ion-nav-view> directive below
-        Templates are in the /templates folder (but you could also
-        have templates inline in this html file if you'd like).
-      -->
-    	<ion-side-menus>
+<div ng-app="ClienteCleanSuit">
+	<!--
+      The nav bar that will be updated as we navigate between views. class="button-icon icon ion-ios-arrow-back
+    -->
 
-			<ion-side-menu-content>
-				<ion-nav-bar>
-					<ion-nav-back-button></ion-nav-back-button>
-					<ion-nav-buttons side="primary">
-						<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-						</button>
-			  		</ion-nav-buttons>
-				</ion-nav-bar>
-				<ion-nav-view></ion-nav-view>
-			</ion-side-menu-content>
+	<!--
+      The views will be rendered in the <ion-nav-view> directive below
+      Templates are in the /templates folder (but you could also
+      have templates inline in this html file if you'd like).
+    -->
+	<ion-side-menus>
 
-			
-		  	<ion-side-menu side="left">
-			    <ion-header-bar class="bar-stable">
-			      <h1 class="title">Men&#xFA;</h1>
-			    </ion-header-bar>
+		<ion-side-menu-content>
+			<ion-nav-bar>
+				<ion-nav-back-button></ion-nav-back-button>
+				<ion-nav-buttons side="primary">
+					<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+					</button>
+				</ion-nav-buttons>
+			</ion-nav-bar>
+			<ion-nav-view></ion-nav-view>
+		</ion-side-menu-content>
 
-			    <ion-content overflow-scroll="true" padding="false" scroll="false">
-			      	<ion-list>
 
-				        <ion-item class="item-avatar">
-				          <img ng-src="{{usuario.fotoPerfil}}">
-				          <h2>{{usuario.nombre + &apos; &apos; + usuario.apellidos | uppercase}}</h2>
-				        </ion-item>
+		<ion-side-menu side="left">
+			<ion-header-bar class="bar-stable">
+				<h1 class="title">Men&#xFA;</h1>
+			</ion-header-bar>
 
-				        <ion-item menu-close="" href="#/app/ordenes-en-proceso" class="item-icon-left">
-				          Orden en proceso 
-				          <i class="icon ion-ionic"></i>
-				          <span class="badge badge-dark icon-badge">{{contOrdenesEnProceso}}</span>
-				        </ion-item>
-				        <ion-item menu-close="" href="#/app/historial-ordenes" class="item-icon-left">
-				          Historial de ordenes
-				          <i class="icon ion-ionic"></i>
-				        </ion-item>
-				        <ion-item menu-close="" href="#/app/perfil" class="item-icon-left">
-				          Perfil
-				          <i class="icon ion-ionic"></i>
-				        </ion-item>
-				        <ion-item menu-close="" href="#/app/sobre-esta-aplicacion" class="item-icon-left">
-				          Sobre esta aplicaci&#xF3;n
-				          <i class="icon ion-ionic"></i>
-				        </ion-item>
-				        <ion-item menu-close="" href="#/app/cerrar-sesion" class="item-icon-left">
-				          Cerrar sesi&#xF3;n
-				          <i class="icon ion-ionic"></i>
-				        </ion-item>
-			      	</ion-list>
-			    </ion-content>
-			</ion-side-menu>
-		</ion-side-menus>
+			<ion-content overflow-scroll="true" padding="false" scroll="false">
+				<ion-list>
 
-    </div>
-    
-  </body>
+					<ion-item class="item-avatar">
+						<img ng-src="{{usuario.fotoPerfil}}">
+						<h2>{{usuario.nombre + &apos; &apos; + usuario.apellidos | uppercase}}</h2>
+					</ion-item>
+
+					<ion-item menu-close="" href="#/app/ordenes-en-proceso" class="item-icon-left">
+						Orden en proceso
+						<i class="icon ico-ordenes"></i>
+						<span class="badge badge-dark icon-badge">{{contOrdenesEnProceso}}</span>
+					</ion-item>
+					<ion-item menu-close="" href="#/app/historial-ordenes" class="item-icon-left">
+						Historial de ordenes
+						<i class="icon ico-historial"></i>
+					</ion-item>
+					<ion-item menu-close="" href="#/app/perfil" class="item-icon-left">
+						Perfil
+						<i class="icon ico-perfil"></i>
+					</ion-item>
+					<ion-item menu-close="" href="#/app/sobre-esta-aplicacion" class="item-icon-left">
+						Sobre esta aplicaci&#xF3;n
+						<i class="icon ico-about"></i>
+					</ion-item>
+					<ion-item menu-close="" href="#/app/cerrar-sesion" class="item-icon-left">
+						Cerrar sesi&#xF3;n
+						<i class="icon ico-cerrar"></i>
+					</ion-item>
+				</ion-list>
+			</ion-content>
+		</ion-side-menu>
+	</ion-side-menus>
+
+</div>
+
+</body>
 </html>

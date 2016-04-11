@@ -137,9 +137,9 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 
 	.state('app.informacion-orden', {
 		url: '/informacion-orden',
-		//cache: false,
+		cache: false,
 		views: {
-			'menuContent': {
+			'mi-carrito': {
 				templateUrl: 'templates/app/orden/informacion-orden.html',
 				controller: 'InformacionOrdenCtrl'
 			}
@@ -150,9 +150,9 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 
 	.state('app.realizar-orden', {
 		url: '/realizar-orden',
-		//cache: false,
+		cache: false,
 		views: {
-			'menuContent': {
+			'mi-carrito': {
 				templateUrl: 'templates/app/orden/realizar-orden.html',
 				controller: 'RealizarOrdenCtrl'
 			}

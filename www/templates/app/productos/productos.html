@@ -1,41 +1,39 @@
 <ion-view title="Cleansuit">
 	<ion-content overflow-scroll="true" padding="true" scroll="true"
-	    ng-class="{'has-footer': carrito.items.length > 0}">
+	    ng-class="{'has-footer': carrito.contProductos + carrito.contServicios > 0}">
 
 		<ion-list can-swipe="true" show-delete="false" show-reorder="false">
 			<ion-item collection-repeat="producto in productos track by $index" item-height="108px" item-width="98%"
 			  href="#/app/productos/{{$index}}"
 			  class="item item-thumbnail-left item-icon-right item-text-wrap" >
+				<div class="productos">
 
-				<img ng-src="img/producto.png" class="badge-container" ng-cloack/>
-				<span ng-if="cantidadEnCarrito(producto.id) > 0" class="badge badge-dark icon-badge">
-				  {{cantidadEnCarrito(producto.id)}}
-				</span>  
-				<h2>{{::producto.nombre}}</h2>
-				<p >{{::producto.resumen}}</p>
-				<h2>{{::producto.precio | currency : "$ " : 0}}</h2>
-				<i class="icon ion-chevron-right positive"></i>
-				  
-
-				<ion-option-button class="positive" ng-click="disminuirProducto(producto)">
-				  <i class="icon ion-minus-circled"></i>
-				</ion-option-button>
-
-				<ion-option-button >
-				  <div class="row">
-					<div class="col text-center col-center fondo-gris">
+					<img ng-src="img/producto.png" class="badge-container" ng-cloack/>
+					<span ng-if="cantidadEnCarrito(producto.id) > 0" class="badge badge-dark icon-badge">
 					  {{cantidadEnCarrito(producto.id)}}
-					</div>
-				  </div>
-				</ion-option-button>
-
-				<ion-option-button class="positive" ng-click="aumentarProducto(producto)">
-				  <i class="icon ion-plus-circled"></i>
-				</ion-option-button>
+					</span>
+					<h2>{{::producto.nombre}}</h2>
+					<p >{{::producto.resumen}}</p>
+					<h3>{{::producto.precio | currency : "$ " : 0}}</h3>
+					<i class="icon ion-chevron-right positive"></i>
 
 
+					<ion-option-button class="positive" ng-click="disminuirProducto(producto)">
+					  <i class="icon ion-minus-circled"></i>
+					</ion-option-button>
 
+					<ion-option-button >
+					  <div class="row">
+						<div class="col text-center col-center fondo-gris">
+						  {{cantidadEnCarrito(producto.id)}}
+						</div>
+					  </div>
+					</ion-option-button>
 
+					<ion-option-button class="positive" ng-click="aumentarProducto(producto)">
+					  <i class="icon ion-plus-circled"></i>
+					</ion-option-button>
+				</div>
 			</ion-item>           
 		</ion-list>
 

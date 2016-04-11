@@ -1,12 +1,7 @@
 app.controller('CarritoCtrl', function($scope, CarritoFactory, $log, $ionicHistory, $state) {
-	/*$rootScope.$on('$ionicView.leave', function(event, view){
-		console.log('left..', view.stateName);
-	});*/
-
 	$scope.$on('$ionicView.leave', function(event, view){
 		if(view.stateName == "app.carrito"){
 			$scope.carrito.limpiar();
-			
 		}
 	});
 

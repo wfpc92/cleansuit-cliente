@@ -1,6 +1,7 @@
 body {
 	font-family: 'fira_sansregular';
 	font-size: 14px;
+	background-color: $stable;
 }
 img.logo {
 	display: block;
@@ -27,7 +28,7 @@ div.tex-center {
 	display: inline-table;
 	padding: 0px;
 	font-family: 'fira_sansmedium';
-	.burbujas {		
+	.burbujas {
 		margin-top: -42px;
 	}
 	.button {
@@ -52,6 +53,10 @@ div.tex-center {
 }
 .row-center, .col-center {
 	padding: 0;
+}
+
+.bar .title.title-left {
+	color: #004C9E
 }
 
 $registro: #80A3CD;
@@ -110,6 +115,64 @@ $registro: #80A3CD;
 		}
 	}
 }
-.menu {
+.menu,  {
 	background-color: $calm;
+	.item-complex .item-content {
+		background-color: $calm;
+		padding: 18px 15px 19px 16px;
+		padding-left: 70px;
+	}
+	.item {		
+		color: $light;
+		background-color: $calm;
+		border: none;
+		a { font-family: 'fira_sansmedium'; }
+		.icon {
+			font-size: 1.55em;
+		}
+	}
+	.item-complex.item-icon-left { padding-left: 25px; }
+	.item-avatar {
+		padding: 38px 16px 29px 16px;
+		img:first-child {
+			display: block;
+			max-width: 62px;
+			max-height: 62px;
+			border: 2px solid #348800;
+			left: 22px;
+		}
+		h2 {
+			color: $light;
+			font-family: 'fira_sansmedium';
+			font-size: 1.1em;
+			margin-left: 75px;
+		}
+	}
+}
+.productos {
+	background-color: $stable;
+	img:first-child {
+		display: block;
+		max-width: 76px;
+		max-height: 76px;
+		border: 1px solid #E9E9E9;
+	}
+	.item {
+		border: none;
+		a{
+			font-family: 'fira_sansmedium';
+			h2 { color: #333; }
+			p {
+				color: #666;
+				font-family: 'fira_sansregular';
+			}
+			h3{
+				color: #76A900;
+				font-size: 1.1em;
+			}
+			.ico-flechader:before {
+				font-size: 23px;
+			}
+		}
+	}
 }
