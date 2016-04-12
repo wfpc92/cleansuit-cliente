@@ -3,10 +3,11 @@
 	    ng-class="{'has-footer': carrito.contProductos + carrito.contServicios > 0}">
 
 		<ion-list can-swipe="true" show-delete="false" show-reorder="false">
-			<ion-item collection-repeat="producto in productos track by $index" item-height="108px" item-width="98%"
+		<div class="productos lista">
+			<ion-item collection-repeat="producto in productos track by $index" item-height="" item-width="95%"
 			  href="#/app/productos/{{$index}}"
 			  class="item item-thumbnail-left item-icon-right item-text-wrap" >
-				<div class="productos">
+				
 
 					<img ng-src="img/producto.png" class="badge-container" ng-cloack/>
 					<span ng-if="cantidadEnCarrito(producto.id) > 0" class="badge badge-dark icon-badge">
@@ -15,7 +16,7 @@
 					<h2>{{::producto.nombre}}</h2>
 					<p >{{::producto.resumen}}</p>
 					<h3>{{::producto.precio | currency : "$ " : 0}}</h3>
-					<i class="icon ion-chevron-right positive"></i>
+					<i class="icon ico-flechader assertive"></i>
 
 
 					<ion-option-button class="positive" ng-click="disminuirProducto(producto)">
@@ -32,9 +33,9 @@
 
 					<ion-option-button class="positive" ng-click="aumentarProducto(producto)">
 					  <i class="icon ion-plus-circled"></i>
-					</ion-option-button>
-				</div>
-			</ion-item>           
+					</ion-option-button>				
+			</ion-item> 
+			</div>         
 		</ion-list>
 
 	</ion-content>

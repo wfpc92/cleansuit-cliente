@@ -111,7 +111,7 @@ $registro: #80A3CD;
 		h2 {
 			text-align: center;
 			color: $registro;
-			font-size: 1.7em;
+			font-size: 1.67em;
 		}
 	}
 }
@@ -149,30 +149,62 @@ $registro: #80A3CD;
 		}
 	}
 }
-.productos {
-	background-color: $stable;
-	img:first-child {
-		display: block;
-		max-width: 76px;
-		max-height: 76px;
-		border: 1px solid #E9E9E9;
-	}
+.scroll-content { background-color: $stable; }
+.ico-flechader:before { font-size: 23px; }
+
+.lista {
 	.item {
 		border: none;
-		a{
-			font-family: 'fira_sansmedium';
-			h2 { color: #333; }
-			p {
-				color: #666;
-				font-family: 'fira_sansregular';
-			}
-			h3{
-				color: #76A900;
-				font-size: 1.1em;
-			}
-			.ico-flechader:before {
-				font-size: 23px;
-			}
+		padding-bottom: 3px;
+		background-color: $stable;
+	}
+	a{
+		font-family: 'fira_sansmedium';
+		h2 { color: #333; }
+		p {
+			color: #666;
+			font-family: 'fira_sansregular';
+		}
+		h3{
+			color: #76A900;
+			font-size: 1.1em;
 		}
 	}
 }
+
+.productos {
+	img {
+		display: block;
+		border: 1px solid #E9E9E9;
+	}
+	.item {		
+		min-height: 108px;
+	}
+	.item-content > img:first-child {
+		max-width: 76px;
+		max-height: 76px;
+		top: 50%;
+		margin-top: -38px;
+	}
+}
+
+.categorias {
+	.item {	min-height: 74px; }
+}
+.servicios {
+	.item { min-height: 96px;}
+}
+/*.tab-nav{
+	a {
+		background-color: red;
+	}
+
+}
+.tabs-striped.tabs-light .tab-item {
+	color: #52B1ED;
+}
+.tabs-striped.tabs-light .tab-item.tab-item-active{
+	color: $light;
+	background-color: #52B1ED;
+	border-color: #52B1ED;
+}*/

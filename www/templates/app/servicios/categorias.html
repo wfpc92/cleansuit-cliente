@@ -3,18 +3,15 @@
         ng-class="{'has-footer': carrito.contProductos + carrito.contServicios > 0}">
     
     <ion-list can-swipe="false" show-delete="false" show-reorder="false">
-    	<ion-item collection-repeat="categoria in categorias track by $index" item-height="73px" item-width="98%"
-    				href="#/app/servicios/{{$index}}"
-    				class="item-icon-right item-text-wrap" >
-    		<div>
-    			<h2>{{::categoria.nombre}}</h2>
-    			<p>{{::categoria.resumen}}</p>
-    			
-    		</div>
-    		<i class="icon ion-chevron-right positive" ></i>
-    	</ion-item>
-
-
+        <div class="categorias lista">
+        	<ion-item collection-repeat="categoria in categorias track by $index" item-height="" item-width="95%"
+        				href="#/app/servicios/{{$index}}"
+        				class="item-icon-right item-text-wrap" >
+         			<h2>{{::categoria.nombre}}</h2>
+        			<p>{{::categoria.resumen}}</p>
+        		  <i class="icon ico-flechader assertive" ></i>
+        	</ion-item>
+        </div>
     </ion-list>
 
   </ion-content>
