@@ -1,4 +1,5 @@
-app.controller('ServiciosCtrl', function($scope, $stateParams, ServiciosFactory, CarritoFactory) {
+var ServiciosCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFactory) {
+	var self = this;
 	//$log.debug("index de la categoria en el arreglo: "+$scope.indexCategoria)
 	
 	//obtener subservicios de la categoria solicitada
@@ -20,19 +21,25 @@ app.controller('ServiciosCtrl', function($scope, $stateParams, ServiciosFactory,
 	
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		$scope.cantidadEnCarrito = function(indexServicio) {
-			//console.log("cantidad en carrito")
-			var item = CarritoFactory.items[indexServicio];
-			//console.log("item del carrito con index: "+indexServicio)
-			//console.log(item)
-			if(typeof item !== 'undefined'){
-				return item.cantidad
-			}
-			else {
-				return 0;
-			}
-		}
+		self.viewAfterEnter($scope, CarritoFactory);
 	});
 
 	
-})
+};
+
+ServiciosCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory){
+	$scope.cantidadEnCarrito = function(indexServicio) {
+		//console.log("cantidad en carrito")
+		var item = CarritoFactory.items[indexServicio];
+		//console.log("item del carrito con index: "+indexServicio)
+		//console.log(item)
+		if(typeof item !== 'undefined'){
+			return item.cantidad
+		}
+		else {
+			return 0;
+		}
+	}
+}
+
+app.controller("ServiciosCtrl", ServiciosCtrl);

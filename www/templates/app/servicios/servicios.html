@@ -1,10 +1,9 @@
 <ion-view title="Cleansuit">
-    <ion-content overflow-scroll="true" padding="true" scroll="true"
-        ng-class="{'has-footer': carrito.contProductos + carrito.contServicios > 0}">
-    
+    <ion-content>
+
         <ion-list can-swipe="true" show-delete="false" show-reorder="false">
             <div class="servicios lista">
-                <ion-item collection-repeat="servicio in servicios track by $index" item-height="" item-width="95%"
+                <ion-item ng-repeat="servicio in servicios track by $index"
                     href="#/app/servicios/{{indexCategoria}}/{{$index}}"
                     class="item item-icon-right item-text-wrap" >
 
@@ -23,9 +22,9 @@
 
                     <ion-option-button >
                         <div class="row">
-                        <div class="col text-center col-center fondo-gris">
-                        {{cantidadEnCarrito(servicio.id)}}
-                        </div>
+                            <div class="col text-center col-center fondo-gris">
+                                {{cantidadEnCarrito(servicio.id)}}
+                            </div>
                         </div>
                     </ion-option-button>
 
@@ -39,5 +38,4 @@
   </ion-content>
 
    <footer-carrito carrito="carrito"></footer-carrito> 
-
 </ion-view>

@@ -1,4 +1,6 @@
-app.controller('ProductosCtrl', function($scope, ProductosFactory, CarritoFactory) {
+var ProductosCtrl = function($scope, ProductosFactory, CarritoFactory) {
+	var self = this;
+	
 	$scope.productos = ProductosFactory.productos;
 	$scope.carrito = CarritoFactory;
 	
@@ -13,17 +15,23 @@ app.controller('ProductosCtrl', function($scope, ProductosFactory, CarritoFactor
 	};
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		$scope.cantidadEnCarrito = function(indexProducto) {
-			//console.log("cantidad en carrito")
-			var item = CarritoFactory.items[indexProducto];
-			//console.log("item del carrito con index: "+indexServicio)
-			//console.log(item)
-			if(typeof item !== 'undefined'){
-				return item.cantidad
-			}
-			else {
-				return 0;
-			}
-		}
+		self.viewAfterEnter($scope);
 	});
-})
+};
+
+ProductosCtrl.prototype.viewAfterEnter = function($scope){
+	$scope.cantidadEnCarrito = function(indexProducto) {
+		//console.log("cantidad en carrito")
+		var item = CarritoFactory.items[indexProducto];
+		//console.log("item del carrito con index: "+indexServicio)
+		//console.log(item)
+		if(typeof item !== 'undefined'){
+			return item.cantidad
+		}
+		else {
+			return 0;
+		}
+	}
+};
+
+app.controller('ProductosCtrl', ProductosCtrl);
