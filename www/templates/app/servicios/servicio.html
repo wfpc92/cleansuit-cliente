@@ -1,14 +1,14 @@
 <ion-view title="Cleansuit">
   <ion-content>
 
-    <div class="card" layout="column" layout-align="center">        
+    <div class="card" layout="column" layout-align="center">
         <h1>{{::servicio.nombre}}</h1>
-        <p>{{::servicio.resumen}}</p> 
-        
+        <p>{{::servicio.resumen}}</p>
+
         <div class="contenedor">
             <h3>{{::servicio.precio | currency : "$ " : 0}}</h3>
             <div class="contador">
-                <i ng-click="aumentarServicio(servicio)" class="icon ico-mas"></i>  
+                <i ng-click="aumentarServicio(servicio)" class="icon ico-mas"></i>
                 <span>{{cantidadEnCarrito(servicio.id)}}</span>
                 <i ng-click="disminuirServicio(servicio)" class="icon ico-menos"></i>
             </div>

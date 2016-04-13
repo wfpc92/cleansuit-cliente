@@ -1,20 +1,18 @@
 <ion-view title="Cleansuit">
-  <ion-content>
-    
-    <ion-list>
-        <div class="categorias lista">
-        	<ion-item ng-repeat="categoria in categorias track by $index" 
-        				href="#/app/servicios/{{$index}}"
-        				class="item-icon-right item-text-wrap" >
-         			<h2>{{::categoria.nombre}}</h2>
-        			<p>{{::categoria.resumen}}</p>
-        		  <i class="icon ico-flechader assertive" ></i>
-        	</ion-item>
-        </div>
-    </ion-list>
+  	<ion-content>
+		<ion-list>
+			<div class="categorias lista">
+				<ion-item ng-repeat="categoria in categorias track by $index"
+							href="#/app/servicios/{{$index}}"
+							class="item-icon-right item-text-wrap" >
+					<h2>{{::categoria.nombre}}</h2>
+					<p>{{::categoria.resumen}}</p>
+					<i class="icon ico-flechader assertive" ></i>
+				</ion-item>
+			</div>
+		</ion-list>
 
-  </ion-content>
+  	</ion-content>
   
-  <footer-carrito carrito="carrito"></footer-carrito> 
-
+  	<footer-carrito carrito="carrito"></footer-carrito> 
 </ion-view>

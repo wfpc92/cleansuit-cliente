@@ -11,7 +11,7 @@
 		<div class="contenedor">
 			<h3>{{::producto.precio | currency : "$ " : 0}}</h3>
 			<div class="contador">
-				<i ng-click="aumentarProducto()" class="icon ico-mas"></i>	
+				<i ng-click="aumentarProducto()" class="icon ico-mas"></i>
 				<span>{{cantidadEnCarrito(producto.id)}}</span>
 				<i ng-click="disminuirProducto()" class="icon ico-menos"></i>
 			</div>

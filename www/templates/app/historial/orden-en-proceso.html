@@ -1,22 +1,20 @@
 <ion-view >
-  <ion-content class="has-subheader" overflow-scroll="true" padding="true" scroll="true">
+    <ion-content >
     
-    <elemento-centrado>
-    	<br/><br/>
-    	<p><b>Hemos Recibido tu orden</b></p>
-    	<p>En este momento estamos procesando<br/>tu servicio</p>
-    	<br/>
-    	<p>Puedes Observar como va tu servicio.</p>
-    </elemento-centrado>
+        <elemento-centrado>
+        	<br/><br/>
+        	<p><b>Hemos Recibido tu orden</b></p>
+        	<p>En este momento estamos procesando<br/>tu servicio</p>
+        	<br/>
+        	<p>Puedes Observar como va tu servicio.</p>
+        </elemento-centrado>
 
-    <ion-list>
-    	<ion-item collection-repeat="estado in estados" ng-class="{activated:estado == orden.estado}"
-    	class="text-center ">
-    		{{estado.titulo}}
-    	</ion-item>
-    </ion-list>
+        <ion-list>
+        	<ion-item ng-repeat="estado in estados" ng-class="{activated:estado == orden.estado}"
+        	class="text-center ">
+        		{{estado.titulo}}
+        	</ion-item>
+        </ion-list>
     
-  </ion-content>
- 
-
+    </ion-content>
 </ion-view>

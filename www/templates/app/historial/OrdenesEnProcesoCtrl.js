@@ -1,4 +1,6 @@
-app.controller('OrdenesEnProcesoCtrl', function ($scope, HistorialOrdenFactory) {
+var OrdenesEnProceso =  function ($scope, HistorialOrdenFactory) {
 	$scope.ordenes = HistorialOrdenFactory.ordenesEnProceso;
 	
-})
+};
+
+app.controller('OrdenesEnProcesoCtrl', OrdenesEnProceso);
