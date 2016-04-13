@@ -1,9 +1,7 @@
-app.controller('ProductoCtrl', function($scope, $stateParams, ProductosFactory, CarritoFactory, $ionicHistory, $state) {
-	$scope.indexProducto = $stateParams.indexProducto;
-	console.log($scope.indexProducto)
-	console.log($stateParams)
+ProductoCtrl = function($scope, $stateParams, ProductosFactory, CarritoFactory, $ionicHistory, $state) {
+	var self = this;
 	
-	$scope.producto = ProductosFactory.productos[$scope.indexProducto];
+	$scope.producto = ProductosFactory.productos[$stateParams.indexProducto];
 	$scope.carrito = CarritoFactory;
 	
 	$scope.aumentarProducto = function(){
@@ -17,25 +15,31 @@ app.controller('ProductoCtrl', function($scope, $stateParams, ProductosFactory, 
 	};
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		$scope.cantidadEnCarrito = function(indexProducto) {
-			//console.log("cantidad en carrito")
-			var item = CarritoFactory.items[indexProducto];
-			//console.log("item del carrito con index: "+indexServicio)
-			//console.log(item)
-			if(typeof item !== 'undefined'){
-				return item.cantidad
-			}
-			else {
-				return 0;
-			}
-		}
-
-		$scope.regresarCatalogo = function() {
-			$state.go("app.productos");
-			$ionicHistory.clearHistory();
-			$ionicHistory.nextViewOptions({
-				disableBack:'true'
-			})
-		}
+		self.viewAfterEnter($scope, CarritoFactory, $state, $ionicHistory);
 	});
-})
+};
+
+ProductoCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory, $state, $ionicHistory) {
+	$scope.cantidadEnCarrito = function(indexProducto) {
+		//console.log("cantidad en carrito")
+		var item = CarritoFactory.items[indexProducto];
+		//console.log("item del carrito con index: "+indexServicio)
+		//console.log(item)
+		if(typeof item !== 'undefined'){
+			return item.cantidad
+		}
+		else {
+			return 0;
+		}
+	}
+
+	$scope.regresarCatalogo = function() {
+		$state.go("app.productos");
+		$ionicHistory.clearHistory();
+		$ionicHistory.nextViewOptions({
+			disableBack:'true'
+		})
+	}
+};
+
+app.controller('ProductoCtrl', ProductoCtrl);

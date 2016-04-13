@@ -10,7 +10,8 @@ app.factory('OrdenFactory',[function(){
 				hora:''
 			},
 			formaPago : '',
-			telefono: ''
+			telefono: '',
+			terminosCondiciones : false
 		},
 
 		formularioCompleto : function(){

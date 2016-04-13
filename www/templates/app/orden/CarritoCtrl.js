@@ -1,8 +1,8 @@
-app.controller('CarritoCtrl', function($scope, CarritoFactory, $log, $ionicHistory, $state) {
+var CarritoCtrl = function($scope, CarritoFactory, $log, $ionicHistory, $state) {
+	var self = this;
+
 	$scope.$on('$ionicView.leave', function(event, view){
-		if(view.stateName == "app.carrito"){
-			$scope.carrito.limpiar();
-		}
+		self.viewLeave(view, $scope.carrito);
 	});
 
 	$scope.carrito = CarritoFactory;
@@ -23,15 +23,28 @@ app.controller('CarritoCtrl', function($scope, CarritoFactory, $log, $ionicHisto
 		CarritoFactory.disminuir(producto, "PRODUCTO", 1);
 	};
 
-	$scope.$on('$ionicView.afterEnter', function(event) {
-		$scope.cancelarOrden = function() {
-			CarritoFactory.items = [];
-			CarritoFactory.actualizarContadores();
-			$state.go("app.inicio");
-			$ionicHistory.clearHistory();
-			$ionicHistory.nextViewOptions({
-				disableBack:'true'
-			});
-		};
+	$scope.cancelarOrden = function() {
+		self.cancelarOrden(CarritoFactory, $state, $ionicHistory);
+	};
+
+};
+
+
+CarritoCtrl.prototype.viewLeave = function(view, carrito){
+	if(view.stateName == "app.carrito"){
+		carrito.limpiar();
+	}
+};
+
+CarritoCtrl.prototype.cancelarOrden = function(CarritoFactory, $state, $ionicHistory) {
+	CarritoFactory.cancelarOrden();
+	CarritoFactory.actualizarContadores();
+	$state.go("app.inicio");
+	$ionicHistory.clearHistory();
+	$ionicHistory.nextViewOptions({
+		disableBack:'true'
 	});
-})
+}
+
+
+app.controller('CarritoCtrl', CarritoCtrl);

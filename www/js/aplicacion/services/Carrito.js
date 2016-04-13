@@ -132,6 +132,12 @@ app.factory('CarritoFactory', [function(){
 				}
 			}
 			return cont > 0 ? true : false;
+		},
+
+		cancelarOrden : function() {
+			for(var i in this.items){
+				delete this.items[i];
+			}
 		}
 	};
 }])
