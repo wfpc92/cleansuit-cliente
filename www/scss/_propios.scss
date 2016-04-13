@@ -149,8 +149,13 @@ $registro: #80A3CD;
 		}
 	}
 }
-.scroll-content { background-color: $stable; }
+.scroll-content, .scroll.padding { background-color: $stable; }
 .ico-flechader:before { font-size: 23px; }
+
+p {
+	color: #666;
+	font-family: 'fira_sansregular';
+}
 
 .lista {
 	.item {
@@ -161,10 +166,6 @@ $registro: #80A3CD;
 	a{
 		font-family: 'fira_sansmedium';
 		h2 { color: #333; }
-		p {
-			color: #666;
-			font-family: 'fira_sansregular';
-		}
 		h3{
 			color: #76A900;
 			font-size: 1.1em;
@@ -193,6 +194,92 @@ $registro: #80A3CD;
 }
 .servicios {
 	.item { min-height: 96px;}
+}
+.producto {
+	margin-top: 0px;
+	box-shadow: 0 0 0;
+	border-radius: 0px;
+	h1 {
+		font-family: 'fira_sansmedium';
+		text-align: center;
+		color: #333;
+		font-size: 1.6em;
+		margin-top: 19px;
+		margin-bottom: 3px;
+	}
+	p { text-align: center; }
+	.img {
+		background-color: $stable;
+		width: 100%;
+		padding: 10px 0;
+		text-align: center;
+		margin-top: 17px;
+		img {
+			display: inline-block;
+			max-height: 200px;
+		}		
+	}
+	.contenedor {
+		position: relative;
+		background-color: #FBFBFB;
+		padding: 15px 0;
+		color: #2E7300;
+		height: 79px;
+		h3 {
+			display: inline-block;
+			position: absolute;
+			left: 0;
+			color: $light;
+			background-color: #298CE8;
+			font-family: 'fira_sansmedium';
+			font-size: 2em;
+			padding: 7px 22px;
+		}
+		.contador {
+			position: absolute;
+			right: 0;
+			font-size: 2em;
+			.icon { 
+				display: inline-block;
+				font-size: 49px;
+			}
+			.ico-mas { margin-right: 46px; }
+			.ico-menos { margin-right: 12px; }
+			span {
+				position: absolute;
+				top: 14px;
+				left: 68px;
+			}
+		}
+	}
+	.descripcion {
+		padding: 25px 25px 0;
+		h3 {
+			font-size: 100%;
+			margin-bottom: 3px;
+		}
+		p {
+			text-align: left;
+			margin-bottom: 22px;
+		}
+	}
+}
+.bar { background-image: none; }
+.carrito {
+	color: $light;
+	background-color: $calm;
+	.button { padding: 10px 0px; }
+	.icono { background-color: #378413; }
+	.col.suma {
+		font-family: 'fira_sansregular';
+		font-size: 1.25em;
+		padding-left: 23px;
+		span { font-family: 'fira_sansmedium'; }
+	}
+}
+.ico-carrito:before {
+	color: $light;
+	font-size: 27px !important;
 }
 /*.tab-nav{
 	a {
