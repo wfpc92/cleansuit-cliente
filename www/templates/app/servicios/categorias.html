@@ -1,10 +1,9 @@
 <ion-view title="Cleansuit">
-  <ion-content overflow-scroll="true" padding="true" scroll="true"
-        ng-class="{'has-footer': carrito.contProductos + carrito.contServicios > 0}">
+  <ion-content>
     
-    <ion-list can-swipe="false" show-delete="false" show-reorder="false">
+    <ion-list>
         <div class="categorias lista">
-        	<ion-item collection-repeat="categoria in categorias track by $index" item-height="" item-width="95%"
+        	<ion-item ng-repeat="categoria in categorias track by $index" 
         				href="#/app/servicios/{{$index}}"
         				class="item-icon-right item-text-wrap" >
          			<h2>{{::categoria.nombre}}</h2>

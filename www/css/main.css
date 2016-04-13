@@ -9861,18 +9861,20 @@ p {
   color: #666;
   font-family: 'fira_sansregular'; }
 
-.lista .item {
-  border: none;
-  padding-bottom: 3px;
-  background-color: #f8f8f8; }
-
-.lista a {
-  font-family: 'fira_sansmedium'; }
-  .lista a h2 {
-    color: #333; }
-  .lista a h3 {
-    color: #76A900;
-    font-size: 1.1em; }
+.lista {
+  padding-bottom: 60px;
+  margin: 10px; }
+  .lista .item {
+    border: none;
+    padding-bottom: 3px;
+    background-color: #f8f8f8; }
+  .lista a {
+    font-family: 'fira_sansmedium'; }
+    .lista a h2 {
+      color: #333; }
+    .lista a h3 {
+      color: #76A900;
+      font-size: 1.1em; }
 
 .productos img {
   display: block;
@@ -9893,35 +9895,35 @@ p {
 .servicios .item {
   min-height: 96px; }
 
-.producto {
-  margin-top: 0px;
+.card {
+  margin-top: 10px;
   box-shadow: 0 0 0;
   border-radius: 0px; }
-  .producto h1 {
+  .card h1 {
     font-family: 'fira_sansmedium';
     text-align: center;
     color: #333;
     font-size: 1.6em;
     margin-top: 19px;
     margin-bottom: 3px; }
-  .producto p {
+  .card p {
     text-align: center; }
-  .producto .img {
+  .card .img {
     background-color: #f8f8f8;
     width: 100%;
     padding: 10px 0;
     text-align: center;
     margin-top: 17px; }
-    .producto .img img {
+    .card .img img {
       display: inline-block;
       max-height: 200px; }
-  .producto .contenedor {
+  .card .contenedor {
     position: relative;
     background-color: #FBFBFB;
     padding: 15px 0;
     color: #2E7300;
     height: 79px; }
-    .producto .contenedor h3 {
+    .card .contenedor h3 {
       display: inline-block;
       position: absolute;
       left: 0;
@@ -9930,27 +9932,27 @@ p {
       font-family: 'fira_sansmedium';
       font-size: 2em;
       padding: 7px 22px; }
-    .producto .contenedor .contador {
+    .card .contenedor .contador {
       position: absolute;
       right: 0;
       font-size: 2em; }
-      .producto .contenedor .contador .icon {
+      .card .contenedor .contador .icon {
         display: inline-block;
         font-size: 49px; }
-      .producto .contenedor .contador .ico-mas {
+      .card .contenedor .contador .ico-mas {
         margin-right: 46px; }
-      .producto .contenedor .contador .ico-menos {
+      .card .contenedor .contador .ico-menos {
         margin-right: 12px; }
-      .producto .contenedor .contador span {
+      .card .contenedor .contador span {
         position: absolute;
         top: 14px;
         left: 68px; }
-  .producto .descripcion {
+  .card .descripcion {
     padding: 25px 25px 0; }
-    .producto .descripcion h3 {
+    .card .descripcion h3 {
       font-size: 100%;
       margin-bottom: 3px; }
-    .producto .descripcion p {
+    .card .descripcion p {
       text-align: left;
       margin-bottom: 22px; }
 
