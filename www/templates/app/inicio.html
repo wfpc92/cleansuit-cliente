@@ -1,22 +1,15 @@
 <!--Controller: AppInicioCtrl-->
 
 <ion-view hide-back-button="true" title="CleanSuit" hide-nav-bar="false">
-  <ion-content overflow-scroll="true" padding="false" scroll="true"
-        ng-class="{'has-footer': carrito.contProductos + carrito.contServicios > 0}" >
-    
-    <div class="list card" collection-repeat="promo in promociones" item-height="30%" item-width="95%">
-      <div class="item item-image">
-	    <img ng-src="img/promociones.png" ng-cloak/>
-	  </div>
-	  <div class="item item-divider item-text-wrap">
-	    {{promo.descuento}} 
-	  </div>
-	</div>
+	<ion-content overflow-scroll="true" padding="false" scroll="true"
+		ng-class="{'has-footer': carrito.contProductos + carrito.contServicios > 0}" >
 	
-	<br>
-	<br>
+	<div class="list card" ng-repeat="promo in promociones">
+		<div class="item item-image">
+			<img ng-src="img/promociones.png" ng-cloak/>
+		</div>
+	</div>
+	</ion-content>
 
-  </ion-content>
-
-  <footer-carrito carrito="carrito"></footer-carrito>
+	<footer-carrito carrito="carrito"></footer-carrito>
 </ion-view>

@@ -15,11 +15,11 @@ var ProductosCtrl = function($scope, ProductosFactory, CarritoFactory) {
 	};
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		self.viewAfterEnter($scope);
+		self.viewAfterEnter($scope, CarritoFactory);
 	});
 };
 
-ProductosCtrl.prototype.viewAfterEnter = function($scope){
+ProductosCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory){
 	$scope.cantidadEnCarrito = function(indexProducto) {
 		//console.log("cantidad en carrito")
 		var item = CarritoFactory.items[indexProducto];
