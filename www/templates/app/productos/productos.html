@@ -3,9 +3,7 @@
 
 		<ion-list can-swipe="true" show-delete="false" show-reorder="false">
 			<div class="productos lista">
-				<ion-item ng-repeat="producto in productos track by $index"
-				  href="#/app/productos/{{$index}}"
-				  class="item item-thumbnail-left item-icon-right item-text-wrap" >
+				<ion-item class="item-thumbnail-left item-icon-right item-text-wrap" ng-repeat="producto in productos track by $index" href="#/app/productos/{{$index}}">
 
 					<img ng-src="img/producto.png" class="badge-container" ng-cloack/>
 					<span ng-if="cantidadEnCarrito(producto.id) > 0" class="badge badge-dark icon-badge">
@@ -16,22 +14,22 @@
 					<h3>{{::producto.precio | currency : "$ " : 0}}</h3>
 					<i class="icon ico-flechader assertive"></i>
 		
-				<ion-option-button class="positive" ng-click="disminuirProducto(producto)">
-				  <i class="icon ion-minus-circled"></i>
-				</ion-option-button>
+					<ion-option-button class="positive" ng-click="disminuirProducto(producto)">
+					  <i class="icon ion-minus-circled"></i>
+					</ion-option-button>
 
-				<ion-option-button >
-				  <div class="row">
-					<div class="col text-center col-center fondo-gris">
-					  {{cantidadEnCarrito(producto.id)}}
-					</div>
-				  </div>
-				</ion-option-button>
+					<ion-option-button >
+					  <div class="row">
+						<div class="col text-center col-center fondo-gris">
+						  {{cantidadEnCarrito(producto.id)}}
+						</div>
+					  </div>
+					</ion-option-button>
 
-				<ion-option-button class="positive" ng-click="aumentarProducto(producto)">
-				  <i class="icon ion-plus-circled"></i>
-				</ion-option-button>
-			</ion-item> 
+					<ion-option-button class="positive" ng-click="aumentarProducto(producto)">
+					  <i class="icon ion-plus-circled"></i>
+					</ion-option-button>
+				</ion-item> 
 			</div>         
 		</ion-list>
 

@@ -12,10 +12,6 @@ app.controller('AutenticacionInicioCtrl', function($scope, $ionicSideMenuDelegat
 
 })
    
-.controller('recuperarContrasenaCtrl', function($scope) {
-
-})
-   
 .controller('panelPrincipalCtrl', function($scope, Productos) {
 	$scope.productos = Productos;
 }); 

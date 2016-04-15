@@ -1,4 +1,4 @@
-<ion-footer-bar ng-show="carrito.contProductos + carrito.contServicios > 0"> 
+<div class="bar bar-footer" ng-show="carrito.contProductos + carrito.contServicios > 0"> 
   	<div class="row carrito" ui-sref="app.carrito">
 	    <div class="col col-80 text-left col-center suma">
 	      Tu orden suma <span>{{carrito.totales.subtotal | currency : "$"}}</span>
@@ -7,4 +7,4 @@
 	    	<a class="button button-icon icon ico-carrito"></a>
 	    </div>
 	</div>  
-</ion-footer-bar>
+</div>

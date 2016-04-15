@@ -1,4 +1,4 @@
-var CarritoCtrl = function($scope, CarritoFactory, $log, $ionicHistory, $state) {
+var CarritoCtrl = function($scope, CarritoFactory, $log, $ionicHistory, $state, $ionicPopup) {
 	var self = this;
 
 	$scope.$on('$ionicView.leave', function(event, view){
@@ -24,9 +24,19 @@ var CarritoCtrl = function($scope, CarritoFactory, $log, $ionicHistory, $state) 
 	};
 
 	$scope.cancelarOrden = function() {
-		self.cancelarOrden(CarritoFactory, $state, $ionicHistory);
-	};
+		var confirmPopup = $ionicPopup.confirm({
+	    	title: 'Cancelar Orden?',
+	    	template: '¿Está seguro que desea cancelar esta orden?'
+	    });
 
+		confirmPopup.then(function(res) {
+			if(res) {
+				self.cancelarOrden(CarritoFactory, $state, $ionicHistory);
+			} else {
+				console.log('You are not sure');
+			}
+		});
+	};
 };
 
 

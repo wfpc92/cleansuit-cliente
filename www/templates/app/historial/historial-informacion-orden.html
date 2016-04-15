@@ -1,10 +1,10 @@
 <ion-view >
-	<ion-content class="has-header has-subheader has-footer" scroll="true" padding="false" >
+	<ion-content>
 		<div class="row ">
 			<div class="col text-center">INFORMACIÓN DE ORDEN</div>
 		</div>
 
-		<ion-list>
+		<div class="list">
 			<div class="item row">
 				<div class="col">
 					<label class="item-input item-stacked-label">
@@ -93,20 +93,19 @@
 					</label>
 				</div>
 			</div>
-		</ion-list>
+		</div>
 
-		<ion-list>    
-			<ion-item ng-repeat="item in ordenHistorica.items" 
-			  class="item-thumbnail-left fondo-gris " style="margin:10px">
+		<div class="list">    
+			<div class="item item-thumbnail-left" ng-repeat="item in ordenHistorica.items">
 
 				<img ng-src="img/producto.png" ng-show="item.tipo=='PRODUCTO'"/>
 				<h2>{{item.nombre}}</h2>
 				<h2>{{item.precio | currency : "$ ": 0}}</h2>
-				<div style="    float: right; padding:10px; background-color: white">
+				<div class="">
 			  		{{item.cantidad || 0}}
 				</div>
-			</ion-item>       
-		</ion-list>
+			</div>       
+		</div>
 
 		<resumen-totales totales="ordenHistorica.totales"></resumen-totales>
 

@@ -4,16 +4,15 @@
 			<div class="col text-center ">HISTORIAL DE ORDENES</div>
 		</div>
 
-	<ion-list>
-		<ion-item ng-repeat="orden in ordenes" 
-				href="#/app/historial-ordenes/{{orden.id}}"
-				class="item-icon-right fondo-gris">
+	<div class="list">
+		<div class="item item-icon-right" ng-repeat="orden in ordenes" 
+				href="#/app/historial-ordenes/{{orden.id}}">
 			<h2><b>{{orden.fecha}}</b></h2>
 			<p>{{orden.titulo}} {{orden.estado}}</p>
 			<p>Orden {{orden.codigo}}</p>
 			<i class="icon ion-chevron-right positive" ></i>
-		</ion-item>
-	</ion-list>
+		</div>
+	</div>
 
 	</ion-content>
 </ion-view>

@@ -1,128 +1,125 @@
 <ion-view title="Cleansuit">
-  <ion-content class="" scroll="true" padding="false" >
-	<div class="row ">
-	  <div class="col text-center">
-		INFORMACIÓN DE ORDEN
-	  </div>
+	<ion-content>
+		<div class="row ">
+			<div class="col text-center">
+			INFORMACIÓN DE ORDEN
+			</div>
+		</div>
+
+		<form name="formInformacionOrden">
+			<div class="list">
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label">Nombre</span>
+							<input type="text" placeholder="su nombre" value=" {{usuario.nombre}} " disabled>
+						</label>
+					</div>
+				
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label">Apellidos</span>
+							<input type="text" placeholder="sus apellidos" value=" {{usuario.apellidos}} " disabled>
+						</label>
+					</div>
+				</div>
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label">Departamento</span>
+							<input type="text" placeholder="departamento" value=" {{usuario.direccion.departamento}} " disabled>
+						</label>
+					</div>
+
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label">Ciudad</span>
+							<input type="text" placeholder="ciudad" value=" {{usuario.direccion.ciudad}} " disabled>
+						</label>
+					</div>
+				</div>
+
+				<div class="item row" ng-hide="soloProductos">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Dirección de Recolección de Prendas</span>
+							<input type="text" placeholder="su dirección" ng-model="orden.direccionRecoleccion.direccion" maxlength="100" ng-minlength="8" ng-maxlength="100">
+						</label>
+						<i class="icon ion-location positive" ng-click="openModal()"></i>
+					</div>
+				</div> 
+
+
+				<div class="item row" ng-hide="soloProductos">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Hora de Recolección de Prendas</span>
+							<input type="text" placeholder="hora de recolección" ng-model="orden.direccionRecoleccion.hora" ng-disabled="true" required>
+						</label>
+						<i class="icon ion-android-arrow-dropdown-circle positive" ng-click="openPopover('HORARECOLECCION', $event)"></i>
+					</div>
+				</div> 
+
+
+				<div class="item row">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Dirección de Entrega</span>
+							<input type="text" placeholder="dirección de entrega" ng-model="orden.direccionEntrega.direccion" maxlength="100" ng-minlength="8" ng-maxlength="100">
+						</label>
+						<i class="icon ion-edit positive"></i>
+					</div>
+				</div> 
+
+
+				<div class="item row" ng-hide="soloProductos">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Hora de Entrega</span>
+							<input type="text" placeholder="hora de entrega" ng-model="orden.direccionEntrega.hora" ng-disabled="true" required>
+						</label>
+						<i class="icon ion-android-arrow-dropdown-circle positive" ng-click="openPopover('HORAENTREGA', $event)"></i>
+					</div>
+				</div> 
+
+				
+				
+				<div class="item row">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Teléfono de contacto</span>
+							<input type="text" placeholder="su teléfono" ng-model="orden.telefono" name="telefono"maxlength="10" ng-minlength="7" ng-maxlength="10">
+						</label>
+						<i class="icon ion-edit positive"></i>
+					</div>
+				</div>
+
+				<div class="item row">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Forma de Pago</span>
+							<input type="text" placeholder="Seleccione" ng-model="orden.formaPago" ng-disabled="true" required>
+						</label>
+						<i class="icon ion-android-arrow-dropdown-circle positive" ng-click="openPopover('FORMAPAGO',$event)"></i>
+					</div>
+				</div>
+			</div>
+
+			<resumen-totales totales="carrito.totales" ng-show="carrito.hayItems()"></resumen-totales>
+
+			<div class="list">
+				<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones" >Acepto los Términos y Condiciones de CleanSuit</ion-checkbox>
+			</div>
+		</form>
+
+		<elemento-centrado>
+			<a ng-click="cancelarOrden()" class="positive" ng-show="carrito.hayItems()">- Cancelar Orden -</a>
+		</elemento-centrado>
+	</ion-content>
+
+	<div class="bar bar-footer">
+		<a href="#/app/realizar-orden" class="button button-positive button-full" ng-disabled="formIncompleto">REALIZAR ORDEN</a>
 	</div>
-
-	<form name="formInformacionOrden">
-		<ion-list>
-			<div class="item row">
-			  	<div class="col">
-					<label class="item-input item-stacked-label">
-				  		<span class="input-label">Nombre</span>
-				  		<input type="text" placeholder="su nombre" value=" {{usuario.nombre}} " disabled>
-					</label>
-			  	</div>
-			  
-			  	<div class="col">
-					<label class="item-input item-stacked-label">
-				 		<span class="input-label">Apellidos</span>
-				  		<input type="text" placeholder="sus apellidos" value=" {{usuario.apellidos}} " disabled>
-					</label>
-			  	</div>
-			</div>
-
-			<div class="item row">
-			  	<div class="col">
-					<label class="item-input item-stacked-label">
-				  		<span class="input-label">Departamento</span>
-				  		<input type="text" placeholder="departamento" value=" {{usuario.direccion.departamento}} " disabled>
-					</label>
-			  	</div>
-
-				<div class="col">
-					<label class="item-input item-stacked-label">
-						<span class="input-label">Ciudad</span>
-						<input type="text" placeholder="ciudad" value=" {{usuario.direccion.ciudad}} " disabled>
-					</label>
-				</div>
-			</div>
-
-			<div class="item row" ng-hide="soloProductos">
-				<div class="col item-icon-right">
-					<label class="item-input item-stacked-label">
-						<span class="input-label item-icon-right">Dirección de Recolección de Prendas</span>
-						<input type="text" placeholder="su dirección" ng-model="orden.direccionRecoleccion.direccion" maxlength="100" ng-minlength="8" ng-maxlength="100">
-					</label>
-					<i class="icon ion-edit positive"></i>
-			  </div>
-			</div> 
-
-
-			<div class="item row" ng-hide="soloProductos">
-				<div class="col item-icon-right">
-					<label class="item-input item-stacked-label">
-						<span class="input-label item-icon-right">Hora de Recolección de Prendas</span>
-						<input type="text" placeholder="hora de recolección" ng-model="orden.direccionRecoleccion.hora" maxlength="8" ng-minlength="7" ng-maxlength="8">
-					</label>
-					<i class="icon ion-edit positive"></i>
-				</div>
-			</div> 
-
-
-			<div class="item row">
-				<div class="col item-icon-right">
-					<label class="item-input item-stacked-label">
-						<span class="input-label item-icon-right">Dirección de Entrega</span>
-						<input type="text" placeholder="dirección de entrega" ng-model="orden.direccionEntrega.direccion" maxlength="100" ng-minlength="8" ng-maxlength="100">
-					</label>
-					<i class="icon ion-edit positive"></i>
-				</div>
-			</div> 
-
-
-			<div class="item row" ng-hide="soloProductos">
-				<div class="col item-icon-right">
-					<label class="item-input item-stacked-label">
-						<span class="input-label item-icon-right">Hora de Entrega</span>
-						<input type="text" placeholder="hora de entrega" ng-model="orden.direccionEntrega.hora" maxlength="8" ng-minlength="7" ng-maxlength="8">
-					</label>
-					<i class="icon ion-edit positive"></i>
-				</div>
-			</div> 
-
-			
-			
-			<div class="item row">
-				<div class="col item-icon-right">
-					<label class="item-input item-stacked-label">
-						<span class="input-label item-icon-right">Teléfono de contacto</span>
-						<input type="text" placeholder="su teléfono" ng-model="orden.telefono" name="telefono"maxlength="10" ng-minlength="7" ng-maxlength="10">
-					</label>
-					<i class="icon ion-edit positive"></i>
-				</div>
-			</div>
-
-			<div class="item row">
-				<div class="col item-icon-right">
-					<label class="item-input item-stacked-label">
-						<span class="input-label item-icon-right">Forma de Pago</span>
-						<input type="text" placeholder="Seleccione" ng-model="orden.formaPago" ng-disabled="true" required>
-					</label>
-					<i class="icon ion-android-arrow-dropdown-circle positive" ng-click="openPopover($event)"></i>
-			  </div>
-			</div>
-		</ion-list>
-
-		<resumen-totales totales="carrito.totales" ng-show="carrito.hayItems()"></resumen-totales>
-
-		<ion-list>
-			<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones" >Acepto los Términos y Condiciones de CleanSuit</ion-checkbox>
-		</ion-list>
-	</form>
-
-	
-	<elemento-centrado>
-		<a ng-click="cancelarOrden()" class="positive" ng-show="carrito.hayItems()">- Cancelar Orden -</a>
-	</elemento-centrado>
-  </ion-content>
-
-  <ion-footer-bar>
-		<a href="#/app/realizar-orden" class="button button-positive button-full" ng-disabled="formIncompleto">
-		  REALIZAR ORDEN
-		</a>
-   </ion-footer-bar>
 
 </ion-view>

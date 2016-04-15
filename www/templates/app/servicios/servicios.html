@@ -3,9 +3,7 @@
 
         <ion-list can-swipe="true" show-delete="false" show-reorder="false">
             <div class="servicios lista">
-                <ion-item ng-repeat="servicio in servicios track by $index"
-                    href="#/app/servicios/{{indexCategoria}}/{{$index}}"
-                    class="item item-icon-right item-text-wrap" >
+                <ion-item class="item-icon-right item-text-wrap" ng-repeat="servicio in servicios track by $index" href="#/app/servicios/{{indexCategoria}}/{{$index}}">
 
                     <h2>{{::servicio.nombre}}</h2>
                     <span ng-if="cantidadEnCarrito(servicio.id) > 0" class="badge badge-dark icon-badge">
@@ -33,9 +31,9 @@
                     </ion-option-button>
                 </ion-item>
             </div>		
-    </ion-list>
-
-  </ion-content>
-
-   <footer-carrito carrito="carrito"></footer-carrito>
+        </ion-list>
+    
+    </ion-content>
+    
+    <footer-carrito carrito="carrito"></footer-carrito>
 </ion-view>

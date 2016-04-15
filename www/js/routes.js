@@ -48,7 +48,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 		url: '/autenticacion-recuperar-contrasena',
 		//cache: false,
 		templateUrl: 'templates/autenticacion/recuperar-contrasena.html',
-		controller: 'recuperarContrasenaCtrl'
+		controller: 'RecuperarContrasenaCtrl'
 	})
 
 
