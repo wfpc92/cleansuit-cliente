@@ -115,8 +115,10 @@ $registro: #80A3CD;
 		}
 	}
 }
-.menu  {
+.menu.scroll-content {
 	background-color: $calm;
+}
+.menu {
 	.item-complex .item-content {
 		background-color: $calm;
 		padding: 18px 15px 19px 16px;
@@ -173,6 +175,29 @@ p {
 			font-size: 1.1em;
 		}
 	}
+	.item-options {
+		.light{
+			background-color: #378413;
+		}
+		.button {
+			padding: 0;
+			color: $light;
+			.icon {
+				width: 47px;
+				right: 0;
+			}
+			.icon:before {
+				font-size: 47px;
+			}
+		}
+		.button::after {
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			position: relative;
+		}
+	}
 }
 
 .productos {
@@ -195,17 +220,19 @@ p {
 .servicios {
 	.item { min-height: 96px;}
 }
-.card {
-	margin-top: 10px;
+.vista {
+	margin: 10px;
 	box-shadow: 0 0 0;
 	border-radius: 0px;
+	background-color: $light;
 	h1 {
 		font-family: 'fira_sansmedium';
 		text-align: center;
 		color: #333;
 		font-size: 1.6em;
-		margin-top: 19px;
+		margin-top: 10px;
 		margin-bottom: 3px;
+		padding-top: 19px;
 	}
 	p { text-align: center; }
 	.img {
@@ -233,7 +260,7 @@ p {
 			background-color: #298CE8;
 			font-family: 'fira_sansmedium';
 			font-size: 2em;
-			padding: 7px 22px;
+			padding: 7px 19px;
 		}
 		.contador {
 			position: absolute;
@@ -243,12 +270,12 @@ p {
 				display: inline-block;
 				font-size: 49px;
 			}
-			.ico-mas { margin-right: 46px; }
-			.ico-menos { margin-right: 12px; }
+			.ico-mas { margin-right: 40px; }
+			.ico-menos { margin-right: 10px; }
 			span {
 				position: absolute;
 				top: 14px;
-				left: 68px;
+				left: 65px;
 			}
 		}
 	}

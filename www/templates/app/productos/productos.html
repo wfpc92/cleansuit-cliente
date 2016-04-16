@@ -1,6 +1,5 @@
 <ion-view title="Cleansuit">
 	<ion-content>
-
 		<ion-list can-swipe="true" show-delete="false" show-reorder="false">
 			<div class="productos lista">
 				<ion-item ng-repeat="producto in productos track by $index"
@@ -15,28 +14,24 @@
 					<p>{{::producto.resumen}}</p>
 					<h3>{{::producto.precio | currency : "$ " : 0}}</h3>
 					<i class="icon ico-flechader assertive"></i>
-		
-				<ion-option-button class="positive" ng-click="disminuirProducto(producto)">
-				  <i class="icon ion-minus-circled"></i>
-				</ion-option-button>
 
-				<ion-option-button >
-				  <div class="row">
-					<div class="col text-center col-center fondo-gris">
-					  {{cantidadEnCarrito(producto.id)}}
-					</div>
-				  </div>
-				</ion-option-button>
+					
+					<ion-option-button class="light text-center" ng-click="aumentarProducto(producto)">
+						<i class="icon ico-mas"></i>
+					</ion-option-button>
 
-				<ion-option-button class="positive" ng-click="aumentarProducto(producto)">
-				  <i class="icon ion-plus-circled"></i>
-				</ion-option-button>
-			</ion-item> 
+					<ion-option-button class="light">
+						<div class="col text-center col-center fondo-gris">
+						  {{cantidadEnCarrito(producto.id)}}
+						</div>	
+					</ion-option-button>
+
+					<ion-option-button class="light text-center" ng-click="disminuirProducto(producto)">
+						<i class="icon ico-menos"></i>
+					</ion-option-button>				
+				</ion-item> 
 			</div>         
 		</ion-list>
-
 	</ion-content>
-
-   <footer-carrito carrito="carrito"></footer-carrito> 
-
+	<footer-carrito carrito="carrito"></footer-carrito>
 </ion-view>

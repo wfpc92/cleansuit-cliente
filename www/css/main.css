@@ -9821,35 +9821,39 @@ div.tex-center h2 {
       color: #80A3CD;
       font-size: 1.67em; }
 
-.menu {
+.menu.scroll-content {
   background-color: #44A01A; }
-  .menu .item-complex .item-content {
-    background-color: #44A01A;
-    padding: 18px 15px 19px 16px;
-    padding-left: 70px; }
-  .menu .item {
+
+.menu .item-complex .item-content {
+  background-color: #44A01A;
+  padding: 18px 15px 19px 16px;
+  padding-left: 70px; }
+
+.menu .item {
+  color: #fff;
+  background-color: #44A01A;
+  border: none; }
+  .menu .item a {
+    font-family: 'fira_sansmedium'; }
+  .menu .item .icon {
+    font-size: 1.55em; }
+
+.menu .item-complex.item-icon-left {
+  padding-left: 25px; }
+
+.menu .item-avatar {
+  padding: 38px 16px 29px 16px; }
+  .menu .item-avatar img:first-child {
+    display: block;
+    max-width: 62px;
+    max-height: 62px;
+    border: 2px solid #348800;
+    left: 22px; }
+  .menu .item-avatar h2 {
     color: #fff;
-    background-color: #44A01A;
-    border: none; }
-    .menu .item a {
-      font-family: 'fira_sansmedium'; }
-    .menu .item .icon {
-      font-size: 1.55em; }
-  .menu .item-complex.item-icon-left {
-    padding-left: 25px; }
-  .menu .item-avatar {
-    padding: 38px 16px 29px 16px; }
-    .menu .item-avatar img:first-child {
-      display: block;
-      max-width: 62px;
-      max-height: 62px;
-      border: 2px solid #348800;
-      left: 22px; }
-    .menu .item-avatar h2 {
-      color: #fff;
-      font-family: 'fira_sansmedium';
-      font-size: 1.1em;
-      margin-left: 75px; }
+    font-family: 'fira_sansmedium';
+    font-size: 1.1em;
+    margin-left: 75px; }
 
 .scroll-content, .scroll.padding {
   background-color: #f8f8f8; }
@@ -9875,6 +9879,22 @@ p {
     .lista a h3 {
       color: #76A900;
       font-size: 1.1em; }
+  .lista .item-options .light {
+    background-color: #378413; }
+  .lista .item-options .button {
+    padding: 0;
+    color: #fff; }
+    .lista .item-options .button .icon {
+      width: 47px;
+      right: 0; }
+    .lista .item-options .button .icon:before {
+      font-size: 47px; }
+  .lista .item-options .button::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: relative; }
 
 .productos img {
   display: block;
@@ -9895,35 +9915,37 @@ p {
 .servicios .item {
   min-height: 96px; }
 
-.card {
-  margin-top: 10px;
+.vista {
+  margin: 10px;
   box-shadow: 0 0 0;
-  border-radius: 0px; }
-  .card h1 {
+  border-radius: 0px;
+  background-color: #fff; }
+  .vista h1 {
     font-family: 'fira_sansmedium';
     text-align: center;
     color: #333;
     font-size: 1.6em;
-    margin-top: 19px;
-    margin-bottom: 3px; }
-  .card p {
+    margin-top: 10px;
+    margin-bottom: 3px;
+    padding-top: 19px; }
+  .vista p {
     text-align: center; }
-  .card .img {
+  .vista .img {
     background-color: #f8f8f8;
     width: 100%;
     padding: 10px 0;
     text-align: center;
     margin-top: 17px; }
-    .card .img img {
+    .vista .img img {
       display: inline-block;
       max-height: 200px; }
-  .card .contenedor {
+  .vista .contenedor {
     position: relative;
     background-color: #FBFBFB;
     padding: 15px 0;
     color: #2E7300;
     height: 79px; }
-    .card .contenedor h3 {
+    .vista .contenedor h3 {
       display: inline-block;
       position: absolute;
       left: 0;
@@ -9931,28 +9953,28 @@ p {
       background-color: #298CE8;
       font-family: 'fira_sansmedium';
       font-size: 2em;
-      padding: 7px 22px; }
-    .card .contenedor .contador {
+      padding: 7px 19px; }
+    .vista .contenedor .contador {
       position: absolute;
       right: 0;
       font-size: 2em; }
-      .card .contenedor .contador .icon {
+      .vista .contenedor .contador .icon {
         display: inline-block;
         font-size: 49px; }
-      .card .contenedor .contador .ico-mas {
-        margin-right: 46px; }
-      .card .contenedor .contador .ico-menos {
-        margin-right: 12px; }
-      .card .contenedor .contador span {
+      .vista .contenedor .contador .ico-mas {
+        margin-right: 40px; }
+      .vista .contenedor .contador .ico-menos {
+        margin-right: 10px; }
+      .vista .contenedor .contador span {
         position: absolute;
         top: 14px;
-        left: 68px; }
-  .card .descripcion {
+        left: 65px; }
+  .vista .descripcion {
     padding: 25px 25px 0; }
-    .card .descripcion h3 {
+    .vista .descripcion h3 {
       font-size: 100%;
       margin-bottom: 3px; }
-    .card .descripcion p {
+    .vista .descripcion p {
       text-align: left;
       margin-bottom: 22px; }
 
