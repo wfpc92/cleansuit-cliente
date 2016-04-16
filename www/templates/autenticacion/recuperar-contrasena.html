@@ -1,6 +1,6 @@
 <ion-view title="Restablecer contraseña">
-    <ion-content class="has-footer" overflow-scroll="true" padding="false" scroll="false">
-        <img class="logo" ng-src="../../img/logo.svg" />
+    <ion-content>
+        <img class="logo" src="../../img/logo.svg" />
         <div class="formulario">
             <div class="burbujas"></div>            
             <form class="list">
@@ -8,18 +8,18 @@
                 <p>
                     Escribe tu correo electrónico y te enviaremos<br>información para recuperar tu contraseña
                 </p>
-                <ion-list>
+                <div class="list">
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Correo Electrónico</span>
-                        <input type="email" placeholder="Correo electrónico">
+                        <input type="email" ng-model="password" placeholder="Correo electrónico" maxlength="320" ng-minlength="6" ng-maxlength="320">
                     </label>
-                </ion-list>
+                </div>
             </form>
         </div>
                  
     </ion-content>
     
-    <ion-footer-bar>
-        <a href="#/autenticacion-inicio" class="button button-calm button-full">ENVIAR</a>
-    </ion-footer-bar>
+    <div class="bar bar-footer">
+        <a href="#/autenticacion-inicio" class="button button-calm button-full" ng-disabled="formIncompleto">ENVIAR</a>
+    </div>
 </ion-view>

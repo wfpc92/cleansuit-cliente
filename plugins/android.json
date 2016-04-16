@@ -24,9 +24,6 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.apptabs917579"
-        },
-        "cordova-plugin-crosswalk-webview": {
-            "PACKAGE_NAME": "com.ionicframework.apptabs917579"
         }
     },
     "dependent_plugins": {}

@@ -1,5 +1,5 @@
 
-var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $ionicPopover, $ionicHistory, $log) {
+var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $ionicPopover, $ionicHistory, $log, $ionicModal) {
 	var self = this;
 
 	$scope.usuario = UsuarioFactory.getUsuario;
@@ -12,23 +12,37 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 		$scope.closePopover();
 	};
 
-	$ionicPopover.fromTemplateUrl('templates/app/orden/popover-forma-pago.html', {
-		scope: $scope,
-	}).then(function(popover) {
-		$scope.popover = popover;
-	});
-
-	$scope.openPopover = function($event) {
-    	$scope.popover.show($event);
+	$scope.openPopover = function(tipo, $event) {
+		self.construirPopover(tipo, $event, $scope, $ionicPopover);  	
     };
+    
     $scope.closePopover = function() {
     	$scope.popover.hide();
     };
 
-    $scope.$on('$ionicView.afterEnter', function(event) {
-    	self.viewAfterEnter($scope, CarritoFactory, $log);
+    $ionicModal.fromTemplateUrl('templates/app/orden/modal-mapa.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal;
 	});
 
+	$scope.openModal = function() {
+		$scope.modal.show();
+	};
+	
+	$scope.closeModal = function() {
+		$scope.modal.hide();
+	};
+	
+	//Cleanup the modal when we're done with it!
+	$scope.$on('$destroy', function() {
+		$scope.modal.remove();
+	});
+
+	$scope.$on('$ionicView.afterEnter', function(event) {
+    	self.viewAfterEnter($scope, CarritoFactory, $log);
+	});
 };
 
 InformacionOrdenCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory, $log) {
@@ -67,6 +81,55 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory,
 				}
 			});
 	}
+};
+
+InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event, $scope, $ionicPopover) {
+	var tmpURL = "";
+	switch(tipo) {
+		case "HORARECOLECCION":
+			tmpURL = 'templates/app/orden/popover-hora.html';
+			$scope.idPopover = "ppHoraRecoleccion";
+			$scope.horas = [
+				"6:00pm a 6:59pm",
+				"7:00pm a 7:59pm",
+				"8:00pm a 8:59pm",
+				"9:00pm a 10:00pm"
+			];
+
+			$scope.setHora = function($index){
+				$scope.orden.direccionRecoleccion.hora = $scope.horas[$index];
+				$scope.closePopover();
+			};
+			break;
+		case "HORAENTREGA":
+			tmpURL = 'templates/app/orden/popover-hora.html';
+			$scope.idPopover = "ppHoraEntrega";
+			$scope.horas = [
+				"6:00pm a 6:59pm",
+				"7:00pm a 7:59pm",
+				"8:00pm a 8:59pm",
+				"9:00pm a 10:00pm"
+			];
+
+			$scope.setHora = function($index){
+				$scope.orden.direccionEntrega.hora = $scope.horas[$index];
+				$scope.closePopover();
+			};
+			break;
+		case "FORMAPAGO":
+			tmpURL = 'templates/app/orden/popover-forma-pago.html';
+			$scope.idPopover = "ppFormaPago";
+			break;
+		default:
+			return;
+	}
+
+	$ionicPopover.fromTemplateUrl(tmpURL, {
+		scope: $scope,
+	}).then(function(popover) {
+		$scope.popover = popover;
+		$scope.popover.show($event);
+	});
 }
 
 

@@ -1,5 +1,9 @@
 app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compileProvider, $ionicConfigProvider) {
 
+
+	//forzar a ionic que tenga las tabs arriba para todas las plataformas
+	$ionicConfigProvider.tabs.position('top');
+  
 	//$logProvider.debugEnabled(false);
 	$compileProvider.debugInfoEnabled(false);
 	$ionicConfigProvider.scrolling.jsScrolling(false);
@@ -44,7 +48,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 		url: '/autenticacion-recuperar-contrasena',
 		//cache: false,
 		templateUrl: 'templates/autenticacion/recuperar-contrasena.html',
-		controller: 'recuperarContrasenaCtrl'
+		controller: 'RecuperarContrasenaCtrl'
 	})
 
 

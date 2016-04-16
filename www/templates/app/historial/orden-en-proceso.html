@@ -9,12 +9,11 @@
         	<p>Puedes Observar como va tu servicio.</p>
         </elemento-centrado>
 
-        <ion-list>
-        	<ion-item ng-repeat="estado in estados" ng-class="{activated:estado == orden.estado}"
-        	class="text-center ">
+        <div class="list">
+        	<div class="item text-center" ng-repeat="estado in estados" ng-class="{activated:estado == orden.estado}">
         		{{estado.titulo}}
-        	</ion-item>
-        </ion-list>
+        	</div>
+        </div>
     
     </ion-content>
 </ion-view>

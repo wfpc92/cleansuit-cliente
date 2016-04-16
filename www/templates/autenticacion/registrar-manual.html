@@ -1,5 +1,5 @@
 <ion-view title="Registrarme">
-    <ion-content class="has-footer" overflow-scroll="true" padding="false" scroll="false" >
+    <ion-content>
             
         <img class="logo" ng-src="../../img/logo.svg" />
 
@@ -7,7 +7,7 @@
             <!--<p>Ingrese los siguientes datos<br>para registrarse</p>-->
             <div class="burbujas"></div>
             <form class="list">
-                <ion-list>
+                <div class="list">
                     <label class="item item-input item-floating-label" name="Nombre Completo">
                         <span class="input-label">Nombre Completo</span>
                         <input type="text" placeholder="NOMBRE COMPLETO">
@@ -20,13 +20,13 @@
                         <span class="input-label">Contraseña</span>
                         <input type="password" placeholder="CONTRASEÑA">
                     </label>
-                </ion-list>
+                </div>
             </form>
         </div>
 
     </ion-content>
     
-    <ion-footer-bar>
+    <div class="bar bar-footer">
         <a href="#/app/inicio" class="button button-balanced button-full">REGISTRARME</a>
-    </ion-footer-bar >
+    </div>
 </ion-view>

@@ -1,20 +1,19 @@
 <ion-view >
 	<ion-content>
-		<div class="row ">
-			<div class="col text-center ">
+		<div class="row">
+			<div class="col text-center">
 				ORDENES EN PROCESO
 			</div>
 		</div>
 
-		<ion-list>
-			<ion-item ng-repeat="orden in ordenes" 
-				href="#/app/ordenes-en-proceso/{{orden.id}}"
-				class="item-icon-right fondo-gris">
+		<div class="list">
+			<div class="item item-icon-right" ng-repeat="orden in ordenes" 
+				href="#/app/ordenes-en-proceso/{{orden.id}}">
 				<h2><b>{{orden.fecha | date}}</b></h2>
 				<p>Orden {{orden.codigo}}</p>
 				<i class="icon ion-chevron-right positive" ></i>
-			</ion-item>
-		</ion-list>
+			</div>
+		</div>
 
 		<div class="card" ng-if="ordenes.length == 0">
 			<div class="item item-text-wrap">
