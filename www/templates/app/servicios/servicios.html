@@ -4,31 +4,29 @@
         <ion-list can-swipe="true" show-delete="false" show-reorder="false">
             <div class="servicios lista">
                 <ion-item class="item-icon-right item-text-wrap" ng-repeat="servicio in servicios track by $index" href="#/app/servicios/{{indexCategoria}}/{{$index}}">
-
-                    <h2>{{::servicio.nombre}}</h2>
-                    <span ng-if="cantidadEnCarrito(servicio.id) > 0" class="badge badge-dark icon-badge">
+                    <h2>{{::servicio.nombre}} <span ng-if="cantidadEnCarrito(servicio.id) > 0" class="badge badge-dark icon-badge">
                     {{cantidadEnCarrito(servicio.id)}}
-                    </span>   
+                        </span>
+                    </h2>
+                      
                     <p>{{::servicio.descripcion}}</p>
                     <h3>{{::servicio.precio | currency : "$ " : 0}}</h3>
                     <i class="icon ico-flechader assertive"></i>
 
+                    <ion-option-button class="light text-center mas" ng-click="aumentarServicio(servicio)">
+                        <i class="icon ico-mas"></i>
+                    </ion-option-button>                    
 
-                    <ion-option-button class="positive" ng-click="disminuirServicio(servicio)">
-                        <i class="icon ion-minus-circled"></i>
-                    </ion-option-button>
-
-                    <ion-option-button >
-                        <div class="row">
-                            <div class="col text-center col-center fondo-gris">
-                                {{cantidadEnCarrito(servicio.id)}}
-                            </div>
+                    <ion-option-button class="light">
+                        <div class="col text-center col-center fondo-gris">
+                            {{cantidadEnCarrito(servicio.id)}}
                         </div>
                     </ion-option-button>
 
-                    <ion-option-button class="positive" ng-click="aumentarServicio(servicio)">
-                        <i class="icon ion-plus-circled"></i>
+                    <ion-option-button class="light text-center menos" ng-click="disminuirServicio(servicio)">
+                        <i class="icon ico-menos"></i>
                     </ion-option-button>
+                    
                 </ion-item>
             </div>		
         </ion-list>
