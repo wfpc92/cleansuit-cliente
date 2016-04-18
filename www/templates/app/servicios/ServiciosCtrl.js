@@ -4,7 +4,7 @@ var ServiciosCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFact
 	
 	//obtener subservicios de la categoria solicitada
 	$scope.indexCategoria = $stateParams.indexCategoria;
-	$scope.servicios = ServiciosFactory.categorias[$scope.indexCategoria].servicios;
+	$scope.categoria = ServiciosFactory.categorias[$scope.indexCategoria];
 	$scope.carrito = CarritoFactory;
 
 	$scope.aumentarServicio = function(servicio){

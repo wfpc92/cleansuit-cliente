@@ -60,15 +60,15 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 	.state('app', {
 		url: '/app',
 		abstract: true,
-		templateUrl: 'templates/app/menu.html',//aqui estan las tabs
+		templateUrl: 'templates/app/principal/menu.html',//aqui estan las tabs
 		controller: 'AppCtrl'
 	})	
 
 	.state('app.inicio', {
 		url: '/inicio',
 		views: {
-			'mis-promociones': {
-				templateUrl: 'templates/app/inicio.html',
+			'panel-contenido': {
+				templateUrl: 'templates/app/principal/inicio.html',//aqui estan las promociones
 				controller: 'AppInicioCtrl'
 			}
 		}
@@ -168,47 +168,43 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 	/**
 	 * Rutas de los items del menu
 	 */
-	/*
-	.state('app.ordenes-en-proceso', {
+	
+	.state('ordenes-en-proceso', {
 		url: '/ordenes-en-proceso',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/app/orden/ordenes-en-proceso.html',
-				controller: 'OrdenesEnProcesoCtrl'
-			}
-		}
+		templateUrl: 'templates/app/historial/ordenes-en-proceso.html',
+		controller: 'OrdenesEnProcesoCtrl'
 	})
 
-	.state('app.orden-en-proceso', {
+	.state('orden-en-proceso', {
 		url: '/ordenes-en-proceso/:idOrden',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/app/orden/orden-en-proceso.html',
-				controller: 'OrdenEnProcesoCtrl'
-			}
-		}
+		templateUrl: 'templates/app/historial/orden-en-proceso.html',
+		controller: 'OrdenEnProcesoCtrl'
 	})
 
-	.state('app.historial-ordenes', {
+	.state('historial-ordenes', {
 		url: '/historial-ordenes',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/app/orden/historial-ordenes.html',
-				controller: 'HistorialOrdenesCtrl'
-			}
-		}
+		templateUrl: 'templates/app/historial/historial-ordenes.html',
+		controller: 'HistorialOrdenesCtrl'
 	})
 
-	.state('app.historial-orden', {
+	.state('historial-orden', {
 		url: '/historial-ordenes/:idOrden',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/app/orden/historial-informacion-orden.html',
-				controller: 'HistorialOrdenCtrl'
-			}
-		}
+		templateUrl: 'templates/app/historial/historial-informacion-orden.html',
+		controller: 'HistorialOrdenCtrl'
 	})
-	*/
+
+	.state('perfil', {
+		url: '/perfil',
+		templateUrl: 'templates/app/principal/perfil.html',
+		controller: 'PerfilCtrl'
+	})
+
+	.state('about', {
+		url: '/about',
+		templateUrl: 'templates/app/principal/about.html',
+		controller: 'AcercaCtrl'
+	})
+	
 
 	$urlRouterProvider.otherwise('/autenticacion-inicio');
 });

@@ -43,7 +43,7 @@
 							<span class="input-label item-icon-right">Dirección de Recolección de Prendas</span>
 							<input type="text" placeholder="su dirección" ng-model="orden.direccionRecoleccion.direccion" maxlength="100" ng-minlength="8" ng-maxlength="100">
 						</label>
-						<i class="icon ion-location" ng-click="openModal()"></i>
+						<i class="icon ion-location" ng-click="openModal('DIRECCIONRECOLECCION')"></i>
 					</div>
 				</div>
 
@@ -63,7 +63,7 @@
 							<span class="input-label item-icon-right">Dirección de Entrega</span>
 							<input type="text" placeholder="dirección de entrega" ng-model="orden.direccionEntrega.direccion" maxlength="100" ng-minlength="8" ng-maxlength="100">
 						</label>
-						<i class="icon ion-edit"></i>
+						<i class="icon ion-location" ng-click="openModal('DIRECCIONENTREGA')"></i>
 					</div>
 				</div>
 

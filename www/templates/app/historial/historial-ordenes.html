@@ -1,17 +1,17 @@
-<ion-view >
+<ion-view title="CleanSuit">
 	<ion-content>
 		<div class="row">
 			<div class="col text-center ">HISTORIAL DE ORDENES</div>
 		</div>
 
 	<div class="list">
-		<div class="item item-icon-right" ng-repeat="orden in ordenes" 
-				href="#/app/historial-ordenes/{{orden.id}}">
+		<ion-item class="item-icon-right" ng-repeat="orden in ordenes" 
+				href="#/historial-ordenes/{{orden.id}}">
 			<h2><b>{{orden.fecha}}</b></h2>
 			<p>{{orden.titulo}} {{orden.estado}}</p>
 			<p>Orden {{orden.codigo}}</p>
 			<i class="icon ion-chevron-right positive" ></i>
-		</div>
+		</ion-item>
 	</div>
 
 	</ion-content>

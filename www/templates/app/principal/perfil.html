@@ -1,0 +1,102 @@
+<ion-view title="CleanSuit">
+    <ion-content class="bottom">
+    	<div class="row">
+			aqui va una foto??????
+		</div> 
+
+		<div class="list">
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label izq">
+						<span class="input-label">Nombre</span>
+						<input type="text" placeholder="su nombre" value=" {{usuario.nombre}} " disabled>
+					</label>
+				</div>
+			
+				<div class="col">
+					<label class="item-input item-stacked-label der">
+						<span class="input-label">Apellidos</span>
+						<input type="text" placeholder="sus apellidos" value=" {{usuario.apellidos}} " disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label izq">
+						<span class="input-label">Departamento</span>
+						<input type="text" placeholder="departamento" value=" {{usuario.direccion.departamento}} " disabled>
+					</label>
+				</div>
+
+				<div class="col">
+					<label class="item-input item-stacked-label der">
+						<span class="input-label">Ciudad</span>
+						<input type="text" placeholder="ciudad" value=" {{usuario.direccion.ciudad}} " disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Dirección de Residencia</span>
+						<input type="text" placeholder="dirección residencia" ng-model="usuario.direccion.residencia" disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Teléfono de contacto</span>
+						<input type="text" placeholder="teléfono de contacto" ng-model="usuario.telefono" disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Correo Electrónico</span>
+						<input type="email" placeholder="correo electrónico" ng-model="usuario.email" disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Contraseña</span>
+						<input type="password" placeholder="contraseña" value="*************" disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Teléfono de contacto</span>
+						<input type="text" placeholder="teléfono de contacto" ng-model="usuario.telefono" disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row">
+				<div class="col item-icon-right">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Cambiar Contraseña</span>
+					</label>
+					<i class="icon ico-flechaabajo" ng-click="cambiarContrasena()"></i>
+				</div>
+			</div>			
+		</div>    
+    </ion-content>
+
+    <div class="bar bar-footer">
+    	<a ng-click="guardarPerfil()" class="button button-calm button-full"> 
+			]GUARDAR
+		</a>
+    </div>
+
+</ion-view>

@@ -23,19 +23,16 @@ var CarritoCtrl = function($scope, CarritoFactory, $log, $ionicHistory, $state, 
 		CarritoFactory.disminuir(producto, "PRODUCTO", 1);
 	};
 
+	//cancelar orden:
 	$scope.cancelarOrden = function() {
-		var confirmPopup = $ionicPopup.confirm({
+		var options = {
 	    	title: 'Cancelar Orden?',
 	    	template: '¿Está seguro que desea cancelar esta orden?'
-	    });
-
-		confirmPopup.then(function(res) {
-			if(res) {
-				self.cancelarOrden(CarritoFactory, $state, $ionicHistory);
-			} else {
-				console.log('You are not sure');
-			}
-		});
+	    };
+	    var callback = function(){
+	    	self.cancelarOrden(CarritoFactory, $state, $ionicHistory); 
+	    }
+		self.mostrarPopup($ionicPopup, options, callback);
 	};
 };
 
@@ -44,6 +41,17 @@ CarritoCtrl.prototype.viewLeave = function(view, carrito){
 	if(view.stateName == "app.carrito"){
 		carrito.limpiar();
 	}
+};
+
+
+CarritoCtrl.prototype.mostrarPopup = function($ionicPopup, optionsPopup, callback) {
+	$ionicPopup
+		.confirm(optionsPopup)
+		.then(function(res) {
+			if(res) {
+				callback();
+			}
+	});
 };
 
 CarritoCtrl.prototype.cancelarOrden = function(CarritoFactory, $state, $ionicHistory) {

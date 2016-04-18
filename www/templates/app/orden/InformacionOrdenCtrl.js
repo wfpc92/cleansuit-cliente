@@ -1,5 +1,5 @@
 
-var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $ionicPopover, $ionicHistory, $log, $ionicModal) {
+var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $state, $ionicPopover, $ionicHistory, $log, $ionicModal, $ionicPopup) {
 	var self = this;
 
 	$scope.usuario = UsuarioFactory.getUsuario;
@@ -12,6 +12,17 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 		$scope.closePopover();
 	};
 
+	$scope.openModal = function(tipo) {
+		var callback = function(){
+			$scope.modal.show();
+		};
+		self.construirModalMapa(tipo, $scope, $ionicModal, callback);
+	};
+
+	$scope.closeModal = function() {
+		$scope.modal.hide();
+	};
+
 	$scope.openPopover = function(tipo, $event) {
 		self.construirPopover(tipo, $event, $scope, $ionicPopover);  	
     };
@@ -19,21 +30,6 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
     $scope.closePopover = function() {
     	$scope.popover.hide();
     };
-
-    $ionicModal.fromTemplateUrl('templates/app/orden/modal-mapa.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal;
-	});
-
-	$scope.openModal = function() {
-		$scope.modal.show();
-	};
-	
-	$scope.closeModal = function() {
-		$scope.modal.hide();
-	};
 	
 	//Cleanup the modal when we're done with it!
 	$scope.$on('$destroy', function() {
@@ -43,6 +39,18 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	$scope.$on('$ionicView.afterEnter', function(event) {
     	self.viewAfterEnter($scope, CarritoFactory, $log);
 	});
+
+	//cancelar orden:
+	$scope.cancelarOrden = function() {
+		var options = {
+	    	title: 'Cancelar Orden?',
+	    	template: '¿Está seguro que desea cancelar esta orden?'
+	    };
+	    var callback = function(){
+	    	self.cancelarOrden(CarritoFactory, $state, $ionicHistory); 
+	    }
+		self.mostrarPopup($ionicPopup, options, callback);
+	};
 };
 
 InformacionOrdenCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory, $log) {
@@ -90,36 +98,37 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event, $scope,
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraRecoleccion";
 			$scope.horas = [
-				"6:00pm a 6:59pm",
-				"7:00pm a 7:59pm",
-				"8:00pm a 8:59pm",
-				"9:00pm a 10:00pm"
+				"6:00 P.M. a 6:59 P.M.",
+				"7:00 P.M. a 7:59 P.M.",
+				"8:00 P.M. a 8:59 P.M.",
+				"9:00 P.M. a 10:00 P.M."
 			];
-
 			$scope.setHora = function($index){
 				$scope.orden.direccionRecoleccion.hora = $scope.horas[$index];
 				$scope.closePopover();
 			};
 			break;
+
 		case "HORAENTREGA":
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraEntrega";
 			$scope.horas = [
-				"6:00pm a 6:59pm",
-				"7:00pm a 7:59pm",
-				"8:00pm a 8:59pm",
-				"9:00pm a 10:00pm"
+				"6:00 P.M. a 6:59 P.M.",
+				"7:00 P.M. a 7:59 P.M.",
+				"8:00 P.M. a 8:59 P.M.",
+				"9:00 P.M. a 10:00 P.M."
 			];
-
 			$scope.setHora = function($index){
 				$scope.orden.direccionEntrega.hora = $scope.horas[$index];
 				$scope.closePopover();
 			};
 			break;
+
 		case "FORMAPAGO":
 			tmpURL = 'templates/app/orden/popover-forma-pago.html';
 			$scope.idPopover = "ppFormaPago";
 			break;
+
 		default:
 			return;
 	}
@@ -130,7 +139,52 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event, $scope,
 		$scope.popover = popover;
 		$scope.popover.show($event);
 	});
-}
+};
 
+InformacionOrdenCtrl.prototype.construirModalMapa = function(tipo, $scope, $ionicModal, callback){
+	var tmpURL = "templates/app/orden/modal-mapa.html";
+	switch(tipo) {
+		case "DIRECCIONRECOLECCION":
+			$scope.titulo = "Ubique en el mapa la dirección de recolección. ";
+			$scope.idModal = "mdDireccionRecoleccion";
+			break;
+
+		case "DIRECCIONENTREGA":
+			$scope.titulo = "Ubique en el mapa la dirección de entrega. ";
+			$scope.idModal = "mdDireccionEntrega";
+			break;
+
+		default:
+			return;
+	}
+
+	$ionicModal.fromTemplateUrl(tmpURL, {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal;
+		callback();
+	});
+};
+
+InformacionOrdenCtrl.prototype.mostrarPopup = function($ionicPopup, optionsPopup, callback) {
+	$ionicPopup
+		.confirm(optionsPopup)
+		.then(function(res) {
+			if(res) {
+				callback();
+			}
+		});
+};
+
+InformacionOrdenCtrl.prototype.cancelarOrden = function(CarritoFactory, $state, $ionicHistory) {
+	CarritoFactory.cancelarOrden();
+	CarritoFactory.actualizarContadores();
+	$state.go("app.inicio");
+	$ionicHistory.clearHistory();
+	$ionicHistory.nextViewOptions({
+		disableBack:'true'
+	});
+}
 
 app.controller('InformacionOrdenCtrl', InformacionOrdenCtrl);
