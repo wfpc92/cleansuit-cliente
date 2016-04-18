@@ -10129,3 +10129,51 @@ p {
   border-color: #52B1ED;
   margin-top: 0;
   border: none; }
+
+.orden {
+  padding: 10px;
+  font-family: 'fira_sansregular';
+  color: #333; }
+  .orden .titulo {
+    font-family: 'fira_sansmedium';
+    font-size: 1.3em;
+    text-align: center;
+    background-color: #E5E5E5;
+    padding: 20px 0; }
+  .orden form .list {
+    margin-bottom: 0; }
+  .orden form .card {
+    margin: 0;
+    padding: 5px 15px;
+    width: auto;
+    box-shadow: none;
+    font-family: 'fira_sansmedium';
+    font-size: 1.2em; }
+    .orden form .card .numero {
+      font-family: 'fira_sansregular';
+      text-align: right; }
+  .orden form .item-checkbox {
+    border: none;
+    font-size: 1.1em;
+    color: #666; }
+  .orden .item {
+    margin: -5px 0;
+    border-right: none;
+    border-left: none; }
+    .orden .item .item-input {
+      padding: 6px 14px 5px 14px; }
+    .orden .item .der {
+      padding: 6px 14px 5px 7px; }
+    .orden .item .izq {
+      padding: 6px 7px 5px 14px; }
+    .orden .item span {
+      color: #BABABA;
+      font-size: 1em; }
+    .orden .item input[type="text"] {
+      font-size: 1.2em;
+      height: auto; }
+    .orden .item input[disabled] {
+      background-color: #fff; }
+    .orden .item .icon {
+      color: #666;
+      font-size: 26px; }
