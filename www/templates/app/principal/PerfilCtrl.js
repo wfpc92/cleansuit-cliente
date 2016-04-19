@@ -2,57 +2,66 @@ var PerfilCtrl = function($scope, UsuarioFactory, $ionicPopup){
 	var self = this;
 
 	$scope.usuario = UsuarioFactory.getUsuario();
-	console.log($scope.usuario)
 
 	$scope.guardarPerfil = function() {
-		self.verificarInformacion($scope, function() {
-			UsuarioFactory.guardarInformacion();
+		UsuarioFactory.guardarInformacion($scope.formData,  
+			function() {
+				$ionicPopup
+					.alert({
+						title: 'Tu perfil se ha actualizado.'
+					});
+				$scope.formData = {
+					contrasena: '',
+					confirmarContrasena: '',
+					mostrarCambiarContrasena: false,
+					contrasenaModificada: false,
+					formValido: false
+				};
 		});
 	};
 
-	$scope.cambiarContrasena = function() {
-		var options = {
-	    	templateUrl: 'templates/app/principal/popup-cambiar-contrasena.html',
-		    title: 'Escriba su nueva Contraseña',
-		    subTitle: 'Minimo 6 caracteres, con letras y números',
-		    scope: $scope,
-		    buttons: [
-		    	{ text: 'Cancelar' },
-				{
-					text: '<b>Guardar</b>',
-					type: 'button-positive',
-					onTap: function(e) {
-					  if (!$scope.usuario.contrasena && !$scope.usuario.confirmarContrasena) {
-					    //don't allow the user to close unless he enters wifi password
-					    e.preventDefault();
-					  } else {
-					    return $scope.usuario.password;
-					  }
-					}
+	$scope.$on("$ionicView.afterEnter", function () {
+		//objeto para almacenar informacion de entrada
+		$scope.formData = {
+			contrasena: '',
+			confirmarContrasena: '',
+			mostrarCambiarContrasena: false,
+			contrasenaModificada: false,
+			formValido: false
+		};
+
+		$scope.$watchGroup([
+			'usuario.nombre',
+			'usuario.apellidos',
+			'usuario.direccion.departamento',
+			'usuario.direccion.ciudad',
+			'usuario.direccion.residencia',
+			'usuario.telefono',
+			'usuario.email'
+			], function(newV, oldV, scope){
+				if(newV[0] && newV[1] && newV[2] && newV[3] && newV[4] && newV[5] && newV[6]){
+					$scope.formData.formValido = true;
 				}
-			]
-	    };
-		self.mostrarPopup($ionicPopup, options);
-	}
+				else {
+					$scope.formData.formValido = false;	
+				}
+			});
+
+
+		$scope.$watchGroup([
+				'formData.contrasena',
+				'formData.confirmarContrasena'
+			], function(newV, oldV, scope) {
+				if(newV[0] && newV[1] && newV[0] == newV[1]){
+					$scope.formData.formValido = true;
+					$scope.formData.contrasenaModificada = true;
+				}
+				else {
+					$scope.formData.formValido = false;	
+				}
+			});
+	});
 
 };
-
-PerfilCtrl.prototype.verificarInformacion = function($scope, cllbck){
-	if(true){
-		cllbck();
-	}
-}
-
-PerfilCtrl.prototype.mostrarPopup = function($ionicPopup, optionsPopup, cllbck){
-	$ionicPopup
-		.show(optionsPopup)
-		.then(function(res) {
-			if(res) {
-				cllbck();
-			}
-	});
-}
-
-
 
 app.controller("PerfilCtrl", PerfilCtrl);
