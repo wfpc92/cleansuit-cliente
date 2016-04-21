@@ -1,6 +1,10 @@
 <ion-view title="CleanSuit">
 	<ion-content>
 		<div class="row ">
+			<div class="col text-center">PEDIDO {{ordenHistorica.estado | uppercase}}</div>
+		</div>
+
+		<div class="row ">
 			<div class="col text-center">INFORMACIÓN DE ORDEN</div>
 		</div>
 
@@ -9,13 +13,13 @@
 				<div class="col">
 					<label class="item-input item-stacked-label">
 						<span class="input-label">Nombre</span>
-						<input type="text" placeholder="su nombre" value=" {{usuario.nombre}} " disabled>
+						<input type="text" placeholder="su nombre" value=" {{ordenHistorica.orden.usuario.nombre}} " disabled>
 					</label>
 				</div>
 				<div class="col">
 					<label class="item-input item-stacked-label">
 						<span class="input-label">Apellidos</span>
-						<input type="text" placeholder="sus apellidos" value=" {{usuario.apellidos}} " disabled>
+						<input type="text" placeholder="sus apellidos" value=" {{ordenHistorica.orden.usuario.apellidos}} " disabled>
 					</label>
 				</div>
 			</div>
@@ -24,13 +28,13 @@
 				<div class="col">
 					<label class="item-input item-stacked-label">
 						<span class="input-label">Departamento</span>
-						<input type="text" placeholder="departamento" value=" {{usuario.direccion.departamento}} " disabled>
+						<input type="text" placeholder="departamento" value=" {{ordenHistorica.orden.usuario.direccion.departamento}} " disabled>
 					</label>
 				</div>
 				<div class="col">
 					<label class="item-input item-stacked-label">
 						<span class="input-label">Ciudad</span>
-						<input type="text" placeholder="ciudad" value=" {{usuario.direccion.ciudad}} " disabled>
+						<input type="text" placeholder="ciudad" value=" {{ordenHistorica.orden.usuario.direccion.ciudad}} " disabled>
 					</label>
 				</div>
 			</div>
@@ -80,7 +84,7 @@
 				<div class="col">
 					<label class="item-input item-stacked-label">
 						<span class="input-label item-icon-right">Teléfono de contacto</span>
-						<input type="text" placeholder="su teléfono" value=" {{usuario.telefono}} " disabled>
+						<input type="text" placeholder="su teléfono" value=" {{ordenHistorica.orden.usuario.telefono}} " disabled>
 					</label>
 				</div>
 			</div>
@@ -96,10 +100,11 @@
 		</div>
 
 		<div class="list">    
-			<div class="item item-thumbnail-left" ng-repeat="item in ordenHistorica.items">
+			<div class="item" ng-repeat="item in ordenHistorica.items" ng-class="{'item-thumbnail-left': item.tipo=='PRODUCTO'}">
 
 				<img ng-src="img/producto.png" ng-show="item.tipo=='PRODUCTO'"/>
 				<h2>{{item.nombre}}</h2>
+				<p ng-show="item.tipo=='SERVICIO'">{{item.categoria}}</p>
 				<h2>{{item.precio | currency : "$ ": 0}}</h2>
 				<div class="">
 			  		{{item.cantidad || 0}}

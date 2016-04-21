@@ -1,10 +1,14 @@
 
-var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $state, $ionicPopover, $ionicHistory, $log, $ionicModal, $ionicPopup) {
+var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $state, $ionicPopover, $ionicHistory, $log, $ionicModal, $ionicPopup, RealizarOrdenFactory, $state) {
 	var self = this;
 
-	$scope.usuario = UsuarioFactory.getUsuario;
+	$scope.usuario = UsuarioFactory.getUsuario();
 	$scope.carrito = CarritoFactory;
 	$scope.orden = OrdenFactory.orden;
+
+	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
+	$scope.orden.direccionRecoleccion.direccion = $scope.usuario.direccion.residencia;
+	$scope.orden.direccionEntrega.direccion = $scope.usuario.direccion.residencia;
 	$scope.orden.telefono = $scope.usuario.telefono;
 
 	$scope.formaPago = function(formaPago){
@@ -33,7 +37,9 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	
 	//Cleanup the modal when we're done with it!
 	$scope.$on('$destroy', function() {
-		$scope.modal.remove();
+		if(typeof $scope.modal != 'undefined') {
+			$scope.modal.remove();
+		}
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
@@ -42,20 +48,30 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 
 	//cancelar orden:
 	$scope.cancelarOrden = function() {
-		var options = {
+		self.mostrarPopup($ionicPopup, {
 	    	title: 'Cancelar Orden?',
 	    	template: '¿Está seguro que desea cancelar esta orden?'
-	    };
-	    var callback = function(){
+	    }, function(){
 	    	self.cancelarOrden(CarritoFactory, $state, $ionicHistory); 
-	    }
-		self.mostrarPopup($ionicPopup, options, callback);
+	    });
 	};
+
+	$scope.realizarOrden = function(){
+		self.enviarOrden(function(){
+			RealizarOrdenFactory.realizarOrden();
+			$ionicHistory.clearHistory();
+			$ionicHistory.clearCache()
+			$ionicHistory.nextViewOptions({
+				disableBack:'true'
+			});
+			$state.go("app.realizar-orden");
+		});
+	}
 };
 
 InformacionOrdenCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory, $log) {
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
-	$scope.soloProductos = CarritoFactory.soloHayProductos();
+	$scope.soloProductos = CarritoFactory.soloHayProductos(CarritoFactory.items);
 	$log.debug("solo hay productos: "+ $scope.soloProductos)
 	$scope.formIncompleto = true;
 
@@ -185,6 +201,10 @@ InformacionOrdenCtrl.prototype.cancelarOrden = function(CarritoFactory, $state, 
 	$ionicHistory.nextViewOptions({
 		disableBack:'true'
 	});
-}
+};
+
+InformacionOrdenCtrl.prototype.enviarOrden = function(callback){
+	callback();
+};
 
 app.controller('InformacionOrdenCtrl', InformacionOrdenCtrl);

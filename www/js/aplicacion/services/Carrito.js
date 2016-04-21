@@ -122,10 +122,10 @@ app.factory('CarritoFactory', [function(){
 			this.totales.total = (subtotal != 0 ? subtotal + this.domicilio : 0);
 		},
 
-		soloHayProductos : function(){
+		soloHayProductos : function(items){
 			var cont = 0;
-			for(i in this.items){
-				if(this.items[i].tipo=='PRODUCTO'){
+			for(i in items){
+				if(items[i].tipo=='PRODUCTO'){
 					cont++;
 				} else {
 					return false;

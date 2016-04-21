@@ -1,21 +1,20 @@
-var RealizarOrdenCtrl = function($scope, RealizarOrdenFactory, $state, $ionicHistory) {
+var RealizarOrdenCtrl = function($scope, RealizarOrdenFactory, $state, $ionicHistory, EstadosFactory) {
 	var self = this;
 
-	RealizarOrdenFactory.realizarOrden();
+	$scope.estados = EstadosFactory.estados;
+	$scope.orden = RealizarOrdenFactory.ultimaOrden();
+	console.log("ultima orden: ")
+	console.log($scope.orden);
 
-	$scope.$on('$ionicView.leave', function() {
-		self.viewLeave($state, $ionicHistory);
-	});
+	$scope.regresarPrincipal = function() {
+		$ionicHistory.clearHistory();
+		$ionicHistory.clearCache()
+		$ionicHistory.nextViewOptions({
+			disableBack:'true'
+		});
+		$state.go("app.inicio");	
+	};
 };
 
-RealizarOrdenCtrl.prototype.viewLeave = function($state, $ionicHistory) {
-	//$state.go("app.carrito");
-	$ionicHistory.clearHistory();
-	$ionicHistory.clearCache()
-	$ionicHistory.nextViewOptions({
-		disableBack:'true'
-	});
-	$state.go("app.inicio");
-}
 
 app.controller('RealizarOrdenCtrl', RealizarOrdenCtrl);

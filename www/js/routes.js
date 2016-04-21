@@ -60,7 +60,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 	.state('app', {
 		url: '/app',
 		abstract: true,
-		templateUrl: 'templates/app/principal/menu.html',//aqui estan las tabs
+		templateUrl: 'templates/app/principal/tabs.html',//aqui estan las tabs
 		controller: 'AppCtrl'
 	})	
 
@@ -157,7 +157,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 		cache: false,
 		views: {
 			'mi-carrito': {
-				templateUrl: 'templates/app/orden/realizar-orden.html',
+				templateUrl: 'templates/app/orden/estado-orden.html',
 				controller: 'RealizarOrdenCtrl'
 			}
 		}
@@ -176,8 +176,8 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 	})
 
 	.state('orden-en-proceso', {
-		url: '/ordenes-en-proceso/:idOrden',
-		templateUrl: 'templates/app/historial/orden-en-proceso.html',
+		url: '/ordenes-en-proceso/:indexOrden',
+		templateUrl: 'templates/app/orden/estado-orden.html',
 		controller: 'OrdenEnProcesoCtrl'
 	})
 
@@ -188,7 +188,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 	})
 
 	.state('historial-orden', {
-		url: '/historial-ordenes/:idOrden',
+		url: '/historial-ordenes/:indexOrden',
 		templateUrl: 'templates/app/historial/historial-informacion-orden.html',
 		controller: 'HistorialOrdenCtrl'
 	})

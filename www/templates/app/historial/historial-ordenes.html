@@ -1,18 +1,29 @@
 <ion-view title="CleanSuit">
 	<ion-content>
-		<div class="row">
-			<div class="col text-center ">HISTORIAL DE ORDENES</div>
+		<div class="">
+    		<div class="row">
+				<div class="col text-center">
+					<h3>Historial de órdenes</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col text-center">
+					<p>Este es tu historial de órdenes realizadas<br/>hasta el momento.</p>
+				</div>
+			</div>
 		</div>
 
-	<div class="list">
-		<ion-item class="item-icon-right" ng-repeat="orden in ordenes" 
-				href="#/historial-ordenes/{{orden.id}}">
-			<h2><b>{{orden.fecha}}</b></h2>
-			<p>{{orden.titulo}} {{orden.estado}}</p>
-			<p>Orden {{orden.codigo}}</p>
-			<i class="icon ion-chevron-right positive" ></i>
-		</ion-item>
-	</div>
+
+		<div class="list">
+			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
+					href="#/historial-ordenes/{{$index}}">
+				<h2><b>{{orden.fecha}}</b></h2>
+				<p>{{orden.titulo}} {{orden.estado}}</p>
+				<p>Orden {{orden.codigo}}</p>
+				<i class="icon ion-chevron-right positive" ></i>
+			</ion-item>
+		</div>
 
 	</ion-content>
 </ion-view>

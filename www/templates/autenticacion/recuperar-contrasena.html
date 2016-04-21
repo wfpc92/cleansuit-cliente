@@ -3,7 +3,7 @@
         <img class="logo" ng-src="../../img/logo.svg" />
         <div class="formulario">
             <div class="burbujas"></div>            
-            <form class="list">
+            <form class="list" name="formRecuperarContrasena">
                 <h2>¿No recuerdas tu contraseña?<br>¡No te precoupes!</h2>
                 <p>
                     Escribe tu correo electrónico y te enviaremos<br>información para recuperar tu contraseña
@@ -11,7 +11,7 @@
                 <div class="list">
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Correo Electrónico</span>
-                        <input type="email" ng-model="email" placeholder="Correo electrónico" maxlength="320" ng-minlength="6" ng-maxlength="320">
+                        <input type="email" ng-model="formData.email" placeholder="Correo electrónico" maxlength="320" ng-minlength="6" ng-maxlength="320">
                     </label>
                 </div>
             </form>
@@ -20,6 +20,6 @@
     </ion-content>
     
     <div class="bar bar-footer">
-        <a href="#/autenticacion-inicio" class="button button-calm button-full" ng-disabled="formIncompleto">ENVIAR</a>
+        <a ng-click="enviar()" class="button button-calm button-full" ng-disabled="!formData.formValido">ENVIAR</a>
     </div>
 </ion-view>

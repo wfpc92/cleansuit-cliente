@@ -97,9 +97,14 @@
 					<ion-content overflow-scroll="true" padding="false" scroll="false" class="menu">
 						<ion-list>
 
-							<ion-item class="item-avatar">
+							<ion-item class="item-avatar item-text-wrap">
 								<img ng-src="{{usuario.fotoPerfil}}">
 								<h2>{{usuario.nombre + &apos; &apos; + usuario.apellidos | uppercase}}</h2>
+							</ion-item>
+
+							<ion-item menu-close="" href="#/app/inicio" class="item-icon-left">
+								Inicio - Promociones
+								<i class="icon ion-home"></i>
 							</ion-item>
 
 							<ion-item menu-close="" href="#/ordenes-en-proceso" class="item-icon-left">
@@ -107,18 +112,22 @@
 								<i class="icon ico-ordenes"></i>
 								<span class="badge badge-dark icon-badge">{{contOrdenesEnProceso}}</span>
 							</ion-item>
+
 							<ion-item menu-close="" href="#/historial-ordenes" class="item-icon-left">
 								Historial de ordenes
 								<i class="icon ico-historial"></i>
 							</ion-item>
+							
 							<ion-item menu-close="" href="#/perfil" class="item-icon-left">
 								Perfil
 								<i class="icon ico-perfil"></i>
 							</ion-item>
+							
 							<ion-item menu-close="" href="#/about" class="item-icon-left">
 								Sobre esta aplicaci&#xF3;n
 								<i class="icon ico-about"></i>
 							</ion-item>
+							
 							<ion-item menu-close="" ng-click="cerrarSesion()" class="item-icon-left">
 								Cerrar sesi&#xF3;n
 								<i class="icon ico-cerrar"></i>

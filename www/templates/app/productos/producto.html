@@ -1,9 +1,9 @@
 <ion-view title="Cleansuit">
-  <ion-content class="bottom">
+  <ion-content>
 	
 	<div class="vista producto" layout="column" layout-align="center">
 		<h1>{{::producto.nombre}}</h1>
-		<p>{{::producto.resumen}}</p> 
+		<p>{{::producto.descripcion}}</p> 
 		<div layout="row" layout-align="center center" class="img">
 		  <img ng-src="img/producto-detalle1.png" ng-cloack/>
 		</div>
@@ -19,7 +19,7 @@
 		
 		<div layout="row" layout-align="start start" class="descripcion">
 			<h3>Detalles</h3>
-			<p>{{::producto.descripcion}}</p>
+			<p>{{::producto.detalles}}</p>
 		</div>
 	</div>	
 
