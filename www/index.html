@@ -99,7 +99,7 @@
 
 							<ion-item class="item-avatar item-text-wrap">
 								<img ng-src="{{usuario.fotoPerfil}}">
-								<h2>{{usuario.nombre + &apos; &apos; + usuario.apellidos | uppercase}}</h2>
+								<h2>{{usuario.nombre | uppercase}}</h2>
 							</ion-item>
 
 							<ion-item menu-close="" href="#/app/inicio" class="item-icon-left">
@@ -128,7 +128,7 @@
 								<i class="icon ico-about"></i>
 							</ion-item>
 							
-							<ion-item menu-close="" ng-click="cerrarSesion()" class="item-icon-left">
+							<ion-item menu-close="" ng-click="cerrarSesion()" class="item-icon-left cerrar">
 								Cerrar sesi&#xF3;n
 								<i class="icon ico-cerrar"></i>
 							</ion-item>

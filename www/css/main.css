@@ -9837,6 +9837,11 @@ div.tex-center h2 {
   .menu .item .icon {
     font-size: 1.55em; }
 
+.menu .cerrar {
+  font-family: 'fira_sansmedium';
+  margin-left: 25px;
+  padding-left: 70px; }
+
 .menu .item-complex.item-icon-left {
   padding-left: 25px; }
 
@@ -9853,6 +9858,15 @@ div.tex-center h2 {
     font-family: 'fira_sansmedium';
     font-size: 1.1em;
     margin-left: 75px; }
+
+.menu .badge.badge-dark {
+  background-color: #2E7300;
+  padding: 3px 8px 3px 8px;
+  border-radius: 20px;
+  right: 22px; }
+
+.menu .item .item-content.activated {
+  background-color: #44A01A; }
 
 .item .item-content.activated {
   background-color: #fff; }
@@ -10106,14 +10120,18 @@ p {
   border-bottom: 1px solid;
   border-left: 1px solid; }
 
-.tab-nav a:first-child {
+.tab-nav a.aIni {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px; }
 
-.tab-nav a:last-child {
-  border-right: 1px solid;
+.tab-nav a.aFin {
   border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px; }
+  border-bottom-right-radius: 8px;
+  border-right: 1px solid; }
+
+.tab-nav .tab-item .badge {
+  right: calc(30% - 26px);
+  top: 13px; }
 
 .tabs-striped.tabs-light .tabs {
   background-color: #F6F6F6; }
@@ -10129,6 +10147,10 @@ p {
   border-color: #52B1ED;
   margin-top: 0;
   border: none; }
+
+.tabs-top > .tabs .tab-item.tab-item-active .badge,
+.tabs-top > .tabs .tab-item.activated .badge {
+  top: 15px; }
 
 .orden {
   padding: 10px;
@@ -10177,3 +10199,43 @@ p {
     .orden .item .icon {
       color: #666;
       font-size: 26px; }
+
+.titulos, .acerca .titulo, .historial-ord .titulo, .ord-en-proceso .titulo {
+  text-align: center;
+  padding: 17px 0; }
+  .titulos h3, .acerca .titulo h3, .historial-ord .titulo h3, .ord-en-proceso .titulo h3 {
+    color: #00338A;
+    font-family: 'fira_sansmedium';
+    font-size: 1.4em;
+    margin-bottom: 2px; }
+  .titulos p, .acerca .titulo p, .historial-ord .titulo p, .ord-en-proceso .titulo p {
+    color: #fff;
+    margin: 0; }
+
+.acerca {
+  padding: 30px 15px; }
+  .acerca .titulo {
+    background: url("../img/acerca.png") no-repeat bottom right;
+    background-color: #3DA0EB; }
+  .acerca .descripcion {
+    background-color: #fff;
+    padding: 38px 25px; }
+    .acerca .descripcion p {
+      margin-bottom: 20px; }
+
+.historial-ord, .ord-en-proceso {
+  padding: 30px 15px; }
+  .historial-ord .titulo, .ord-en-proceso .titulo {
+    background: url("../img/historial.png") no-repeat bottom right;
+    background-color: #3DA0EB; }
+  .historial-ord .list .item, .ord-en-proceso .list .item {
+    border: none;
+    margin: -1px 0 3px 0; }
+  .historial-ord .list h3, .ord-en-proceso .list h3 {
+    font-family: 'fira_sansmedium';
+    font-size: 1.2em;
+    color: #399100; }
+
+.ord-en-proceso .titulo {
+  background: url("../img/proceso.png") no-repeat bottom right;
+  background-color: #3DA0EB; }
