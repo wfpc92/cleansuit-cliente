@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.apptabs917579" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Prototipos</name>
+  <name>CleanSuit</name>
   <description>
-        Prototipos aplicacion cliente CleanSuit.
+        Aplicación cliente CleanSuit.
     </description>
   <author email="wfpc92@hotmail.com" href="http://cautiva.co/">
       Wilian Fernando Pantoja Carvajal
-    </author>
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>

@@ -11,7 +11,7 @@ app.factory('UsuarioFactory',[function(){
 		email: 'danyalejandro@gmail.co',
 		fotoPerfil: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT8h8h9zqj1xg5bGwGMuXTBnqI_52j9i5i_XrUj2oOcvpiKPmm__REQu9o',
 	};
-
+	
 	return {
 		getUsuario: function() {
 			return usuario

@@ -1,5 +1,5 @@
 {
-  "name": "Prototipos CleanSuit",
+  "name": "CleanSuit app cliente",
   "app_id": "5bc43db8",
   "watchPatterns": [
     "www/**/*",

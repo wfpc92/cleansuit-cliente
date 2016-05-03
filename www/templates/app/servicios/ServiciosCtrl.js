@@ -1,36 +1,35 @@
-var ServiciosCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFactory) {
+var ServiciosCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFactory, UsuarioFactory) {
 	var self = this;
-	//$log.debug("index de la categoria en el arreglo: "+$scope.indexCategoria)
-	
-	//obtener subservicios de la categoria solicitada
 	$scope.indexCategoria = $stateParams.indexCategoria;
-	$scope.categoria = ServiciosFactory.categorias[$scope.indexCategoria];
+	$scope.categoria = ServiciosFactory.getCategorias()[$scope.indexCategoria];
+	$scope.servicios = ServiciosFactory.getServicios()[$scope.indexCategoria];
 	$scope.carrito = CarritoFactory;
-
+	this.$scope = $scope;
+	
 	$scope.aumentarServicio = function(servicio){
-		console.log("aumentar servicio")
+		console.log("Agregar item de servicio al carrito desde ServiciosCtrl");
 		CarritoFactory.agregar(servicio, "SERVICIO", 1);
 		CarritoFactory.limpiar();
 	};
 
 	$scope.disminuirServicio = function(servicio){
-		console.log("disminuir Servicio")
+		console.log("Disminuir item de servicio del carrito desde ServiciosCtrl");
 		CarritoFactory.disminuir(servicio, "SERVICIO", 1);
 		CarritoFactory.limpiar();
 	};
 	
-
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		self.viewAfterEnter($scope, CarritoFactory);
 	});
-
 	
 };
 
-ServiciosCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory){
-	$scope.cantidadEnCarrito = function(indexServicio) {
+ServiciosCtrl.prototype.viewAfterEnter = function(){
+	var self = this;
+	
+	self.$scope.cantidadEnCarrito = function(indexServicio) {
 		//console.log("cantidad en carrito")
-		var item = CarritoFactory.items[indexServicio];
+		var item = self.$scope.carrito.items[indexServicio];
 		//console.log("item del carrito con index: "+indexServicio)
 		//console.log(item)
 		if(typeof item !== 'undefined'){

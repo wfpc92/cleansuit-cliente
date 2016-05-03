@@ -1,8 +1,11 @@
-app.controller('AppCtrl', function($scope, UsuarioFactory, CarritoFactory, HistorialOrdenFactory, $state) {
+var AppCtrl = function($scope, UsuarioFactory, CarritoFactory, HistorialOrdenFactory, $state) {
+	var self = this;
+
 	$scope.usuario = UsuarioFactory.getUsuario();
 	$scope.carrito = CarritoFactory;
 	$scope.contOrdenesEnProceso = HistorialOrdenFactory.ordenesEnProceso.length;
 	
+
 	$scope.tabsShow = {
 		promociones: false,
 		carrito: false
@@ -15,5 +18,9 @@ app.controller('AppCtrl', function($scope, UsuarioFactory, CarritoFactory, Histo
 			usuario.sesion.cerrarSesion();
 			$state.go("autenticacion-inicio");
 		}*/
-	}
-})
+	};
+
+	
+};
+
+app.controller('AppCtrl', AppCtrl);
