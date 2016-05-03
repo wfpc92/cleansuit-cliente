@@ -1,26 +1,16 @@
 <ion-view title="CleanSuit">
-	<ion-content>
-
-		<div class="">
-    		<div class="row">
-				<div class="col text-center">
-					<h3>Órdenes en proceso</h3>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col text-center">
-					<p>Estas son las ordenes que actualmente<br/>tiene en proceso.</p>
-				</div>
-			</div>
+	<ion-content class="ord-en-proceso">
+		<div class="titulo">
+    		<h3>Órdenes en proceso</h3>
+			<p>Estas son las ordenes que actualmente<br/>tiene en proceso.</p>
 		</div>
 
 		<ion-list>
 			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
 				href="#/ordenes-en-proceso/{{$index}}">
-				<h2><b>{{orden.fecha | date}}</b></h2>
-				<p>Orden {{orden.codigo}}</p>
-				<i class="icon ion-chevron-right positive" ></i>
+				<h3>{{orden.fecha | date}}</h3>
+				<p># orden: {{orden.codigo}}</p>
+				<i class="icon ico-flechader assertive" ></i>
 			</ion-item>
 		</ion-list>
 
