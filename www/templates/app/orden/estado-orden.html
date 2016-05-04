@@ -1,39 +1,25 @@
 <ion-view >
-	<ion-content class="has-subheader" scroll="true" padding="false" >
-		
-		<div class="">
-    		<div class="row">
-				<div class="col">
-					# de orden: {{orden.codigo}}</h3>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col text-center">
-					<br /><br />
-					<p><b>Hemos recibido tu orden</b></p>
-					<br />
-					<p>En este momento estamos procesando tu pedido.</p>
-				</div>
-			</div>
+	<ion-content class="has-subheader estado-orden" scroll="true" padding="false" >
+		<h2># de orden: <span>{{orden.codigo}}</span></h2>
+		<div class="confirmacion">
+			<h3>Hemos recibido tu orden</h3>
+			<span>En este momento estamos procesando tu pedido.</span>
 		</div>
 
-		<div class="row">
-			<div class="col text-center">
-				Puedes observar cómo va tu pedido.
+		<div class="estado">
+			<h3>Puedes observar cómo va tu pedido:</h3>
+			<div class="list">
+				<div class="item text-center" ng-repeat="estado in estados" ng-class="{activated:estado == orden.estado}">
+					{{estado.titulo}}
+				</div>
 			</div>
-		</div>
-
-		<div class="list">
-        	<div class="item text-center" ng-repeat="estado in estados" ng-class="{activated:estado == orden.estado}">
-        		{{estado.titulo}}
-        	</div>
-        </div>
-
-
-		<elemento-centrado>
+			<elemento-centrado>
 				<button class="button button-positive" ng-click="regresarPrincipal()">Regresar a principal</button>
-		</elemento-centrado>
+			</elemento-centrado>
+		</div>
+		
+
+		
 		
 	</ion-content>
 </ion-view>

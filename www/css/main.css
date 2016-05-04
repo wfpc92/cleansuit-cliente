@@ -10174,10 +10174,11 @@ p {
     .orden form .card .numero {
       font-family: 'fira_sansregular';
       text-align: right; }
-  .orden form .item-checkbox {
+  .orden form label.item-checkbox {
     border: none;
-    font-size: 1.1em;
-    color: #666; }
+    font-size: 1.1em; }
+    .orden form label.item-checkbox div span {
+      color: #666; }
   .orden .item {
     margin: -5px 0;
     border-right: none;
@@ -10239,3 +10240,66 @@ p {
 .ord-en-proceso .titulo {
   background: url("../img/proceso.png") no-repeat bottom right;
   background-color: #3DA0EB; }
+
+.has-header.has-subheader.has-tabs-top.estado-orden {
+  top: 94px; }
+
+.estado-orden {
+  padding: 15px 10px 10px;
+  background-color: #f8f8f8; }
+  .estado-orden h2 {
+    font-family: 'fira_sansmedium';
+    background-color: #1376E5;
+    color: #fff;
+    font-size: 1.4em;
+    padding: 19px 21px;
+    margin-bottom: 0; }
+    .estado-orden h2 span {
+      font-family: 'fira_sansregular'; }
+  .estado-orden .confirmacion {
+    background: url("../img/carita.png") no-repeat center center;
+    background-color: #FFDB14;
+    height: 215px;
+    text-align: center; }
+    .estado-orden .confirmacion h3 {
+      display: inline-block;
+      color: #E65C00;
+      font-size: 1.6em;
+      font-family: 'fira_sansmedium';
+      margin-top: 92px;
+      margin-bottom: 8px; }
+    .estado-orden .confirmacion span {
+      display: block;
+      color: #FF9933;
+      font-size: 1.2em;
+      padding: 0 5px; }
+  .estado-orden .estado {
+    text-align: center;
+    background-color: #fff;
+    padding-bottom: 30px; }
+    .estado-orden .estado h3 {
+      display: inline-block;
+      color: #666;
+      font-family: 'fira_sansmedium';
+      font-size: 1.3em;
+      margin-top: 50px;
+      margin-bottom: 18px; }
+    .estado-orden .estado .list {
+      width: 90%;
+      max-width: 350px;
+      margin: 0 auto 30px;
+      border-radius: 10px; }
+      .estado-orden .estado .list .item:first-child {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px; }
+      .estado-orden .estado .list .item:last-child {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px; }
+      .estado-orden .estado .list .item {
+        border-color: #E3E3E3;
+        color: #E1E1E1;
+        font-size: 1.2em; }
+      .estado-orden .estado .list .item.activated {
+        background-color: #44A01A;
+        color: #fff;
+        font-family: 'fira_sansmedium'; }
