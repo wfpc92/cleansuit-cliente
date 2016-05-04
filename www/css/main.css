@@ -10112,13 +10112,17 @@ p {
   display: inline-block;
   margin: 22px auto; }
 
+.has-tabs-top {
+  top: 125px; }
+
 .tabs-top > .tabs, .tabs.tabs-top {
   border-bottom-width: 0px; }
 
 .tab-nav a {
   border-top: 1px solid;
   border-bottom: 1px solid;
-  border-left: 1px solid; }
+  border-left: 1px solid;
+  height: 48px; }
 
 .tab-nav a.aIni {
   border-top-left-radius: 8px;
@@ -10134,7 +10138,9 @@ p {
   top: 13px; }
 
 .tabs-striped.tabs-light .tabs {
-  background-color: #F6F6F6; }
+  background-color: #F8F8F8;
+  padding: 17px 0 17px;
+  height: 80px; }
 
 .tabs-striped.tabs-light .tab-item {
   color: #52B1ED;
