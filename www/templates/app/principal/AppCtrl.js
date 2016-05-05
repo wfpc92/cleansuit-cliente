@@ -4,12 +4,6 @@ var AppCtrl = function($scope, UsuarioFactory, CarritoFactory, HistorialOrdenFac
 	$scope.usuario = UsuarioFactory.getUsuario();
 	$scope.carrito = CarritoFactory;
 	$scope.contOrdenesEnProceso = HistorialOrdenFactory.ordenesEnProceso.length;
-	
-
-	$scope.tabsShow = {
-		promociones: false,
-		carrito: false
-	};
 
 	$scope.cerrarSesion = function() {
 		$state.go("autenticacion-inicio");

@@ -9,7 +9,7 @@
 					<h3>{{::servicio.precio | currency : "$ " : 0}}</h3>
 					<div class="contador">
 							<i ng-click="aumentarServicio(servicio)" class="icon ico-mas"></i>
-							<span>{{cantidadEnCarrito(servicio.id)}}</span>
+							<span>{{cantidadEnCarrito(servicio._id)}}</span>
 							<i ng-click="disminuirServicio(servicio)" class="icon ico-menos"></i>
 					</div>
 			</div>

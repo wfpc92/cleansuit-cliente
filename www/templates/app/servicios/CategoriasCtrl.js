@@ -1,4 +1,4 @@
-var CategoriasCtrl = function($scope, ServiciosFactory, CarritoFactory) {
+var CategoriasCtrl = function($scope, ServiciosFactory, CarritoFactory, ModalCargaFactory) {
 	$scope.carrito = CarritoFactory;
 
 	$scope.$on("$ionicView.afterEnter", function () {

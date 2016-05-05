@@ -1,26 +1,25 @@
-var CargaInicialFactory = function($ionicLoading) {
+var CargaInicialFactory = function(angularLoad, ModalCargaFactory, ProductosFactory, $rootScope) {
 
 
 	return {
-		mostrarCarga: function($scope, opciones) {
-			var self = this;
-			if(typeof $scope !== 'undefined' && typeof opciones == 'undefined') {
-				$scope.hide = function() {
-					self.ocultarCarga();
-				};
-				opciones = {
-					templateUrl: 'templates/modales/carga.html',
-					scope: $scope,
-					noBackdrop: false,
-					hideOnStateChange: true
-				};
-			}
-			$ionicLoading.show(opciones);
-		},
-		ocultarCarga: function() {
-			$ionicLoading.hide();
+		iniciar: function(callback) {
+			
+			angularLoad.loadScript('https://maps.googleapis.com/maps/api/js').then(function () {
+				//comprobarCarga(null, "Google Maps API");
+			}).catch(function () {
+				//comprobarCarga("Error al cargar el archivo externo.", "Google Maps API");
+			});
+
+			var $scope = $rootScope.$new();
+			$scope.mensajeModal = "productos";
+			ModalCargaFactory.mostrar($scope);
+
+			ProductosFactory.cargar(function(){ 
+				ModalCargaFactory.ocultar();
+				callback();
+			});
 		}
 	};
 };
 
-app.factory("CargaFactory", ['$ionicLoading', CargaFactory]);
+app.factory("CargaInicialFactory", ['angularLoad', 'ModalCargaFactory', 'ProductosFactory', '$rootScope' ,CargaInicialFactory]);

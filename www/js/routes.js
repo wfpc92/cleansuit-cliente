@@ -8,7 +8,13 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 	$compileProvider.debugInfoEnabled(false);
 	$ionicConfigProvider.scrolling.jsScrolling(false);
 	
-	$ionicConfigProvider.backButton.text('Atras');
+	var isAndroid = ionic.Platform.isAndroid();
+	var txtAtras = 'Atras';
+	if (isAndroid) { 
+		txtAtras = '';
+	}
+	console.log("es android: "+isAndroid)
+	$ionicConfigProvider.backButton.text(txtAtras);
 	$ionicConfigProvider.views.forwardCache(true);
 	$ionicConfigProvider.views.maxCache(5);
 

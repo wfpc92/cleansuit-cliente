@@ -1,13 +1,13 @@
 <ion-modal-view hide-back-button="false" cache-view="false" id="{{idModal}}">
 	<ion-header-bar>
 		<h1 class="title item-text-wrap">{{titulo}}</h1>
-		<div class="button button-clear" ng-click="modal.hide()">
+		<div class="button button-clear" ng-click="finalizaUbicacion()">
 			<span class="icon ion-checkmark"></span>
 		</div>
 	</ion-header-bar>
 
 
 	<ion-content>
-  		Aqui se muestra un mapilla 
+  		<div id="map" data-tap-disabled="true"></div>
 	</ion-content>
 </ion-modal-view>

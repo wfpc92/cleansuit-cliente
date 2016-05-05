@@ -39,20 +39,20 @@ app.factory('CarritoFactory', [function(){
 		 * @return {void}
 		 */
 		agregar : function(item, tipo, cantidad){
-			var nuevoItem = this.items[item.id];
+			var nuevoItem = this.items[item._id];
 			console.log("agregar item al carrito")
 			console.log(item)
 
 			//existe el item en el carrito de compra, aumentar cantidad
 			if(typeof nuevoItem !== 'undefined'){
-				this.items[item.id].cantidad += cantidad;
+				this.items[item._id].cantidad += cantidad;
 			}
 			//no existe hay que agregarlo al carrito de compras
 			else {
 				console.log("no existe el item... creando")
-				this.items[item.id] = item;
-				this.items[item.id].tipo = tipo;
-				this.items[item.id].cantidad = cantidad;
+				this.items[item._id] = item;
+				this.items[item._id].tipo = tipo;
+				this.items[item._id].cantidad = cantidad;
 				console.log("items:")
 				console.log(this.items)
 			}
@@ -62,15 +62,15 @@ app.factory('CarritoFactory', [function(){
 		},
 
 		disminuir : function(item, tipo, cantidad){
-			var nuevoItem = this.items[item.id];
+			var nuevoItem = this.items[item._id];
 			console.log("disminuir item al carrito")
 			console.log(item)
 
 			//existe el item en el carrito de compra, disminuri cantidad
 			if(typeof nuevoItem !== 'undefined'){
-				this.items[item.id].cantidad -= cantidad;
-				if(this.items[item.id].cantidad <= 0){
-					this.items[item.id].cantidad = 0;
+				this.items[item._id].cantidad -= cantidad;
+				if(this.items[item._id].cantidad <= 0){
+					this.items[item._id].cantidad = 0;
 				}
 			}
 			//si no existe no se hace nada

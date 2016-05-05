@@ -23,6 +23,8 @@
   <preference name="keyboardDisplayRequiresUserAction" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
 
+  <preference name="orientation" value="portrait" />
+
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

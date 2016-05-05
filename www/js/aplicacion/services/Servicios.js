@@ -75,8 +75,8 @@ app.factory('ServiciosFactory',['RecursosFactory', function(RecursosFactory){
 		]
 	}]*/
 
-	var _categorias = //[];
-		[
+	var _categorias = [];
+		/*[
 			{ 
 				id:'1', 
 				nombre:'Lavado en Seco', 
@@ -88,11 +88,11 @@ app.factory('ServiciosFactory',['RecursosFactory', function(RecursosFactory){
 				descripcion:'las prendas se lavan con agua fria en ciclo normal con jabon suave y suavizante',
 			}
 
-		];
+		];*/
 
 
-	var _servicios = //[];
-		[
+	var _servicios = [];
+		/*[
 			[
 				{id:'11', nombre: 'jeans', descripcion:'descripcion del servicio', categoria: 'Lavado en Seco', precio:12000, detalles:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
 				{id:'12', nombre: 'sacos', descripcion:'descripcion del servicio', categoria: 'Lavado en Seco', precio:7000, detalles:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}
@@ -101,7 +101,7 @@ app.factory('ServiciosFactory',['RecursosFactory', function(RecursosFactory){
 				{id:'21', nombre: 'jeans', descripcion:'descripcion del servicio', categoria: 'Lavado en Frio', precio:12000, detalles:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
 				{id:'22', nombre: 'sacos', descripcion:'descripcion del servicio', categoria: 'Lavado en Frio', precio:7000, detalles:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}
 			]
-		];
+		];*/
 
 	return {
 		getCategorias: function() {

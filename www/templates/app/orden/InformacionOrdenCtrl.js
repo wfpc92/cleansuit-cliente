@@ -1,6 +1,16 @@
 
-var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $state, $ionicPopover, $ionicHistory, $log, $ionicModal, $ionicPopup, RealizarOrdenFactory, $state) {
+var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $state, $ionicPopover, $ionicHistory, $ionicModal, $ionicPopup, RealizarOrdenFactory, $cordovaGeolocation, angularLoad, $ionicLoading) {
 	var self = this;
+
+	self.$scope = $scope;
+	self.CarritoFactory = CarritoFactory;
+	self.$ionicModal = $ionicModal;
+	self.$ionicPopover = $ionicPopover;
+	self.$state = $state;
+	self.$ionicHistory = $ionicHistory;
+	self.$cordovaGeolocation = $cordovaGeolocation;
+	self.angularLoad = angularLoad;
+	self.$ionicLoading = $ionicLoading;
 
 	$scope.usuario = UsuarioFactory.getUsuario();
 	$scope.carrito = CarritoFactory;
@@ -17,18 +27,25 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	};
 
 	$scope.openModal = function(tipo) {
-		var callback = function(){
+		var callback = function() {
 			$scope.modal.show();
 		};
-		self.construirModalMapa(tipo, $scope, $ionicModal, callback);
+		self.construirModalMapa(tipo, callback);
 	};
 
 	$scope.closeModal = function() {
 		$scope.modal.hide();
 	};
 
+	$scope.finalizaUbicacion = function() {
+		var ubicacion = $scope.marker.getPosition();
+		console.log("latitud: ", ubicacion.lat())
+		console.log("longitud: ",ubicacion.lng())
+		$scope.modal.hide();
+	};
+
 	$scope.openPopover = function(tipo, $event) {
-		self.construirPopover(tipo, $event, $scope, $ionicPopover);  	
+		self.construirPopover(tipo, $event);  	
     };
     
     $scope.closePopover = function() {
@@ -43,7 +60,7 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-    	self.viewAfterEnter($scope, CarritoFactory, $log);
+    	self.viewAfterEnter();
 	});
 
 	//cancelar orden:
@@ -52,11 +69,11 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	    	title: 'Cancelar Orden?',
 	    	template: '¿Está seguro que desea cancelar esta orden?'
 	    }, function(){
-	    	self.cancelarOrden(CarritoFactory, $state, $ionicHistory); 
+	    	self.cancelarOrden(); 
 	    });
 	};
 
-	$scope.realizarOrden = function(){
+	$scope.realizarOrden = function() {
 		self.enviarOrden(function(){
 			RealizarOrdenFactory.realizarOrden();
 			$ionicHistory.clearHistory();
@@ -66,30 +83,31 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 			});
 			$state.go("app.realizar-orden");
 		});
-	}
+	};
 };
 
-InformacionOrdenCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory, $log) {
+InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
+	var self = this;
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
-	$scope.soloProductos = CarritoFactory.soloHayProductos(CarritoFactory.items);
-	$log.debug("solo hay productos: "+ $scope.soloProductos)
-	$scope.formIncompleto = true;
+	self.$scope.soloProductos = self.CarritoFactory.soloHayProductos(self.CarritoFactory.items);
+	console.log("solo hay productos: "+ self.$scope.soloProductos);
+	self.$scope.formIncompleto = true;
 
-	if($scope.soloProductos){
-		$scope.$watchGroup([
+	if(self.$scope.soloProductos){
+		self.$scope.$watchGroup([
 			'orden.direccionEntrega.direccion',
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
 				if(newV[0] && newV[1] && newV[2] && newV[3]){
-					$scope.formIncompleto = false;
+					self.$scope.formIncompleto = false;
 				}
 				else {
-					$scope.formIncompleto = true;	
+					self.$scope.formIncompleto = true;	
 				}
 			});
 	} else {
-		$scope.$watchGroup([
+		self.$scope.$watchGroup([
 			'orden.direccionRecoleccion.direccion',
 			'orden.direccionRecoleccion.hora',
 			'orden.direccionEntrega.direccion',
@@ -98,93 +116,235 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function($scope, CarritoFactory,
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
 				if(newV[0] && newV[1] && newV[2] && newV[3] && newV[4] && newV[5] && newV[6]){
-					$scope.formIncompleto = false;
+					self.$scope.formIncompleto = false;
 				}
 				else {
-					$scope.formIncompleto = true;	
+					self.$scope.formIncompleto = true;	
 				}
 			});
 	}
 };
 
-InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event, $scope, $ionicPopover) {
+InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
+	var self = this;
 	var tmpURL = "";
+
 	switch(tipo) {
 		case "HORARECOLECCION":
 			tmpURL = 'templates/app/orden/popover-hora.html';
-			$scope.idPopover = "ppHoraRecoleccion";
-			$scope.horas = [
+			self.$scope.idPopover = "ppHoraRecoleccion";
+			self.$scope.horas = [
 				"6:00 P.M. a 6:59 P.M.",
 				"7:00 P.M. a 7:59 P.M.",
 				"8:00 P.M. a 8:59 P.M.",
 				"9:00 P.M. a 10:00 P.M."
 			];
-			$scope.setHora = function($index){
-				$scope.orden.direccionRecoleccion.hora = $scope.horas[$index];
-				$scope.closePopover();
+			self.$scope.setHora = function($index){
+				self.$scope.orden.direccionRecoleccion.hora = self.$scope.horas[$index];
+				self.$scope.closePopover();
 			};
 			break;
 
 		case "HORAENTREGA":
 			tmpURL = 'templates/app/orden/popover-hora.html';
-			$scope.idPopover = "ppHoraEntrega";
-			$scope.horas = [
+			self.$scope.idPopover = "ppHoraEntrega";
+			self.$scope.horas = [
 				"6:00 P.M. a 6:59 P.M.",
 				"7:00 P.M. a 7:59 P.M.",
 				"8:00 P.M. a 8:59 P.M.",
 				"9:00 P.M. a 10:00 P.M."
 			];
-			$scope.setHora = function($index){
-				$scope.orden.direccionEntrega.hora = $scope.horas[$index];
-				$scope.closePopover();
+			self.$scope.setHora = function($index){
+				self.$scope.orden.direccionEntrega.hora = self.$scope.horas[$index];
+				self.$scope.closePopover();
 			};
 			break;
 
 		case "FORMAPAGO":
 			tmpURL = 'templates/app/orden/popover-forma-pago.html';
-			$scope.idPopover = "ppFormaPago";
+			self.$scope.idPopover = "ppFormaPago";
 			break;
 
 		default:
 			return;
 	}
 
-	$ionicPopover.fromTemplateUrl(tmpURL, {
-		scope: $scope,
+	self.$ionicPopover.fromTemplateUrl(tmpURL, {
+		scope: self.$scope,
 	}).then(function(popover) {
-		$scope.popover = popover;
-		$scope.popover.show($event);
+		self.$scope.popover = popover;
+		self.$scope.popover.show($event);
 	});
 };
 
-InformacionOrdenCtrl.prototype.construirModalMapa = function(tipo, $scope, $ionicModal, callback){
+InformacionOrdenCtrl.prototype.construirModalMapa = function(tipo, callback){
+	var self = this;
 	var tmpURL = "templates/app/orden/modal-mapa.html";
 	switch(tipo) {
 		case "DIRECCIONRECOLECCION":
-			$scope.titulo = "Ubique en el mapa la dirección de recolección. ";
-			$scope.idModal = "mdDireccionRecoleccion";
+			self.$scope.titulo = "Ubique en el mapa la dirección de recolección. ";
+			self.$scope.idModal = "mdDireccionRecoleccion";
 			break;
 
 		case "DIRECCIONENTREGA":
-			$scope.titulo = "Ubique en el mapa la dirección de entrega. ";
-			$scope.idModal = "mdDireccionEntrega";
+			self.$scope.titulo = "Ubique en el mapa la dirección de entrega. ";
+			self.$scope.idModal = "mdDireccionEntrega";
 			break;
 
 		default:
 			return;
 	}
 
-	$ionicModal.fromTemplateUrl(tmpURL, {
-		scope: $scope,
+	self.angularLoad.loadScript('https://maps.googleapis.com/maps/api/js').then(function () {
+		//comprobarCarga(null, "Google Maps API");
+		self.configurarMapa();
+	}).catch(function () {
+		//comprobarCarga("Error al cargar el archivo externo.", "Google Maps API");
+	});
+
+	
+	self.$ionicModal.fromTemplateUrl(tmpURL, {
+		scope: self.$scope,
 		animation: 'slide-in-up'
 	}).then(function(modal) {
-		$scope.modal = modal;
+		self.$scope.modal = modal;
 		callback();
 	});
 };
 
-InformacionOrdenCtrl.prototype.mostrarPopup = function($ionicPopup, optionsPopup, callback) {
-	$ionicPopup
+InformacionOrdenCtrl.prototype.configurarMapa = function() {
+	var self = this;
+	var options = {timeout: 10000, enableHighAccuracy: true};
+	console.log("detectando posicion actual...");
+	self.$ionicLoading.show({
+		template: "Cargando Mapa..."
+	});
+	self.$cordovaGeolocation.getCurrentPosition(options).then(function(position){
+		self.$ionicLoading.hide();
+
+		console.log("se detecto la posicion getCurrentPosition: "+position)
+
+		var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		
+		var mapOptions = {
+		  center: latLng,
+		  zoom: 18,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		
+		console.log(document.getElementById("map"))
+		self.$scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+		var imageNormal = {
+			url: 'img/marker.png',
+			// This marker is 20 pixels wide by 32 pixels high.
+			size: new google.maps.Size(30, 44)
+		};
+
+		var imageWrong = {
+			url: 'img/marker-rojo.png',
+			// This marker is 20 pixels wide by 32 pixels high.
+			size: new google.maps.Size(30, 44)
+		};
+
+		self.$scope.marker = new google.maps.Marker({
+        	position: latLng,
+        	icon: imageNormal,
+        	map: self.$scope.map,
+        	draggable: true,
+        	label: 'perra',
+        	title: 'Mi direccion de residencia'
+        });
+
+		var contentString = '<div>'+
+			'<h1>No tenemos cobertura para este sitio</h1>'+
+			'<p><b>Cleansuit</b>, no tiene cobertura de domicilio para esta ubicacion'
+			'</p>'+
+			'</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+	    	content: contentString
+	  	});
+
+        /*var foundLocation = function(city, state, country, lat, lon){
+	        //do stuff with your location! any of the first 3 args may be null
+	        console.log(arguments);
+	    }
+
+	    var findResult = function(results, name){
+	    	var result = results.find(function(element, index, array){
+                return element.types[0] == name && element.types[1] == "political";
+            })
+            return result ? result.short_name : null;
+        };
+
+        //geocode es una funcion que retorna el results el nombre de la ubicacion.	
+        google.maps.event.addListener(self.$scope.marker, 'dragend', function() {
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode({
+			    latLng: self.$scope.marker.getPosition()
+			}, 
+			function(results, status) {
+				console.log(results)
+				console.log(status)
+					
+				if (status == google.maps.GeocoderStatus.OK && results.length) {
+					results = results[0].address_components;
+	                var city = findResult(results, "locality");
+	                var state = findResult(results, "administrative_area_level_1");
+	                var country = findResult(results, "country");
+	                foundLocation(city, state, country, self.$scope.marker.getPosition().lat(), self.$scope.marker.getPosition().lng());
+				}
+				else {
+					foundLocation(null, null, null, r.coords.latitude, r.coords.longitude);
+				}
+			});
+		});*/
+
+		// Construct the polygon.
+		var areaPermitida = new google.maps.Polygon({
+			paths: [
+      			new google.maps.LatLng(2.4579925872334303, -76.59548145463106),
+      			new google.maps.LatLng(2.4569367687815498, -76.59446757962343),
+      			new google.maps.LatLng(2.4568778144271235, -76.59610909154054)
+    		],
+			strokeColor: '#FF0000',
+			strokeOpacity: 0.8,
+			strokeWeight: 2,
+			fillColor: '#FF0000',
+			fillOpacity: 0.35
+		});
+
+		areaPermitida.setMap(self.$scope.map);
+
+		//saber si esta dentro de un area
+		google.maps.event.addListener(self.$scope.marker, 'dragend', function(e) {
+			var resultColor = google.maps.geometry.poly.containsLocation(e.latLng, areaPermitida) ? 'red' : 'green';
+			if(resultColor == 'red'){
+				self.$scope.marker.setIcon(imageNormal);
+				console.log("si esta dentor del area")
+			}
+			else{
+				self.$scope.marker.setIcon(imageWrong);
+				infowindow.open(self.$scope.map, self.$scope.marker);
+				console.log("no esta dentro del area")
+			}
+		});
+
+		google.maps.event.addListener(self.$scope.marker, 'dragstart', function(e) {
+			infowindow.close();
+		});
+
+
+	}, function(error){
+		console.log("Could not get location");
+	});
+
+}
+
+InformacionOrdenCtrl.prototype.mostrarPopup = function(optionsPopup, callback) {
+	var self = this;
+	self.$ionicPopup
 		.confirm(optionsPopup)
 		.then(function(res) {
 			if(res) {
@@ -193,12 +353,13 @@ InformacionOrdenCtrl.prototype.mostrarPopup = function($ionicPopup, optionsPopup
 		});
 };
 
-InformacionOrdenCtrl.prototype.cancelarOrden = function(CarritoFactory, $state, $ionicHistory) {
-	CarritoFactory.cancelarOrden();
-	CarritoFactory.actualizarContadores();
-	$state.go("app.inicio");
-	$ionicHistory.clearHistory();
-	$ionicHistory.nextViewOptions({
+InformacionOrdenCtrl.prototype.cancelarOrden = function() {
+	var self = this;
+	self.CarritoFactory.cancelarOrden();
+	self.CarritoFactory.actualizarContadores();
+	self.$state.go("app.inicio");
+	self.$ionicHistory.clearHistory();
+	self.$ionicHistory.nextViewOptions({
 		disableBack:'true'
 	});
 };
