@@ -234,113 +234,187 @@ InformacionOrdenCtrl.prototype.configurarMapa = function() {
 		
 		console.log(document.getElementById("map"))
 		self.$scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+		var divCentro = document.createElement("div");
+		divCentro.id= "marker";
+		divCentro.className = 'centerMarker';
+		document.getElementById("map").appendChild(divCentro)
 
-		var imageNormal = {
-			url: 'img/marker.png',
-			// This marker is 20 pixels wide by 32 pixels high.
-			size: new google.maps.Size(30, 44)
-		};
-
-		var imageWrong = {
-			url: 'img/marker-rojo.png',
-			// This marker is 20 pixels wide by 32 pixels high.
-			size: new google.maps.Size(30, 44)
-		};
+		
 
 		self.$scope.marker = new google.maps.Marker({
         	position: latLng,
-        	icon: imageNormal,
-        	map: self.$scope.map,
-        	draggable: true,
-        	label: 'perra',
+        	icon: {
+				//url: 'img/marker-rojo.png',
+				// This marker is 20 pixels wide by 32 pixels high.
+				//size: new google.maps.Size(30, 44),
+				path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW,
+				fillColor: 'green',
+				fillOpacity: .0,
+				strokeColor: 'white',
+				strokeWeight: .0,
+				scale: 10
+			},
+        	//map: self.$scope.map,
+        	draggable: false,
         	title: 'Mi direccion de residencia'
         });
 
+        self.$scope.marker.setMap(self.$scope.map);
+
 		var contentString = '<div>'+
-			'<h1>No tenemos cobertura para este sitio</h1>'+
+			'<h5>No tenemos cobertura para este sitio</h5>'+
 			'<p><b>Cleansuit</b>, no tiene cobertura de domicilio para esta ubicacion'
 			'</p>'+
 			'</div>';
 
-        var infowindow = new google.maps.InfoWindow({
-	    	content: contentString
+        self.$scope.infowindow = new google.maps.InfoWindow({
+	    	content: contentString,
+	    	disableAutoPan: true
 	  	});
 
-        /*var foundLocation = function(city, state, country, lat, lon){
-	        //do stuff with your location! any of the first 3 args may be null
-	        console.log(arguments);
-	    }
-
-	    var findResult = function(results, name){
-	    	var result = results.find(function(element, index, array){
-                return element.types[0] == name && element.types[1] == "political";
-            })
-            return result ? result.short_name : null;
-        };
-
-        //geocode es una funcion que retorna el results el nombre de la ubicacion.	
-        google.maps.event.addListener(self.$scope.marker, 'dragend', function() {
-			var geocoder = new google.maps.Geocoder();
-			geocoder.geocode({
-			    latLng: self.$scope.marker.getPosition()
-			}, 
-			function(results, status) {
-				console.log(results)
-				console.log(status)
-					
-				if (status == google.maps.GeocoderStatus.OK && results.length) {
-					results = results[0].address_components;
-	                var city = findResult(results, "locality");
-	                var state = findResult(results, "administrative_area_level_1");
-	                var country = findResult(results, "country");
-	                foundLocation(city, state, country, self.$scope.marker.getPosition().lat(), self.$scope.marker.getPosition().lng());
-				}
-				else {
-					foundLocation(null, null, null, r.coords.latitude, r.coords.longitude);
-				}
-			});
-		});*/
-
-		// Construct the polygon.
-		var areaPermitida = new google.maps.Polygon({
-			paths: [
+		var puntosAreas = [
+			[
       			new google.maps.LatLng(2.4579925872334303, -76.59548145463106),
       			new google.maps.LatLng(2.4569367687815498, -76.59446757962343),
       			new google.maps.LatLng(2.4568778144271235, -76.59610909154054)
     		],
-			strokeColor: '#FF0000',
-			strokeOpacity: 0.8,
-			strokeWeight: 2,
-			fillColor: '#FF0000',
-			fillOpacity: 0.35
-		});
+    		[
+    			new google.maps.LatLng(2.4591360832564315, -76.5965884923935),
+      			new google.maps.LatLng(2.458760919756627, -76.59667432308197),
+      			new google.maps.LatLng(2.458439350958533, -76.59652948379517),
+      			new google.maps.LatLng(2.458439350958533, -76.59623444080353),
+      			new google.maps.LatLng(2.458589416407283, -76.59584820270538),
+      			new google.maps.LatLng(2.4588841877753445, -76.59576773643494),
+      			new google.maps.LatLng(2.4590771289991644, -76.59602522850037),
+      			new google.maps.LatLng(2.459221834898719, -76.59621834754944),
+    		],
+    		[
+    			new google.maps.LatLng(2.4588788282965033, -76.59394383430481),
+    			new google.maps.LatLng(2.459173599600623, -76.59431397914886),
+    			new google.maps.LatLng(2.458969939433815, -76.59485578536987),
+    			new google.maps.LatLng(2.458487586283193, -76.59450709819794),
+    			new google.maps.LatLng(2.4585036647243474, -76.59403502941132) 
+    		],
+    		[
+    			new google.maps.LatLng(2.4562794785238347, -76.59623980522156),
+    			new google.maps.LatLng(2.455336208076778, -76.59637928009033),
+    			new google.maps.LatLng(2.455234377704592, -76.59578382968903),
+    			new google.maps.LatLng(2.4559686281091677, -76.59515619277954),
+    			new google.maps.LatLng(2.456247321587736, -76.59528493881226),
+    			new google.maps.LatLng(2.4563491518827103, -76.59564435482025),
+    			new google.maps.LatLng(2.4566224857939796, -76.59604668617249),
+    			new google.maps.LatLng(2.45657425040193, -76.59651339054108) 
+    		],
+    		[
+    			new google.maps.LatLng(2.4563973872828764, -76.59442126750946),
+    			new google.maps.LatLng(2.456113334345683, -76.59425497055054),
+    			new google.maps.LatLng(2.4564402631926754, -76.59404039382935),
+    			new google.maps.LatLng(2.4559900660711214, -76.59386873245239),
+    			new google.maps.LatLng(2.455561306766679, -76.59388482570648),
+    			new google.maps.LatLng(2.455352286555883, -76.59442663192749),
+    			new google.maps.LatLng(2.455695294064099, -76.59488260746002)
+    		]
+		];	
+		
+		var areasPermitidas = [];
 
-		areaPermitida.setMap(self.$scope.map);
+		for (var i = 0; i < puntosAreas.length; i++) {
+			areasPermitidas[i] = new google.maps.Polygon({
+				paths: puntosAreas[i],
+				strokeColor: '#FF0000',
+				strokeOpacity: 0.8,
+				strokeWeight: 2,
+				fillColor: '#FF0000',
+				fillOpacity: 0.35
+			});
+			areasPermitidas[i].setMap(self.$scope.map);
+		}		
 
-		//saber si esta dentro de un area
-		google.maps.event.addListener(self.$scope.marker, 'dragend', function(e) {
-			var resultColor = google.maps.geometry.poly.containsLocation(e.latLng, areaPermitida) ? 'red' : 'green';
-			if(resultColor == 'red'){
-				self.$scope.marker.setIcon(imageNormal);
-				console.log("si esta dentor del area")
+		/**
+		 * Este evento es ejecutado cuando termina de cambiar el centro del mapa. 
+		 * Si el centro del mapa se encuentra dentro de un área establecida
+		 * el marker se pinta de azul, de lo contrario el marker muestra un mensaje.
+		 */
+		google.maps.event.addListener(self.$scope.map, 'center_changed', function() {
+			console.log("Termino de arrastrar mapa para ubicar")
+			var centro = self.$scope.map.getCenter();
+			var estaEnArea = false, area = '';
+			
+			for(var i = 0; i < areasPermitidas.length; i++){
+				estaEnArea = google.maps.geometry.poly.containsLocation(centro, areasPermitidas[i]) ? true : false;
+				
+				if(estaEnArea) {
+					area = i;
+					i = areasPermitidas.length + 1;
+				}
+			}
+			
+			//el punto se encuentra dentro del area del poligono	
+			if(estaEnArea){
+				console.log("si esta dentor del area " + area)
+				document.getElementById("marker").style.background = 'url("../img/marker.png") no-repeat';
 			}
 			else{
-				self.$scope.marker.setIcon(imageWrong);
-				infowindow.open(self.$scope.map, self.$scope.marker);
-				console.log("no esta dentro del area")
+				console.log("no esta dentro del area");
+				document.getElementById("marker").style.background = 'url("../img/marker-rojo.png") no-repeat';
+				self.$scope.marker.setPosition(self.$scope.map.getCenter());
+				self.$scope.infowindow.open(self.$scope.map, self.$scope.marker);
 			}
 		});
 
-		google.maps.event.addListener(self.$scope.marker, 'dragstart', function(e) {
-			infowindow.close();
+		/**
+		 * Este evento se ejecuta cuando un usuario inicia arrastre, el mensaje que se muestra
+		 * se oculta.
+		 */
+		google.maps.event.addListener(self.$scope.map, 'dragstart', function(e) {
+			self.$scope.infowindow.close();
 		});
 
+		google.maps.event.addListener(self.$scope.map, 'click', function(e) {
+			console.log(e.latLng.lat()+", "+e.latLng.lng());
+		});
 
 	}, function(error){
 		console.log("Could not get location");
 	});
 
+};
+
+/*var 
+foundLocation = function(city, state, country, lat, lon){
+	        //do stuff with your location! any of the first 3 args may be null
+    console.log(arguments);
 }
+
+var findResult = function(results, name){
+	var result = results.find(function(element, index, array){
+        return element.types[0] == name && element.types[1] == "political";
+    })
+    return result ? result.short_name : null;
+};
+
+//geocode es una funcion que retorna el results el nombre de la ubicacion.	
+google.maps.event.addListener(self.$scope.marker, 'dragend', function() {
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode({
+	    latLng: self.$scope.marker.getPosition()
+	}, 
+	function(results, status) {
+		console.log(results)
+		console.log(status)
+			
+		if (status == google.maps.GeocoderStatus.OK && results.length) {
+			results = results[0].address_components;
+            var city = findResult(results, "locality");
+            var state = findResult(results, "administrative_area_level_1");
+            var country = findResult(results, "country");
+            foundLocation(city, state, country, self.$scope.marker.getPosition().lat(), self.$scope.marker.getPosition().lng());
+		}
+		else {
+			foundLocation(null, null, null, r.coords.latitude, r.coords.longitude);
+		}
+	});
+});*/
 
 InformacionOrdenCtrl.prototype.mostrarPopup = function(optionsPopup, callback) {
 	var self = this;
