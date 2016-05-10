@@ -1,4 +1,4 @@
-var RecursosFactory = function($log, $http, ModalCargaFactory) {
+var RecursosFactory = function($log, $http) {
 	
 	//$http.defaults.headers.common.Authorization = 'login YmVlcDpi' ;
 	//or try this
@@ -20,7 +20,6 @@ var RecursosFactory = function($log, $http, ModalCargaFactory) {
 	var self = this;
 	this.$log = $log;
 	this.$http = $http;
-	this.ModalCargaFactory = ModalCargaFactory;
 	this._apiUrl = "http://api.cleansuit.co";
 
 	$log.debug("Contructor de RecursosApi");

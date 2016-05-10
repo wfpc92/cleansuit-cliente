@@ -12,6 +12,8 @@ var AppInicioCtrl = function($scope, PromocionesFactory, CarritoFactory, $log, $
 //cargar los datos del servidor
 AppInicioCtrl.prototype.cargarDatos = function() {
 	var self = this;
+	
+	//cargar informacion del API de cleansuit.
 	self.CargaInicialFactory.iniciar(function() {
 		console.log("termina de ejecutar la funcion iniciar de CargaInicialFactory")
 	});

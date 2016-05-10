@@ -1,13 +1,13 @@
 var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 
-	var prom = null;
+	var promise = null;
 
 	return {
-		mostrar: function($scope, opciones) {
+		mostrar: function($scope, mensaje, opciones) {
 			var self = this;
 			$scope = $scope || $rootScope.$new();
-			$scope.mensajeModal = $scope.mensajeModal || "datos";
-			$scope.mensajeModal = "Cargando " + $scope.mensajeModal;
+			mensaje = mensaje || " Cargando datos...";
+			$scope.mensajeModal = $scope.mensajeModal || mensaje;
 			
 			opciones = opciones || {
 				templateUrl: 'templates/modales/carga.html',
@@ -21,12 +21,12 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 			};
 			
 			$ionicLoading.show(opciones);
-			prom = $timeout( function() {
+			promise = $timeout( function() {
 				$scope.cerrar = true; 
 			}, 6000);
 		},
 		ocultar: function() {
-			$timeout.cancel(prom);
+			$timeout.cancel(promise);
 			$ionicLoading.hide();
 		}
 	};
