@@ -9,16 +9,17 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 			mensaje = mensaje || " Cargando datos...";
 			$scope.mensajeModal = $scope.mensajeModal || mensaje;
 			
+			$scope.hide = function() {
+				console.log("hide")
+				self.ocultar();
+			};
+			
 			opciones = opciones || {
 				templateUrl: 'templates/modales/carga.html',
 				scope: $scope,
 				noBackdrop: false,
 				hideOnStateChange: true
-			};
-			
-			$scope.hide = function() {
-				self.ocultar();
-			};
+			};			
 			
 			$ionicLoading.show(opciones);
 			promise = $timeout( function() {

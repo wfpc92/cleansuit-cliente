@@ -1,0 +1,119 @@
+<ion-view title="CleanSuit">
+	<ion-content>
+		<div class="row ">
+			<div class="col text-center">PEDIDO {{ordenHistorica.estado | uppercase}}</div>
+		</div>
+
+		<div class="row ">
+			<div class="col text-center">INFORMACIÓN DE ORDEN</div>
+		</div>
+
+		<div class="list">
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label">Nombre</span>
+						<input type="text" placeholder="su nombre" value=" {{ordenHistorica.orden.usuario.nombre}} " disabled>
+					</label>
+				</div>
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label">Apellidos</span>
+						<input type="text" placeholder="sus apellidos" value=" {{ordenHistorica.orden.usuario.apellidos}} " disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label">Departamento</span>
+						<input type="text" placeholder="departamento" value=" {{ordenHistorica.orden.usuario.direccion.departamento}} " disabled>
+					</label>
+				</div>
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label">Ciudad</span>
+						<input type="text" placeholder="ciudad" value=" {{ordenHistorica.orden.usuario.direccion.ciudad}} " disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row" ng-hide="soloProductos">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Dirección de Recolección de Prendas</span>
+						<input type="text" placeholder="su dirección" value=" {{ordenHistorica.orden.direccionRecoleccion.direccion}} " disabled>
+					</label>
+				</div>
+			</div> 
+
+
+			<div class="item row" ng-hide="soloProductos">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Hora de Recolección de Prendas</span>
+						<input type="text" placeholder="hora de recolección" value=" {{ordenHistorica.orden.direccionRecoleccion.hora}} " disabled>
+					</label>
+				</div>
+			</div> 
+
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Dirección de Entrega</span>
+						<input type="text" placeholder="dirección de entrega" value=" {{ordenHistorica.orden.direccionEntrega.direccion}} " disabled>
+					</label>
+				</div>
+			</div> 
+
+
+			<div class="item row" ng-hide="soloProductos">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Hora de Entrega</span>
+						<input type="text" placeholder="hora de entrega" value=" {{ordenHistorica.orden.direccionRecoleccion.hora}} " disabled>
+					</label>
+				</div>
+			</div> 
+
+
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Teléfono de contacto</span>
+						<input type="text" placeholder="su teléfono" value=" {{ordenHistorica.orden.usuario.telefono}} " disabled>
+					</label>
+				</div>
+			</div>
+
+			<div class="item row">
+				<div class="col">
+					<label class="item-input item-stacked-label">
+						<span class="input-label item-icon-right">Forma de Pago</span>
+						<input type="text" placeholder="forma de pago" value=" {{ordenHistorica.orden.formaPago}} " disabled >
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="list">    
+			<div class="item" ng-repeat="item in ordenHistorica.items" ng-class="{'item-thumbnail-left': item.tipo=='PRODUCTO'}">
+
+				<img ng-src="img/producto.png" ng-show="item.tipo=='PRODUCTO'"/>
+				<h2>{{item.nombre}}</h2>
+				<p ng-show="item.tipo=='SERVICIO'">{{item.categoria}}</p>
+				<h2>{{item.precio | currency : "$ ": 0}}</h2>
+				<div class="">
+			  		{{item.cantidad || 0}}
+				</div>
+			</div>       
+		</div>
+
+		<resumen-totales totales="ordenHistorica.totales"></resumen-totales>
+
+	</ion-content>
+
+</ion-view>

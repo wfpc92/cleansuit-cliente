@@ -1,14 +1,16 @@
 
-var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $state, $ionicPopover, $ionicHistory, $ionicModal, $ionicPopup, RealizarOrdenFactory, $ionicLoading, $rootScope) {
+var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $state, $ionicPopover, $ionicHistory, $ionicModal, $ionicPopup, RealizarOrdenFactory, $ionicLoading, $rootScope, MapasFactory, ModalCargaFactory) {
 	var self = this;
 
-	self.$scope = $scope;
-	self.CarritoFactory = CarritoFactory;
-	self.$ionicModal = $ionicModal;
-	self.$ionicPopover = $ionicPopover;
-	self.$state = $state;
-	self.$ionicHistory = $ionicHistory;
-	self.MapaFactory = MapaFactory;
+	this.$scope = $scope;
+	this.CarritoFactory = CarritoFactory;
+	this.$ionicModal = $ionicModal;
+	this.$ionicPopover = $ionicPopover;
+	this.$state = $state;
+	this.$ionicHistory = $ionicHistory;
+	this.$rootScope = $rootScope;
+	this.MapasFactory = MapasFactory;
+	this.ModalCargaFactory = ModalCargaFactory;
 
 	$scope.usuario = UsuarioFactory.getUsuario();
 	$scope.carrito = CarritoFactory;
@@ -20,34 +22,19 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	$scope.orden.telefono = $scope.usuario.telefono;
 
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
-	self.$scope.soloProductos = self.CarritoFactory.soloHayProductos(self.CarritoFactory.items);
-	console.log("solo hay productos: "+ self.$scope.soloProductos);
-	
+	$scope.soloProductos = CarritoFactory.soloHayProductos(CarritoFactory.items);
+	console.log("solo hay productos: "+ $scope.soloProductos);
 
 	//se ejecuta al dar click en el icono de ubicacion de las direcciones, muestra ventana modal
 	//con un mapa para ubicar un punto, basado en su ubicacion actual. 
 	$scope.openModal = function(tipo) {
-		console.log("creando ventana modal para "+tipo+"...")
-		switch(tipo) {
-			case "DIRECCIONRECOLECCION":
-				$scope.modalMapaRecoleccion.show();
-				break;
-
-			case "DIRECCIONENTREGA":
-				$scope.modalMapaEntrega.show();
-				break;
-
-			default:
-				return;
-		}
+		self.abrirModal(tipo);
 	};
 
 	$scope.formaPago = function(formaPago){
 		$scope.orden.formaPago = formaPago;
 		$scope.closePopover();
 	};
-
-	
 
 	$scope.closeModal = function() {
 		$scope.modal.hide();
@@ -94,10 +81,134 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 		});
 	};
 
-	self.$scope.scopeRecoleccion = $rootScope.$new();
-	self.$scope.scopeEntrega = $rootScope.$new();
-	self.construirModalesMapa();
+	$scope.mapaDOMCargado = false;
+	$scope.modalMapa = null;
+	$scope.mapa = null;
+	$scope.scopeModal = $rootScope.$new();
+	$scope.scopeModal.idModal = "id-modal-mapa";
+	$scope.scopeModal.idMapa = "id-mapa";
+	
+	$scope.scopeModal.finalizaUbicacion = function() {
+		$scope.posicion = $scope.mapa.getPosicion();
+		console.log("latitud: ", $scope.posicion.lat());
+		console.log("longitud: ", $scope.posicion.lng());
+		$scope.mapa.quitarEventos();
+		$scope.modalMapa.hide();
+	};
+
+	self.crearMapaDOM();
+
 };
+
+/**
+ * Construye el DOM para un mapa generado por API google maps, 
+ * luego de que se termina de generar se crea la ventana modal 
+ * que lo va a contener. 
+ */
+InformacionOrdenCtrl.prototype.crearMapaDOM = function() {
+	var self = this, 
+		$scope = this.$scope,
+		MapasFactory = this.MapasFactory,
+		ModalCargaFactory = this.ModalCargaFactory;
+
+
+	console.log("Crear mapa para ventana modal");
+	ModalCargaFactory.mostrar(null, "Creando Mapa...", null);
+
+	MapasFactory.crearMapa($scope.scopeModal.idMapa).then(
+		function(mapa){
+			console.log("Mapa DOM creado");
+			$scope.mapa = mapa;
+			self.crearVentanaModalMapa();
+		}, 
+		function(error){
+			console.log(error);
+			//mostrar mensaje de error <--error.show()-->
+			ModalCargaFactory.ocultar();
+		}
+	).finally(function() {
+		console.log("finally crear mapa")
+	});
+};
+
+/**
+ * Contruye una ventana modal, muestra su DOM porque el contenedor debe
+ * estar activo mediante show() para poder agregar el mapaDOM al contenedor.
+ */
+InformacionOrdenCtrl.prototype.crearVentanaModalMapa = function() {
+	var self = this, 
+		$scope = this.$scope,
+		$ionicModal = this.$ionicModal,
+		ModalCargaFactory = this.ModalCargaFactory,
+		tmpURL = "templates/app/orden/modal-mapa.html";
+
+	$ionicModal.fromTemplateUrl(tmpURL, {
+		scope: $scope.scopeModal,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modalMapa = modal;
+
+		//ocultar ventana modal mientras se agrega mapaDOM.
+		//var elemModal = document.getElementById($scope.scopeModal.idModal);
+		//elemModal.style.display = "none";
+		
+		$scope.modalMapa.show().then(function() {
+			self.asignarMapaDOM(function() {
+				$scope.modalMapa.hide().then(function() {
+					ModalCargaFactory.ocultar();
+				})
+			});
+		});		
+	});	
+};
+
+InformacionOrdenCtrl.prototype.asignarMapaDOM = function(callback) {
+	var $scope = this.$scope;
+	if(!$scope.mapaDOMCargado) {
+		console.log("mapaDOM no esta en el contenedor-mapa, agregando...")
+		var elemContenedorMapa = document.getElementById("contenedor-mapa");
+		elemContenedorMapa.appendChild($scope.mapa.mapaDOM);
+		$scope.mapaDOMCargado = true;
+	}
+	callback();
+};
+
+
+InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
+	var self = this,
+		$scope = self.$scope;
+
+	console.log("abriendo ventana modal para "+tipo+"...")
+	
+	switch(tipo) {
+		case "DIRECCIONRECOLECCION":
+			$scope.scopeModal.titulo = "Ubique en el mapa el punto de recolección.";
+			//$scope.posicion = $scope.finalizaUbicacion($scope.orden.direccionRecoleccion);
+			$scope.modalMapa.show().then(function() {
+				if($scope.orden.direccionRecoleccion.posicion) {
+					$scope.mapa.setPosicion($scope.orden.direccionRecoleccion.posicion);
+				}
+				$scope.mapa.asignarEventos();
+			});
+			break;
+
+		case "DIRECCIONENTREGA":
+			$scope.scopeModal.titulo = "Ubique en el mapa el punto de entrega.";
+			//$scope.scopeModal.finalizaUbicacion = $scope.finalizaUbicacion($scope.orden.direccionEntrega);
+			$scope.modalMapa.show().then(function() {
+				if($scope.orden.direccionEntrega.posicion) {
+					$scope.mapa.setPosicion($scope.orden.direccionEntrega.posicion);
+				}
+				$scope.mapa.asignarEventos();
+			});
+			break;
+
+		default:
+			console.log("no existe el tipo de ventana modal pedido.")
+			return;
+	}
+};
+
 
 InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 	var self = this;
@@ -184,54 +295,6 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 	}).then(function(popover) {
 		self.$scope.popover = popover;
 		self.$scope.popover.show($event);
-	});
-};
-
-InformacionOrdenCtrl.prototype.construirModalesMapa = function(){
-	var self = this,
-		tmpURL = "templates/app/orden/modal-mapa.html";
-
-	if(!self.$scope.soloProductos) {
-		self.$scope.scopeRecoleccion.titulo = "Ubique en el mapa el punto de recolección.";
-		self.$scope.scopeRecoleccion.idModal = "mdDireccionRecoleccion";
-		self.$scope.scopeRecoleccion.idMapa = "id-mapa-direccion-recoleccion";
-		
-		self.$scope.scopeRecoleccion.finalizaUbicacion = function() {
-			var ubicacion = self.$scope.mapaRecoleccion.getPosicion();
-			console.log("latitud: ", ubicacion.lat())
-			console.log("longitud: ",ubicacion.lng())
-			self.$scope.modalMapaRecoleccion.hide();
-		};
-
-		self.$ionicModal.fromTemplateUrl(tmpURL, {
-			scope: self.$scope.scopeRecoleccion,
-			animation: 'slide-in-up'
-		}).then(function(modal) {
-			self.$scope.modalMapaRecoleccion = modal;
-			console.log(self.CarritoFactory);
-			console.log(self.MapaFactory)
-
-			self.$scope.mapaRecoleccion = self.MapaFactory.crearMapa(self.$scope.scopeRecoleccion.idMapa);
-		});
-	}
-
-	self.$scope.scopeEntrega.titulo = "Ubique en el mapa el punto de entrega.";
-	self.$scope.scopeEntrega.idModal = "mdDireccionEntrega";
-	self.$scope.scopeEntrega.idMapa = "id-mapa-direccion-entrega";
-	
-	self.$scope.scopeEntrega.finalizaUbicacion = function() {
-		var ubicacion = self.$scope.mapaEntrega.getPosicion();
-		console.log("latitud: ", ubicacion.lat())
-		console.log("longitud: ",ubicacion.lng())
-		self.$scope.modalMapaEntrega.hide();
-	};
-
-	self.$ionicModal.fromTemplateUrl(tmpURL, {
-		scope: self.$scope.scopeEntrega,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		self.$scope.modalMapaEntrega = modal;
-		self.$scope.mapaEntrega = self.MapaFactory.crearMapa(self.$scope.scopeEntrega.idMapa);
 	});
 };
 

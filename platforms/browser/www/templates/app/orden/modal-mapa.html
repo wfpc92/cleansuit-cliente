@@ -1,0 +1,26 @@
+<ion-modal-view hide-back-button="false" cache-view="false" id="{{idModal}}">
+	<ion-header-bar>
+		<h1 class="title item-text-wrap">{{titulo}}</h1>
+		<div class="button button-clear" ng-click="finalizaUbicacion()">
+			<span class="icon ion-checkmark"></span>
+		</div>
+	</ion-header-bar>
+
+
+	<ion-content >
+
+		<div id="map" data-tap-disabled="true"></div>
+
+	</ion-content>
+</ion-modal-view>
+
+
+icon: {
+				path: google.maps.SymbolPath.CIRCLE,
+				size: new google.maps.Size(30, 44),
+				fillColor: 'blue',
+				fillOpacity: 0.8,//0.0,
+				strokeColor: 'white',
+				strokeWeight: 0.0,
+				scale: 100
+			},

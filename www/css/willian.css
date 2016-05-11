@@ -1,4 +1,4 @@
-#map {
+#contenedor-mapa, #id-mapa {
 	height:100%;
 	margin:0;
 }
@@ -7,7 +7,7 @@
   height: 100%;
 }
 
-#map .centerMarker{
+#id-mapa .centerMarker {
 	display: block;
 	width: 30px;
 	height: 44px;
@@ -19,3 +19,5 @@
 	margin-left: -15px;/*-width/2*/
 	background: url("../img/marker.png") no-repeat;
 }
+
+

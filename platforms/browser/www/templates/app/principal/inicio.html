@@ -1,0 +1,14 @@
+<!--Controller: AppInicioCtrl-->
+
+<ion-view hide-back-button="true" title="CleanSuit" hide-nav-bar="false">
+	<ion-content>
+	
+	<div class="list promocion" ng-repeat="promo in promociones">
+		<div class="item item-image">
+			<img ng-src="{{promo.imagen_url}}" ng-cloak/>
+		</div>
+	</div>
+	</ion-content>
+
+	<footer-carrito carrito="carrito"></footer-carrito>
+</ion-view>
