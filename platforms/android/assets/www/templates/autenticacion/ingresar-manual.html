@@ -1,0 +1,28 @@
+<ion-view title="Ingresar">
+    <ion-content class="form">
+        <img class="logo" ng-src="img/logo.svg" />
+
+        <div class="formulario">
+            <!--<p>Ingrese su correo electrónico y contraseña<br>para ingresar</p>-->
+            <div class="burbujas"></div>
+            <form class="list">
+                 <div class="list">
+                    <label class="item item-input item-floating-label" name="email">
+                        <span class="input-label">Correo Electrónico</span>
+                        <input type="text" placeholder="Correo Electrónico">
+                    </label>
+                    <label class="item item-input item-floating-label" name="contrasena">
+                        <span class="input-label">Contraseña</span>
+                        <input type="password" placeholder="Contraseña">
+                    </label>
+                </div>
+                <a href="#/autenticacion-recuperar-contrasena">¿Olvidaste tu contraseña?</a>
+            </form>
+        </div>
+
+    </ion-content>
+
+    <div class="bar bar-footer">
+        <a href="#/app/inicio" class="button button-calm button-full">INGRESAR</a>
+    </div>
+</ion-view>

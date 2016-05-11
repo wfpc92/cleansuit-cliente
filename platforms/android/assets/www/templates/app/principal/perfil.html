@@ -1,0 +1,136 @@
+<ion-view title="CleanSuit">
+    <ion-content class="bottom perfil">
+    	<div class="imagen">
+			<img src="img/camara.png">
+		</div> 
+
+		<form name="formularioPerfil" novalidate>
+			<div class="list">
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label izq">
+							<span class="input-label">Nombre</span>
+							<input type="text" placeholder="su nombre" name="nombre" ng-model="usuario.nombre" pattern="(?=.*[a-zA-Z]).{1,40}" required>
+						</label>
+					</div>
+				
+					<div class="col">
+						<label class="item-input item-stacked-label der">
+							<span class="input-label">Apellidos</span>
+							<input type="text" placeholder="sus apellidos" name="apellidos" ng-model="usuario.apellidos" pattern="(?=.*[a-zA-Z]).{1,40}" required>
+						</label>
+					</div>
+				</div>
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label izq">
+							<span class="input-label">Departamento</span>
+							<input type="text" placeholder="departamento" name="departamento" ng-model="usuario.direccion.departamento" pattern="(?=.*[a-zA-Z]).{1,24}" required>
+						</label>
+					</div>
+
+					<div class="col">
+						<label class="item-input item-stacked-label der">
+							<span class="input-label">Ciudad</span>
+							<input type="text" placeholder="ciudad" name="ciudad" ng-model="usuario.direccion.ciudad" pattern="(?=.*[a-zA-Z]).{1,40}" required>
+						</label>
+					</div>
+				</div>
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Dirección de Residencia</span>
+							<input type="text" placeholder="dirección residencia" name="direccion" ng-model="usuario.direccion.residencia" pattern="(?=.*[a-zA-Z]).{1,100}" required>
+						</label>
+					</div>
+				</div>
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Teléfono de contacto</span>
+							<input type="text" placeholder="teléfono de contacto" name="telefono" ng-model="usuario.telefono" pattern="(?=.*\d).{7,15}" >
+						</label>
+					</div>
+				</div>
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Correo Electrónico</span>
+							<input type="email" placeholder="correo electrónico" name="correo" ng-model="usuario.email" required>
+						</label>
+					</div>
+				</div>
+
+				<div class="item row">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right contrasena">Cambiar Contraseña</span>
+						</label>
+						<i class="icon ico-flechaabajo" ng-click="formData.mostrarCambiarContrasena = !formData.mostrarCambiarContrasena"></i>
+					</div>
+				</div>	
+
+				<div class="item row" ng-show="formData.mostrarCambiarContrasena">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Mínimo 6 caracteres, incluir numeros y caracteres.</span>
+						</label>
+					</div>
+				</div>	
+
+				<div class="item row" ng-show="formData.mostrarCambiarContrasena">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label">Nueva Contraseña</span>
+							<input type="password" name="nuevaContrasena" placeholder="su nueva contraseña" ng-model="formData.contrasena" pattern="(?=.*\d)(?=.*[a-zA-Z]).{6,16}" ng-model-options="{ updateOn: 'blur' }" required>
+						</label>
+					</div>
+				</div>
+
+				<div class="item row" ng-show="formData.mostrarCambiarContrasena">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label">Confirmar Nueva Contraseña</span>
+							<input type="password" name="confirmarNuevaContrasena" placeholder="confirme su nueva contraseña" ng-model="formData.confirmarContrasena" required>
+						</label>
+					</div>
+				</div>
+
+				<!--
+				<label class="item item-input item-stacked-label">
+					<span ng-show="!formularioContrasena.$pristine && formularioContrasena.contrasena.$error.required">
+						Escriba la nueva contraseña.
+					</span>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span ng-show="!formularioContrasena.confirmarContrasena.$pristine && formularioContrasena.confirmarContrasena.$error.required">
+						Vuelva a escribir su nueva contraseña.
+					</span>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span ng-show="!formularioContrasena.contrasena.$pristine && formularioContrasena.contrasena.$invalid">
+						La contraseña debe tener al menos 6 caracteres, incluyendo letras y numeros.
+					</span> 
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span ng-show="!formularioContrasena.confirmarContrasena.$pristine && formularioContrasena.contrasena.$viewValue !== formularioContrasena.confirmarContrasena.$viewValue">
+						Las contraseñas no coinciden.
+					</span> 
+				</label>
+				-->
+		
+			</div>  
+		</form> 
+    </ion-content>
+
+    <div class="bar bar-footer">
+    	<a ng-click="guardarPerfil()" class="button button-calm button-full" ng-disabled="!formData.formValido"> 
+			Actualizar Perfil
+		</a>
+    </div>
+
+</ion-view>

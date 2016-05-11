@@ -1,0 +1,22 @@
+<ion-view >
+	<ion-content class="has-subheader estado-orden" scroll="true" padding="false" >
+		<h2># de orden: <span>{{orden.codigo}}</span></h2>
+		<div class="confirmacion">
+			<h3>Hemos recibido tu orden</h3>
+			<span>En este momento estamos procesando tu pedido.</span>
+		</div>
+
+		<div class="estado">
+			<h3>Puedes observar cómo va tu pedido:</h3>
+			<div class="list">
+				<div class="item text-center" ng-repeat="estado in estados" ng-class="{activated:estado == orden.estado}">
+					{{estado.titulo}}
+				</div>
+			</div>
+			<elemento-centrado>
+				<button class="button button-positive" ng-click="regresarPrincipal()">Regresar a principal</button>
+			</elemento-centrado>
+		</div>	
+		
+	</ion-content>
+</ion-view>

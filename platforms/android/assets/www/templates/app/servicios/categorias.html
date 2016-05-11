@@ -1,0 +1,23 @@
+<ion-view title="Cleansuit">
+  	<ion-content>
+
+  		<div clas="card" ng-show="categorias.length == 0">
+			<div class="item item-text-wrap">
+				No hay Servicios para mostrar. <a ng-click="cargarCategorias()">Cargar</a>
+			</div>
+		</div>
+
+		<ion-list>
+			<div class="categorias lista">
+				<ion-item class="item-icon-right item-text-wrap" ng-repeat="categoria in categorias track by $index" href="#/app/servicios/{{$index}}">
+					<h2>{{::categoria.nombre}}</h2>
+					<p>{{::categoria.descripcion}}</p>
+					<i class="icon ico-flechader assertive" ></i>
+				</ion-item>
+			</div>
+		</ion-list>
+
+  	</ion-content>
+  
+  	<footer-carrito carrito="carrito"></footer-carrito> 
+</ion-view>

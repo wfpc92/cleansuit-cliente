@@ -1,7 +1,6 @@
 composer.phar
 /vendor/
-platforms/android/*
-platforms/ios/*
+patforms/*
 .idea/
 
 
