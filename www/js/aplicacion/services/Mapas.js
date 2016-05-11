@@ -153,7 +153,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 				return marker.getPosition();
 			},
 			setPosicion: function(posicion) {
-				map.setCenter(posicion);
+				mapa.setCenter(posicion);
 			},
 
 		});

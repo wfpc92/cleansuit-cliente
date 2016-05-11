@@ -88,10 +88,20 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	$scope.scopeModal.idModal = "id-modal-mapa";
 	$scope.scopeModal.idMapa = "id-mapa";
 	
-	$scope.scopeModal.finalizaUbicacion = function() {
-		$scope.posicion = $scope.mapa.getPosicion();
-		console.log("latitud: ", $scope.posicion.lat());
-		console.log("longitud: ", $scope.posicion.lng());
+	$scope.scopeModal.finalizaUbicacion = function(tipo) {
+		var posicion = $scope.mapa.getPosicion();
+		
+		switch(tipo) {
+			case "DIRECCIONRECOLECCION":
+				$scope.orden.direccionRecoleccion.posicion = posicion;
+				break;
+
+			case "DIRECCIONENTREGA":
+				$scope.orden.direccionEntrega.posicion = posicion;
+				break;
+		}
+		
+		console.log("Posicion: ", posicion.lat(), ", ", posicion.lng());
 		$scope.mapa.quitarEventos();
 		$scope.modalMapa.hide();
 	};
@@ -152,6 +162,7 @@ InformacionOrdenCtrl.prototype.crearVentanaModalMapa = function() {
 		//var elemModal = document.getElementById($scope.scopeModal.idModal);
 		//elemModal.style.display = "none";
 		
+		//mostrar la ventana modal, inmediatamente despues asignar mapaDOM
 		$scope.modalMapa.show().then(function() {
 			self.asignarMapaDOM(function() {
 				$scope.modalMapa.hide().then(function() {
@@ -162,6 +173,9 @@ InformacionOrdenCtrl.prototype.crearVentanaModalMapa = function() {
 	});	
 };
 
+/**
+ * si no se ha cargado el mapaDOM agregarlo al contenedor.
+ */
 InformacionOrdenCtrl.prototype.asignarMapaDOM = function(callback) {
 	var $scope = this.$scope;
 	if(!$scope.mapaDOMCargado) {
@@ -173,7 +187,12 @@ InformacionOrdenCtrl.prototype.asignarMapaDOM = function(callback) {
 	callback();
 };
 
-
+/**
+ * este se ejecuta al dar click sobre los pines de ubicacion,
+ * se ubica la posicion almacenada previamente en el mapa,
+ * se asignan los eventos,
+ * se muestra la ventana modal con el mapa configurado en su sitio.
+ */
 InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	var self = this,
 		$scope = self.$scope;
@@ -182,25 +201,31 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	
 	switch(tipo) {
 		case "DIRECCIONRECOLECCION":
+			//ubicar la posicion en el mapa almacenada
+			if($scope.orden.direccionRecoleccion.posicion) {
+				$scope.mapa.setPosicion($scope.orden.direccionRecoleccion.posicion);
+			}
+
+			//asignar eventos al mapa para poder utilizarlos.
+			$scope.mapa.asignarEventos();
+			//mostrar la ventana modal con el mapa configurado en la posicion almacenada.
 			$scope.scopeModal.titulo = "Ubique en el mapa el punto de recolección.";
-			//$scope.posicion = $scope.finalizaUbicacion($scope.orden.direccionRecoleccion);
-			$scope.modalMapa.show().then(function() {
-				if($scope.orden.direccionRecoleccion.posicion) {
-					$scope.mapa.setPosicion($scope.orden.direccionRecoleccion.posicion);
-				}
-				$scope.mapa.asignarEventos();
-			});
+			$scope.scopeModal.tipo = tipo;
+			$scope.modalMapa.show();
 			break;
 
 		case "DIRECCIONENTREGA":
+			//ubicar la posicion en el mapa almacenada
+			if($scope.orden.direccionEntrega.posicion) {
+				$scope.mapa.setPosicion($scope.orden.direccionEntrega.posicion);
+			}
+
+			//asignar eventos al mapa para poder utilizarlos.
+			$scope.mapa.asignarEventos();
+			//mostrar la ventana modal con el mapa configurado en la posicion almacenada.
 			$scope.scopeModal.titulo = "Ubique en el mapa el punto de entrega.";
-			//$scope.scopeModal.finalizaUbicacion = $scope.finalizaUbicacion($scope.orden.direccionEntrega);
-			$scope.modalMapa.show().then(function() {
-				if($scope.orden.direccionEntrega.posicion) {
-					$scope.mapa.setPosicion($scope.orden.direccionEntrega.posicion);
-				}
-				$scope.mapa.asignarEventos();
-			});
+			$scope.scopeModal.tipo = tipo;
+			$scope.modalMapa.show();
 			break;
 
 		default:
