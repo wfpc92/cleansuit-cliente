@@ -13,10 +13,6 @@ var AppCtrl = function($scope, UsuarioFactory, CarritoFactory, HistorialOrdenFac
 			$state.go("autenticacion-inicio");
 		}*/
 	};
-
-	console.log("hola");
-	angular.element(document.querySelector('#menu-button')).addClass('hidden');
-	console.log(document.getElementById('menu-button'))
 	
 };
 
