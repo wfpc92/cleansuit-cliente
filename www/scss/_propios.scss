@@ -60,13 +60,12 @@ $registro: #80A3CD;
 	.formulario {
 		width: 100%;
 		position: absolute;
-		bottom: 130px;
-		height: 70%;
+		bottom: 120px;
 	}
 	form.list {		
 		background-color: $positive;
 		padding-top: 38px;
-		height: 80%;
+		padding-bottom: 100px;
 		input, label {
 			background-color: $positive;
 			border: none;
