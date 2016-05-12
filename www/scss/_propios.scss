@@ -12,24 +12,27 @@ img.logo {
 }
 div.tex-center {
 	h2 {
-		font-weight: lighter;
+		font-weight: 100;
 		color: #666;
 		font-size: 2.3em;
 		text-align: center;
 		margin: 0;
 	}
 }
-.burbujas {
+/*.burbujas {
 	height: 84px;
 	background: url('../img/burbujas.png') repeat-x;
 	z-index: 5;
-}
+}*/
 .bar-footer {
 	display: inline-table;
 	padding: 0px;
 	font-family: 'fira_sansmedium';
 	.burbujas {
-		margin-top: -42px;
+		display: block;
+		width: 100%;
+		z-index: 5;
+		margin-bottom: -5px;
 	}
 	.button {
 		border-radius: 0px;
@@ -185,7 +188,10 @@ p {
 	}
 	a{
 		font-family: 'fira_sansmedium';
-		h2 { color: #333; }
+		h2 {
+			color: #333;
+			font-family: 'fira_sansmedium';
+		}
 		h3{
 			font-family: 'fira_sansmedium';
 			color: #76A900;
