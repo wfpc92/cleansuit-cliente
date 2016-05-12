@@ -35,8 +35,18 @@ var CargaInicialFactory = function(angularLoad, ModalCargaFactory, ProductosFact
 				recursos.mapsScript = true;
 				console.log("exito script google maps.")
 				if(callback) {
-					callback();
-				}
+						callback();
+					}
+				/*//cargando instancia de mapa.
+				MapasFactory.cargarMapa().then(function() {
+					if(callback) {
+						callback();
+					}
+				}, function() {
+					if(callback) {
+						callback();
+					}
+				});		*/		
 			}).catch(function () {
 				//comprobarCarga("Error al cargar el archivo externo.", "Google Maps API");
 				recursos.mapsScript = false;
@@ -49,4 +59,4 @@ var CargaInicialFactory = function(angularLoad, ModalCargaFactory, ProductosFact
 	};
 };
 
-app.factory("CargaInicialFactory", ['angularLoad', 'ModalCargaFactory', 'ProductosFactory', '$rootScope' ,CargaInicialFactory]);
+app.factory("CargaInicialFactory", ['angularLoad', 'ModalCargaFactory', 'ProductosFactory', '$rootScope', CargaInicialFactory]);
