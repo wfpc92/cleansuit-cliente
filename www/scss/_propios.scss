@@ -20,15 +20,15 @@ div.tex-center {
 		padding: 0 60px;
 	}
 }
+.burbujas {
+	display: block;
+	width: 100%;
+	z-index: 5;
+}
 .bar-footer {
 	display: inline-table;
 	padding: 0px;
-	font-family: 'fira_sansmedium';
-	.burbujas {
-		display: block;
-		width: 100%;
-		z-index: 5;
-	}
+	font-family: 'fira_sansmedium';	
 	.button {
 		border-radius: 0px;
 		font-size: 1.375em;
@@ -60,7 +60,7 @@ $registro: #80A3CD;
 	.formulario {
 		width: 100%;
 		position: fixed;
-		bottom: 74px;
+		bottom: 120px;
 	}
 	form.list {		
 		background-color: $positive;

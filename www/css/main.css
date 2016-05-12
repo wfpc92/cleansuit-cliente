@@ -9738,14 +9738,15 @@ div.tex-center h2 {
   margin: 0;
   padding: 0 60px; }
 
+.burbujas {
+  display: block;
+  width: 100%;
+  z-index: 5; }
+
 .bar-footer {
   display: inline-table;
   padding: 0px;
   font-family: 'fira_sansmedium'; }
-  .bar-footer .burbujas {
-    display: block;
-    width: 100%;
-    z-index: 5; }
   .bar-footer .button {
     border-radius: 0px;
     font-size: 1.375em;
@@ -9776,7 +9777,7 @@ div.tex-center h2 {
   .form .formulario {
     width: 100%;
     position: fixed;
-    bottom: 74px; }
+    bottom: 120px; }
   .form form.list {
     background-color: #00479A;
     padding-top: 38px;
