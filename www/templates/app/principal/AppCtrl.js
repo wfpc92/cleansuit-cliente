@@ -14,6 +14,9 @@ var AppCtrl = function($scope, UsuarioFactory, CarritoFactory, HistorialOrdenFac
 		}*/
 	};
 
+	console.log("hola");
+	angular.element(document.querySelector('#menu-button')).addClass('hidden');
+	console.log(document.getElementById('menu-button'))
 	
 };
 
