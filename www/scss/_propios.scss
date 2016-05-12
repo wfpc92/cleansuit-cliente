@@ -7,7 +7,7 @@ img.logo {
 	display: block;
 	width: 70%;
 	max-width: 295px;
-	margin: 100px auto 110px;
+	margin: 100px auto 105px;
 	z-index: 10;
 }
 div.tex-center {
@@ -59,13 +59,14 @@ $registro: #80A3CD;
 	position: relative;
 	.formulario {
 		width: 100%;
-		position: fixed;
-		bottom: 120px;
+		position: absolute;
+		bottom: 130px;
+		height: 70%;
 	}
 	form.list {		
 		background-color: $positive;
 		padding-top: 38px;
-		padding-bottom: 120px;
+		height: 80%;
 		input, label {
 			background-color: $positive;
 			border: none;
