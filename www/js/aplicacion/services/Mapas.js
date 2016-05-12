@@ -18,7 +18,9 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 			.then(function(position) {
 				console.log("posicion detectada con gps: ", position)
 				crearMapaAPIGoogle(position);
-				callback();
+				if(callback) {
+					callback();
+				}
 			}, function(error){
 				console.log("posicion no se puede obtener: ", error);
 				crearMapaAPIGoogle({coords:{
@@ -234,9 +236,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 					}
 				);
 			} else {
-				detectarPosicion(idMapa, function() {
-					
-				});
+				detectarPosicion();
 			}
 
 			return deferred.promise;
