@@ -9727,7 +9727,7 @@ img.logo {
   display: block;
   width: 70%;
   max-width: 295px;
-  margin: 100px auto;
+  margin: 100px auto 120px;
   z-index: 10; }
 
 div.tex-center h2 {
