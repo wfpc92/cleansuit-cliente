@@ -9777,11 +9777,14 @@ div.tex-center h2 {
   .form .formulario {
     width: 100%;
     position: absolute;
-    bottom: 120px; }
+    bottom: 90px;
+    height: 70%;
+    min-height: 335px; }
   .form form.list {
     background-color: #00479A;
     padding-top: 38px;
-    padding-bottom: 100px; }
+    height: 100%;
+    min-height: 280px; }
     .form form.list input, .form form.list label {
       background-color: #00479A;
       border: none;
