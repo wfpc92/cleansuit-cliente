@@ -9727,7 +9727,7 @@ img.logo {
   display: block;
   width: 70%;
   max-width: 295px;
-  margin: 30px auto;
+  margin: 100px auto;
   z-index: 10; }
 
 div.tex-center h2 {
@@ -9735,13 +9735,9 @@ div.tex-center h2 {
   color: #666;
   font-size: 2.3em;
   text-align: center;
-  margin: 0; }
+  margin: 0;
+  padding: 0 60px; }
 
-/*.burbujas {
-	height: 84px;
-	background: url('../img/burbujas.png') repeat-x;
-	z-index: 5;
-}*/
 .bar-footer {
   display: inline-table;
   padding: 0px;
@@ -9749,8 +9745,7 @@ div.tex-center h2 {
   .bar-footer .burbujas {
     display: block;
     width: 100%;
-    z-index: 5;
-    margin-bottom: -5px; }
+    z-index: 5; }
   .bar-footer .button {
     border-radius: 0px;
     font-size: 1.375em;
