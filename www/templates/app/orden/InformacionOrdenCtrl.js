@@ -86,7 +86,6 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	$scope.mapa = null;
 	$scope.scopeModal = $rootScope.$new();
 	$scope.scopeModal.idModal = "id-modal-mapa";
-	$scope.scopeModal.idMapa = "id-mapa";
 	
 	$scope.scopeModal.finalizaUbicacion = function(tipo) {
 		var posicion = $scope.mapa.getPosicion();
@@ -106,15 +105,16 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 		$scope.modalMapa.hide();
 	};
 
-	self.crearMapaDOM();
-
+	self.verificarMapaDOM(function() {
+		self.crearVentanaModalMapa();
+	});
 };
 
 /**
  * Construye el DOM para un mapa generado por API google maps, 
  * luego de que se termina de generar se crea la ventana modal 
  * que lo va a contener. 
- */
+ *
 InformacionOrdenCtrl.prototype.crearMapaDOM = function() {
 	var self = this, 
 		$scope = this.$scope,
@@ -125,7 +125,7 @@ InformacionOrdenCtrl.prototype.crearMapaDOM = function() {
 	console.log("Crear mapa para ventana modal");
 	ModalCargaFactory.mostrar(null, "Creando Mapa...", null);
 
-	MapasFactory.crearMapa($scope.scopeModal.idMapa).then(
+	MapasFactory.crearMapa().then(
 		function(mapa){
 			console.log("Mapa DOM creado");
 			$scope.mapa = mapa;
@@ -139,19 +139,47 @@ InformacionOrdenCtrl.prototype.crearMapaDOM = function() {
 	).finally(function() {
 		console.log("finally crear mapa")
 	});
+};*/
+
+/**
+ * verifica si la fabrica ya cargo el mapaDOM
+ */
+InformacionOrdenCtrl.prototype.verificarMapaDOM = function(callback) {
+	var $scope = this.$scope,
+		MapasFactory = this.MapasFactory,
+		ModalCargaFactory = this.ModalCargaFactory;
+
+	
+	//si el mapa no ha sido creado, se debe crear.
+	if(!MapasFactory.mapaCreado()) {
+		ModalCargaFactory.mostrar(null, "Cargando mapa...", null);
+		
+		MapasFactory.crearMapa().then(
+			function(mapa){
+				console.log("Mapa DOM creado");
+				$scope.mapa = mapa;
+				callback();
+			}, 
+			function(error){
+				console.log(error);
+				//mostrar mensaje de error <--error.show()-->
+				ModalCargaFactory.ocultar();
+			}
+		);
+	}
 };
 
 /**
  * Contruye una ventana modal, muestra su DOM porque el contenedor debe
  * estar activo mediante show() para poder agregar el mapaDOM al contenedor.
  */
-InformacionOrdenCtrl.prototype.crearVentanaModalMapa = function() {
+InformacionOrdenCtrl.prototype.crearVentanaModalMapa = function(callback) {
 	var self = this, 
 		$scope = this.$scope,
 		$ionicModal = this.$ionicModal,
 		ModalCargaFactory = this.ModalCargaFactory,
 		tmpURL = "templates/app/orden/modal-mapa.html";
-
+		
 	$ionicModal.fromTemplateUrl(tmpURL, {
 		scope: $scope.scopeModal,
 		animation: 'slide-in-up'
@@ -170,8 +198,8 @@ InformacionOrdenCtrl.prototype.crearVentanaModalMapa = function() {
 				})
 			});
 		});		
-	});	
-};
+	});
+}	
 
 /**
  * si no se ha cargado el mapaDOM agregarlo al contenedor.
@@ -272,54 +300,58 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 };
 
 InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
-	var self = this;
-	var tmpURL = "";
+	var self = this,
+		$scope = this.$scope, 
+		$ionicPopover = this.$ionicPopover,
+		tmpURL = "";
 
 	switch(tipo) {
 		case "HORARECOLECCION":
 			tmpURL = 'templates/app/orden/popover-hora.html';
-			self.$scope.idPopover = "ppHoraRecoleccion";
-			self.$scope.horas = [
+			$scope.idPopover = "ppHoraRecoleccion";
+			$scope.horas = [
 				"6:00 P.M. a 6:59 P.M.",
 				"7:00 P.M. a 7:59 P.M.",
 				"8:00 P.M. a 8:59 P.M.",
 				"9:00 P.M. a 10:00 P.M."
 			];
-			self.$scope.setHora = function($index){
-				self.$scope.orden.direccionRecoleccion.hora = self.$scope.horas[$index];
-				self.$scope.closePopover();
+
+			$scope.setHora = function($index){
+				$scope.orden.direccionRecoleccion.hora = $scope.horas[$index];
+				$scope.closePopover();
 			};
 			break;
 
 		case "HORAENTREGA":
 			tmpURL = 'templates/app/orden/popover-hora.html';
-			self.$scope.idPopover = "ppHoraEntrega";
-			self.$scope.horas = [
+			$scope.idPopover = "ppHoraEntrega";
+			$scope.horas = [
 				"6:00 P.M. a 6:59 P.M.",
 				"7:00 P.M. a 7:59 P.M.",
 				"8:00 P.M. a 8:59 P.M.",
 				"9:00 P.M. a 10:00 P.M."
 			];
-			self.$scope.setHora = function($index){
-				self.$scope.orden.direccionEntrega.hora = self.$scope.horas[$index];
-				self.$scope.closePopover();
+
+			$scope.setHora = function($index){
+				$scope.orden.direccionEntrega.hora = $scope.horas[$index];
+				$scope.closePopover();
 			};
 			break;
 
 		case "FORMAPAGO":
 			tmpURL = 'templates/app/orden/popover-forma-pago.html';
-			self.$scope.idPopover = "ppFormaPago";
+			$scope.idPopover = "ppFormaPago";
 			break;
 
 		default:
 			return;
 	}
 
-	self.$ionicPopover.fromTemplateUrl(tmpURL, {
-		scope: self.$scope,
+	$ionicPopover.fromTemplateUrl(tmpURL, {
+		scope: $scope,
 	}).then(function(popover) {
-		self.$scope.popover = popover;
-		self.$scope.popover.show($event);
+		$scope.popover = popover;
+		$scope.popover.show($event);
 	});
 };
 

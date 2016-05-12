@@ -7,22 +7,21 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 		elemMarker = null, 	
 		poligonos = []; //areas permitidas para realizar la ubicacion.
 
-	var listenerTerminarCargar = null, //listener para deteccion inicial
-		listenerIniciaArrastre = null,
+	var listenerIniciaArrastre = null,
 		listenerCentroActualizado = null;
 
-	var detectarPosicion = function(idMapa, callback) {
+	var detectarPosicion = function(callback) {
 		console.log("detectando posicion actual...");
 
 		$cordovaGeolocation
 			.getCurrentPosition({timeout: 10000, enableHighAccuracy: true})
 			.then(function(position) {
 				console.log("posicion detectada con gps: ", position)
-				crearMapaAPIGoogle(idMapa, position);
+				crearMapaAPIGoogle(position);
 				callback();
 			}, function(error){
 				console.log("posicion no se puede obtener: ", error);
-				crearMapaAPIGoogle(idMapa, {coords:{
+				crearMapaAPIGoogle({coords:{
 					latitude: 0,
 					longitude: 0
 				}});
@@ -30,7 +29,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 			});	
 	};
 
-	var crearMapaAPIGoogle = function(idMapa, position) {
+	var crearMapaAPIGoogle = function(position) {
 
 		var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
 			mapOptions = {
@@ -84,7 +83,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 			];
 
 		elemMapa = document.createElement("div");
-		elemMapa.id = idMapa;
+		elemMapa.id = "id-mapa";
 		elemMapa.setAttribute("data-tap-disabled","true");
 		
 		//crear mapa en <div id="{{idMapa}}">
@@ -92,7 +91,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 		
 		//crear pin que se ubica en el centro de la pantalla
 		elemMarker = document.createElement("div");
-		elemMarker.id= "marker-"+idMapa;
+		elemMarker.id= "marker-" + elemMapa.id ;
 		elemMarker.className = 'centerMarker';
 		elemMapa.appendChild(elemMarker)	
 
@@ -200,6 +199,14 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 		});
 
 		/**
+		 * Este evento se ejecuta cuando un usuario inicia arrastre, el mensaje que se muestra
+		 * se oculta.
+		 */
+		listenerIniciaArrastre = google.maps.event.addListener(mapa, 'dragstart', function(e) {
+			infoWindow.close();
+		});
+
+		/**
 		 * Hacer deteccion inicial
 		 */
 		google.maps.event.trigger(mapa, "center_changed");
@@ -211,14 +218,14 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 	};
 
 	return {
-		crearMapa: function(idMapa) {
+		crearMapa: function() {
 			deferred = $q.defer();
 
 			//si no existe el script, debe cargarlo
 			if(!CargaInicialFactory.recursos.mapsScript) {
 				CargaInicialFactory.cargarMapsScript(
 					function() {
-						detectarPosicion(idMapa, function() {
+						detectarPosicion(function() {
 							
 						});
 					}, function() {
@@ -233,6 +240,9 @@ var MapasFactory = function($q, $cordovaGeolocation, CargaInicialFactory) {
 			}
 
 			return deferred.promise;
+		},
+		mapaCreado: function() {
+			return mapa ? true : false;
 		}
 	}
 };
