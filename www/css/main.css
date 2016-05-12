@@ -10052,12 +10052,12 @@ div.tex-center h2 {
     width: 100%;
     position: absolute;
     bottom: 90px;
-    height: 70%;
+    height: 68%;
     min-height: 335px; }
   .form form.list {
     background-color: #00479A;
     padding-top: 38px;
-    height: 100%;
+    height: 90%;
     min-height: 280px; }
     .form form.list input, .form form.list label {
       background-color: #00479A;
@@ -10358,7 +10358,8 @@ p {
       .contcarro .carro .item .contenedor h3 {
         display: inline-block;
         color: #76A900;
-        font-size: 1.1em; }
+        font-size: 1.1em;
+        width: auto; }
       .contcarro .carro .item .contenedor .contador {
         position: absolute;
         top: 0;
