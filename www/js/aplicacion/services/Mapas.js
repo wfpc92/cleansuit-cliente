@@ -19,13 +19,12 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 			.then(function(position) {
 				console.log("posicion detectada con gps: ", position)
 				latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-				if(callback) {
-					callback();
-				}
 			}, function(error){
 				//mostrar ventana de error.
 				console.log("posicion no se puede obtener: ", error);
 				latLng = new google.maps.LatLng(2,-76);
+			})
+			.finally(function() {
 				if(callback) {
 					callback();
 				}
@@ -141,12 +140,13 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 				fillOpacity: 0.35,
 				map: mapa
 			});
-		}		
+		}
+
+		asignarEventos();		
 	};
 
 	var asignarEventos = function() {
 		console.log("asiganando eventos para mapa... ")
-		console.log(mapa)
 
 		mapa.setOptions({
 			draggable: true
@@ -157,16 +157,17 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 		 * el marker se pinta de azul, de lo contrario el marker muestra un mensaje.
 		 */
 		listenerCentroActualizado = google.maps.event.addListener(mapa, 'center_changed', function() {
-			infoWindow.close();
-			console.log("Termino de arrastrar mapa para ubicar")
-			
 			var posCentro = mapa.getCenter(),
 				puntoEnPoligono = false, 
 				posicionArea = -1;
-			console.log(posCentro)
+
+			console.log("Evento lanzado, center_changed, posicion: ", posCentro.lat(), posCentro.lng());
+			
 			if(!posCentro) {
 				return;
 			}
+
+			infoWindow.close();
 			
 			for(var i = 0; i < poligonos.length; i++){
 				puntoEnPoligono = google.maps.geometry.poly.containsLocation(posCentro, poligonos[i]) ? true : false;
@@ -197,11 +198,6 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 		listenerIniciaArrastre = google.maps.event.addListener(mapa, 'dragstart', function(e) {
 			infoWindow.close();
 		});
-
-		/**
-		 * Hacer deteccion inicial
-		 */
-		google.maps.event.trigger(mapa, "center_changed");
 	};
 
 	var quitarEventos = function() {
@@ -215,9 +211,12 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 			marker: marker,
 			mapaDOM: elemMapa,
 
-			asignarEventos: asignarEventos,
-
-			quitarEventos: quitarEventos,
+			verificarPosicion: function() {
+				/**
+				 * Hacer deteccion inicial
+				 */
+				google.maps.event.trigger(mapa, "center_changed");
+			},
 
 			getPosicion: function(){
 				return new google.maps.LatLng(mapa.getCenter().lat(), mapa.getCenter().lng());
@@ -232,7 +231,8 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 			obtenerUbicacionGPS: function(callback) {
 				var self = this;
 				detectarPosicion(function() {
-					self.setPosicion(latLng);
+					self.setPosicion(latLng)
+						.verificarPosicion();
 					if(callback) {
 						callback();
 					}

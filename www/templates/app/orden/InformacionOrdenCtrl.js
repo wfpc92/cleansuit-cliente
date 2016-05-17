@@ -88,6 +88,7 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	
 	$scope.scopeModal.finalizaUbicacion = function(tipo) {
 		var posicion = $scope.mapa.getPosicion();
+		console.log("finaliza ubicacion: ", posicion.lat(), posicion.lng() );
 		
 		switch(tipo) {
 			case "DIRECCIONRECOLECCION":
@@ -100,65 +101,28 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 		}
 		
 		//console.log("Posicion al finalizar ubicacion: ", posicion.lat(), ", ", posicion.lng());
-		$scope.mapa.setPosicion(posicion);
-		$scope.mapa.quitarEventos();
 		$scope.modalMapa.hide();
 	};
 
-	ModalCargaFactory.mostrar(null, "Preparando mapa...", null)
-	self.crearVentanaModalMapa(function() { 
-		console.log("despues de crear ventana modal, obtener mapa para insertarlo en contenedor. ")
-		MapasFactory.getMapa().then(function(mapa) {
-			$scope.mapa = mapa;
-			console.log("mapa obtenido: ", $scope.mapa)
-			$scope.mapa.obtenerUbicacionGPS(function() {
-				console.log("ubicacion obtenida: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
-				$scope.modalMapa.show().then(function() {
-					console.log(document.getElementById("contenedor-mapa"))
-					console.log("mapaDOM no esta en el contenedor-mapa, agregando...")
-					var elemContenedorMapa = document.getElementById("contenedor-mapa");
-					elemContenedorMapa.appendChild($scope.mapa.mapaDOM);	
-					$scope.modalMapa.hide().then(function() {
-						ModalCargaFactory.ocultar();
-					})
-				});
-			});
-		});
-	});	
-};
-
-/**
- * Contruye una ventana modal, muestra su DOM porque el contenedor debe
- * estar activo mediante show() para poder agregar el mapaDOM al contenedor.
- */
-InformacionOrdenCtrl.prototype.crearVentanaModalMapa = function(callback) {
-	var self = this, 
-		$scope = this.$scope,
-		$ionicModal = this.$ionicModal,
-		MapasFactory = this.MapasFactory,
-		ModalCargaFactory = this.ModalCargaFactory,
-		tmpURL = "templates/app/orden/modal-mapa.html";
-		
-	$ionicModal.fromTemplateUrl(tmpURL, {
+	$ionicModal.fromTemplateUrl("templates/app/orden/modal-mapa.html", {
 		scope: $scope.scopeModal,
 		animation: 'slide-in-up'
 	}).then(function(modal) {
 		$scope.modalMapa = modal;
-		if(callback) {
-			callback();
-		}
 	});
-}	
+};
+
 
 /**
  * este se ejecuta al dar click sobre los pines de ubicacion,
  * se ubica la posicion almacenada previamente en el mapa,
- * se asignan los eventos,
  * se muestra la ventana modal con el mapa configurado en su sitio.
  */
 InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	var self = this,
 		$scope = self.$scope,
+		MapasFactory = self.MapasFactory,
+		ModalCargaFactory = self.ModalCargaFactory,
 		posicion = null;
 
 	console.log("abriendo ventana modal para "+tipo+"...")
@@ -166,6 +130,7 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	switch(tipo) {
 		case "DIRECCIONRECOLECCION":
 			//ubicar la posicion en el mapa almacenada
+			console.log("DIRECCIONRECOLECCION: ", $scope.orden.direccionRecoleccion.posicion)
 			if($scope.orden.direccionRecoleccion.posicion) {
 				posicion = $scope.orden.direccionRecoleccion.posicion;
 			}
@@ -176,6 +141,7 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 			break;
 
 		case "DIRECCIONENTREGA":
+			console.log("DIRECCIONENTREGA: ", $scope.orden.direccionEntrega.posicion)
 			//ubicar la posicion en el mapa almacenada
 			if($scope.orden.direccionEntrega.posicion) {
 				posicion = $scope.orden.direccionEntrega.posicion;
@@ -185,13 +151,38 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 			$scope.scopeModal.titulo = "Ubique en el mapa el punto de entrega.";
 			$scope.scopeModal.tipo = tipo;
 			break;
-	}
+	}	
 
-	console.log(document.getElementById("contenedor-mapa"))
-	$scope.mapa.setPosicion(posicion);
-	$scope.modalMapa.show().then(function() {
-		$scope.mapa.asignarEventos();
-	})
+	//cargar el mapa por primera vez
+	if(!$scope.mapa) {
+		ModalCargaFactory.mostrar(null, "Preparando mapa...", null)
+		//elemento HTML dentro de la ventana modal
+		var ele = $scope.modalMapa
+					.modalEl //ion-modal
+					.children[1] //ion-content
+					.children[0] //scroll
+					.children[0] //#contenedor-mapa
+		
+		console.log("obtener mapa para insertarlo en contenedor");
+		MapasFactory.getMapa().then(function(mapa) {
+			$scope.mapa = mapa;
+			ele.appendChild($scope.mapa.mapaDOM);
+			console.log("mapa obtenido: ", $scope.mapa)
+			$scope.mapa.obtenerUbicacionGPS(function() {
+				console.log("ubicacion obtenida: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
+				$scope.modalMapa.show().then(function() {
+					ModalCargaFactory.ocultar();
+				});
+			});
+		});
+	} else {
+		if(posicion) {
+			$scope.mapa.setPosicion(posicion);
+		}
+		$scope.modalMapa.show();
+				
+	}
+	
 };
 
 
