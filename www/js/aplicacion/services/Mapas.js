@@ -13,22 +13,29 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 
 	var detectarPosicion = function(callback) {
 		console.log("detectando posicion actual...");
-
-		$cordovaGeolocation
-			.getCurrentPosition({timeout: 10000, enableHighAccuracy: true})
-			.then(function(position) {
-				console.log("posicion detectada con gps: ", position)
-				latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-			}, function(error){
-				//mostrar ventana de error.
-				console.log("posicion no se puede obtener: ", error);
-				latLng = new google.maps.LatLng(2,-76);
-			})
-			.finally(function() {
-				if(callback) {
-					callback();
-				}
-			});	
+		
+		if(!latLng) {
+			$cordovaGeolocation
+				.getCurrentPosition({timeout: 6000, enableHighAccuracy: true})
+				.then(function(position) {
+					console.log("posicion detectada con gps: ", position.coords.latitude, position.coords.longitude)
+					latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+				}, function(error){
+					//mostrar ventana de error.
+					console.log("posicion no se puede obtener: ", error);
+					latLng = new google.maps.LatLng(2,-76);
+				})
+				.finally(function() {
+					if(callback) {
+						callback();
+					}
+				});
+		} else {
+			console.log("ya se detecto una posicion en... ", latLng.lat(), latLng.lng())
+			if(callback) {
+				callback();
+			}
+		}	
 	};
 
 	var crearMapaAPIGoogle = function() {
@@ -108,9 +115,9 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 				//size: new google.maps.Size(30, 44),
 				path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW,
 				fillColor: 'green',
-				fillOpacity: .0,
+				fillOpacity: 5.0,
 				strokeColor: 'white',
-				strokeWeight: .0,
+				strokeWeight: 5.0,
 				scale: 10
 			},
         	map: mapa,
@@ -142,7 +149,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 			});
 		}
 
-		asignarEventos();		
+		asignarEventos();	
 	};
 
 	var asignarEventos = function() {
@@ -200,39 +207,30 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 		});
 	};
 
-	var quitarEventos = function() {
-		google.maps.event.removeListener(listenerIniciaArrastre);
-		google.maps.event.removeListener(listenerCentroActualizado);	
-	};
-
 	var resultado = function() {
 		deferred.resolve({
 			map: mapa,
 			marker: marker,
 			mapaDOM: elemMapa,
 
-			verificarPosicion: function() {
-				/**
-				 * Hacer deteccion inicial
-				 */
-				google.maps.event.trigger(mapa, "center_changed");
+			verificarUbicacionGPS: function() {
+				return latLng;
 			},
 
 			getPosicion: function(){
 				return new google.maps.LatLng(mapa.getCenter().lat(), mapa.getCenter().lng());
 			},
 			setPosicion: function(posicion) {
-				if(mapa && marker) {
-					mapa.setCenter(posicion);
-					marker.setPosition(posicion);
-				}
+				console.log("SetPosicion: ", posicion.lat(), posicion.lng());
+				marker.setPosition(posicion);
+				mapa.setCenter(posicion);
 				return this;
 			},
 			obtenerUbicacionGPS: function(callback) {
 				var self = this;
 				detectarPosicion(function() {
-					self.setPosicion(latLng)
-						.verificarPosicion();
+					self.setPosicion(latLng);
+
 					if(callback) {
 						callback();
 					}
@@ -248,7 +246,6 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 				console.log("mapa google no ha sido creado, construyendo dom...")
 				CargarScriptsFactory.cargarGoogleMaps(function() {
 					console.log("creando mapa de google...")
-					//cargando instancia de mapa.
 					crearMapaAPIGoogle();
 					resultado();			
 				}, function() {

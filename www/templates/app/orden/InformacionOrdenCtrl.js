@@ -1,7 +1,7 @@
 
 var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $state, $ionicPopover, $ionicHistory, $ionicModal, $ionicPopup, RealizarOrdenFactory, $ionicLoading, $rootScope, MapasFactory, ModalCargaFactory) {
 	var self = this;
-
+ 
 	this.$scope = $scope;
 	this.CarritoFactory = CarritoFactory;
 	this.$ionicModal = $ionicModal;
@@ -109,6 +109,18 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 		animation: 'slide-in-up'
 	}).then(function(modal) {
 		$scope.modalMapa = modal;
+		
+		console.log("obtener mapa para insertarlo en contenedor");
+		MapasFactory.getMapa().then(function(mapa) {
+			$scope.mapa = mapa;
+			console.log("mapa obtenido: ", $scope.mapa)
+			$scope.modalMapa
+					.modalEl //ion-modal
+					.children[1] //ion-content
+					.children[0] //scroll
+					.children[0] //#contenedor-mapa
+					.appendChild($scope.mapa.mapaDOM);
+		});
 	});
 };
 
@@ -130,9 +142,11 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	switch(tipo) {
 		case "DIRECCIONRECOLECCION":
 			//ubicar la posicion en el mapa almacenada
-			console.log("DIRECCIONRECOLECCION: ", $scope.orden.direccionRecoleccion.posicion)
 			if($scope.orden.direccionRecoleccion.posicion) {
 				posicion = $scope.orden.direccionRecoleccion.posicion;
+				console.log("DIRECCIONRECOLECCION: ", posicion.lat(), posicion.lng());
+			} else {
+				console.log("DIRECCIONRECOLECCION: null");
 			}
 
 			//mostrar la ventana modal con el mapa configurado en la posicion almacenada.
@@ -141,10 +155,12 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 			break;
 
 		case "DIRECCIONENTREGA":
-			console.log("DIRECCIONENTREGA: ", $scope.orden.direccionEntrega.posicion)
 			//ubicar la posicion en el mapa almacenada
 			if($scope.orden.direccionEntrega.posicion) {
 				posicion = $scope.orden.direccionEntrega.posicion;
+				console.log("DIRECCIONENTREGA: ", posicion.lat(), posicion.lng())
+			} else {
+				console.log("DIRECCIONENTREGA: null");
 			}
 
 			//mostrar la ventana modal con el mapa configurado en la posicion almacenada.
@@ -153,36 +169,21 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 			break;
 	}	
 
-	//cargar el mapa por primera vez
-	if(!$scope.mapa) {
-		ModalCargaFactory.mostrar(null, "Preparando mapa...", null)
-		//elemento HTML dentro de la ventana modal
-		var ele = $scope.modalMapa
-					.modalEl //ion-modal
-					.children[1] //ion-content
-					.children[0] //scroll
-					.children[0] //#contenedor-mapa
-		
-		console.log("obtener mapa para insertarlo en contenedor");
-		MapasFactory.getMapa().then(function(mapa) {
-			$scope.mapa = mapa;
-			ele.appendChild($scope.mapa.mapaDOM);
-			console.log("mapa obtenido: ", $scope.mapa)
-			$scope.mapa.obtenerUbicacionGPS(function() {
-				console.log("ubicacion obtenida: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
-				$scope.modalMapa.show().then(function() {
-					ModalCargaFactory.ocultar();
-				});
-			});
-		});
-	} else {
-		if(posicion) {
-			$scope.mapa.setPosicion(posicion);
-		}
-		$scope.modalMapa.show();
-				
+	if(posicion) {
+		$scope.mapa.setPosicion(posicion);
 	}
-	
+
+	if(!$scope.mapa.verificarUbicacionGPS()) {
+		ModalCargaFactory.mostrar(null, "Buscando posicion actual...", null)
+		$scope.modalMapa.show().then(function() {
+				$scope.mapa.obtenerUbicacionGPS(function() {
+					console.log("ubicacion obtenida GPS: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
+					ModalCargaFactory.ocultar();
+				}); 
+		});	
+	} else {
+		$scope.modalMapa.show();
+	}
 };
 
 
