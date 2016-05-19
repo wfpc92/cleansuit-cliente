@@ -109,8 +109,6 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 		animation: 'slide-in-up'
 	}).then(function(modal) {
 		$scope.modalMapa = modal;
-		
-		console.log("obtener mapa para insertarlo en contenedor");
 		MapasFactory.getMapa().then(function(mapa) {
 			$scope.mapa = mapa;
 			console.log("mapa obtenido: ", $scope.mapa)
@@ -167,7 +165,13 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 			$scope.scopeModal.titulo = "Ubique en el mapa el punto de entrega.";
 			$scope.scopeModal.tipo = tipo;
 			break;
-	}	
+	}
+
+	if(!$scope.mapa) {
+		console.log("no existe el mapa...");
+		//mostrar ventana de error 
+		return;
+	}
 
 	if(posicion) {
 		$scope.mapa.setPosicion(posicion);

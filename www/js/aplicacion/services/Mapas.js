@@ -1,4 +1,4 @@
-var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
+var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ionicPopup) {
 	var deferred = null,
 		mapa = null,
 		marker = null,
@@ -11,7 +11,15 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 	var listenerIniciaArrastre = null,
 		listenerCentroActualizado = null;
 
-	var detectarPosicion = function(callback) {
+	var buscarYUbicarGPS = function() {
+		latLng = null;
+		detectarPosicionGPS(function() {
+			mapa.panTo(latLng);
+			marker.setPosition(latLng)
+		});
+	};
+
+	var detectarPosicionGPS = function(callback) {
 		console.log("detectando posicion actual...");
 		
 		if(!latLng) {
@@ -23,6 +31,12 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 				}, function(error){
 					//mostrar ventana de error.
 					console.log("posicion no se puede obtener: ", error);
+					console.log(JSON.stringify(error));
+					$ionicPopup.alert({
+						title: 'No se pudo ubicar',
+						template: 'Verifica el estado de la red, o activa el GPS.'
+					});
+
 					latLng = new google.maps.LatLng(2,-76);
 				})
 				.finally(function() {
@@ -38,7 +52,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 		}	
 	};
 
-	var crearMapaAPIGoogle = function() {
+	var initMap = function() {
 
 		if(!google) {
 			deferred.reject("no existe referencia a google.maps");
@@ -46,8 +60,13 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 		}
 
 		var mapOptions = {
-			  zoom: 18,
-			  mapTypeId: google.maps.MapTypeId.ROADMAP
+				zoom: 18,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				disableDefaultUI: true, //quitar controles por defecto: "tipo", "zoom", "hombrecillo"
+    			//scaleControl: true // mostrar escala
+    			//mapTypeControl: false, //deshabilitar "tipo mapa"
+    			zoomControl: true
+
 			},
 			contentString = "", //mensaje que se muestra al apuntar a una ubicacion no permitida
 			areasPoligonos = [
@@ -97,9 +116,39 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 		elemMapa = document.createElement("div");
 		elemMapa.id = "id-mapa";
 		elemMapa.setAttribute("data-tap-disabled","true");
-		
 		//crear mapa en <div id="{{idMapa}}">
 		mapa = new google.maps.Map(elemMapa, mapOptions);
+
+		// Crear Boton para buscar posicion GPS
+		var centerControlDiv = document.createElement('div');
+		var controlUI = document.createElement('div');
+		controlUI.style.backgroundColor = '#fff';
+		controlUI.style.border = '2px solid #fff';
+		controlUI.style.borderRadius = '3px';
+		controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+		controlUI.style.cursor = 'pointer';
+		controlUI.style.marginBottom = '22px';
+		controlUI.style.textAlign = 'center';
+		controlUI.title = 'Click to recenter the map';
+		centerControlDiv.appendChild(controlUI);
+		var controlText = document.createElement('div');
+		controlText.className = 'icon ion-navigate';
+		controlText.style.color = 'rgb(25,25,25)';
+		controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+		controlText.style.fontSize = '16px';
+		controlText.style.lineHeight = '38px';
+		controlText.style.paddingLeft = '5px';
+		controlText.style.paddingRight = '5px';
+		controlUI.appendChild(controlText);
+
+		// Setup the click event listeners: simply set the map to Chicago.
+		controlUI.addEventListener('click', function() {
+			console.log("aqui se realiza ubicacion GPS....")
+			buscarYUbicarGPS();
+		});
+		
+		centerControlDiv.index = 1;
+		mapa.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
 		
 		//crear pin que se ubica en el centro de la pantalla
 		elemMarker = document.createElement("div");
@@ -228,7 +277,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 			},
 			obtenerUbicacionGPS: function(callback) {
 				var self = this;
-				detectarPosicion(function() {
+				detectarPosicionGPS(function() {
 					self.setPosicion(latLng);
 
 					if(callback) {
@@ -246,7 +295,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 				console.log("mapa google no ha sido creado, construyendo dom...")
 				CargarScriptsFactory.cargarGoogleMaps(function() {
 					console.log("creando mapa de google...")
-					crearMapaAPIGoogle();
+					initMap();
 					resultado();			
 				}, function() {
 					console.log("no se ha podido cargar el script de google maps")
@@ -261,4 +310,4 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory) {
 	}
 };
 
-app.factory("MapasFactory", ['$q', '$cordovaGeolocation', 'CargarScriptsFactory', MapasFactory]);
+app.factory("MapasFactory", MapasFactory);
