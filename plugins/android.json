@@ -7,25 +7,24 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.ionicframework.apptabs917579"
-        },
-        "cordova-plugin-console": {
+        "cordova-plugin-facebook4": {
+            "APP_ID": "1732222377062073",
+            "APP_NAME": "CleanSuit",
             "PACKAGE_NAME": "com.ionicframework.apptabs917579"
         },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.apptabs917579"
         },
-        "cordova-plugin-geolocation": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.apptabs917579"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.apptabs917579"
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.apptabs917579"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ionicframework.apptabs917579"
-        },
-        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.apptabs917579"
         },
         "ionic-plugin-keyboard": {

@@ -1,4 +1,5 @@
-app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compileProvider, $ionicConfigProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $logProvider, 
+	$compileProvider, $ionicConfigProvider) {
 
 
 	//forzar a ionic que tenga las tabs arriba para todas las plataformas
@@ -17,6 +18,8 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider, $compilePr
 	$ionicConfigProvider.backButton.text(txtAtras);
 	$ionicConfigProvider.views.forwardCache(true);
 	$ionicConfigProvider.views.maxCache(5);
+
+
 
 	// Ionic uses AngularUI Router which uses the concept of states
 	// Learn more here: https://github.com/angular-ui/ui-router
