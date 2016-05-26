@@ -1,27 +1,28 @@
 <ion-view title="Ingresar">
-    <ion-content class="form">
-        <img class="logo" ng-src="img/logo.svg" />
-        <div class="formulario">
-            <!--<p>Ingrese su correo electrónico y contraseña<br>para ingresar</p>-->
-            <img class="burbujas" ng-src="img/burbujas.svg" />
-            <form class="list">
-                 <div class="list">
-                    <label class="item item-input item-floating-label" name="email">
-                        <span class="input-label">Correo Electrónico</span>
-                        <input type="text" placeholder="CORREO ELECTRÓNICO">
-                    </label>
-                    <label class="item item-input item-floating-label" name="contrasena">
-                        <span class="input-label">Contraseña</span>
-                        <input type="password" placeholder="CONTRASEÑA">
-                    </label>
-                </div>
-                <a href="#/autenticacion-recuperar-contrasena">¿Olvidaste tu contraseña?</a>
-            </form>
-        </div>
+	
+	<img class="logo" ng-src="img/logo.svg" />
 
-    </ion-content>
-
-    <div class="bar bar-footer">
-        <a href="#/app/inicio" class="button button-calm button-full">INGRESAR</a>
-    </div>
+	<div class="bar bar-footer">
+		<ion-content class="form">
+			
+			<div class="formulario">
+				<!--<p>Ingrese su correo electrónico y contraseña<br>para ingresar</p>-->
+				<img class="burbujas" ng-src="img/burbujas.svg" />
+				<form class="list">
+					 <div class="list">
+						<label class="item item-input item-floating-label" name="email">
+							<span class="input-label">Correo Electrónico</span>
+							<input type="text" placeholder="CORREO ELECTRÓNICO">
+						</label>
+						<label class="item item-input item-floating-label" name="contrasena">
+							<span class="input-label">Contraseña</span>
+							<input type="password" placeholder="CONTRASEÑA">
+						</label>
+					</div>
+					<a href="#/autenticacion-recuperar-contrasena">¿Olvidaste tu contraseña?</a>
+				</form>
+			</div>
+		</ion-content>
+		<a href="#/app/inicio" class="button button-calm button-full">INGRESAR</a>
+	</div>
 </ion-view>
