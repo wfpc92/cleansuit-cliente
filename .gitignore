@@ -1,7 +1,7 @@
 composer.phar
 /vendor/
-platforms/*
-plugins/*
+platforms/
+plugins/
 .idea/
 
 

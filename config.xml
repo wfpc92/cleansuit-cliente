@@ -14,13 +14,16 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
+
   <preference name="SplashScreen" value="screen"/>
   <preference name="AutoHideSplashScreen" value="true"/>
   <preference name="SplashScreenDelay" value="4000"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
+  
   <preference name="keyboardDisplayRequiresUserAction" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="orientation" value="portrait"/>
+  
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
