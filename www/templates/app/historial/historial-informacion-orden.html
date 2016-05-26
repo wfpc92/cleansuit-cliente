@@ -99,7 +99,7 @@
 		<div class="list-orden">    
 			<div class="item" ng-repeat="item in ordenHistorica.items" ng-class="{'item-thumbnail-left': item.tipo=='PRODUCTO'}">
 
-				<img ng-src="img/producto.png" ng-show="item.tipo=='PRODUCTO'"/>
+				<img ng-src="img/producto-detalle1.png" ng-show="item.tipo=='PRODUCTO'"/>
 				<h2>{{item.nombre}}</h2>
 				<p ng-show="item.tipo=='SERVICIO'">{{item.categoria}}</p>
 				<h3>{{item.precio | currency : "$ ": 0}}</h3>
