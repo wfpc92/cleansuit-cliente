@@ -1,7 +1,7 @@
 {
-  "name": "apptabs",
+  "name": "CleanSuit",
   "version": "1.1.1",
-  "description": "AppTabs: An Ionic project",
+  "description": "Aplicación cliente para CleanSuit.",
   "dependencies": {
     "angular-load": "^0.4.1",
     "gulp": "^3.5.6",
