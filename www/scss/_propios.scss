@@ -96,7 +96,10 @@ $registro: #80A3CD;
 			font-size: 0.9em;
 			text-transform: uppercase 
 		}
-		input::-webkit-input-placeholder { color: $registro; }
+		input::-webkit-input-placeholder {
+			color: $registro;
+			font-size: 0.740em !important;
+		}
 		a {
 			display: block;
 			width: 180px;
