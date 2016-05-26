@@ -24,7 +24,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 		
 		if(!latLng) {
 			$cordovaGeolocation
-				.getCurrentPosition({timeout: 6000, enableHighAccuracy: true})
+				.getCurrentPosition({timeout: 10000, enableHighAccuracy: true})
 				.then(function(position) {
 					console.log("posicion detectada con gps: ", position.coords.latitude, position.coords.longitude)
 					latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
@@ -34,7 +34,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 					console.log(JSON.stringify(error));
 					$ionicPopup.alert({
 						title: 'No se pudo ubicar',
-						template: 'Verifica el estado de la red, o activa el GPS. '+JSON.stringify(error)
+						template: 'Verifica el estado de la red, o activa el GPS. <br/>'+JSON.stringify(error)
 					});
 
 					latLng = new google.maps.LatLng(2,-76);

@@ -5,7 +5,7 @@ app.factory('RealizarOrdenFactory',['HistorialOrdenFactory',
 								'UsuarioFactory',
 								function(HistorialOrdenFactory, EstadosFactory, OrdenFactory, CarritoFactory, UsuarioFactory){
 	return {
-		realizarOrden : function(){
+		realizarOrden : function() {
 			//aqui se envia la informacion al servidor
 			OrdenFactory.orden.usuario = UsuarioFactory.getUsuario();
 			

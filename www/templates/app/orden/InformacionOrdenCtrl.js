@@ -1,10 +1,23 @@
 
-var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, CarritoFactory, $state, $ionicPopover, $ionicHistory, $ionicModal, $ionicPopup, RealizarOrdenFactory, $ionicLoading, $rootScope, MapasFactory, ModalCargaFactory) {
+var InformacionOrdenCtrl = function($scope, 
+									UsuarioFactory, 
+									OrdenFactory, 
+									CarritoFactory, 
+									$state, 
+									$ionicPopover, 
+									$ionicHistory, 
+									$ionicModal, 
+									$ionicPopup, 
+									RealizarOrdenFactory,  
+									$rootScope, 
+									MapasFactory, 
+									ModalCargaFactory) {
 	var self = this;
  
 	this.$scope = $scope;
 	this.CarritoFactory = CarritoFactory;
 	this.$ionicModal = $ionicModal;
+	this.$ionicPopup = $ionicPopup;	
 	this.$ionicPopover = $ionicPopover;
 	this.$state = $state;
 	this.$ionicHistory = $ionicHistory;
@@ -60,13 +73,18 @@ var InformacionOrdenCtrl = function($scope, UsuarioFactory, OrdenFactory, Carrit
 	});
 
 	//cancelar orden:
-	$scope.cancelarOrden = function() {
-		self.mostrarPopup($ionicPopup, {
-	    	title: 'Cancelar Orden?',
-	    	template: '¿Está seguro que desea cancelar esta orden?'
-	    }, function(){
-	    	self.cancelarOrden(); 
-	    });
+	$scope.confirmarCancelarOrden = function() {
+		var self = this;
+		self.$ionicPopup
+			.confirm({
+		    	title: 'Cancelar Orden?',
+		    	template: '¿Está seguro que desea cancelar esta orden?'
+	    	})
+			.then(function(res) {
+				if(res) {
+					self.cancelarOrden();
+				}
+			});
 	};
 
 	$scope.realizarOrden = function() {
@@ -178,7 +196,7 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	}
 
 	if(!$scope.mapa.verificarUbicacionGPS()) {
-		ModalCargaFactory.mostrar(null, "Buscando posicion actual...", null)
+		ModalCargaFactory.mostrar(null, "Buscando posicion actual...", null);
 		$scope.modalMapa.show().then(function() {
 				$scope.mapa.obtenerUbicacionGPS(function() {
 					console.log("ubicacion obtenida GPS: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
@@ -283,16 +301,6 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 	});
 };
 
-InformacionOrdenCtrl.prototype.mostrarPopup = function(optionsPopup, callback) {
-	var self = this;
-	self.$ionicPopup
-		.confirm(optionsPopup)
-		.then(function(res) {
-			if(res) {
-				callback();
-			}
-		});
-};
 
 InformacionOrdenCtrl.prototype.cancelarOrden = function() {
 	var self = this;

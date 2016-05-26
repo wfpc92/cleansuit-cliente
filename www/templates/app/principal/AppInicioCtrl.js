@@ -1,8 +1,12 @@
-var AppInicioCtrl = function($scope, PromocionesFactory, CarritoFactory, $log, $ionicTabsDelegate, CargaInicialFactory) {
+var AppInicioCtrl = function($scope, 
+							PromocionesFactory, 
+							CarritoFactory, 
+							$ionicTabsDelegate, 
+							CargaInicialFactory) {
 	var self = this;
 	$scope.promociones = PromocionesFactory.getPromociones();
 	$scope.carrito = CarritoFactory;
-	
+
 	$ionicTabsDelegate.select(0);
 	this.$scope = $scope;
 	this.CargaInicialFactory = CargaInicialFactory;
