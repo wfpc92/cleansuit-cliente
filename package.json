@@ -21,15 +21,7 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
-    {
-      "variables": {
-        "APP_ID": "1732222377062073",
-        "APP_NAME": "CleanSuit"
-      },
-      "locator": "https://github.com/jeduan/cordova-plugin-facebook4#aff9a08a86cc6c6a18019f7adc2896ddf97c11cd",
-      "id": "cordova-plugin-facebook4"
-    }
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
     "android"

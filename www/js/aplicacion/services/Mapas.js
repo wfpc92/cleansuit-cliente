@@ -34,7 +34,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 					console.log(JSON.stringify(error));
 					$ionicPopup.alert({
 						title: 'No se pudo ubicar',
-						template: 'Verifica el estado de la red, o activa el GPS.'
+						template: 'Verifica el estado de la red, o activa el GPS. '+JSON.stringify(error)
 					});
 
 					latLng = new google.maps.LatLng(2,-76);
@@ -164,9 +164,9 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 				//size: new google.maps.Size(30, 44),
 				path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW,
 				fillColor: 'green',
-				fillOpacity: 5.0,
+				fillOpacity: 0.0,
 				strokeColor: 'white',
-				strokeWeight: 5.0,
+				strokeWeight: 0.0,
 				scale: 10
 			},
         	map: mapa,
