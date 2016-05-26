@@ -1,4 +1,15 @@
 {
+    "cordova-plugin-facebook4": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-facebook4@~1.7.1"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "1732222377062073",
+            "APP_NAME": "CleanSuit"
+        }
+    },
     "cordova-plugin-device": {
         "source": {
             "type": "registry",
@@ -47,20 +58,16 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-geolocation": {
+    "phonegap-facebook-plugin": {
         "source": {
-            "type": "registry",
-            "id": "cordova-plugin-geolocation"
+            "type": "git",
+            "url": "https://github.com/phonegap/phonegap-facebook-plugin.git",
+            "subdir": "."
         },
         "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-compat": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-compat"
-        },
-        "is_top_level": false,
-        "variables": {}
+        "variables": {
+            "APP_ID": "1732222377062073",
+            "APP_NAME": "CleanSuit"
+        }
     }
 }
