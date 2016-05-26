@@ -10012,6 +10012,10 @@ div.tex-center h2 {
   margin: 0;
   padding: 0 60px; }
 
+.bar .title.title-left {
+  text-align: center;
+  left: 0 !important; }
+
 .burbujas {
   display: block;
   width: 100%;
