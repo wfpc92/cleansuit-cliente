@@ -59,7 +59,13 @@ img.logo {
 }
 .row-center, .col-center { padding: 0; }
 
-.bar .title.title-left { color: #004C9E;}
+.bar .title.title-left { 
+	color: #004C9E;
+	font-size: 20px;
+}
+.bar.bar-positive .title.title-left {
+	color: #80A3CD;
+}
 
 $registro: #80A3CD;
 
@@ -122,6 +128,15 @@ $registro: #80A3CD;
 			font-size: 1.67em;
 		}
 	}
+}
+.button-clear.button-clear {
+	color: $positive;
+}
+.bar .button.button-icon .icon:before,
+.bar .button.button-icon:before,
+.bar button.button-icon .icon:before,
+.bar button.button-icon:before {
+	font-size: 20px;
 }
 .menu.scroll-content {
 	background-color: $calm;
