@@ -10153,9 +10153,6 @@ p {
   display: inline-block;
   margin: 22px auto; }
 
-.has-tabs-top {
-  top: 125px; }
-
 .tabs-top > .tabs, .tabs.tabs-top {
   border-bottom-width: 0px; }
 
