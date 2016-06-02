@@ -6,6 +6,13 @@ img.logo {
 	display: block;
 	width: 70%;
 	max-width: 295px;
+	margin: 60px auto 105px;
+	z-index: 10;
+}
+img.logoinicio {
+	display: block;
+	width: 70%;
+	max-width: 295px;
 	margin: 100px auto 105px;
 	z-index: 10;
 }
@@ -18,6 +25,9 @@ img.logo {
 		margin: 0;
 		padding: 0 60px;
 	}
+}
+.inicio.overflow-scroll .scroll {
+	margin-top: 0;
 }
 .bar .title.title-left {
 	text-align: center;
@@ -478,17 +488,11 @@ p {
 	display: inline-block;
 	margin: 22px auto;
 }
-<<<<<<< HEAD
-/*.has-tabs-top {
-    top: 125px;
-}*/
 
 .has-header-top {
-	top: 124px;
+	top: 125px;
 }
 
-=======
->>>>>>> 0cc96240606bb53b969b92d6abe13fb3b75f1ed3
 .tabs-top > .tabs, .tabs.tabs-top {
 	border-bottom-width: 0px;
 	top: 54px;	

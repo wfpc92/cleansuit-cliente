@@ -9727,6 +9727,13 @@ img.logo {
   display: block;
   width: 70%;
   max-width: 295px;
+  margin: 60px auto 105px;
+  z-index: 10; }
+
+img.logoinicio {
+  display: block;
+  width: 70%;
+  max-width: 295px;
   margin: 100px auto 105px;
   z-index: 10; }
 
@@ -9737,6 +9744,9 @@ img.logo {
   text-align: center;
   margin: 0;
   padding: 0 60px; }
+
+.inicio.overflow-scroll .scroll {
+  margin-top: 0; }
 
 .bar .title.title-left {
   text-align: center;
@@ -10155,6 +10165,9 @@ p {
   font-size: 1.3em;
   display: inline-block;
   margin: 22px auto; }
+
+.has-header-top {
+  top: 125px; }
 
 .tabs-top > .tabs, .tabs.tabs-top {
   border-bottom-width: 0px;
