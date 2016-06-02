@@ -9,7 +9,7 @@ img.logo {
 	margin: 100px auto 105px;
 	z-index: 10;
 }
-div.tex-center {
+.tex-center {
 	h2 {
 		font-weight: 100;
 		color: #666;
@@ -51,6 +51,11 @@ div.tex-center {
 			.button-balanced { margin-left: 1px; }
 		}
 	}
+}
+.bar-footer.auto {}
+
+.bar {
+	background-color: transparent;
 }
 .row-center, .col-center { padding: 0; }
 
