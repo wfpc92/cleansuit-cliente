@@ -4,7 +4,7 @@ var AppCtrl = function($scope, UsuarioFactory, CarritoFactory, $state, Historial
 	$scope.usuario = UsuarioFactory.getUsuario();
 	$scope.carrito = CarritoFactory;
 	$scope.ordenesEnProceso = HistorialOrdenFactory.ordenesEnProceso;
-	
+
 	$scope.cerrarSesion = function() {
 		$state.go("autenticacion-inicio");
 		/*

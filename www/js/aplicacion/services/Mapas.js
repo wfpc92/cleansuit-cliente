@@ -24,7 +24,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 		
 		if(!latLng) {
 			$cordovaGeolocation
-				.getCurrentPosition({timeout: 10000, enableHighAccuracy: true})
+				.getCurrentPosition({timeout: 5000, enableHighAccuracy: true})
 				.then(function(position) {
 					console.log("posicion detectada con gps: ", position.coords.latitude, position.coords.longitude)
 					latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
@@ -32,9 +32,28 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 					//mostrar ventana de error.
 					console.log("posicion no se puede obtener: ", error);
 					console.log(JSON.stringify(error));
-					$ionicPopup.alert({
-						title: 'No se pudo ubicar',
-						template: 'Verifica el estado de la red, o activa el GPS. <br/>'+JSON.stringify(error)
+					
+					document.addEventListener("deviceready",function() {
+						console.log("deviceready lanzado... llamando cordova.dialogGPS()")
+						/**
+						* @param message {string}       message to be displayed.
+						* @param description {string}   description of the propertie that you want change.
+						* @param callback {function}    callback function to send the index when a button is pressed
+						* @param title {string}         title of dialog
+						* @param buttons {array}        array with the buttons names with a max three names.
+						**/
+						cordova.dialogGPS("Habilitar servicios de ubicación.",//message
+							"Usa el GPS con conexión WiFi o 3G.",//description
+							function(buttonIndex){//callback
+								switch(buttonIndex) {
+								case 0: break;//cancel
+								case 1: break;//neutro option
+								case 2: break;//user go to configuration
+								}
+							},
+							"Servicios de ubicación desactivados",//title
+							["","","Habilitar"]);//buttons
+
 					});
 
 					latLng = new google.maps.LatLng(2,-76);

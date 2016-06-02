@@ -24,7 +24,7 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 			$ionicLoading.show(opciones);
 			promise = $timeout( function() {
 				$scope.cerrar = true; 
-			}, 6000);
+			}, 5000);
 		},
 		ocultar: function() {
 			$timeout.cancel(promise);
