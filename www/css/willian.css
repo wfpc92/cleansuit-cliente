@@ -20,4 +20,11 @@
 	background: url("../img/marker.png") no-repeat;
 }
 
+.bar .title.title-left {
+	color: #fff;
+}
+
+/*.tab-nav.tabs {
+	position: relative;
+}*/
 

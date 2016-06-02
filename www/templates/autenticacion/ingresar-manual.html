@@ -18,10 +18,10 @@
 							<input type="password" placeholder="CONTRASEÑA">
 						</label>
 					</div>
-					<a href="#/autenticacion-recuperar-contrasena">¿Olvidaste tu contraseña?</a>
+					<a ui-sref="autenticacion.recuperar-contrasena">¿Olvidaste tu contraseña?</a>
 				</form>
 			</div>
 		</ion-content>
-		<a href="#/app/inicio" class="button button-calm button-full">INGRESAR</a>
+		<a ng-click="login()" class="button button-calm button-full">INGRESAR</a>
 	</div>
 </ion-view>

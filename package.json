@@ -21,7 +21,20 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-geolocation",
+    {
+      "variables": {
+        "APP_ID": "1732222377062073",
+        "APP_NAME": "CleanSuit"
+      },
+      "locator": "cordova-plugin-facebook4",
+      "id": "cordova-plugin-facebook4"
+    },
+    {
+      "locator": "https://github.com/rodrigo-martinezd/cordova-dialog-gps.git",
+      "id": "cl.rmd.cordova.dialoggps"
+    }
   ],
   "cordovaPlatforms": [
     "android"

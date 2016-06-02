@@ -27,37 +27,57 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 	// Each state's controller can be found in controllers.js
 	$stateProvider
 
-
 	/**
 	 * Rutas para autenticacion
 	 */
-	
-	
-	.state('autenticacion-inicio', {
-		url: '/autenticacion-inicio',
-		templateUrl: 'templates/autenticacion/inicio.html',
-		controller:'AutenticacionInicioCtrl'
+	.state('autenticacion', {
+		url: "/autenticacion",
+    	abstract: true,
+      	templateUrl: "templates/autenticacion/plantilla.html"
 	})
 
-	.state('autenticacion-registrar-manual', {
-		url: '/autenticacion-registrar-manual',
-		//cache: false,
-		templateUrl: 'templates/autenticacion/registrar-manual.html',
-		controller: 'registrarManualCtrl'
+	.state('autenticacion.inicio', {
+		url: '/inicio',
+		views: {
+        	'contenedor-app' : {
+         		templateUrl: "templates/autenticacion/inicio.html",
+        		controller : "AutenticacionInicioCtrl"
+        	}
+      	}
 	})
 
-	.state('autenticacion-ingresar-manual', {
-		url: '/autenticacion-ingresar-manual',
+	.state('autenticacion.registrar-manual', {
+		url: '/registrar-manual',
 		//cache: false,
-		templateUrl: 'templates/autenticacion/ingresar-manual.html',
-		controller: 'ingresarManualCtrl'
+		views: {
+        	'contenedor-app' : {
+        		templateUrl: 'templates/autenticacion/registrar-manual.html',
+				controller: 'RegistrarManualCtrl'
+			}
+      	}
+
 	})
 
-	.state('autenticacion-recuperar-contrasena', {
-		url: '/autenticacion-recuperar-contrasena',
+	.state('autenticacion.ingresar-manual', {
+		url: '/ingresar-manual',
 		//cache: false,
-		templateUrl: 'templates/autenticacion/recuperar-contrasena.html',
-		controller: 'RecuperarContrasenaCtrl'
+		views: {
+        	'contenedor-app' : {
+        		templateUrl: 'templates/autenticacion/ingresar-manual.html',
+				controller: 'IngresarManualCtrl'
+			}
+		}
+	})
+
+	.state('autenticacion.recuperar-contrasena', {
+		url: '/recuperar-contrasena',
+		//cache: false,
+		views: {
+        	'contenedor-app' : {
+        		templateUrl: 'templates/autenticacion/recuperar-contrasena.html',
+				controller: 'RecuperarContrasenaCtrl'
+			}
+		}
 	})
 
 
@@ -69,7 +89,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 	.state('app', {
 		url: '/app',
 		abstract: true,
-		templateUrl: 'templates/app/principal/tabs.html',//aqui estan las tabs
+		templateUrl: 'templates/app/menu.html',//aqui estan las tabs
 		controller: 'AppCtrl'
 	})	
 
@@ -214,6 +234,6 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 		controller: 'AcercaCtrl'
 	})
 	
+	$urlRouterProvider.otherwise('/autenticacion/inicio');
 
-	$urlRouterProvider.otherwise('/autenticacion-inicio');
 });
