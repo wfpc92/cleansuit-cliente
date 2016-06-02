@@ -46,6 +46,9 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.ico-home:before {
+	content: "\e90f";
+}
 .ico-perfil:before {
 	content: "\e900";
 }

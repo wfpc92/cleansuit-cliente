@@ -377,7 +377,8 @@ p {
 	.carro {
 		background-color: $light;
 		padding: 10px;
-		margin-bottom: 0;		
+		margin-bottom: 0;
+		position: relative;	
 		.item {
 			position: relative;
 			border: none;
@@ -388,6 +389,20 @@ p {
 			font-family: 'fira_sansmedium';
 			min-height: 100px;
 			background-color: #FAFAFA;
+			.img {
+				width: 65px;
+				height: 65px;
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				border: 1px solid #E9E9E9;
+				img {
+					display: block;
+					height: 100%;
+					width: auto;
+					margin: 0 auto;
+				}
+			}
 			h2 { color: #333; }
 			.contenedor {
 				color: #2E7300;

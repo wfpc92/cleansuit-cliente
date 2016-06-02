@@ -10070,7 +10070,8 @@ p {
 .contcarro .carro {
   background-color: #fff;
   padding: 10px;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  position: relative; }
   .contcarro .carro .item {
     position: relative;
     border: none;
@@ -10081,6 +10082,18 @@ p {
     font-family: 'fira_sansmedium';
     min-height: 100px;
     background-color: #FAFAFA; }
+    .contcarro .carro .item .img {
+      width: 65px;
+      height: 65px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border: 1px solid #E9E9E9; }
+      .contcarro .carro .item .img img {
+        display: block;
+        height: 100%;
+        width: auto;
+        margin: 0 auto; }
     .contcarro .carro .item h2 {
       color: #333; }
     .contcarro .carro .item .contenedor {
