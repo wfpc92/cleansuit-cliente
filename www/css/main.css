@@ -9771,14 +9771,17 @@ img.logo {
         margin-left: 1px; }
 
 .bar {
-  background-color: transparent; }
+  background-color: transparent;
+  height: 54px; }
 
 .row-center, .col-center {
   padding: 0; }
 
 .bar .title.title-left {
   color: #004C9E;
-  font-size: 20px; }
+  font-size: 20px;
+  height: 54px;
+  line-height: 54px; }
 
 .bar.bar-positive .title.title-left {
   color: #80A3CD; }
@@ -9841,7 +9844,7 @@ img.logo {
 .bar .button.button-icon:before,
 .bar button.button-icon .icon:before,
 .bar button.button-icon:before {
-  font-size: 20px; }
+  font-size: 19px; }
 
 .menu.scroll-content {
   background-color: #44A01A; }
@@ -10008,7 +10011,7 @@ p {
     font-size: 1.6em;
     margin-top: 10px;
     margin-bottom: 3px;
-    padding-top: 19px; }
+    padding-top: 27px; }
   .vista p {
     text-align: center; }
   .vista .img {
@@ -10104,7 +10107,7 @@ p {
       position: absolute;
       top: 10px;
       left: 10px;
-      border: 1px solid #E9E9E9; }
+      /*border: 1px solid #E9E9E9;*/ }
       .contcarro .carro .item .img img {
         display: block;
         height: 100%;
@@ -10154,7 +10157,8 @@ p {
   margin: 22px auto; }
 
 .tabs-top > .tabs, .tabs.tabs-top {
-  border-bottom-width: 0px; }
+  border-bottom-width: 0px;
+  top: 54px; }
 
 .tab-nav a {
   border-top: 1px solid;
@@ -10286,7 +10290,7 @@ p {
   background-color: #3DA0EB; }
 
 .has-header.has-subheader.has-tabs-top.estado-orden {
-  top: 94px; }
+  top: 125px; }
 
 .estado-orden {
   padding: 15px 10px 10px;

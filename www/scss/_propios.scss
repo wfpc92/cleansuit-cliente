@@ -56,15 +56,20 @@ img.logo {
 
 .bar {
 	background-color: transparent;
+	height: 54px;
 }
 .row-center, .col-center { padding: 0; }
 
 .bar .title.title-left { 
 	color: #004C9E;
 	font-size: 20px;
+	height: 54px;
+	line-height: 54px;
 }
-.bar.bar-positive .title.title-left {
-	color: #80A3CD;
+.bar.bar-positive {	
+	.title.title-left {
+		color: #80A3CD;
+	}
 }
 
 $registro: #80A3CD;
@@ -136,7 +141,7 @@ $registro: #80A3CD;
 .bar .button.button-icon:before,
 .bar button.button-icon .icon:before,
 .bar button.button-icon:before {
-	font-size: 20px;
+	font-size: 19px;
 }
 .menu.scroll-content {
 	background-color: $calm;
@@ -314,7 +319,7 @@ p {
 		font-size: 1.6em;
 		margin-top: 10px;
 		margin-bottom: 3px;
-		padding-top: 19px;
+		padding-top: 27px;
 	}
 	p { text-align: center; }
 	.img {
@@ -415,7 +420,7 @@ p {
 				position: absolute;
 				top: 10px;
 				left: 10px;
-				border: 1px solid #E9E9E9;
+				/*border: 1px solid #E9E9E9;*/
 				img {
 					display: block;
 					height: 100%;
@@ -474,7 +479,8 @@ p {
 	margin: 22px auto;
 }
 .tabs-top > .tabs, .tabs.tabs-top {
-	border-bottom-width: 0px;	
+	border-bottom-width: 0px;
+	top: 54px;	
 }
 .tab-nav {	
 	a {
@@ -627,7 +633,7 @@ p {
 	}
 }
 .has-header.has-subheader.has-tabs-top.estado-orden {
-	top: 94px;
+	top: 125px;
 }
 .estado-orden {
 	padding: 15px 10px 10px;
