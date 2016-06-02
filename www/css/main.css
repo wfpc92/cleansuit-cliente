@@ -10004,7 +10004,7 @@ img.logo {
   margin: 100px auto 105px;
   z-index: 10; }
 
-div.tex-center h2 {
+.tex-center h2 {
   font-weight: 100;
   color: #666;
   font-size: 2.3em;
@@ -10043,6 +10043,9 @@ div.tex-center h2 {
         margin-right: 1px; }
       .bar-footer .row .col .button-balanced {
         margin-left: 1px; }
+
+.bar {
+  background-color: transparent; }
 
 .row-center, .col-center {
   padding: 0; }
@@ -10344,7 +10347,8 @@ p {
 .contcarro .carro {
   background-color: #fff;
   padding: 10px;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  position: relative; }
   .contcarro .carro .item {
     position: relative;
     border: none;
@@ -10355,6 +10359,18 @@ p {
     font-family: 'fira_sansmedium';
     min-height: 100px;
     background-color: #FAFAFA; }
+    .contcarro .carro .item .img {
+      width: 65px;
+      height: 65px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border: 1px solid #E9E9E9; }
+      .contcarro .carro .item .img img {
+        display: block;
+        height: 100%;
+        width: auto;
+        margin: 0 auto; }
     .contcarro .carro .item h2 {
       color: #333; }
     .contcarro .carro .item .contenedor {
