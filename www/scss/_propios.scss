@@ -473,9 +473,14 @@ p {
 	display: inline-block;
 	margin: 22px auto;
 }
-.has-tabs-top {
+/*.has-tabs-top {
     top: 125px;
+}*/
+
+.has-header-top {
+	top: 124px;
 }
+
 .tabs-top > .tabs, .tabs.tabs-top {
 	border-bottom-width: 0px;	
 }

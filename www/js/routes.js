@@ -198,40 +198,64 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 	 * Rutas de los items del menu
 	 */
 	
-	.state('ordenes-en-proceso', {
+	.state('app.ordenes-en-proceso', {
 		url: '/ordenes-en-proceso',
-		templateUrl: 'templates/app/historial/ordenes-en-proceso.html',
-		controller: 'OrdenesEnProcesoCtrl'
+		views: {
+			'mi-carrito': {
+				templateUrl: 'templates/app/historial/ordenes-en-proceso.html',
+				controller: 'OrdenesEnProcesoCtrl'
+			}
+		}
 	})
 
-	.state('orden-en-proceso', {
+	.state('app.orden-en-proceso', {
 		url: '/ordenes-en-proceso/:indexOrden',
-		templateUrl: 'templates/app/orden/estado-orden.html',
-		controller: 'OrdenEnProcesoCtrl'
+		views: {
+			'panel-contenido': {
+				templateUrl: 'templates/app/orden/estado-orden.html',
+				controller: 'OrdenEnProcesoCtrl'
+			}
+		}
 	})
 
-	.state('historial-ordenes', {
+	.state('app.historial-ordenes', {
 		url: '/historial-ordenes',
-		templateUrl: 'templates/app/historial/historial-ordenes.html',
-		controller: 'HistorialOrdenesCtrl'
+		views: {
+			'panel-contenido': {
+				templateUrl: 'templates/app/historial/historial-ordenes.html',
+				controller: 'HistorialOrdenesCtrl'
+			}
+		}
 	})
 
-	.state('historial-orden', {
+	.state('app.historial-orden', {
 		url: '/historial-ordenes/:indexOrden',
-		templateUrl: 'templates/app/historial/historial-informacion-orden.html',
-		controller: 'HistorialOrdenCtrl'
+		views: {
+			'panel-contenido': {
+				templateUrl: 'templates/app/historial/historial-informacion-orden.html',
+				controller: 'HistorialOrdenCtrl'
+			}
+		}
 	})
 
-	.state('perfil', {
+	.state('app.perfil', {
 		url: '/perfil',
-		templateUrl: 'templates/app/principal/perfil.html',
-		controller: 'PerfilCtrl'
+		views: {
+			'panel-contenido': {
+				templateUrl: 'templates/app/principal/perfil.html',
+				controller: 'PerfilCtrl'
+			}
+		}
 	})
 
-	.state('about', {
+	.state('app.about', {
 		url: '/about',
-		templateUrl: 'templates/app/principal/about.html',
-		controller: 'AcercaCtrl'
+		views: {
+			'panel-contenido': {
+				templateUrl: 'templates/app/principal/about.html',
+				controller: 'AcercaCtrl'
+			}
+		}
 	})
 	
 	$urlRouterProvider.otherwise('/autenticacion/inicio');

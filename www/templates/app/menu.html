@@ -40,28 +40,28 @@
 					<h2>{{usuario.nombre | uppercase}}</h2>
 				</ion-item>
 
-				<ion-item menu-close href="#/app/inicio" class="item-icon-left">
+				<ion-item menu-close ui-sref="app.inicio" class="item-icon-left">
 					Inicio - Promociones
 					<i class="icon ion-home"></i>
 				</ion-item>
 
-				<ion-item menu-close href="#/ordenes-en-proceso" class="item-icon-left">
+				<ion-item menu-close ui-sref="app.ordenes-en-proceso" class="item-icon-left">
 					Orden en proceso {{contOrdenesEnProceso}}
 					<i class="icon ico-ordenes"></i>
 					<span class="badge badge-dark icon-badge" ng-if="ordenesEnProceso.length > 0">{{ordenesEnProceso.length}}</span>
 				</ion-item>
 
-				<ion-item menu-close href="#/historial-ordenes" class="item-icon-left">
+				<ion-item menu-close ui-sref="app.historial-ordenes" class="item-icon-left">
 					Historial de órdenes
 					<i class="icon ico-historial"></i>
 				</ion-item>
 				
-				<ion-item menu-close href="#/perfil" class="item-icon-left">
+				<ion-item menu-close ui-sref="app.perfil" class="item-icon-left">
 					Perfil
 					<i class="icon ico-perfil"></i>
 				</ion-item>
 				
-				<ion-item menu-close href="#/about" class="item-icon-left">
+				<ion-item menu-close ui-sref="app.about" class="item-icon-left">
 					Sobre esta aplicación
 					<i class="icon ico-about"></i>
 				</ion-item>
