@@ -9861,6 +9861,9 @@ img.logoinicio {
 .menu.scroll-content {
   background-color: #44A01A; }
 
+.menu .bar-header {
+  display: none; }
+
 .menu .item-complex .item-content {
   background-color: #44A01A;
   padding: 18px 15px 19px 16px;
@@ -10498,3 +10501,6 @@ p {
       .perfil .list .item .ico-flechaabajo {
         color: #666666;
         font-size: 1.5em; }
+
+#id-modal-mapa .scroll-content .scroll {
+  margin-top: 0; }
