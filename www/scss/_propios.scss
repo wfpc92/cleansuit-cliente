@@ -159,6 +159,7 @@ $registro: #80A3CD;
 	background-color: $calm;
 }
 .menu {
+	.bar-header { display: none; }
 	.item-complex .item-content, {
 		background-color: $calm;
 		padding: 18px 15px 19px 16px;
@@ -882,4 +883,7 @@ p {
 		}
 
 	}
+}
+#id-modal-mapa .scroll-content .scroll {
+	margin-top: 0;
 }
