@@ -26,6 +26,10 @@ var ProductosCtrl = function($scope, ProductosFactory, CarritoFactory, RecursosF
 			$scope.productos = ProductosFactory.getProductos();
 		});
 	}
+
+	ionic.onGesture('swipe', function() {
+
+	},elementSwipe, );
 };
 
 ProductosCtrl.prototype.viewAfterEnter = function(){
