@@ -7,7 +7,7 @@
 
 		<div class="list">
 			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
-					href="#/historial-ordenes/{{$index}}">
+					ui-sref="app.historial-orden({'indexOrden': {{$index}}})">
 				<h3>{{orden.fecha}}</h3>
 				<p>{{orden.titulo}} {{orden.estado}}</p>
 				<p># de orden: {{orden.codigo}}</p>

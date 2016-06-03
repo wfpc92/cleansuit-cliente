@@ -10,7 +10,12 @@
 
         <ion-list can-swipe="true" show-delete="false" show-reorder="false">
             <div class="servicios lista">
-                <ion-item class="item-icon-right item-text-wrap" ng-repeat="servicio in servicios track by $index" href="#/app/servicios/{{indexCategoria}}/{{$index}}">
+                <ion-item class="item-icon-right item-text-wrap" ng-repeat="servicio in servicios track by $index" 
+                    ui-sref="app.servicio({ 
+                                            'indexCategoria': {{indexCategoria}}, 
+                                            'indexServicio': {{$index}} 
+                                            })">
+
                     <h2>{{::servicio.nombre}} <span ng-if="cantidadEnCarrito(servicio._id) > 0" class="badge badge-dark icon-badge">
                     {{cantidadEnCarrito(servicio._id)}}
                         </span>

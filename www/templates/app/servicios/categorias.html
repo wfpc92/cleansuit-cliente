@@ -9,7 +9,8 @@
 
 		<ion-list>
 			<div class="categorias lista">
-				<ion-item class="item-icon-right item-text-wrap" ng-repeat="categoria in categorias track by $index" href="#/app/servicios/{{$index}}">
+				<ion-item class="item-icon-right item-text-wrap" ng-repeat="categoria in categorias track by $index" 
+					ui-sref="app.servicios({ 'indexCategoria': {{$index}} })">
 					<h2>{{::categoria.nombre}}</h2>
 					<p>{{::categoria.descripcion}}</p>
 					<i class="icon ico-flechader assertive" ></i>

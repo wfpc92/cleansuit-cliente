@@ -1,4 +1,4 @@
-var AutenticacionInicioCtrl = function($scope, $ionicSideMenuDelegate, $ionicLoading) {
+var AutenticacionInicioCtrl = function($scope, $ionicSideMenuDelegate, $ionicLoading, UsuarioFactory) {
 	
 	$ionicSideMenuDelegate.canDragContent(false);
 
@@ -14,7 +14,7 @@ var AutenticacionInicioCtrl = function($scope, $ionicSideMenuDelegate, $ionicLoa
 		getFacebookProfileInfo(authResponse)
 		.then(function(profileInfo) {
 			// For the purpose of this example I will store user data on local storage
-			UserService.setUser({
+			UsuarioFactory.setUser({
 				authResponse: authResponse,
 				userID: profileInfo.id,
 				name: profileInfo.name,
@@ -31,7 +31,7 @@ var AutenticacionInicioCtrl = function($scope, $ionicSideMenuDelegate, $ionicLoa
 
 	// This is the fail callback from the login method
 	var fbLoginError = function(error){
-		console.log('fbLoginError', error);
+		console.log('fbLoginError', JSON.stringify(error));
 		$ionicLoading.hide();
 	};
 
@@ -54,6 +54,11 @@ var AutenticacionInicioCtrl = function($scope, $ionicSideMenuDelegate, $ionicLoa
 
 	//This method is executed when the user press the "Login with facebook" button
 	$scope.facebookSignIn = function() {
+		var cadena = "";
+		for (var i = 0; i <500; i++) {
+			cadena += ".";
+		}
+		console.log(cadena)
 		facebookConnectPlugin.getLoginStatus(function(success){
 			if(success.status === 'connected'){
 				// The user is logged in and has authenticated your app, and response.authResponse supplies
@@ -62,13 +67,13 @@ var AutenticacionInicioCtrl = function($scope, $ionicSideMenuDelegate, $ionicLoa
 				console.log('getLoginStatus', success.status);
 
 				// Check if we have our user saved
-				var user = UserService.getUser('facebook');
+				var user = UsuarioFactory.getUser('facebook');
 
 				if(!user.userID){
 					getFacebookProfileInfo(success.authResponse)
 					.then(function(profileInfo) {
 						// For the purpose of this example I will store user data on local storage
-						UserService.setUser({
+						UsuarioFactory.setUser({
 							authResponse: success.authResponse,
 							userID: profileInfo.id,
 							name: profileInfo.name,
@@ -90,16 +95,17 @@ var AutenticacionInicioCtrl = function($scope, $ionicSideMenuDelegate, $ionicLoa
 				// Else the person is not logged into Facebook,
 				// so we're not sure if they are logged into this app or not.
 
-				console.log('getLoginStatus %j', JSON.stringify(success.status));
+				console.log('getLoginStatus');
+				console.log(JSON.stringify(success));
 				console.log(JSON.stringify(success.status))
 
 				$ionicLoading.show({
-							template: 'Logging in...'
-						});
+					template: 'Logging in...'
+				});
 
 				// Ask the permissions you need. You can learn more about
 				// FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4
-						facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
+				facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
 			}
 		});
 	};

@@ -9,7 +9,7 @@
 		
 		<ion-list can-swipe="true" show-delete="false" show-reorder="false">
 			<div class="productos lista">
-				<ion-item class="item-thumbnail-left item-icon-right item-text-wrap" ng-repeat="producto in productos track by $index" href="#/app/productos/{{$index}}">
+				<ion-item class="item-thumbnail-left item-icon-right item-text-wrap" ng-repeat="producto in productos track by $index" ui-sref="app.producto({ 'indexProducto': {{$index}} })">
 
 					<div class="imagen">
 					<!--{{producto.foto_url}}-->

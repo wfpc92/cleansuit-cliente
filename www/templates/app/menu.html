@@ -10,16 +10,16 @@
 		</ion-nav-bar>
 
 		<ion-tabs class="tabs-light ">
-			<ion-tab title="Promociones" href="#/app/inicio" class="tab-hidden">
+			<ion-tab title="Promociones" ui-sref="app.inicio" class="tab-hidden">
 				<ion-nav-view name="panel-contenido"></ion-nav-view>
 			</ion-tab>
-			<ion-tab title="Servicios" href="#/app/categorias" badge="carrito.contServicios" badge-style="badge-dark" class="aIni">
+			<ion-tab title="Servicios" ui-sref="app.categorias" badge="carrito.contServicios" badge-style="badge-dark" class="aIni">
 				<ion-nav-view name="mis-categorias"></ion-nav-view>
 			</ion-tab>
-			<ion-tab title="Productos" href="#/app/productos" badge="carrito.contProductos" class="aFin">
+			<ion-tab title="Productos" ui-sref="app.productos" badge="carrito.contProductos" class="aFin">
 				<ion-nav-view name="mis-productos"></ion-nav-view>
 			</ion-tab>
-			<ion-tab title="Carrito" href="#/app/carrito" class="tab-hidden">
+			<ion-tab title="Carrito" ui-sref="app.carrito" class="tab-hidden">
 				<ion-nav-view name="mi-carrito"></ion-nav-view>
 			</ion-tab>
 		</ion-tabs>
@@ -32,7 +32,7 @@
 			<h1 class="title">Menú</h1>
 		</ion-header-bar>
 
-		<ion-content overflow-scroll="true" padding="false" scroll="false" class="menu">
+		<ion-content overflow-scroll="true" padding="false" scroll="true" class="menu">
 			<ion-list>
 
 				<ion-item class="item-avatar item-text-wrap">

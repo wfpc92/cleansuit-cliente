@@ -1,4 +1,13 @@
 app.factory('UsuarioFactory',[function(){
+	var setUser = function(user_data) {
+		window.localStorage.starter_facebook_user = JSON.stringify(user_data);
+	};
+
+	var getUser = function(){
+		return JSON.parse(window.localStorage.starter_facebook_user || '{}');
+	};
+
+
 	var usuario = {
 		nombre : 'Dany Alejandro',
 		apellidos : 'Cabrera Bolaños',
@@ -22,7 +31,9 @@ app.factory('UsuarioFactory',[function(){
 			}
 			cllbck();
 			//resource.$post() guardar en el servidor
-		}
+		},
+		setUser : setUser,
+		getUser: getUser
 	};
 	
 }])
