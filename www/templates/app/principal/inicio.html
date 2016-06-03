@@ -4,10 +4,13 @@
 	<ion-content>
 		<div class="list promocion" ng-repeat="promo in promociones">
 			<div class="item item-image">
-				<img ng-src="{{promo.imagen_url}}" ng-cloak/>
+				<div class="imagen">					
+					<img ng-src="{{promo.imagen_url}}" ng-cloak/>
+					<span class="sombra"></span>
+				</div>				
+				<h3>Descuento del 20%</h3>
 			</div>
 		</div>	
 	</ion-content>
-
 	<footer-carrito carrito="carrito"></footer-carrito>
 </ion-view>

@@ -8,15 +8,12 @@
 				</div>				
 				<h2>{{item.nombre}}</h2>
 				<p ng-show="item.tipo=='SERVICIO'">{{item.categoria}}</p>
-
-				<div class="contenedor">
-					<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>
+				<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>				
 					
-					<div class="contador">
-						<i ng-click="item.tipo=='PRODUCTO' ? aumentarProducto(item) : aumentarServicio(item)" class="icon ico-mas"></i>
-						<span>{{item.cantidad || 0}}</span>
-						<i ng-click="item.tipo=='PRODUCTO' ? disminuirProducto(item) : disminuirServicio(item)" class="icon ico-menos"></i>
-					</div>
+				<div class="contador">
+					<i ng-click="item.tipo=='PRODUCTO' ? aumentarProducto(item) : aumentarServicio(item)" class="icon ico-mas"></i>
+					<span>{{item.cantidad || 0}}</span>
+					<i ng-click="item.tipo=='PRODUCTO' ? disminuirProducto(item) : disminuirServicio(item)" class="icon ico-menos"></i>
 				</div>
 			</div>
 		</div>
