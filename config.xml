@@ -52,8 +52,4 @@
     <splash src="res/screen/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
   </platform>
   <allow-navigation href="*://api.cleansuit.co/*"/>
-  <plugin name="cordova-plugin-facebook4" spec="~1.7.1">
-    <variable name="APP_ID" value="1732222377062073"/>
-    <variable name="APP_NAME" value="CleanSuit"/>
-  </plugin>
 </widget>
