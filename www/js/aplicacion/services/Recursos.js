@@ -20,7 +20,10 @@ var RecursosFactory = function($log, $http) {
 	var self = this;
 	this.$log = $log;
 	this.$http = $http;
-	this._apiUrl = "http://api.cleansuit.co";
+	//development:
+	//this._apiUrl = "http://localhost:8100/api";
+	//production:
+	this._apiUrl = "/api";	
 
 	$log.debug("Contructor de RecursosApi");
 
@@ -53,8 +56,9 @@ var RecursosFactory = function($log, $http) {
 			error : null
 		};
 
-		this.$http(requestConfig)
-			.then(function(respuestaServidor) {
+		console.log("requestConfig: ", JSON.stringify(requestConfig))
+
+		this.$http(requestConfig).then(function(respuestaServidor) {
 				// Consulta exitosa: Se obtuvo respuesta por parte del servidor
 				console.log("se obtuvo una respuesta desde el servidor.")
 				for(var i = 0; i<= 10; i++){
@@ -105,7 +109,7 @@ var RecursosFactory = function($log, $http) {
 				e.status = status;
 				e.imprimir();
 				callback(null, e);*/
-				console.log(respuesta)
+				console.log("Respuesta desde $http: ", JSON.stringify(respuesta));
 				self.respuesta.error = respuesta;
 				callback(self.respuesta);
 			});

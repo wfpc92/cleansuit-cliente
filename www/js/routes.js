@@ -103,37 +103,34 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 		}
 	})
 
-	.state('app.categorias', {
-		url: '/categorias',
-		views: {
-			'mis-categorias': {
-				templateUrl: 'templates/app/servicios/categorias.html',
-				controller: 'CategoriasCtrl'
-			}
-		}
-	})
-
-
 	.state('app.servicios', {
-		url: '/servicios/:indexCategoria',
+		url: '/servicios',
 		views: {
-			'mis-categorias': {
+			'mis-servicios': {
 				templateUrl: 'templates/app/servicios/servicios.html',
 				controller: 'ServiciosCtrl'
 			}
 		}
 	})
-
-
-	.state('app.servicio', {
-		url: '/servicios/:indexCategoria/:indexServicio',
+	.state('app.subservicios', {
+		url: '/servicios/:indexCategoria/subservicios',
 		views: {
-			'mis-categorias': {
-				templateUrl: 'templates/app/servicios/servicio.html',
+			'mis-servicios': {
+				templateUrl: 'templates/app/servicios/subservicios.html',
+				controller: 'SubserviciosCtrl'
+			}
+		}
+	})
+	.state('app.subservicio', {
+		url: '/servicios/:indexServicio/subservicios/:indexSubservicio',
+		views: {
+			'mis-servicios': {
+				templateUrl: 'templates/app/servicios/subservicio.html',
 				controller: 'ServicioCtrl'
 			}
 		}
 	})
+	
 
 	.state('app.productos', {
 		url: '/productos',

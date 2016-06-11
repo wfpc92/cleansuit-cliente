@@ -1,49 +1,24 @@
 <ion-view title="Cleansuit">
-    <ion-content>
+  	<ion-content>
 
-        <div class="row">
-            <div class="col text-center"><h3>{{categoria.nombre}}</h3></div> 
-        </div>
-        <div class="row">
-            <div class="col text-center">{{categoria.descripcion}}</div> 
-        </div>
+  		<div clas="card" ng-show="servicios.length == 0">
+			<div class="item item-text-wrap">
+				No hay Servicios para mostrar. <a ng-click="cargarServicios()">Cargar</a>
+			</div>
+		</div>
 
-        <ion-list can-swipe="true" show-delete="false" show-reorder="false">
-            <div class="servicios lista">
-                <ion-item class="item-icon-right item-text-wrap" ng-repeat="servicio in servicios track by $index" 
-                    ui-sref="app.servicio({ 
-                                            'indexCategoria': {{indexCategoria}}, 
-                                            'indexServicio': {{$index}} 
-                                            })">
+		<ion-list>
+			<div class="categorias lista">
+				<ion-item class="item-icon-right item-text-wrap" ng-repeat="servicio in servicios track by $index" 
+					ui-sref="app.subservicios({ 'indexServicio': {{$index}} })">
+					<h2>{{::servicio.nombre}}</h2>
+					<p>{{::servicio.descripcion}}</p>
+					<i class="icon ico-flechader assertive" ></i>
+				</ion-item>
+			</div>
+		</ion-list>
 
-                    <h2>{{::servicio.nombre}} <span ng-if="cantidadEnCarrito(servicio._id) > 0" class="badge badge-dark icon-badge">
-                    {{cantidadEnCarrito(servicio._id)}}
-                        </span>
-                    </h2>
-                      
-                    <p>{{::servicio.descripcion}}</p>
-                    <h3>{{::servicio.precio | currency : "$ " : 0}}</h3>
-                    <i class="icon ico-flechader assertive"></i>
-
-                    <ion-option-button class="light text-center mas" ng-click="aumentarServicio(servicio)">
-                        <i class="icon ico-mas"></i>
-                    </ion-option-button>                    
-
-                    <ion-option-button class="light">
-                        <div class="col text-center col-center fondo-gris">
-                            {{cantidadEnCarrito(servicio._id)}}
-                        </div>
-                    </ion-option-button>
-
-                    <ion-option-button class="light text-center menos" ng-click="disminuirServicio(servicio)">
-                        <i class="icon ico-menos"></i>
-                    </ion-option-button>
-                    
-                </ion-item>
-            </div>		
-        </ion-list>
-    
-    </ion-content>
-    
-    <footer-carrito carrito="carrito"></footer-carrito>
+  	</ion-content>
+  
+  	<footer-carrito carrito="carrito"></footer-carrito> 
 </ion-view>

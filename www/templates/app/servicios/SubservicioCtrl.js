@@ -1,4 +1,4 @@
-var ServicioCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFactory, $ionicHistory, $state) {
+var SubservicioCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFactory, $ionicHistory, $state) {
 	var self = this;
 	var i = $stateParams.indexCategoria;
 	var j = $stateParams.indexServicio;
@@ -8,13 +8,13 @@ var ServicioCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFacto
 	//$log.debug("index de categoria: "+$scope.indexCategoria+", index servicio: "+$scope.indexServicio);
 
 	$scope.aumentarServicio = function(servicio){
-		console.log("Agregar item de servicio al carrito desde ServicioCtrl");
+		console.log("Agregar item de servicio al carrito desde SubservicioCtrl");
 		CarritoFactory.agregar(servicio, "SERVICIO", 1);
 		CarritoFactory.limpiar();
 	};
 
 	$scope.disminuirServicio = function(servicio){
-		console.log("Disminuir item de servicio del carrito desde ServicioCtrl");
+		console.log("Disminuir item de servicio del carrito desde SubservicioCtrl");
 		CarritoFactory.disminuir(servicio, "SERVICIO", 1);
 		CarritoFactory.limpiar();
 	};	
@@ -32,7 +32,7 @@ var ServicioCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFacto
 	};
 };
 
-ServicioCtrl.prototype.viewAfterEnter = function() {
+SubservicioCtrl.prototype.viewAfterEnter = function() {
 	var self = this;	
 	
 	self.$scope.cantidadEnCarrito = function(indexServicio) {
@@ -49,4 +49,4 @@ ServicioCtrl.prototype.viewAfterEnter = function() {
 	};
 };
 
-app.controller('ServicioCtrl', ServicioCtrl);
+app.controller('SubservicioCtrl', SubservicioCtrl);

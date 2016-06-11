@@ -1,8 +1,11 @@
-var CargaInicialFactory = function(CargarScriptsFactory, ModalCargaFactory, ProductosFactory, MapasFactory) {
+var CargaInicialFactory = function(CargarScriptsFactory,
+							ModalCargaFactory, 
+							ProductosFactory, 
+							ServiciosFactory,
+							MapasFactory) {
 	var recursos = {
 		mapsScript : false,
 		productos: false,
-		categorias: false,
 		servicios: false
 	};
 
@@ -28,10 +31,20 @@ var CargaInicialFactory = function(CargarScriptsFactory, ModalCargaFactory, Prod
 				recursos.productos = false;
 			}, function(){ 
 				ModalCargaFactory.ocultar();
-				callback();
+				ModalCargaFactory.mostrar(null, "Cargando servicios...", null);
+				ServiciosFactory.cargar(function(){
+					recursos.servicios = true;
+				}, function (error){
+					recursos.servicios = false;
+				}, function(){ 
+					ModalCargaFactory.ocultar();
+					callback();
+				});
 			});
+
+			
 		}
 	};
 };
 
-app.factory("CargaInicialFactory", ['CargarScriptsFactory', 'ModalCargaFactory', 'ProductosFactory', 'MapasFactory', CargaInicialFactory]);
+app.factory("CargaInicialFactory", CargaInicialFactory);

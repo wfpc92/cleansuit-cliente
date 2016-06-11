@@ -20,16 +20,22 @@ var ProductosCtrl = function($scope, ProductosFactory, CarritoFactory, RecursosF
 
 	$scope.cargarProductos = function() {
 		console.log("ejecutando cargarProductos desde ProductosCtrl.");
-		ProductosFactory.cargar(function(error) { 
+		ProductosFactory.cargar(function() { 
 			console.log("la operacion cargar productos ha sido terminada. ");
-			console.log(error);
 			$scope.productos = ProductosFactory.getProductos();
+		}, function(error) {
+			//error
+			console.log("hubo un error al cargar productos", error);
+		},
+		function(){
+			//finally
 		});
 	}
 
+	var element = document.getElementById("lsẗProductos");
 	ionic.onGesture('swipe', function() {
-
-	},elementSwipe, );
+		console.log("swipe event")
+	},element, {});
 };
 
 ProductosCtrl.prototype.viewAfterEnter = function(){

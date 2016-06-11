@@ -101,7 +101,7 @@ app.factory('CarritoFactory', [function(){
 					case "PRODUCTO":
 						this.contProductos += this.items[i].cantidad;
 						break;
-					case "SERVICIO":
+					case "SUBSERVICIO":
 						this.contServicios += this.items[i].cantidad;
 						break;
 					default:
