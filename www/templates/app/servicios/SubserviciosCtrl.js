@@ -1,10 +1,11 @@
 var SubserviciosCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFactory, UsuarioFactory) {
-	var self = this;
+	var self = this
+	self.$scope = $scope;
 	$scope.indexServicio = $stateParams.indexServicio;
-	$scope.servicio = ServiciosFactory.getServicios()[$scope.indexServicios];
+	$scope.servicio = ServiciosFactory.getServicios()[$scope.indexServicio];
 	$scope.carrito = CarritoFactory;
-	this.$scope = $scope;
-	
+	console.log($scope.servicio)
+	 
 	$scope.aumentarSubservicio = function(subservicio){
 		console.log("Agregar item de subservicio al carrito desde SubserviciosCtrl");
 		CarritoFactory.agregar(subservicio, "SUBSERVICIO", 1);
