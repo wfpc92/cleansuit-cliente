@@ -2,21 +2,21 @@
 	<ion-content class="bottom">
 
 		<div class="vista" layout="column" layout-align="center">
-			<h1>{{::servicio.nombre}}</h1>
-			<p>{{::servicio.descripcion}}</p>
+			<h1>{{::subservicio.nombre}}</h1>
+			<p>{{::subservicio.descripcion}}</p>
 
 			<div class="contenedor">
-					<h3>{{::servicio.precio | currency : "$ " : 0}}</h3>
+					<h3>{{::subservicio.precio | currency : "$ " : 0}}</h3>
 					<div class="contador">
-							<i ng-click="aumentarServicio(servicio)" class="icon ico-mas"></i>
-							<span>{{cantidadEnCarrito(servicio._id)}}</span>
-							<i ng-click="disminuirServicio(servicio)" class="icon ico-menos"></i>
+							<i ng-click="aumentarSubservicio(subservicio)" class="icon ico-mas"></i>
+							<span>{{cantidadEnCarrito(subservicio._id)}}</span>
+							<i ng-click="disminuirSubservicio(subservicio)" class="icon ico-menos"></i>
 					</div>
 			</div>
 			
 			<div layout="row" layout-align="start start" class="descripcion">
 					<h3>Detalles</h3>
-					<p>{{::servicio.detalles}}</p>    
+					<p>{{::subservicio.detalles}}</p>    
 			</div>
 		</div>
 

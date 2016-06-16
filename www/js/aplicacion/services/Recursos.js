@@ -21,10 +21,10 @@ var RecursosFactory = function($log, $http) {
 	this.$log = $log;
 	this.$http = $http;
 	//development:
-	//this._apiUrl = "http://localhost:8100/api";
-	//production:
 	this._apiUrl = "/api";	
-
+	//production:
+	//this._apiUrl = "http://api.cleansuit.co";
+	
 	$log.debug("Contructor de RecursosApi");
 
 	this.solicitud = function(metodo, recurso, getParams, postParams, callback) {

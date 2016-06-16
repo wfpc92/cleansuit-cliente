@@ -2,18 +2,17 @@ var SubservicioCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFa
 	var self = this;
 	var i = $stateParams.indexServicio;
 	var j = $stateParams.indexSubservicio; 
-	$scope.subservicio = ServiciosFactory.getServicios()[i][j];
+	$scope.subservicio = ServiciosFactory.getServicios()[i].subservicios[j];
 	$scope.carrito = CarritoFactory;
 	self.$scope = $scope;
-	//$log.debug("index de categoria: "+$scope.indexCategoria+", index servicio: "+$scope.indexServicio);
-
-	$scope.aumentarSubservicio = function(servicio){
+	
+	$scope.aumentarSubservicio = function(subservicio){
 		console.log("Agregar item de servicio al carrito desde SubservicioCtrl");
 		CarritoFactory.agregar(subservicio, "SUBSERVICIO", 1);
 		CarritoFactory.limpiar();
 	};
 
-	$scope.disminuirSubservicio = function(servicio){
+	$scope.disminuirSubservicio = function(subservicio){
 		console.log("Disminuir item de servicio del carrito desde SubservicioCtrl");
 		CarritoFactory.disminuir(subservicio, "SUBSERVICIO", 1);
 		CarritoFactory.limpiar();
