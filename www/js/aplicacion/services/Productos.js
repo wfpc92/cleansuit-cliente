@@ -21,16 +21,18 @@ app.factory('ProductosFactory', ['RecursosFactory', function(RecursosFactory){
 		},
 
 		//carga una lista de productos desde el servidor
-		cargar: function(exito, error, callback) {
-			RecursosFactory.get('/productos', {}, function(respuesta) {
+		cargar: function() {
+			return RecursosFactory
+			.get('/productos', {})
+			.then(function(respuesta) {
+				console.log(respuesta)
+				console.log("....................###################3.................");
 				console.log("imprimiendo respuesta", JSON.stringify(respuesta));
 				if(!respuesta.error){
 					_productos = respuesta.data;
-					exito();
 				} else {
-					error(respuesta.error);
+					//error(respuesta.error);
 				}
-				callback();	
 			});
 		}
 	};

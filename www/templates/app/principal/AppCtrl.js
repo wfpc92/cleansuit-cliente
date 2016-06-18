@@ -4,15 +4,32 @@ var AppCtrl = function($scope,
 					$state, 
 					HistorialOrdenFactory,
 					$ionicActionSheet,
-					$ionicLoading) {
+					$ionicLoading,
+					AuthService,
+					API_ENDPOINT,
+					AUTH_EVENTS,
+					$http) {
 	var self = this;
-
 	$scope.usuario = UsuarioFactory.getUsuario();
 	$scope.carrito = CarritoFactory;
 	$scope.ordenesEnProceso = HistorialOrdenFactory.ordenesEnProceso;
 
-	$scope.cerrarSesion = function() {
+
+	$scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+		AuthService.logout();
+		$state.go('autenticacion.ingresar-manual');
+		var alertPopup = $ionicPopup.alert({
+			title: 'Session Lost!',
+			template: 'Sorry, You have to login again.'
+		});
+	});
+
+	$scope.logout = function() {
 		console.log("cerrar sexion")
+
+		AuthService.logout();
+		$state.go('autenticacion.ingresar-manual');
+		/*
 		var hideSheet = $ionicActionSheet.show({
 			destructiveText: 'Logout',
 			titleText: 'Are you sure you want to logout? This app is awsome so I recommend you to stay.',
@@ -41,6 +58,7 @@ var AppCtrl = function($scope,
 			    }
 		    }
 		});
+		*/
 
 		
 	};	

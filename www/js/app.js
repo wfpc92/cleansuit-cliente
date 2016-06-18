@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('ClienteCleanSuit', ['ionic', 'angularLoad', 'ngCordova', 'ngResource'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state, AuthService, AUTH_EVENTS) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,4 +19,36 @@ var app = angular.module('ClienteCleanSuit', ['ionic', 'angularLoad', 'ngCordova
       StatusBar.styleDefault();
     }
   });
-});
+
+  /*$rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+    if (!AuthService.isAuthenticated()) {
+      console.log(next.name);
+      if (next.name !== 'autenticacion.ingresar-manual' 
+        && next.name !== 'autenticacion.registrar-manual') {
+        event.preventDefault();
+        $state.go('autenticacion.ingresar-manual');
+      }
+    }
+  });*/
+
+})
+
+.constant('AUTH_EVENTS', {
+  notAuthenticated: 'auth-not-authenticated'
+})
+ 
+.constant('API_ENDPOINT', {
+  //url: '/api'
+  url: 'http://api.cleansuit.co'
+})
+
+.factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
+  return {
+    responseError: function (response) {
+      $rootScope.$broadcast({
+        401: AUTH_EVENTS.notAuthenticated,
+      }[response.status], response);
+      return $q.reject(response);
+    }
+  };
+})

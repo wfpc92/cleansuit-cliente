@@ -20,15 +20,13 @@ var ProductosCtrl = function($scope, ProductosFactory, CarritoFactory, RecursosF
 
 	$scope.cargarProductos = function() {
 		console.log("ejecutando cargarProductos desde ProductosCtrl.");
-		ProductosFactory.cargar(function() { 
+		ProductosFactory.cargar()
+		.then( function() { 
 			console.log("la operacion cargar productos ha sido terminada. ");
 			$scope.productos = ProductosFactory.getProductos();
 		}, function(error) {
 			//error
 			console.log("hubo un error al cargar productos", error);
-		},
-		function(){
-			//finally
 		});
 	}
 

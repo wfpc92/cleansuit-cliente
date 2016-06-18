@@ -1,4 +1,9 @@
-var ProductoCtrl = function($scope, $stateParams, ProductosFactory, CarritoFactory, $ionicHistory, $state) {
+var ProductoCtrl = function($scope, 
+	$stateParams, 
+	ProductosFactory, 
+	CarritoFactory, 
+	$ionicHistory, 
+	$state) {
 	var self = this;
 
 	this.$scope = $scope;

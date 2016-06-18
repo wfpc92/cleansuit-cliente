@@ -10,20 +10,20 @@
 					<div class="list">
 						<label class="item item-input item-floating-label" name="Nombre Completo">
 							<span class="input-label">Nombre Completo</span>
-							<input type="text" placeholder="NOMBRE COMPLETO">
+							<input type="text" placeholder="NOMBRE COMPLETO" ng-model="user.name">
 						</label>
 						<label class="item item-input item-floating-label" name="email">
 							<span class="input-label">Correo Electrónico</span>
-							<input type="text" placeholder="CORREO ELECTRÓNICO">
+							<input type="text" placeholder="CORREO ELECTRÓNICO" ng-model="user.email">
 						</label>
 						<label class="item item-input item-floating-label" name="contrasena">
 							<span class="input-label">Contraseña</span>
-							<input type="password" placeholder="CONTRASEÑA">
+							<input type="password" placeholder="CONTRASEÑA" ng-model="user.password">
 						</label>
 					</div>
 				</form>
 			</div>
 		</ion-content>
-		<a ui-sref="app.inicio" class="button button-balanced button-full">REGISTRARME</a>
+		<a class="button button-balanced button-full" ng-click="signup()">REGISTRARME</a>
 	</div>
 </ion-view>
