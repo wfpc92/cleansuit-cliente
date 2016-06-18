@@ -118,7 +118,7 @@ app.config(function($stateProvider,
 		}
 	})
 	.state('app.subservicios', {
-		url: '/servicios/:indexCategoria/subservicios',
+		url: '/servicios/:indexServicio/subservicios',
 		views: {
 			'mis-servicios': {
 				templateUrl: 'templates/app/servicios/subservicios.html',
@@ -131,7 +131,7 @@ app.config(function($stateProvider,
 		views: {
 			'mis-servicios': {
 				templateUrl: 'templates/app/servicios/subservicio.html',
-				controller: 'ServicioCtrl'
+				controller: 'SubservicioCtrl'
 			}
 		}
 	})

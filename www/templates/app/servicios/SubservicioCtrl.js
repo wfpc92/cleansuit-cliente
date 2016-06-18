@@ -1,21 +1,20 @@
 var SubservicioCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFactory, $ionicHistory, $state) {
 	var self = this;
-	var i = $stateParams.indexCategoria;
-	var j = $stateParams.indexServicio;
-	$scope.servicio = ServiciosFactory.getServicios()[i][j];
+	var i = $stateParams.indexServicio;
+	var j = $stateParams.indexSubservicio; 
+	$scope.subservicio = ServiciosFactory.getServicios()[i].subservicios[j];
 	$scope.carrito = CarritoFactory;
 	self.$scope = $scope;
-	//$log.debug("index de categoria: "+$scope.indexCategoria+", index servicio: "+$scope.indexServicio);
-
-	$scope.aumentarServicio = function(servicio){
+	
+	$scope.aumentarSubservicio = function(subservicio){
 		console.log("Agregar item de servicio al carrito desde SubservicioCtrl");
-		CarritoFactory.agregar(servicio, "SERVICIO", 1);
+		CarritoFactory.agregar(subservicio, "SUBSERVICIO", 1);
 		CarritoFactory.limpiar();
 	};
 
-	$scope.disminuirServicio = function(servicio){
+	$scope.disminuirSubservicio = function(subservicio){
 		console.log("Disminuir item de servicio del carrito desde SubservicioCtrl");
-		CarritoFactory.disminuir(servicio, "SERVICIO", 1);
+		CarritoFactory.disminuir(subservicio, "SUBSERVICIO", 1);
 		CarritoFactory.limpiar();
 	};	
 
@@ -24,7 +23,7 @@ var SubservicioCtrl = function($scope, $stateParams, ServiciosFactory, CarritoFa
 	});
 
 	$scope.regresarCatalogo = function() {
-		$state.go("app.categorias");
+		$state.go("app.servicios");
 		$ionicHistory.clearHistory();
 		$ionicHistory.nextViewOptions({
 			disableBack:'true'

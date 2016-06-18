@@ -11,7 +11,7 @@
 			<div class="categorias lista">
 				<ion-item class="item-icon-right item-text-wrap" ng-repeat="servicio in servicios track by $index" 
 					ui-sref="app.subservicios({ 'indexServicio': {{$index}} })">
-					<h2>{{::servicio.nombre}}</h2>
+					<h2>{{::servicio.nombre}}</h2> 
 					<p>{{::servicio.descripcion}}</p>
 					<i class="icon ico-flechader assertive" ></i>
 				</ion-item>

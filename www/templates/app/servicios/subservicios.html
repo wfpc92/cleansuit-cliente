@@ -1,7 +1,7 @@
 <ion-view title="Cleansuit">
     <ion-content>
 
-        <div class="row">
+        <div class="row"> 
             <div class="col text-center"><h3>{{servicio.nombre}}</h3></div> 
         </div>
         <div class="row">
@@ -10,19 +10,19 @@
 
         <ion-list can-swipe="true" show-delete="false" show-reorder="false">
             <div class="servicios lista">
-                <ion-item class="item-icon-right item-text-wrap" ng-repeat="subservicio in servicios.subservicicos track by $index" 
+                <ion-item class="item-icon-right item-text-wrap" ng-repeat="subservicio in servicio.subservicios track by $index" 
                     ui-sref="app.subservicio({ 
-                                            'indexServicios': {{indexServicio}}, 
-                                            'indexSubservicio': {{$index}} 
+                                            'indexServicio': {{indexServicio}}, 
+                                            'indexSubservicio': {{$index}}  
                                             })">
 
-                    <h2>{{::subservicio.nombre}} <span ng-if="cantidadEnCarrito(subservicio._id) > 0" class="badge badge-dark icon-badge">
-                    {{cantidadEnCarrito(subservicio._id)}}
-                        </span>
+                    <h2>
+                        {{subservicio.nombre}} 
+                        <span ng-if="cantidadEnCarrito(subservicio._id) > 0" class="badge badge-dark icon-badge">{{cantidadEnCarrito(subservicio._id)}}</span>
                     </h2>
                       
-                    <p>{{::subservicio.descripcion}}</p>
-                    <h3>{{::subservicio.precio | currency : "$ " : 0}}</h3>
+                    <p>{{subservicio.descripcion}}</p>
+                    <h3>{{subservicio.precio | currency : "$ " : 0}}</h3>
                     <i class="icon ico-flechader assertive"></i>
 
                     <ion-option-button class="light text-center mas" ng-click="aumentarSubservicio(subservicio)">
