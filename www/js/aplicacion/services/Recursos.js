@@ -21,9 +21,9 @@ var RecursosFactory = function($log, $http) {
 	this.$log = $log;
 	this.$http = $http;
 	//development:
-	this._apiUrl = "/api";	
+	//this._apiUrl = "/api";	
 	//production:
-	//this._apiUrl = "http://api.cleansuit.co";
+	this._apiUrl = "http://api.cleansuit.co";
 	
 	$log.debug("Contructor de RecursosApi");
 
