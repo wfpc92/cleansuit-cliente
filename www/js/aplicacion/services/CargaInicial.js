@@ -17,32 +17,36 @@ var CargaInicialFactory = function(CargarScriptsFactory,
 			console.log("Cargando datos iniciales... ");
 
 			//crear mapa de google maps
-			MapasFactory.getMapa().then(function(mapa) {
+			MapasFactory
+			.getMapa()
+			.then(function(mapa) {
 				console.log("mapa de google creado: ", mapa)
 			}, function(error) {
 				console.log("hubo error al crear mapa: ", error)
 			});		
 
-			ModalCargaFactory.mostrar(null, "Cargando productos...", null);
+			ModalCargaFactory.mostrar("Cargando productos...", null);
 
-			ProductosFactory.cargar(function(){
+			ProductosFactory.cargar()
+			.then( function(){
 				recursos.productos = true;
 			}, function (error){
 				recursos.productos = false;
-			}, function(){ 
-				ModalCargaFactory.ocultar();
-				ModalCargaFactory.mostrar(null, "Cargando servicios...", null);
-				ServiciosFactory.cargar(function(){
+			})
+			.finally( function(){ 
+				console.log("----------------$$$$$$$$$$4----------------")
+				ModalCargaFactory.setMensaje("Cargando servicios...");
+				ServiciosFactory.cargar()
+				.then( function(){
 					recursos.servicios = true;
 				}, function (error){
 					recursos.servicios = false;
-				}, function(){ 
+				})
+				.finally( function(){ 
 					ModalCargaFactory.ocultar();
 					callback();
 				});
-			});
-
-			
+			});		
 		}
 	};
 };

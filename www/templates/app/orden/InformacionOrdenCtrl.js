@@ -195,7 +195,7 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	}
 
 	if(!$scope.mapa.verificarUbicacionGPS()) {
-		ModalCargaFactory.mostrar(null, "Buscando posicion actual...", null);
+		ModalCargaFactory.mostrar("Buscando posicion actual...", null);
 		$scope.modalMapa.show().then(function() {
 				$scope.mapa.obtenerUbicacionGPS(function() {
 					console.log("ubicacion obtenida GPS: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());

@@ -10,17 +10,17 @@
 					 <div class="list">
 						<label class="item item-input item-floating-label" name="email">
 							<span class="input-label">Correo Electrónico</span>
-							<input type="text" placeholder="CORREO ELECTRÓNICO">
+							<input type="text" placeholder="CORREO ELECTRÓNICO" ng-model="user.email">
 						</label>
 						<label class="item item-input item-floating-label" name="contrasena">
 							<span class="input-label">Contraseña</span>
-							<input type="password" placeholder="CONTRASEÑA">
+							<input type="password" placeholder="CONTRASEÑA" ng-model="user.password">
 						</label>
 					</div>
 					<a ui-sref="autenticacion.recuperar-contrasena">¿Olvidaste tu contraseña?</a>
 				</form>
 			</div>
 		</ion-content>
-		<a ng-click="login()" class="button button-calm button-full">INGRESAR</a>
+		<a class="button button-calm button-full" ng-click="login()">INGRESAR</a>
 	</div>
 </ion-view>

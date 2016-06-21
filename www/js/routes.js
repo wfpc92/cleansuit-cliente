@@ -1,5 +1,9 @@
-app.config(function($stateProvider, $urlRouterProvider, $logProvider, 
-	$compileProvider, $ionicConfigProvider) {
+app.config(function($stateProvider,
+	$urlRouterProvider,
+	$logProvider,
+	$compileProvider,
+	$ionicConfigProvider,
+	$httpProvider) {
 
 
 	//forzar a ionic que tenga las tabs arriba para todas las plataformas
@@ -19,6 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 	$ionicConfigProvider.views.forwardCache(true);
 	$ionicConfigProvider.views.maxCache(5);
 
+	$httpProvider.interceptors.push('AuthInterceptor');
 
 
 	// Ionic uses AngularUI Router which uses the concept of states

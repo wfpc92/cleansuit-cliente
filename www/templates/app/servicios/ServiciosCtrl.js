@@ -7,13 +7,12 @@ var ServiciosCtrl = function($scope, ServiciosFactory, CarritoFactory, ModalCarg
 
 	$scope.cargarServicios = function() {
 		console.log("ejecutando cargarServicios desde ServiciosCtrl.");
-		ServiciosFactory.cargar(function() { 
+		ServiciosFactory.cargar()
+		.then( function() { 
 			console.log("la operacion cargarServicios ha sido terminada. ")
 			$scope.servicios = ServiciosFactory.getServicios();
 		}, function(error) {
 			console.log(error);
-		}, function() {
-			console.log("finaliza llamado cargar ServicioFactory.")
 		});
 	};
 
