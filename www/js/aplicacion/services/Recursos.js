@@ -14,6 +14,7 @@ var RecursosFactory = function($log, $http, API_ENDPOINT) {
 			url: self._apiUrl + recurso, 
 			method: metodo,
 			params: getParams,
+			data: postParams
 		};
 		return self.solicitudHttp(requestConfig);
 	}
@@ -25,7 +26,7 @@ var RecursosFactory = function($log, $http, API_ENDPOINT) {
 			error : null
 		};
 
-		console.log("requestConfig: ", JSON.stringify(requestConfig))
+		console.log("RecursosFactory.requestConfig: ", JSON.stringify(requestConfig))
 
 		return $http(requestConfig);
 	};
