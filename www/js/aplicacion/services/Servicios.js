@@ -7,7 +7,7 @@ app.factory('ServiciosFactory',['RecursosFactory', function(RecursosFactory){
 			return _servicios;
 		},
 
-		cargar: function(exito, error, callback) {
+		cargar: function() {
 			console.log("Enviando peticion GET a servidor para obtener servicios.")
 			return RecursosFactory
 			.get('/servicios', {})

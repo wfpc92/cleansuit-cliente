@@ -88,13 +88,21 @@ var InformacionOrdenCtrl = function($scope,
 
 	$scope.realizarOrden = function() {
 		self.enviarOrden(function(){
-			RealizarOrdenFactory.realizarOrden();
-			$ionicHistory.clearHistory();
-			$ionicHistory.clearCache()
-			$ionicHistory.nextViewOptions({
-				disableBack:'true'
-			});
-			$state.go("app.realizar-orden");
+			console.log("InformacionOrdenCtrl: realizarOrden(): ");
+			RealizarOrdenFactory
+			.realizarOrden()
+			.then(function() {
+				console.log("exito")
+				$ionicHistory.clearHistory();
+				$ionicHistory.clearCache()
+				$ionicHistory.nextViewOptions({
+					disableBack:'true'
+				});
+				$state.go("app.realizar-orden");
+			}, function(err) {
+				console.log(err)
+			})
+			
 		});
 	};
 
