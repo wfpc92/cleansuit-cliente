@@ -38,8 +38,8 @@ var app = angular.module('ClienteCleanSuit', ['ionic', 'angularLoad', 'ngCordova
 })
  
 .constant('API_ENDPOINT', {
-  //url: '/api'
-  url: 'http://api.cleansuit.co'
+  url: '/api'
+  //url: 'http://api.cleansuit.co'
 })
 
 .factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
