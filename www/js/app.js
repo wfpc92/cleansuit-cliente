@@ -33,14 +33,6 @@ var app = angular.module('ClienteCleanSuit', ['ionic', 'angularLoad', 'ngCordova
 
 })
 
-.constant('AUTH_EVENTS', {
-  notAuthenticated: 'auth-not-authenticated'
-})
- 
-.constant('API_ENDPOINT', {
-  url: '/api'
-  //url: 'http://api.cleansuit.co'
-})
 
 .factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
   return {

@@ -1,7 +1,7 @@
 var HistorialOrdenFactory = function(EstadosFactory, RecursosFactory){
 	return {
 		contOrdenesEnProceso : 0,
-		ordenesEnProceso: [],
+		ordenesEnProceso: [], 
 		historialOrdenes: [],
 		ordenes : [
 			{
@@ -147,7 +147,7 @@ var HistorialOrdenFactory = function(EstadosFactory, RecursosFactory){
 		cargar: function() {
 			console.log("Enviando peticion GET a servidor para obtener ordenes.")
 			return RecursosFactory
-			.get('/ordenes', {})
+			.get('/ordenes/en-proceso', {})
 			.then(function(respuesta) {
 				console.log("Finaliza peticion GET a servidor para ordenes.")
 				console.log("HistorialOrdenFactory: ", respuesta)

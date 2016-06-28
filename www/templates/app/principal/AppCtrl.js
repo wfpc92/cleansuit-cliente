@@ -4,6 +4,7 @@ var AppCtrl = function($scope,
 					$state, 
 					HistorialOrdenFactory,
 					$ionicActionSheet,
+					$ionicPopup,
 					$ionicLoading,
 					AuthService,
 					API_ENDPOINT,
@@ -25,7 +26,7 @@ var AppCtrl = function($scope,
 	});
 
 	$scope.logout = function() {
-		console.log("cerrar sexion")
+		console.log("cerrar sesion")
 
 		AuthService.logout();
 		$state.go('autenticacion.ingresar-manual');

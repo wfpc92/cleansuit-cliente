@@ -87,23 +87,20 @@ var InformacionOrdenCtrl = function($scope,
 	};
 
 	$scope.realizarOrden = function() {
-		self.enviarOrden(function(){
-			console.log("InformacionOrdenCtrl: realizarOrden(): ");
-			RealizarOrdenFactory
-			.realizarOrden()
-			.then(function() {
-				console.log("exito")
-				$ionicHistory.clearHistory();
-				$ionicHistory.clearCache()
-				$ionicHistory.nextViewOptions({
-					disableBack:'true'
-				});
-				$state.go("app.realizar-orden");
-			}, function(err) {
-				console.log(err)
-			})
-			
-		});
+		console.log("InformacionOrdenCtrl: realizarOrden(): ");
+		RealizarOrdenFactory
+		.realizarOrden()
+		.then(function() {
+			console.log("exito")
+			$ionicHistory.clearHistory();
+			$ionicHistory.clearCache()
+			$ionicHistory.nextViewOptions({
+				disableBack:'true'
+			}); 
+			$state.go("app.realizar-orden");
+		}, function(err) {
+			console.log(err)
+		})
 	};
 
 	$scope.modalMapa = null;
@@ -218,9 +215,9 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 
 InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 	var self = this;
-	self.$scope.formIncompleto = true;
+	self.$scope.formIncompleto = false;
 
-	if(self.$scope.soloProductos){
+	/*if(self.$scope.soloProductos){
 		self.$scope.$watchGroup([
 			'orden.direccionEntrega.direccion',
 			'orden.telefono',
@@ -249,7 +246,7 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 					self.$scope.formIncompleto = true;	
 				}
 			});
-	}
+	}*/
 };
 
 InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
@@ -318,10 +315,6 @@ InformacionOrdenCtrl.prototype.cancelarOrden = function() {
 	self.$ionicHistory.nextViewOptions({
 		disableBack:'true'
 	});
-};
-
-InformacionOrdenCtrl.prototype.enviarOrden = function(callback){
-	callback();
 };
 
 app.controller('InformacionOrdenCtrl', InformacionOrdenCtrl);

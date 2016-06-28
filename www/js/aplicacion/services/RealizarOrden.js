@@ -4,6 +4,8 @@ var RealizarOrdenFactory = function(HistorialOrdenFactory,
 									CarritoFactory,
 									UsuarioFactory,
 									RecursosFactory){
+	var _orden = null;
+
 	return {
 		realizarOrden : function() { 
 			console.log("RealizarOrdenFactory.realizarOrden(): ")
@@ -12,7 +14,6 @@ var RealizarOrdenFactory = function(HistorialOrdenFactory,
 			//OrdenFactory.orden.usuario = UsuarioFactory.getUsuario();
 			
 			var orden = {
-				cliente_id: '5769837fb99937214ac2ebe2',
 				orden: OrdenFactory.orden,
 				items: CarritoFactory.items
 			};		
@@ -21,15 +22,15 @@ var RealizarOrdenFactory = function(HistorialOrdenFactory,
 			.post("/ordenes", orden)
 			.then(function(response) {
 				console.log("RealizarOrdenFactory.realizarOrden(): ", response);
-
+				_orden = response.data.orden;
 				CarritoFactory.items = [];
 				CarritoFactory.limpiar();
 			}, function(err) {
 				console.log("RealizarOrdenFactory.realizarOrden(): ", err);
-			})
+			});
 		},
-		ultimaOrden: function(){
-			return HistorialOrdenFactory.ordenesEnProceso[HistorialOrdenFactory.ordenesEnProceso.length - 1];
+		getOrden: function(){
+			return _orden;
 		}
 	};
 };

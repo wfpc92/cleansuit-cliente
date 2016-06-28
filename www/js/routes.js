@@ -214,7 +214,7 @@ app.config(function($stateProvider,
 		url: '/ordenes-en-proceso/:indexOrden',
 		views: {
 			'panel-contenido': {
-				templateUrl: 'templates/app/orden/estado-orden.html',
+				templateUrl: 'templates/app/historial/orden-en-proceso.html',
 				controller: 'OrdenEnProcesoCtrl'
 			}
 		}
