@@ -8,6 +8,8 @@ var OrdenEnProcesoCtrl = function ($scope,
 	var indexOrden = $stateParams.indexOrden;
 
 	$scope.orden = HistorialOrdenFactory.getOrdenesEnProceso()[indexOrden];
+	//indica que la vista que se muestra es la de ordenes en proceso.
+	$scope.esOrdenEnProceso = true;
 
 	console.log("index orden en proceso: "+indexOrden);
 	console.log($scope.orden)

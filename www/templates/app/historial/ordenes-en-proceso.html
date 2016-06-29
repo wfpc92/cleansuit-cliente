@@ -7,10 +7,12 @@
 
 		<ion-list>
 			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
-				ui-sref="app.orden-en-proceso( {'indexOrden': {{$index}} })">
-				<h3>{{orden.fecha | date}}</h3>
-				<p># orden: {{orden._id}}</p>
+					ui-sref="app.orden-en-proceso( {'indexOrden': {{$index}} })">
+
+				<h3>Orden No. {{orden._id}}</h3>
+				<p>{{orden.fecha | date}}</p>
 				<i class="icon ico-flechader assertive" ></i>
+
 			</ion-item>
 		</ion-list>
 
