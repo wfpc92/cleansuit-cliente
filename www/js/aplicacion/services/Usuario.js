@@ -1,4 +1,6 @@
-app.factory('UsuarioFactory',[function(){
+var UsuarioFactory = function(){
+	var _usuario = {};
+
 	var setUser = function(user_data) {
 		window.localStorage.starter_facebook_user = JSON.stringify(user_data);
 	};
@@ -22,9 +24,6 @@ app.factory('UsuarioFactory',[function(){
 	};
 	
 	return {
-		getUsuario: function() {
-			return usuario
-		},
 		guardarInformacion : function(formData, cllbck) {
 			if(formData.contrasenaModificada){
 				usuario.contrasena = formData.contrasena;
@@ -32,8 +31,17 @@ app.factory('UsuarioFactory',[function(){
 			cllbck();
 			//resource.$post() guardar en el servidor
 		},
-		setUser : setUser,
-		getUser: getUser
+
+		setUsuario: function(usuario) {
+			console.log("UsuarioFactory.setUsuario():", usuario)
+			_usuario = usuario;
+		},
+
+		getUsuario: function() {
+			return _usuario;
+		}
 	};
 	
-}])
+};
+
+app.factory('UsuarioFactory', UsuarioFactory);

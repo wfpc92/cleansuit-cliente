@@ -1,9 +1,10 @@
 app.config(function($stateProvider,
-	$urlRouterProvider,
-	$logProvider,
-	$compileProvider,
-	$ionicConfigProvider,
-	$httpProvider) {
+					$urlRouterProvider,
+					$logProvider,
+					$compileProvider,
+					$ionicConfigProvider,
+					$httpProvider,
+					USER_ROLES) {
 
 
 	//forzar a ionic que tenga las tabs arriba para todas las plataformas
@@ -38,7 +39,10 @@ app.config(function($stateProvider,
 	.state('autenticacion', {
 		url: "/autenticacion",
     	abstract: true,
-      	templateUrl: "templates/autenticacion/plantilla.html"
+      	templateUrl: "templates/autenticacion/plantilla.html",
+		data: {
+	    	authorizedRoles: [USER_ROLES.public]
+	    }
 	})
 
 	.state('autenticacion.inicio', {
@@ -94,8 +98,10 @@ app.config(function($stateProvider,
 	.state('app', {
 		url: '/app',
 		abstract: true,
-		templateUrl: 'templates/app/menu.html',//aqui estan las tabs
-		controller: 'AppCtrl'
+		templateUrl: 'templates/app/menu.html',//aqui estan las tabs,
+		data: {
+	    	authorizedRoles: [USER_ROLES.cliente]
+	    }
 	})	
 
 	.state('app.inicio', {
@@ -214,7 +220,7 @@ app.config(function($stateProvider,
 		url: '/ordenes-en-proceso/:indexOrden',
 		views: {
 			'panel-contenido': {
-				templateUrl: 'templates/app/orden/estado-orden.html',
+				templateUrl: 'templates/app/historial/informacion-orden.html',
 				controller: 'OrdenEnProcesoCtrl'
 			}
 		}
@@ -234,7 +240,7 @@ app.config(function($stateProvider,
 		url: '/historial-ordenes/:indexOrden',
 		views: {
 			'panel-contenido': {
-				templateUrl: 'templates/app/historial/historial-informacion-orden.html',
+				templateUrl: 'templates/app/historial/informacion-orden.html',
 				controller: 'HistorialOrdenCtrl'
 			}
 		}
@@ -260,6 +266,10 @@ app.config(function($stateProvider,
 		}
 	})
 	
-	$urlRouterProvider.otherwise('/autenticacion/inicio');
+	//$urlRouterProvider.otherwise('/autenticacion/inicio');
+	$urlRouterProvider.otherwise( function($injector, $location) {
+    	var $state = $injector.get("$state");
+    	$state.go("autenticacion.inicio");
+    });
 
 });

@@ -5,14 +5,22 @@
 			<p>Este es tu historial de órdenes realizadas<br/>hasta el momento.</p>
 		</div>
 
-		<div class="list">
+		<div class="list"> 
 			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
 					ui-sref="app.historial-orden({'indexOrden': {{$index}}})">
-				<h3>{{orden.fecha}}</h3>
-				<p>{{orden.titulo}} {{orden.estado}}</p>
-				<p># de orden: {{orden.codigo}}</p>
+
+				<h3>{{orden.fecha | date}}</h3>
+				<p>Orden de domicilio {{orden.estado}}</p>
+				<p># de orden: {{orden._id}}</p>
 				<i class="icon ico-flechader assertive" ></i>
+
 			</ion-item>
+		</div>
+
+		<div class="card" ng-if="ordenes.length == 0">
+			<div class="item item-text-wrap">
+				Aún no existen ordenes para mostrar.
+			</div>
 		</div>
 
 	</ion-content>

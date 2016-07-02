@@ -1,7 +1,11 @@
 var HistorialOrdenFactory = function(EstadosFactory, RecursosFactory){
+	
+	var _ordenesEnProceso	= [];
+	var _historialOrdenes = [];
+
 	return {
 		contOrdenesEnProceso : 0,
-		ordenesEnProceso: [],
+		ordenesEnProceso: [], 
 		historialOrdenes: [],
 		ordenes : [
 			{
@@ -143,21 +147,40 @@ var HistorialOrdenFactory = function(EstadosFactory, RecursosFactory){
 		getOrdenesEnProceso: function() {
 			return _ordenesEnProceso;
 		},
+
+		getHistorialOrdenes: function() {
+			return _historialOrdenes;
+		},
 		
 		cargar: function() {
 			console.log("Enviando peticion GET a servidor para obtener ordenes.")
 			return RecursosFactory
-			.get('/ordenes', {})
+			.get('/ordenes/en-proceso', {})
 			.then(function(respuesta) {
 				console.log("Finaliza peticion GET a servidor para ordenes.")
 				console.log("HistorialOrdenFactory: ", respuesta)
 				if(!respuesta.error){
 					_ordenesEnProceso = respuesta.data;
 				} else {
-					//error(respuesta.error);
+					console.log("HistorialOrdenFactory.cargar()", respuesta.error);
 				}
 			});
 		},
+
+		cargarHistorialOrdenes: function() {
+			console.log("Enviando peticion GET a servidor para obtener historial de ordenes.")
+			return RecursosFactory
+			.get('/ordenes/historial', {})
+			.then(function(respuesta) {
+				console.log("Finaliza peticion GET a servidor para historial de ordenes.")
+				console.log("HistorialOrdenFactory: ", respuesta)
+				if(!respuesta.error){
+					_historialOrdenes = respuesta.data;
+				} else {
+					console.log("HistorialOrdenFactory.cargarHistorial()", respuesta.error);
+				}
+			});
+		}
 	};
 };
 
