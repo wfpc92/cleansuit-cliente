@@ -50,12 +50,13 @@
 		<script src="js/aplicacion/services/Estados.js"></script>
 
 		<!--Controllers de la aplicacion. -->
+		<script src="templates/AppCtrl.js"></script>
+		
 		<script src="templates/autenticacion/AutenticacionInicioCtrl.js"></script>
 		<script src="templates/autenticacion/IngresarManualCtrl.js"></script>
 		<script src="templates/autenticacion/RegistrarManualCtrl.js"></script>
 		<script src="templates/autenticacion/RecuperarContrasenaCtrl.js"></script>
 
-		<script src="templates/app/principal/AppCtrl.js"></script>
 		<script src="templates/app/principal/AppInicioCtrl.js"></script>
 		<script src="templates/app/principal/PerfilCtrl.js"></script>
 		<script src="templates/app/principal/AcercaCtrl.js"></script>
@@ -79,7 +80,7 @@
 		
 	</head>
 
-	<body ng-app="ClienteCleanSuit">
+	<body ng-app="ClienteCleanSuit" ng-controller="AppCtrl">
 		<!-- $state.go("autenticacion");-->
 		<ion-nav-view></ion-nav-view>
 

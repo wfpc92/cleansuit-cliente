@@ -2,6 +2,7 @@ var PerfilCtrl = function($scope, UsuarioFactory, $ionicPopup){
 	var self = this;
 
 	$scope.usuario = UsuarioFactory.getUsuario();
+	console.log(JSON.stringify($scope.usuario))
 
 	$scope.guardarPerfil = function() {
 		UsuarioFactory.guardarInformacion($scope.formData,  

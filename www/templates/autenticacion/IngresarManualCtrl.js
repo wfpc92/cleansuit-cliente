@@ -1,4 +1,10 @@
-var IngresarManualCtrl = function($scope, $state, AuthService, $ionicPopup) {
+var IngresarManualCtrl = function($scope,
+								AuthService,
+								$ionicPopup,
+								UsuarioFactory,
+								$rootScope,
+								AUTH_EVENTS) {
+	console.log("IngresarManualCtrl")
 	$scope.error = "";
 	$scope.user = {
 		email: "",
@@ -6,12 +12,18 @@ var IngresarManualCtrl = function($scope, $state, AuthService, $ionicPopup) {
 	};
 
 	$scope.login = function() {
-		AuthService.login($scope.user).then(function(msg) {
-			$state.go('app.inicio');
+		AuthService
+		.login($scope.user)
+		.then(function(msg) {
+			console.log("IngresarManualCtrl.login()", msg)
+			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+			$scope.setCurrentUser(UsuarioFactory.getUsuario());
 		}, function(errMsg) {
+			console.log("IngresarManualCtrl: err", errMsg);
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
 			var alertPopup = $ionicPopup.alert({
-				title: 'Autenticación Falló!',
-				template: errMsg
+				title: 'Login failed!',
+        		template: 'Please check your credentials!'
 			});
 		});
 	};
