@@ -1,8 +1,10 @@
-var RealizarOrdenCtrl = function($scope, RealizarOrdenFactory, $state, $ionicHistory, EstadosFactory) {
+var RealizarOrdenCtrl = function($scope, 
+								OrdenesFactory,
+								$state, 
+								$ionicHistory) {
 	var self = this;
-
-	//$scope.estados = EstadosFactory.estados; 
-	$scope.orden = RealizarOrdenFactory.getOrden();
+ 
+	$scope.orden = OrdenesFactory.orden;
 	
 	console.log("Orden: ", $scope.orden);
 
@@ -15,6 +17,5 @@ var RealizarOrdenCtrl = function($scope, RealizarOrdenFactory, $state, $ionicHis
 		$state.go("app.inicio");	
 	};
 };
-
 
 app.controller('RealizarOrdenCtrl', RealizarOrdenCtrl);

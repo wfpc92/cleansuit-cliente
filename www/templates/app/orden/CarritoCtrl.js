@@ -46,11 +46,11 @@ CarritoCtrl.prototype.viewLeave = function(view, carrito){
 
 CarritoCtrl.prototype.mostrarPopup = function($ionicPopup, optionsPopup, callback) {
 	$ionicPopup
-		.confirm(optionsPopup)
-		.then(function(res) {
-			if(res) {
-				callback();
-			}
+	.confirm(optionsPopup)
+	.then(function(res) {
+		if(res) {
+			callback();
+		}
 	});
 };
 
@@ -63,6 +63,5 @@ CarritoCtrl.prototype.cancelarOrden = function(CarritoFactory, $state, $ionicHis
 		disableBack:'true'
 	});
 }
-
 
 app.controller('CarritoCtrl', CarritoCtrl);

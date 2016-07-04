@@ -1,5 +1,6 @@
 var AppCtrl = function($scope, 
-					UsuarioFactory, 
+					UsuarioFactory,
+					OrdenesFactory,
 					$state, 
 					$ionicPopup,
 					AuthService,
@@ -10,12 +11,24 @@ var AppCtrl = function($scope,
 
 	$scope.usuario = null;
 
-	$scope.setCurrentUser = function () {
-		$scope.usuario = UsuarioFactory.getUsuario();
-	};
+	
 	
 	$scope.$on(AUTH_EVENTS.loginSuccess, function(event){
+		$scope.usuario = UsuarioFactory.getUsuario();
 		$state.go('app.inicio');
+
+
+		$scope.$on('$ionicView.afterEnter', function(event) {
+			if(UsuarioFactory.getUsuario()){
+		    	OrdenesFactory
+				.cargarOrdenesEnProceso()
+				.then(function(){
+					console.log("AppCtrl.event:$ionicView.afterEnter, contOrdenesEnProceso", $scope.contOrdenesEnProceso)
+					$scope.contOrdenesEnProceso = OrdenesFactory.getOrdenesEnProceso().length;
+				});
+			}
+		});
+
 	});
 
 
@@ -43,11 +56,12 @@ var AppCtrl = function($scope,
 	});
 
 	$scope.logout = function() {
-		console.log("AppCtrl.logout():")
+		console.log("AppCtrl.logout():");	
 		AuthService.logout();
 		$state.go('autenticacion.inicio');
 	};	
 
+	
 };
 
 app.controller('AppCtrl', AppCtrl);

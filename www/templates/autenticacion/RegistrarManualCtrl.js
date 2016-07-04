@@ -1,27 +1,27 @@
 var RegistrarManualCtrl = function($scope,
 								$ionicPopup,
 								AuthService,
-								$state,
-								$rootScope,
-								UsuarioFactory) {
+								AUTH_EVENTS,
+								$rootScope) {
+
+	console.log("RegistrarManualCtrl");
 	$scope.error = "";
-	$scope.user = {
-		name: "",
-		email: "",
-		password: ""
+	$scope.usuario = {
+		nombre: "",
+		correo: "",
+		contrasena: ""
 	};
 
-	$scope.signup = function() {
+	$scope.registrar = function() {
 		AuthService
-		.register($scope.user)
+		.registrar($scope.usuario)
 		.then(function(msg) {
 			console.log("RegistrarManualCtrl:", msg)
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-			$scope.setCurrentUser(UsuarioFactory.getUsuario());
-		}, function(errMsg) {
+		}, function(res) {
 			var alertPopup = $ionicPopup.alert({
 				title: 'Registro Falló!',
-				template: JSON.stringify(errMsg)
+				template: res
 			});
 		});
 	};

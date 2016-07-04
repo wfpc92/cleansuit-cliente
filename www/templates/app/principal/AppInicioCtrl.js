@@ -2,8 +2,7 @@ var AppInicioCtrl = function($scope,
 							PromocionesFactory, 
 							CarritoFactory, 
 							$ionicTabsDelegate, 
-							CargaInicialFactory,
-							HistorialOrdenFactory) {
+							CargaInicialFactory) {
 	
 	$ionicTabsDelegate.select(0);
 	
@@ -13,10 +12,6 @@ var AppInicioCtrl = function($scope,
 	CargaInicialFactory
 	.iniciar(function() {
 		console.log("termina de ejecutar la funcion iniciar de CargaInicialFactory")
-	});
-	
-	HistorialOrdenFactory.cargar().then(function(){
-		$scope.contOrdenesEnProceso = HistorialOrdenFactory.getOrdenesEnProceso().length; 
 	});
 };
 

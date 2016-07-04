@@ -1,17 +1,19 @@
 
 var InformacionOrdenCtrl = function($scope, 
 									UsuarioFactory, 
-									OrdenFactory, 
+									OrdenesFactory, 
 									CarritoFactory, 
 									$state, 
 									$ionicPopover, 
 									$ionicHistory, 
 									$ionicModal, 
-									$ionicPopup, 
-									RealizarOrdenFactory,  
+									$ionicPopup,
+									$cordovaDatePicker,   
 									$rootScope, 
 									MapasFactory, 
 									ModalCargaFactory) {
+	
+	console.log("InformacionOrdenCtrl");
 	var self = this;
  
 	this.$scope = $scope;
@@ -27,11 +29,11 @@ var InformacionOrdenCtrl = function($scope,
 
 	$scope.usuario = UsuarioFactory.getUsuario();
 	$scope.carrito = CarritoFactory;
-	$scope.orden = OrdenFactory.orden;
+	$scope.orden = OrdenesFactory.orden;
 
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
-	$scope.orden.direccionRecoleccion.direccion = $scope.usuario.direccion.residencia;
-	$scope.orden.direccionEntrega.direccion = $scope.usuario.direccion.residencia;
+	$scope.orden.recoleccion.direccion = $scope.usuario.direccion;
+	$scope.orden.entrega.direccion = $scope.usuario.direccion;
 	$scope.orden.telefono = $scope.usuario.telefono;
 
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
@@ -88,8 +90,8 @@ var InformacionOrdenCtrl = function($scope,
 
 	$scope.realizarOrden = function() {
 		console.log("InformacionOrdenCtrl: realizarOrden(): ");
-		RealizarOrdenFactory
-		.realizarOrden()
+		OrdenesFactory
+		.enviarOrden()
 		.then(function() {
 			console.log("exito")
 			$ionicHistory.clearHistory();
@@ -114,11 +116,11 @@ var InformacionOrdenCtrl = function($scope,
 		
 		switch(tipo) {
 			case "DIRECCIONRECOLECCION":
-				$scope.orden.direccionRecoleccion.posicion = posicion;
+				$scope.orden.recoleccion.posicion = posicion;
 				break;
 
 			case "DIRECCIONENTREGA":
-				$scope.orden.direccionEntrega.posicion = posicion;
+				$scope.orden.entrega.posicion = posicion;
 				break;
 		}
 		
@@ -162,8 +164,8 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	switch(tipo) {
 		case "DIRECCIONRECOLECCION":
 			//ubicar la posicion en el mapa almacenada
-			if($scope.orden.direccionRecoleccion.posicion) {
-				posicion = $scope.orden.direccionRecoleccion.posicion;
+			if($scope.orden.recoleccion.posicion) {
+				posicion = $scope.orden.recoleccion.posicion;
 				console.log("DIRECCIONRECOLECCION: ", posicion.lat(), posicion.lng());
 			} else {
 				console.log("DIRECCIONRECOLECCION: null");
@@ -176,8 +178,8 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 
 		case "DIRECCIONENTREGA":
 			//ubicar la posicion en el mapa almacenada
-			if($scope.orden.direccionEntrega.posicion) {
-				posicion = $scope.orden.direccionEntrega.posicion;
+			if($scope.orden.entrega.posicion) {
+				posicion = $scope.orden.entrega.posicion;
 				console.log("DIRECCIONENTREGA: ", posicion.lat(), posicion.lng())
 			} else {
 				console.log("DIRECCIONENTREGA: null");
@@ -219,7 +221,9 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 
 	/*if(self.$scope.soloProductos){
 		self.$scope.$watchGroup([
-			'orden.direccionEntrega.direccion',
+			'orden.entrega.direccion',
+			'orden.entrega.fecha',
+			'orden.entrega.hora',
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
@@ -232,10 +236,12 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			});
 	} else {
 		self.$scope.$watchGroup([
-			'orden.direccionRecoleccion.direccion',
-			'orden.direccionRecoleccion.hora',
-			'orden.direccionEntrega.direccion',
-			'orden.direccionRecoleccion.hora',
+			'orden.recoleccion.direccion',
+			'orden.recoleccion.fecha',
+			'orden.recoleccion.hora',
+			'orden.entrega.direccion',
+			'orden.entrega.fecha',
+			'orden.entrega.hora',
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
@@ -253,9 +259,22 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 	var self = this,
 		$scope = this.$scope, 
 		$ionicPopover = this.$ionicPopover,
-		tmpURL = "";
+		tmpURL = null;
 
 	switch(tipo) {
+		case "FECHARECOLECCION":
+			datePicker.show({
+				date: $scope.orden.recoleccion.fecha,
+				mode: 'date'
+			}, function(fecha){
+				$scope.$apply(function() {
+					$scope.orden.recoleccion.fecha = fecha;
+				});
+			}, function(error) {
+				console.log("datepicker, error", error)
+			});
+
+			break;
 		case "HORARECOLECCION":
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraRecoleccion";
@@ -267,11 +286,22 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			];
 
 			$scope.setHora = function($index){
-				$scope.orden.direccionRecoleccion.hora = $scope.horas[$index];
+				$scope.orden.recoleccion.hora = $scope.horas[$index];
 				$scope.closePopover();
 			};
 			break;
-
+		case "FECHAENTREGA":
+			datePicker.show({
+				date: $scope.orden.entrega.fecha,
+				mode: 'date'
+			}, function(fecha){
+				$scope.$apply(function() {
+					$scope.orden.entrega.fecha = fecha;
+				});
+			}, function(error) {
+				console.log("datepicker, error", error)
+			});
+			break;
 		case "HORAENTREGA":
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraEntrega";
@@ -283,7 +313,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			];
 
 			$scope.setHora = function($index){
-				$scope.orden.direccionEntrega.hora = $scope.horas[$index];
+				$scope.orden.entrega.hora = $scope.horas[$index];
 				$scope.closePopover();
 			};
 			break;
@@ -297,12 +327,14 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			return;
 	}
 
-	$ionicPopover.fromTemplateUrl(tmpURL, {
-		scope: $scope,
-	}).then(function(popover) {
-		$scope.popover = popover;
-		$scope.popover.show($event);
-	});
+	if(tmpURL){
+		$ionicPopover.fromTemplateUrl(tmpURL, {
+			scope: $scope,
+		}).then(function(popover) {
+			$scope.popover = popover;
+			$scope.popover.show($event);
+		});
+	}
 };
 
 

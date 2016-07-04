@@ -1,23 +1,23 @@
 var IngresarManualCtrl = function($scope,
 								AuthService,
 								$ionicPopup,
-								UsuarioFactory,
 								$rootScope,
 								AUTH_EVENTS) {
-	console.log("IngresarManualCtrl")
+
+	console.log("IngresarManualCtrl");
+	
 	$scope.error = "";
-	$scope.user = {
-		email: "",
-		password: ""
+	$scope.usuario = {
+		correo: "",
+		contrasena: ""
 	};
 
-	$scope.login = function() {
+	$scope.ingresar = function() {
 		AuthService
-		.login($scope.user)
+		.ingresar($scope.usuario)
 		.then(function(msg) {
-			console.log("IngresarManualCtrl.login()", msg)
+			console.log("IngresarManualCtrl.ingresar()", msg)
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-			$scope.setCurrentUser(UsuarioFactory.getUsuario());
 		}, function(errMsg) {
 			console.log("IngresarManualCtrl: err", errMsg);
 			$rootScope.$broadcast(AUTH_EVENTS.loginFailed);

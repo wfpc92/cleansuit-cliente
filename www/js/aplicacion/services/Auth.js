@@ -43,7 +43,7 @@ var AuthService = function($q,
 	}
  
  	//result.data = {success:boolean, usuario: {nombre:string, correo:string, role:string, token:string}}
- 	var authCallback = function(resolve, reject, result) {
+ 	function authCallback(resolve, reject, result) {
 		if (result.data.success) {
 			storeUserCredentials(result.data.usuario);
 			return resolve(result.data.mensaje);
@@ -52,25 +52,23 @@ var AuthService = function($q,
 		}
  	};
 
- 	var login = function(user) {
-		console.log("AuthService.login()")
+	var registrar = function(user) {
 		return $q(function(resolve, reject) {
 			$http
-			.post(API_ENDPOINT.url + '/authenticate', user)
+			.post(API_ENDPOINT.url + '/registrar', user)
 			.then(function(res) {
- 				console.log("AuthService.login()", res)
+ 				console.log("AuthService.registrar()", res)
 				return authCallback(resolve, reject, res);
 			});
 		});
 	};
 
-	var register = function(user) {
-		console.log("AuthService.register()")
+ 	var ingresar = function(user) {
 		return $q(function(resolve, reject) {
 			$http
-			.post(API_ENDPOINT.url + '/signup', user)
+			.post(API_ENDPOINT.url + '/ingresar', user)
 			.then(function(res) {
- 				console.log("AuthService.register()", res)
+ 				console.log("AuthService.ingresar()", res)
 				return authCallback(resolve, reject, res);
 			});
 		});
@@ -92,17 +90,15 @@ var AuthService = function($q,
 	loadUserCredentials();
  
 	return {
-		login: login,
-		register: register,
+		ingresar: ingresar,
+		registrar: registrar,
 		logout: logout,
     	isAuthorized: isAuthorized,
-		isAuthenticated: function() {return isAuthenticated;}
+		isAuthenticated: isAuthenticated
 	};
 };
 
-app.service('AuthService', AuthService)
-
-.factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
+var AuthInterceptor = function ($rootScope, $q, AUTH_EVENTS) {
   return {
     responseError: function (response) {
     	console.log("AuthInterceptor.responseError()")
@@ -113,4 +109,7 @@ app.service('AuthService', AuthService)
       	return $q.reject(response);
     }
   };
-})
+};
+
+app.service('AuthService', AuthService)
+	.factory('AuthInterceptor', AuthInterceptor);

@@ -1,4 +1,4 @@
-app.factory('CarritoFactory', [function(){
+var CarritoFactory = function(){
 	return {
 		domicilio: 2300,
 
@@ -140,4 +140,6 @@ app.factory('CarritoFactory', [function(){
 			}
 		}
 	};
-}])
+};
+
+app.factory('CarritoFactory', CarritoFactory);

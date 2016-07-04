@@ -1,8 +1,9 @@
 var ServiciosCtrl = function($scope, ServiciosFactory, CarritoFactory, ModalCargaFactory) {
 	$scope.carrito = CarritoFactory;
+	$scope.servicios = ServiciosFactory.getServicios();	
 
 	$scope.$on("$ionicView.afterEnter", function () {
-		$scope.servicios = ServiciosFactory.getServicios();	
+		$scope.cargarServicios();
 	});
 
 	$scope.cargarServicios = function() {

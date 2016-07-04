@@ -1,11 +1,12 @@
-var OrdenesEnProcesoCtrl =  function ($scope, HistorialOrdenFactory) {
+var OrdenesEnProcesoCtrl =  function ($scope,
+									OrdenesFactory) {
 	
 	console.log("OrdenesEnProcesoCtrl")
-	HistorialOrdenFactory
-	.cargar() 
+	OrdenesFactory
+	.cargarOrdenesEnProceso() 
 	.then(function() {
-		console.log("OrdenesEnProcesoCtrl: ", HistorialOrdenFactory.getOrdenesEnProceso())
-		$scope.ordenes = HistorialOrdenFactory.getOrdenesEnProceso();
+		console.log("OrdenesEnProcesoCtrl: ", OrdenesFactory.getOrdenesEnProceso())
+		$scope.ordenes = OrdenesFactory.getOrdenesEnProceso();
 	}, function(err) {
 		console.log("OrdenesEnProcesoCtrl: ", err)
 	})

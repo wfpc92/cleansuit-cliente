@@ -1,4 +1,7 @@
-var HistorialOrdenCtrl = function ($scope, $stateParams, HistorialOrdenFactory, CarritoFactory) {
+var HistorialOrdenCtrl = function ($scope, 
+								$stateParams,
+								HistorialOrdenFactory,
+								CarritoFactory) {
 	
 	var indexOrden = $stateParams.indexOrden;
 	$scope.orden = HistorialOrdenFactory.getHistorialOrdenes()[indexOrden];

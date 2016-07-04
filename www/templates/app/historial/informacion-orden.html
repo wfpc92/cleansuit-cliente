@@ -37,12 +37,12 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Nombres y Apellidos</span>
-							<input type="text" placeholder="nombres y apellidos" value=" {{orden.cliente_id.name}} " disabled>
+							<input type="text" placeholder="nombres y apellidos" value=" {{orden.cliente_id.nombre}} " disabled>
 						</label>
 					</div>
 				</div>
 
-				<div class="item row" ng-if="false">
+				<!--<div class="item row" ng-if="false">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Departamento</span>
@@ -55,13 +55,13 @@
 							<input type="text" placeholder="ciudad" value=" {{orden.cliente_id.ciudad}} " disabled>
 						</label>
 					</div>
-				</div>
+				</div>-->
 
 				<div class="item row" ng-hide="soloProductos">
 					<div class="col">
 						<label class="item-input item-stacked-label">
-							<span class="input-label item-icon-right">Dirección de Recolección de Prendas</span>
-							<input type="text" placeholder="su dirección" value=" {{orden.orden.direccionRecoleccion.direccion}} " disabled>
+							<span class="input-label item-icon-right">Dirección de Recolección</span>
+							<input type="text" placeholder="su dirección" value=" {{orden.orden.recoleccion.direccion}} " disabled>
 						</label>
 					</div>
 				</div> 
@@ -70,8 +70,17 @@
 				<div class="item row" ng-hide="soloProductos">
 					<div class="col">
 						<label class="item-input item-stacked-label">
-							<span class="input-label item-icon-right">Hora de Recolección de Prendas</span>
-							<input type="text" placeholder="hora de recolección" value=" {{orden.orden.direccionRecoleccion.hora}} " disabled>
+							<span class="input-label item-icon-right">Fecha de Recolección</span>
+							<input type="text" placeholder="hora de recolección" value=" {{orden.orden.recoleccion.fecha | date}} " disabled>
+						</label>
+					</div>
+				</div> 
+
+				<div class="item row" ng-hide="soloProductos">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Hora de Recolección</span>
+							<input type="text" placeholder="hora de recolección" value=" {{orden.orden.recoleccion.hora}} " disabled>
 						</label>
 					</div>
 				</div> 
@@ -81,17 +90,27 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Dirección de Entrega</span>
-							<input type="text" placeholder="dirección de entrega" value=" {{orden.orden.direccionEntrega.direccion}} " disabled>
+							<input type="text" placeholder="dirección de entrega" value=" {{orden.orden.entrega.direccion}} " disabled>
 						</label>
 					</div>
 				</div> 
 
 
-				<div class="item row" ng-hide="soloProductos">
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Fecha de Entrega</span>
+							<input type="text" placeholder="hora de entrega" value=" {{orden.orden.entrega.fecha | date}} " disabled>
+						</label>
+					</div>
+				</div> 
+
+
+				<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Hora de Entrega</span>
-							<input type="text" placeholder="hora de entrega" value=" {{orden.orden.direccionEntrega.hora}} " disabled>
+							<input type="text" placeholder="hora de entrega" value=" {{orden.orden.entrega.hora}} " disabled>
 						</label>
 					</div>
 				</div> 
@@ -102,7 +121,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
-							<input type="text" placeholder="su teléfono" value=" {{orden.orden.telefono}} " disabled>
+							<input type="tel" placeholder="su teléfono" value=" {{orden.orden.telefono}} " disabled>
 						</label>
 					</div>
 				</div>
@@ -117,7 +136,7 @@
 				</div>
 			</div>
 
-			<div class="list-orden">    
+			<div class="list-orden">  
 				<div class="item" ng-repeat="item in orden.items" ng-class="{'item-thumbnail-left': item.tipo=='PRODUCTO'}">
 
 					<img ng-src="img/producto-detalle1.png" ng-show="item.tipo=='PRODUCTO'"/>

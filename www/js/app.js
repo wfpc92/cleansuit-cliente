@@ -29,12 +29,18 @@ var app = angular.module('ClienteCleanSuit', ['ionic', 'angularLoad', 'ngCordova
 		//console.log("event:$stateChangeStart",next)
 		var authorizedRoles = next.data.authorizedRoles;
 		if (!AuthService.isAuthorized(authorizedRoles)) {
-			console.log("no autorizado")
+			console.log("no autorizado", AuthService.isAuthenticated)
 			
-			if (AuthService.isAuthenticated()) {
+			if (AuthService.isAuthenticated) {
 				// user is not allowed
 				event.preventDefault();
-				$rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+				if(next.name.indexOf("autenticacion.") !== -1){
+					$state.go('app.inicio');
+				} else {
+					$state.go('autenticacion.inicio');
+					$rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+				}
+				
 			} else {
 				if(next.name.indexOf("app.") !== -1){
 					// user is not logged in

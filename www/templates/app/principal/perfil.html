@@ -15,7 +15,7 @@
 					</div>
 				</div>
 
-				<div class="item row">
+				<!--<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
 							<span class="input-label">Departamento</span>
@@ -29,13 +29,13 @@
 							<input type="text" placeholder="ciudad" name="ciudad" ng-model="usuario.direccion.ciudad" pattern="(?=.*[a-zA-Z]).{1,40}" required>
 						</label>
 					</div>
-				</div>
+				</div>-->
 
 				<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Dirección de Residencia</span>
-							<input type="text" placeholder="dirección residencia" name="direccion" ng-model="usuario.direccion.residencia" pattern="(?=.*[a-zA-Z]).{1,100}" required>
+							<input type="text" placeholder="dirección residencia" name="direccion" ng-model="usuario.direccion" pattern="(?=.*[a-zA-Z]).{1,100}" required>
 						</label>
 					</div>
 				</div>
@@ -53,7 +53,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Correo Electrónico</span>
-							<input type="email" placeholder="correo electrónico" name="correo" ng-model="usuario.email" required>
+							<input type="email" placeholder="correo electrónico" name="correo" ng-model="usuario.correo" disabled >
 						</label>
 					</div>
 				</div>
@@ -79,16 +79,17 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Nueva Contraseña</span>
-							<input type="password" name="nuevaContrasena" placeholder="su nueva contraseña" ng-model="formData.contrasena" pattern="(?=.*\d)(?=.*[a-zA-Z]).{6,16}" ng-model-options="{ updateOn: 'blur' }" required>
+							<input type="password" name="nuevaContrasena" placeholder="su nueva contraseña" ng-model="usuario.contrasena" required>
 						</label>
 					</div>
 				</div>
+				<!--pattern="(?=.*\d)(?=.*[a-zA-Z]).{6,16}" ng-model-options="{ updateOn: 'blur' }" -->
 
 				<div class="item row" ng-show="formData.mostrarCambiarContrasena">
 					<div class="col">
 						<label class="item-input item-stacked-label">
-							<span class="input-label">Confirmar Nueva Contraseña</span>
-							<input type="password" name="confirmarNuevaContrasena" placeholder="confirme su nueva contraseña" ng-model="formData.confirmarContrasena" required>
+							<span class="input-label">Repetir Nueva Contraseña</span>
+							<input type="password" name="repetirNuevaContrasena" placeholder="confirme su nueva contraseña" ng-model="usuario.repetirContrasena" required>
 						</label>
 					</div>
 				</div>
