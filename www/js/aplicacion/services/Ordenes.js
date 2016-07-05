@@ -20,11 +20,10 @@ var OrdenesFactory = function(CarritoFactory,
 	
 	var _ordenesEnProceso	= [];
 	var _historialOrdenes = [];
-	var _contOrdenesEnProceso = 0;
+	
 	return {
 		
 		orden: _orden,
-		contOrdenesEnProceso: _contOrdenesEnProceso,
 
 		enviarOrden : function() { 
 			console.log("OrdenFactory.enviarOrden(): ");			
@@ -54,7 +53,6 @@ var OrdenesFactory = function(CarritoFactory,
 				console.log("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
 				if(!respuesta.error){
 					_ordenesEnProceso = respuesta.data.ordenes;
-					_contOrdenesEnProceso = _ordenesEnProceso.length;
 				} else {
 					console.log("OrdenesFactory.cargar()", respuesta.error);
 				}

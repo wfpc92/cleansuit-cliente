@@ -1,4 +1,4 @@
-app.factory('ServiciosFactory',['RecursosFactory', function(RecursosFactory){
+var ServiciosFactory = function(RecursosFactory){
 	var _servicios = [];
 	
 	return {
@@ -12,7 +12,7 @@ app.factory('ServiciosFactory',['RecursosFactory', function(RecursosFactory){
 			return RecursosFactory
 			.get('/servicios', {})
 			.then(function(respuesta) {
-				console.log("Finaliza peticion GET a servidor para servicios.")
+				console.log("Finaliza peticion GET a servidor para servicios.", respuesta)
 				if(!respuesta.error){
 					_servicios = respuesta.data;
 				} else {
@@ -21,4 +21,6 @@ app.factory('ServiciosFactory',['RecursosFactory', function(RecursosFactory){
 			});
 		},
 	};
-}]);
+};
+
+app.factory('ServiciosFactory', ServiciosFactory); 

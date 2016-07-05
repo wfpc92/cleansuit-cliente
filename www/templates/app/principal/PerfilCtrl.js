@@ -1,17 +1,16 @@
 var PerfilCtrl = function($scope,
 						UsuarioFactory,
-						$ionicPopup){
+						$ionicPopup,
+						AUTH_EVENTS,
+						$rootScope){
 	var self = this;
 
 
-	$scope.guardarPerfil = function() {
+	$scope.actualizar = function() {
 		UsuarioFactory
 		.actualizarPerfil($scope.usuario)
-		.then(function(mensaje) {
-			$ionicPopup
-			.alert({
-				title: mensaje
-			});
+		.then(function(msg) {
+			$rootScope.$broadcast(AUTH_EVENTS.perfilActualizado, {msg: msg});
 		});
 	};
 
@@ -29,6 +28,7 @@ var PerfilCtrl = function($scope,
 			'usuario.direccion',
 			'usuario.telefono'
 			], function(newV, oldV, scope){
+				console.log("ws1: ", newV)
 				if(newV[0] && newV[1] && newV[2]){
 					$scope.formData.formValido = true;
 				}
@@ -42,7 +42,7 @@ var PerfilCtrl = function($scope,
 			'usuario.contrasena',
 			'usuario.repetirContrasena'
 			], function(newV, oldV, scope) {
-				console.log(newV)
+				console.log("ws2: ", newV)
 				if(newV[0] && newV[1] && newV[0] == newV[1]){
 					$scope.formData.formValido = true;
 					$scope.formData.contrasenaModificada = true;

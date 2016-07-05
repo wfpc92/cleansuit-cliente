@@ -17,17 +17,12 @@ var IngresarManualCtrl = function($scope,
 		.ingresar($scope.usuario)
 		.then(function(msg) {
 			console.log("IngresarManualCtrl.ingresar()", msg)
-			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-		}, function(errMsg) {
-			console.log("IngresarManualCtrl: err", errMsg);
-			$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-			var alertPopup = $ionicPopup.alert({
-				title: 'Login failed!',
-        		template: 'Please check your credentials!'
-			});
+			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess, {msg: msg});
+		}, function(msg) {
+			console.log("IngresarManualCtrl: err", msg);
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: msg});
 		});
 	};
 };
-
 
 app.controller('IngresarManualCtrl', IngresarManualCtrl);

@@ -46,9 +46,9 @@
 				</ion-item>
 
 				<ion-item menu-close ui-sref="app.ordenes-en-proceso" class="item-icon-left">
-					Orden en proceso {{contOrdenesEnProceso}}
+					Orden en proceso
 					<i class="icon ico-ordenes"></i>
-					<span class="badge badge-dark icon-badge" ng-if="ordenesEnProceso.length > 0">{{ordenesEnProceso.length}}</span>
+					<span class="badge badge-dark icon-badge" ng-if="contOrdenesEnProceso > 0">{{contOrdenesEnProceso}}</span>
 				</ion-item>
 
 				<ion-item menu-close ui-sref="app.historial-ordenes" class="item-icon-left">

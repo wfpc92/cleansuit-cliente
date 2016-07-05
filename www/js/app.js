@@ -25,25 +25,26 @@ var app = angular.module('ClienteCleanSuit', ['ionic', 'angularLoad', 'ngCordova
 	});
 	
 	//verificar si esta autenticado y autorizado.
-	$rootScope.$on('$stateChangeStart', function (event, next) {
-		//console.log("event:$stateChangeStart",next)
+	$rootScope.$on('$stateChangeStart', function (event, next, toParams, fromState, fromParams) {
+		//console.log("event:$stateChangeStart", next, toParams, fromState, fromParams)
 		var authorizedRoles = next.data.authorizedRoles;
 		if (!AuthService.isAuthorized(authorizedRoles)) {
-			console.log("no autorizado", AuthService.isAuthenticated)
+			// usuario no autorizado
 			
 			if (AuthService.isAuthenticated) {
-				// user is not allowed
 				event.preventDefault();
 				if(next.name.indexOf("autenticacion.") !== -1){
+					// usuario quiere volver a autenticar?, no permitido
 					$state.go('app.inicio');
 				} else {
+					//solicitud de estado desconocido
 					$state.go('autenticacion.inicio');
 					$rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
 				}
 				
 			} else {
 				if(next.name.indexOf("app.") !== -1){
-					// user is not logged in
+					// usuario no esta autenticado y quiere ingresar a la app
 					event.preventDefault();
 					$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
 				}

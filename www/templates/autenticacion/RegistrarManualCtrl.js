@@ -17,12 +17,9 @@ var RegistrarManualCtrl = function($scope,
 		.registrar($scope.usuario)
 		.then(function(msg) {
 			console.log("RegistrarManualCtrl:", msg)
-			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-		}, function(res) {
-			var alertPopup = $ionicPopup.alert({
-				title: 'Registro Falló!',
-				template: res
-			});
+			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess, { msg: msg });
+		}, function(msg) {
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, { msg: msg });
 		});
 	};
 };

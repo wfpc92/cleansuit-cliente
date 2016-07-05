@@ -73,6 +73,11 @@ var AuthService = function($q,
 			});
 		});
 	};
+
+	var actualizarCredenciales = function() {
+		var usuario = UsuarioFactory.getUsuario();
+		storeUserCredentials(usuario);
+	}
  
 	var logout = function() {
 		console.log("AuthService.logout()")
@@ -94,7 +99,8 @@ var AuthService = function($q,
 		registrar: registrar,
 		logout: logout,
     	isAuthorized: isAuthorized,
-		isAuthenticated: isAuthenticated
+		isAuthenticated: isAuthenticated,
+		actualizarCredenciales: actualizarCredenciales
 	};
 };
 

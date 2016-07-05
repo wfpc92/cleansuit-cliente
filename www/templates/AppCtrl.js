@@ -9,40 +9,24 @@ var AppCtrl = function($scope,
 
 	console.log("AppCtrl")
 
-	$scope.usuario = null;
-
 	
-	
-	$scope.$on(AUTH_EVENTS.loginSuccess, function(event){
+	$scope.$on(AUTH_EVENTS.loginSuccess, function(event, args){
 		$scope.usuario = UsuarioFactory.getUsuario();
 		$state.go('app.inicio');
-
-
-		$scope.$on('$ionicView.afterEnter', function(event) {
-			if(UsuarioFactory.getUsuario()){
-		    	OrdenesFactory
-				.cargarOrdenesEnProceso()
-				.then(function(){
-					console.log("AppCtrl.event:$ionicView.afterEnter, contOrdenesEnProceso", $scope.contOrdenesEnProceso)
-					$scope.contOrdenesEnProceso = OrdenesFactory.getOrdenesEnProceso().length;
-				});
-			}
-		});
-
 	});
 
 
-	$scope.$on(AUTH_EVENTS.loginFailed, function(event){
+	$scope.$on(AUTH_EVENTS.loginFailed, function(event, args){
 		var alertPopup = $ionicPopup.alert({
-			title: 'Login Failed!',
-			template: 'login failed'
+			title: 'Verifica por favor!',
+			template: args.msg
 		});
 	});
 
 	$scope.$on(AUTH_EVENTS.notAuthorized, function(event) {
 		var alertPopup = $ionicPopup.alert({
-			title: 'Unauthorized!',
-			template: 'You are not allowed to access this resource.'
+			title: 'No es posible acceder!',
+			template: 'Este recurso no esta disponible para ti.'
 		});
 	});
 
@@ -50,9 +34,31 @@ var AppCtrl = function($scope,
 		AuthService.logout();
 		$state.go('autenticacion.inicio');
 		var alertPopup = $ionicPopup.alert({
-			title: 'usuario no autenticado!',
-			template: 'debe iniciar sesion.'
+			title: 'Usuario no autenticado!',
+			template: 'Debes iniciar sesion.'
 		});
+	});
+
+	$scope.$on(AUTH_EVENTS.perfilActualizado, function(event, args) {
+		AuthService.actualizarCredenciales();
+		$ionicPopup
+		.alert({
+			title: "Perfil de usuario",
+			template: args.msg
+		});
+	});
+
+	$scope.$on('$ionicView.afterEnter', function(event) {
+		$scope.usuario = UsuarioFactory.getUsuario();
+		if($scope.usuario){
+	    	OrdenesFactory
+			.cargarOrdenesEnProceso()
+			.then(function(){
+				console.log("AppCtrl.event:$ionicView.afterEnter, contOrdenesEnProceso", $scope.contOrdenesEnProceso)
+				$scope.contOrdenesEnProceso = OrdenesFactory.getOrdenesEnProceso().length;
+				
+			});
+		}
 	});
 
 	$scope.logout = function() {
