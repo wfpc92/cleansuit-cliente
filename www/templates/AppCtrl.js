@@ -50,6 +50,7 @@ var AppCtrl = function($scope,
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		$scope.usuario = UsuarioFactory.getUsuario();
+		
 		if($scope.usuario){
 	    	OrdenesFactory
 			.cargarOrdenesEnProceso()
