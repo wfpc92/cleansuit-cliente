@@ -1,26 +1,28 @@
 <ion-view title="Ingresar">
-	
 	<img class="logo" ng-src="img/logo.svg" />
 
 	<div class="bar bar-footer auto">
 		<ion-content class="form">
 			<div class="formulario">
 				<img class="burbujas" ng-src="img/burbujas.svg" />
+				
 				<form class="list">
 					 <div class="list">
 						<label class="item item-input item-floating-label" name="email">
 							<span class="input-label">Correo Electrónico</span>
-							<input type="text" placeholder="CORREO ELECTRÓNICO">
+							<input type="text" placeholder="CORREO ELECTRÓNICO" ng-model="usuario.correo">
 						</label>
 						<label class="item item-input item-floating-label" name="contrasena">
 							<span class="input-label">Contraseña</span>
-							<input type="password" placeholder="CONTRASEÑA">
+							<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena">
 						</label>
 					</div>
+
 					<a ui-sref="autenticacion.recuperar-contrasena">¿Olvidaste tu contraseña?</a>
-				</form>
+				</form>				
 			</div>
 		</ion-content>
-		<a ng-click="login()" class="button button-calm button-full">INGRESAR</a>
+
+		<a class="button button-calm button-full" ng-click="ingresar()">INGRESAR</a>
 	</div>
 </ion-view>

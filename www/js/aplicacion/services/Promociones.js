@@ -1,9 +1,9 @@
 app.factory('PromocionesFactory',[function(){
 	var _promociones = [
 			{'id':'1', imagen_url: 'http://hygieneshopping.com/WebRoot/StoreES3/Shops/ec5024/MediaGallery/Cupones_Descuento/cupon_dorado_10_8364_.jpg'},
-			{'id':'2', imagen_url:'https://regalosymuestrasgratis.com/wp-content/uploads/2011/02/cupones-descuento-opencor.jpg'},
+			{'id':'2', imagen_url: 'https://regalosymuestrasgratis.com/wp-content/uploads/2011/02/cupones-descuento-opencor.jpg'},
 			{'id':'3', imagen_url: 'http://hygieneshopping.com/WebRoot/StoreES3/Shops/ec5024/MediaGallery/Cupones_Descuento/cupon_dorado_10_8364_.jpg'},
-			{'id':'4', imagen_url:'https://regalosymuestrasgratis.com/wp-content/uploads/2011/02/cupones-descuento-opencor.jpg'}
+			{'id':'4', imagen_url: 'https://regalosymuestrasgratis.com/wp-content/uploads/2011/02/cupones-descuento-opencor.jpg'}
 		] ;
 
 	return {

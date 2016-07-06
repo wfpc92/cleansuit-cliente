@@ -13,8 +13,8 @@
 			<ion-tab title="Promociones" ui-sref="app.inicio" class="tab-hidden">
 				<ion-nav-view name="panel-contenido"></ion-nav-view>
 			</ion-tab>
-			<ion-tab title="Servicios" ui-sref="app.categorias" badge="carrito.contServicios" badge-style="badge-dark" class="aIni">
-				<ion-nav-view name="mis-categorias"></ion-nav-view>
+			<ion-tab title="Servicios" ui-sref="app.servicios" badge="carrito.contServicios" badge-style="badge-dark" class="aIni">
+				<ion-nav-view name="mis-servicios"></ion-nav-view>
 			</ion-tab>
 			<ion-tab title="Productos" ui-sref="app.productos" badge="carrito.contProductos" class="aFin">
 				<ion-nav-view name="mis-productos"></ion-nav-view>
@@ -46,9 +46,9 @@
 				</ion-item>
 
 				<ion-item menu-close ui-sref="app.ordenes-en-proceso" class="item-icon-left">
-					Orden en proceso {{contOrdenesEnProceso}}
+					Orden en proceso
 					<i class="icon ico-ordenes"></i>
-					<span class="badge badge-dark icon-badge" ng-if="ordenesEnProceso.length > 0">{{ordenesEnProceso.length}}</span>
+					<span class="badge badge-dark icon-badge" ng-if="contOrdenesEnProceso > 0">{{contOrdenesEnProceso}}</span>
 				</ion-item>
 
 				<ion-item menu-close ui-sref="app.historial-ordenes" class="item-icon-left">
@@ -66,7 +66,7 @@
 					<i class="icon ico-about"></i>
 				</ion-item>
 				
-				<ion-item menu-close ng-click="cerrarSesion()" class="item-icon-left cerrar">
+				<ion-item menu-close ng-click="logout()" class="item-icon-left cerrar">
 					Cerrar sesión
 					<i class="icon ico-cerrar"></i>
 				</ion-item>

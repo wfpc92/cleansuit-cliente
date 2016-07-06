@@ -1,5 +1,10 @@
-app.config(function($stateProvider, $urlRouterProvider, $logProvider, 
-	$compileProvider, $ionicConfigProvider) {
+app.config(function($stateProvider,
+					$urlRouterProvider,
+					$logProvider,
+					$compileProvider,
+					$ionicConfigProvider,
+					$httpProvider,
+					USER_ROLES) {
 
 
 	//forzar a ionic que tenga las tabs arriba para todas las plataformas
@@ -19,6 +24,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 	$ionicConfigProvider.views.forwardCache(true);
 	$ionicConfigProvider.views.maxCache(5);
 
+	$httpProvider.interceptors.push('AuthInterceptor');
 
 
 	// Ionic uses AngularUI Router which uses the concept of states
@@ -33,7 +39,10 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 	.state('autenticacion', {
 		url: "/autenticacion",
     	abstract: true,
-      	templateUrl: "templates/autenticacion/plantilla.html"
+      	templateUrl: "templates/autenticacion/plantilla.html",
+		data: {
+	    	authorizedRoles: [USER_ROLES.public]
+	    }
 	})
 
 	.state('autenticacion.inicio', {
@@ -89,8 +98,10 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 	.state('app', {
 		url: '/app',
 		abstract: true,
-		templateUrl: 'templates/app/menu.html',//aqui estan las tabs
-		controller: 'AppCtrl'
+		templateUrl: 'templates/app/menu.html',//aqui estan las tabs,
+		data: {
+	    	authorizedRoles: [USER_ROLES.cliente]
+	    }
 	})	
 
 	.state('app.inicio', {
@@ -103,37 +114,34 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 		}
 	})
 
-	.state('app.categorias', {
-		url: '/categorias',
-		views: {
-			'mis-categorias': {
-				templateUrl: 'templates/app/servicios/categorias.html',
-				controller: 'CategoriasCtrl'
-			}
-		}
-	})
-
-
 	.state('app.servicios', {
-		url: '/servicios/:indexCategoria',
+		url: '/servicios',
 		views: {
-			'mis-categorias': {
+			'mis-servicios': {
 				templateUrl: 'templates/app/servicios/servicios.html',
 				controller: 'ServiciosCtrl'
 			}
 		}
 	})
-
-
-	.state('app.servicio', {
-		url: '/servicios/:indexCategoria/:indexServicio',
+	.state('app.subservicios', {
+		url: '/servicios/:indexServicio/subservicios',
 		views: {
-			'mis-categorias': {
-				templateUrl: 'templates/app/servicios/servicio.html',
-				controller: 'ServicioCtrl'
+			'mis-servicios': {
+				templateUrl: 'templates/app/servicios/subservicios.html',
+				controller: 'SubserviciosCtrl'
 			}
 		}
 	})
+	.state('app.subservicio', {
+		url: '/servicios/:indexServicio/subservicios/:indexSubservicio',
+		views: {
+			'mis-servicios': {
+				templateUrl: 'templates/app/servicios/subservicio.html',
+				controller: 'SubservicioCtrl'
+			}
+		}
+	})
+	
 
 	.state('app.productos', {
 		url: '/productos',
@@ -212,7 +220,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 		url: '/ordenes-en-proceso/:indexOrden',
 		views: {
 			'panel-contenido': {
-				templateUrl: 'templates/app/orden/estado-orden.html',
+				templateUrl: 'templates/app/historial/informacion-orden.html',
 				controller: 'OrdenEnProcesoCtrl'
 			}
 		}
@@ -232,7 +240,7 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 		url: '/historial-ordenes/:indexOrden',
 		views: {
 			'panel-contenido': {
-				templateUrl: 'templates/app/historial/historial-informacion-orden.html',
+				templateUrl: 'templates/app/historial/informacion-orden.html',
 				controller: 'HistorialOrdenCtrl'
 			}
 		}
@@ -258,6 +266,10 @@ app.config(function($stateProvider, $urlRouterProvider, $logProvider,
 		}
 	})
 	
-	$urlRouterProvider.otherwise('/autenticacion/inicio');
+	//$urlRouterProvider.otherwise('/autenticacion/inicio');
+	$urlRouterProvider.otherwise( function($injector, $location) {
+    	var $state = $injector.get("$state");
+    	$state.go("autenticacion.inicio");
+    });
 
 });

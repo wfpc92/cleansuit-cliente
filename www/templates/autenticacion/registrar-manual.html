@@ -9,21 +9,22 @@
 				<form class="list">
 					<div class="list">
 						<label class="item item-input item-floating-label" name="Nombre Completo">
-							<span class="input-label">Nombre Completo</span>
-							<input type="text" placeholder="NOMBRE COMPLETO">
+							<span class="input-label">Nombre y Apellidos</span>
+							<input type="text" placeholder="NOMBRE Y APELLIDOS" ng-model="usuario.nombre">
 						</label>
 						<label class="item item-input item-floating-label" name="email">
 							<span class="input-label">Correo Electrónico</span>
-							<input type="text" placeholder="CORREO ELECTRÓNICO">
+							<input type="text" placeholder="CORREO ELECTRÓNICO" ng-model="usuario.correo">
 						</label>
 						<label class="item item-input item-floating-label" name="contrasena">
 							<span class="input-label">Contraseña</span>
-							<input type="password" placeholder="CONTRASEÑA">
+							<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena">
 						</label>
 					</div>
 				</form>
 			</div>
 		</ion-content>
-		<a ui-sref="app.inicio" class="button button-balanced button-full">REGISTRARME</a>
+		
+		<a class="button button-balanced button-full" ng-click="registrar()">REGISTRARME</a>
 	</div>
 </ion-view>

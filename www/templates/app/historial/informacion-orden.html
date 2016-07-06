@@ -1,0 +1,156 @@
+<ion-view title="CleanSuit">
+
+	<ion-content class="has-subheader estado-orden" scroll="true" padding="false" >
+		
+		<div ng-if="esOrdenEnProceso">
+			<h2># de orden: <span>{{orden._id}}</span></h2>
+			<div class="confirmacion">
+				<h3>Hemos recibido tu orden</h3>
+				<span>En este momento estamos procesando tu pedido.</span>
+			</div>
+
+			<div class="estado">
+				<h3>Puedes observar cómo va tu pedido:</h3>
+				
+				<div class="list">
+					<div class="item text-center" ng-repeat="estado in estados" ng-class="{activated: (estado.id == orden.estado)}">
+						{{estado.titulo}}
+					</div>
+				</div>
+				
+				<elemento-centrado>
+					<button class="button button-positive" ng-click="regresarPrincipal()">Regresar a principal</button>
+				</elemento-centrado>
+			</div>
+		</div>
+		
+
+
+		<div class="historial-inf-ord">
+			<div class="titulos">
+				<h2>ORDEN {{orden.estado | uppercase}}</h2>
+				<h3>INFORMACIÓN DE ORDEN</h3>
+			</div>
+
+			<div class="list">
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label">Nombres y Apellidos</span>
+							<input type="text" placeholder="nombres y apellidos" value=" {{orden.cliente_id.nombre}} " disabled>
+						</label>
+					</div>
+				</div>
+
+				<!--<div class="item row" ng-if="false">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label">Departamento</span>
+							<input type="text" placeholder="departamento" value=" {{orden.cliente_id.departamento}} " disabled>
+						</label>
+					</div>
+					<div class="col" >
+						<label class="item-input item-stacked-label">
+							<span class="input-label">Ciudad</span>
+							<input type="text" placeholder="ciudad" value=" {{orden.cliente_id.ciudad}} " disabled>
+						</label>
+					</div>
+				</div>-->
+
+				<div class="item row" ng-hide="soloProductos">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Dirección de Recolección</span>
+							<input type="text" placeholder="su dirección" value=" {{orden.orden.recoleccion.direccion}} " disabled>
+						</label>
+					</div>
+				</div> 
+
+
+				<div class="item row" ng-hide="soloProductos">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Fecha de Recolección</span>
+							<input type="text" placeholder="hora de recolección" value=" {{orden.orden.recoleccion.fecha | date}} " disabled>
+						</label>
+					</div>
+				</div> 
+
+				<div class="item row" ng-hide="soloProductos">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Hora de Recolección</span>
+							<input type="text" placeholder="hora de recolección" value=" {{orden.orden.recoleccion.hora}} " disabled>
+						</label>
+					</div>
+				</div> 
+
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Dirección de Entrega</span>
+							<input type="text" placeholder="dirección de entrega" value=" {{orden.orden.entrega.direccion}} " disabled>
+						</label>
+					</div>
+				</div> 
+
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Fecha de Entrega</span>
+							<input type="text" placeholder="hora de entrega" value=" {{orden.orden.entrega.fecha | date}} " disabled>
+						</label>
+					</div>
+				</div> 
+
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Hora de Entrega</span>
+							<input type="text" placeholder="hora de entrega" value=" {{orden.orden.entrega.hora}} " disabled>
+						</label>
+					</div>
+				</div> 
+
+
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Teléfono de contacto</span>
+							<input type="tel" placeholder="su teléfono" value=" {{orden.orden.telefono}} " disabled>
+						</label>
+					</div>
+				</div>
+
+				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label">
+							<span class="input-label item-icon-right">Forma de Pago</span>
+							<input type="text" placeholder="forma de pago" value=" {{orden.orden.formaPago}} " disabled >
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="list-orden">  
+				<div class="item" ng-repeat="item in orden.items" ng-class="{'item-thumbnail-left': item.tipo=='PRODUCTO'}">
+
+					<img ng-src="img/producto-detalle1.png" ng-show="item.tipo=='PRODUCTO'"/>
+					<h2>{{item.nombre}}</h2>
+					<p ng-show="item.tipo=='SUBSERVICIO'">{{item.categoria}}</p>
+					<h3>{{item.precio | currency : "$ ": 0}}</h3>
+					<div class="cantidad">
+						{{item.cantidad || 0}}
+					</div>
+				</div>
+				<resumen-totales totales="orden.totales"></resumen-totales>   
+			</div>
+		</div>		
+
+	</ion-content>
+
+</ion-view>

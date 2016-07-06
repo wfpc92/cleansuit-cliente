@@ -1,4 +1,4 @@
-app.factory('CarritoFactory', [function(){
+var CarritoFactory = function(){
 	return {
 		domicilio: 2300,
 
@@ -101,7 +101,7 @@ app.factory('CarritoFactory', [function(){
 					case "PRODUCTO":
 						this.contProductos += this.items[i].cantidad;
 						break;
-					case "SERVICIO":
+					case "SUBSERVICIO":
 						this.contServicios += this.items[i].cantidad;
 						break;
 					default:
@@ -140,4 +140,6 @@ app.factory('CarritoFactory', [function(){
 			}
 		}
 	};
-}])
+};
+
+app.factory('CarritoFactory', CarritoFactory);

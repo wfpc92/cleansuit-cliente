@@ -1,10 +1,12 @@
-var RealizarOrdenCtrl = function($scope, RealizarOrdenFactory, $state, $ionicHistory, EstadosFactory) {
+var RealizarOrdenCtrl = function($scope, 
+								OrdenesFactory,
+								$state, 
+								$ionicHistory) {
 	var self = this;
-
-	$scope.estados = EstadosFactory.estados;
-	$scope.orden = RealizarOrdenFactory.ultimaOrden();
-	console.log("ultima orden: ")
-	console.log($scope.orden);
+ 
+	$scope.orden = OrdenesFactory.orden;
+	
+	console.log("Orden: ", $scope.orden);
 
 	$scope.regresarPrincipal = function() {
 		$ionicHistory.clearHistory();
@@ -15,6 +17,5 @@ var RealizarOrdenCtrl = function($scope, RealizarOrdenFactory, $state, $ionicHis
 		$state.go("app.inicio");	
 	};
 };
-
 
 app.controller('RealizarOrdenCtrl', RealizarOrdenCtrl);

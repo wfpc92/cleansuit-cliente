@@ -1,8 +1,11 @@
-var CargaInicialFactory = function(CargarScriptsFactory, ModalCargaFactory, ProductosFactory, MapasFactory) {
+var CargaInicialFactory = function(CargarScriptsFactory,
+							ModalCargaFactory, 
+							ProductosFactory, 
+							ServiciosFactory,
+							MapasFactory) {
 	var recursos = {
 		mapsScript : false,
 		productos: false,
-		categorias: false,
 		servicios: false
 	};
 
@@ -14,24 +17,38 @@ var CargaInicialFactory = function(CargarScriptsFactory, ModalCargaFactory, Prod
 			console.log("Cargando datos iniciales... ");
 
 			//crear mapa de google maps
-			MapasFactory.getMapa().then(function(mapa) {
+			MapasFactory
+			.getMapa()
+			.then(function(mapa) {
 				console.log("mapa de google creado: ", mapa)
 			}, function(error) {
 				console.log("hubo error al crear mapa: ", error)
 			});		
 
-			ModalCargaFactory.mostrar(null, "Cargando productos...", null);
+			ModalCargaFactory.mostrar("Cargando productos...", null);
 
-			ProductosFactory.cargar(function(){
+			ProductosFactory.cargar()
+			.then( function(){
 				recursos.productos = true;
 			}, function (error){
 				recursos.productos = false;
-			}, function(){ 
-				ModalCargaFactory.ocultar();
-				callback();
-			});
+			})
+			.finally( function(){ 
+				console.log("----------------$$$$$$$$$$4----------------")
+				ModalCargaFactory.setMensaje("Cargando servicios...");
+				ServiciosFactory.cargar()
+				.then( function(){
+					recursos.servicios = true;
+				}, function (error){
+					recursos.servicios = false;
+				})
+				.finally( function(){ 
+					ModalCargaFactory.ocultar();
+					callback();
+				});
+			});		
 		}
 	};
 };
 
-app.factory("CargaInicialFactory", ['CargarScriptsFactory', 'ModalCargaFactory', 'ProductosFactory', 'MapasFactory', CargaInicialFactory]);
+app.factory("CargaInicialFactory", CargaInicialFactory);

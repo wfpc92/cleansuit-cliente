@@ -1,30 +1,23 @@
-var PerfilCtrl = function($scope, UsuarioFactory, $ionicPopup){
+var PerfilCtrl = function($scope,
+						UsuarioFactory,
+						$ionicPopup,
+						AUTH_EVENTS,
+						$rootScope){
 	var self = this;
 
-	$scope.usuario = UsuarioFactory.getUsuario();
 
-	$scope.guardarPerfil = function() {
-		UsuarioFactory.guardarInformacion($scope.formData,  
-			function() {
-				$ionicPopup
-					.alert({
-						title: 'Tu perfil se ha actualizado.'
-					});
-				$scope.formData = {
-					contrasena: '',
-					confirmarContrasena: '',
-					mostrarCambiarContrasena: false,
-					contrasenaModificada: false,
-					formValido: false
-				};
+	$scope.actualizar = function() {
+		UsuarioFactory
+		.actualizarPerfil($scope.usuario)
+		.then(function(msg) {
+			$rootScope.$broadcast(AUTH_EVENTS.perfilActualizado, {msg: msg});
 		});
 	};
 
 	$scope.$on("$ionicView.afterEnter", function () {
+		$scope.usuario = UsuarioFactory.getUsuario();
 		//objeto para almacenar informacion de entrada
 		$scope.formData = {
-			contrasena: '',
-			confirmarContrasena: '',
 			mostrarCambiarContrasena: false,
 			contrasenaModificada: false,
 			formValido: false
@@ -32,14 +25,11 @@ var PerfilCtrl = function($scope, UsuarioFactory, $ionicPopup){
 
 		$scope.$watchGroup([
 			'usuario.nombre',
-			'usuario.apellidos',
-			'usuario.direccion.departamento',
-			'usuario.direccion.ciudad',
-			'usuario.direccion.residencia',
-			'usuario.telefono',
-			'usuario.email'
+			'usuario.direccion',
+			'usuario.telefono'
 			], function(newV, oldV, scope){
-				if(newV[0] && newV[1] && newV[2] && newV[3] && newV[4] && newV[5] && newV[6]){
+				console.log("ws1: ", newV)
+				if(newV[0] && newV[1] && newV[2]){
 					$scope.formData.formValido = true;
 				}
 				else {
@@ -49,9 +39,10 @@ var PerfilCtrl = function($scope, UsuarioFactory, $ionicPopup){
 
 
 		$scope.$watchGroup([
-				'formData.contrasena',
-				'formData.confirmarContrasena'
+			'usuario.contrasena',
+			'usuario.repetirContrasena'
 			], function(newV, oldV, scope) {
+				console.log("ws2: ", newV)
 				if(newV[0] && newV[1] && newV[0] == newV[1]){
 					$scope.formData.formValido = true;
 					$scope.formData.contrasenaModificada = true;
