@@ -9763,11 +9763,12 @@ img.logoinicio {
   font-family: 'fira_sansmedium'; }
   .bar-footer .button {
     border-radius: 0px;
-    font-size: 1.375em;
+    font-size: 1.16em;
     margin: 0px;
-    padding: 11px 0px; }
+    padding: 11px 0px;
+    height: 56px; }
     .bar-footer .button .ico-facebook:before {
-      font-size: 30px;
+      font-size: 20px;
       margin: 0 10px 0 0; }
   .bar-footer .button-positive {
     background-color: #2A4588; }
