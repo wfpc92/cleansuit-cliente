@@ -1,29 +1,4 @@
-#contenedor-mapa, #id-mapa {
-	height:100%;
-	margin:0;
-}
 
-.scroll {
-  height: 100%;
-  margin-top: 40px;
-}
-
-#id-mapa .centerMarker {
-	display: block;
-	width: 30px;
-	height: 44px;
-	position: absolute;
-	z-index: 100;
-	top: 50%;
-	margin-top: -44px;/*height*/
-	left: 50%;
-	margin-left: -15px;/*-width/2*/
-	background: url("../img/marker.png") no-repeat;
-}
-
-.inicio.overflow-scroll .scroll {
-	margin-top: 0;
-}
 /*
 .has-header-top {
 	top: 124px;

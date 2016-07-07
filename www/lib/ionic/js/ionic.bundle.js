@@ -62988,9 +62988,8 @@ function($timeout, $ionicGesture, $window) {
             return $scope.sideMenuContentTranslateX || 0;
           },
           setTranslateX: ionic.animationFrameThrottle(function(amount) {
-            console.log("setTranslateX", content.offsetX, amount);
-            var xTransform = content.offsetX + amount;
-            var yTransform = amount !== 0 ? '50px' : '0';
+            var xTransform = content.offsetX + amount; 
+            var yTransform = amount !== 0 ? '90px' : '0';
             $element[0].style[ionic.CSS.TRANSFORM] = 'translate3d(' + xTransform + 'px,'+yTransform+',0)';
             $timeout(function() {
               $scope.sideMenuContentTranslateX = amount;
