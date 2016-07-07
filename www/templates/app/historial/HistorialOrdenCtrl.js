@@ -1,12 +1,14 @@
 var HistorialOrdenCtrl = function ($scope, 
 								$stateParams,
-								HistorialOrdenFactory,
-								CarritoFactory) {
+								OrdenesFactory) {
 	
 	var indexOrden = $stateParams.indexOrden;
-	$scope.orden = HistorialOrdenFactory.getHistorialOrdenes()[indexOrden];
+	$scope.orden = OrdenesFactory.getHistorialOrdenes()[indexOrden];
+	$scope.orden.totales = $scope.carrito.calcularTotales($scope.orden.items);
+
 	console.log("HistorialOrdenCtrl", $scope.orden)
-	//$scope.soloProductos = CarritoFactory.soloHayProductos($scope.orden.items);
+	$scope.esOrdenEnProceso = false;
+	$scope.soloProductos = $scope.carrito.soloHayProductos($scope.orden.items);
 };
 
 app.controller('HistorialOrdenCtrl', HistorialOrdenCtrl);

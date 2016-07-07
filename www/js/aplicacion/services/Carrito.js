@@ -7,7 +7,9 @@ var CarritoFactory = function(){
 	 */
 	
 	return {
-		items: [], 
+		items: {},
+
+		domicilio: 0,
 
 		contProductos: 0,
 
@@ -62,6 +64,10 @@ var CarritoFactory = function(){
 			this.calcularTotales();
 		},
 
+		cantidad: function(id) {
+			return (typeof this.items[id] !== 'undefined') ? this.items[id].cantidad : 0;
+		},
+
 		/**
 		 * [limpiar los items que tienen cantidad 0, deben ser eliminados.]
 		 * @return {[type]} [description]
@@ -97,8 +103,7 @@ var CarritoFactory = function(){
 		
 		calcularTotales : function(items){//calcular precios de total y subtotal
 			var subtotal = 0;
-			var totales = {};
-
+			
 			//si no hay items recibidos, calcular con atributo privado.
 			if(!items){
 				items = this.items;
@@ -108,15 +113,20 @@ var CarritoFactory = function(){
 				subtotal += items[i].precio * items[i].cantidad;
 			}
 
-			totales.subtotal = subtotal;
-			totales.domicilio = (subtotal !== 0 ? this.domicilio : 0);
-			totales.total = (subtotal !== 0 ? subtotal + this.domicilio : 0);
+			this.totales.subtotal = subtotal;
+			this.totales.domicilio = (subtotal !== 0 ? this.domicilio : 0);
+			this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio : 0);
 
-			return totales;
+			return this.totales;
 		},
 
 		soloHayProductos : function(items){
 			var cont = 0;
+			
+			if(!items){
+				items = this.items;
+			}
+
 			for(i in items){
 				if(items[i].tipo == 'PRODUCTO'){
 					cont++;
@@ -135,6 +145,7 @@ var CarritoFactory = function(){
 			for(var i in this.items){
 				delete this.items[i];
 			}
+			this.actualizarContadores();
 		}
 	};
 };

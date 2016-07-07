@@ -58,8 +58,7 @@ var AppCtrl = function($scope,
 		//cambiar para que solo se ejcuute una sola vez este evento.
 		$ionicPopup
 		.alert({
-			title: "No hay conexión con el servidor",
-			template: "En este momento no hay conexión con el servidor, intenta más tarde."
+			template: "Estamos experimentado problemas con nuestros servidores. Por favor, vuelve más tarde."
 		});
 	});
 

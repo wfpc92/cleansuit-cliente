@@ -1,14 +1,11 @@
 
 var InformacionOrdenCtrl = function($scope, 
-									UsuarioFactory, 
 									OrdenesFactory, 
-									CarritoFactory, 
 									$state, 
 									$ionicPopover, 
 									$ionicHistory, 
 									$ionicModal, 
-									$ionicPopup,
-									$cordovaDatePicker,   
+									$ionicPopup,   
 									$rootScope, 
 									MapasFactory, 
 									ModalCargaFactory) {
@@ -17,7 +14,6 @@ var InformacionOrdenCtrl = function($scope,
 	var self = this;
  
 	this.$scope = $scope;
-	this.CarritoFactory = CarritoFactory;
 	this.$ionicModal = $ionicModal;
 	this.$ionicPopup = $ionicPopup;	
 	this.$ionicPopover = $ionicPopover;
@@ -27,8 +23,6 @@ var InformacionOrdenCtrl = function($scope,
 	this.MapasFactory = MapasFactory;
 	this.ModalCargaFactory = ModalCargaFactory;
 
-	$scope.usuario = UsuarioFactory.getUsuario();
-	$scope.carrito = CarritoFactory;
 	$scope.orden = OrdenesFactory.getOrden();
 
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
@@ -37,7 +31,7 @@ var InformacionOrdenCtrl = function($scope,
 	$scope.orden.telefono = $scope.usuario.telefono;
 
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
-	$scope.soloProductos = CarritoFactory.soloHayProductos(CarritoFactory.items);
+	$scope.soloProductos = $scope.carrito.soloHayProductos();
 	console.log("solo hay productos: "+ $scope.soloProductos);
 
 	//se ejecuta al dar click en el icono de ubicacion de las direcciones, muestra ventana modal
@@ -340,8 +334,8 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 
 InformacionOrdenCtrl.prototype.cancelarOrden = function() {
 	var self = this;
-	self.CarritoFactory.vaciar();
-	self.CarritoFactory.actualizarContadores();
+	self.$scope.carrito.vaciar();
+	self.$scope.carrito.actualizarContadores();
 	self.$state.go("app.inicio");
 	self.$ionicHistory.clearHistory();
 	self.$ionicHistory.nextViewOptions({
