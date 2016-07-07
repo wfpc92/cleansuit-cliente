@@ -1,4 +1,4 @@
-var RecursosFactory = function($log, $http, API_ENDPOINT) {
+var RecursosFactory = function($log, $http, API_ENDPOINT, APP_EVENTS, $rootScope) {
 	var self = this;
 	this.$log = $log;
 	this.$http = $http;
@@ -28,7 +28,10 @@ var RecursosFactory = function($log, $http, API_ENDPOINT) {
 
 		console.log("RecursosFactory.requestConfig: ", JSON.stringify(requestConfig))
 
-		return $http(requestConfig);
+		return $http(requestConfig)
+		.catch(function() {
+			$rootScope.$broadcast(APP_EVENTS.noAccesoServidor);
+		});
 	};
 
 	return {

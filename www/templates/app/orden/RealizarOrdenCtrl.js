@@ -4,9 +4,10 @@ var RealizarOrdenCtrl = function($scope,
 								$ionicHistory) {
 	var self = this;
  
-	$scope.orden = OrdenesFactory.orden;
-	
-	console.log("Orden: ", $scope.orden);
+	$scope.$on('$ionicView.afterEnter', function(event) {
+		$scope.orden = OrdenesFactory.getUltimaOrden();
+		console.log("RealizarOrdenCtrl, ", $scope.orden)
+	});
 
 	$scope.regresarPrincipal = function() {
 		$ionicHistory.clearHistory();
@@ -14,7 +15,7 @@ var RealizarOrdenCtrl = function($scope,
 		$ionicHistory.nextViewOptions({
 			disableBack:'true'
 		});
-		$state.go("app.inicio");	
+		$state.go("app.inicio");
 	};
 };
 

@@ -1,29 +1,43 @@
 var OrdenesFactory = function(CarritoFactory,
 							RecursosFactory){
-	var _orden = {
-		recoleccion: {
-			direccion: '',
-			posicion:'',
-			fecha: new Date(),
-			hora:''
-		},
-		entrega : {
-			direccion: '',
-			posicion:'',
-			fecha: new Date(),
-			hora:''
-		},
-		formaPago : '',
-		telefono: '',
-		terminosCondiciones : false
+	var _orden = {}, 
+		_ultimaOrden = {},
+		_ordenesEnProceso = [],
+		_historialOrdenes = [];
+	
+	nuevaOrden();
+
+	function nuevaOrden(){
+		_orden = {
+			recoleccion: {
+				direccion: '',
+				posicion:'',
+				fecha: new Date(),
+				hora:''
+			},
+			entrega : {
+				direccion: '',
+				posicion:'',
+				fecha: new Date(),
+				hora:''
+			},
+			formaPago : '',
+			telefono: '',
+			terminosCondiciones : false
+		};
+		
+		CarritoFactory.vaciar();
 	};
-	
-	var _ordenesEnProceso	= [];
-	var _historialOrdenes = [];
-	
+
 	return {
 		
-		orden: _orden,
+		getOrden: function() {
+			return _orden;
+		},
+
+		getUltimaOrden: function() {
+			return _ultimaOrden;
+		},
 
 		enviarOrden : function() { 
 			console.log("OrdenFactory.enviarOrden(): ");			
@@ -36,9 +50,9 @@ var OrdenesFactory = function(CarritoFactory,
 			.post("/ordenes", orden)
 			.then(function(response) {
 				console.log("OrdenesFactory.realizarOrden(): ", response);
-				_orden = response.data.orden;
-				CarritoFactory.items = [];
-				CarritoFactory.limpiar();
+				nuevaOrden();
+				_ultimaOrden = response.data.orden;
+
 			}, function(err) {
 				console.log("OrdenesFactory.realizarOrden(): ", err);
 			});
@@ -49,12 +63,12 @@ var OrdenesFactory = function(CarritoFactory,
 			return RecursosFactory
 			.get('/ordenes/en-proceso', {})
 			.then(function(respuesta) {
-				console.log("Finaliza peticion GET a servidor para ordenes en proceso.")
-				console.log("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
-				if(!respuesta.error){
+				if(respuesta) {
+					console.log("Finaliza peticion GET a servidor para ordenes en proceso.")
+					console.log("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
 					_ordenesEnProceso = respuesta.data.ordenes;
 				} else {
-					console.log("OrdenesFactory.cargar()", respuesta.error);
+					console.log("OrdenesFactory.cargarOrdenesEnProceso(): no hay respuesta del servidor");
 				}
 			});
 		},
@@ -64,12 +78,12 @@ var OrdenesFactory = function(CarritoFactory,
 			return RecursosFactory
 			.get('/ordenes/historial', {})
 			.then(function(respuesta) {
-				console.log("Finaliza peticion GET a servidor para historial de ordenes.")
-				console.log("OrdenesFactory: ", respuesta)
-				if(!respuesta.error){
+				if(respuesta) {
+					console.log("Finaliza peticion GET a servidor para historial de ordenes.")
+					console.log("OrdenesFactory: ", respuesta)
 					_historialOrdenes = respuesta.data.ordenes;
 				} else {
-					console.log("OrdenesFactory.cargarHistorial()", respuesta.error);
+					console.log("OrdenesFactory.cargarHistorial(): no hay respuesta del servidor");
 				}
 			});
 		},

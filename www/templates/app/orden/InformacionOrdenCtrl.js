@@ -29,7 +29,7 @@ var InformacionOrdenCtrl = function($scope,
 
 	$scope.usuario = UsuarioFactory.getUsuario();
 	$scope.carrito = CarritoFactory;
-	$scope.orden = OrdenesFactory.orden;
+	$scope.orden = OrdenesFactory.getOrden();
 
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
 	$scope.orden.recoleccion.direccion = $scope.usuario.direccion;
@@ -340,7 +340,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 
 InformacionOrdenCtrl.prototype.cancelarOrden = function() {
 	var self = this;
-	self.CarritoFactory.cancelarOrden();
+	self.CarritoFactory.vaciar();
 	self.CarritoFactory.actualizarContadores();
 	self.$state.go("app.inicio");
 	self.$ionicHistory.clearHistory();

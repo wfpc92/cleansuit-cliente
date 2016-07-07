@@ -1,10 +1,12 @@
 var AppCtrl = function($scope, 
 					UsuarioFactory,
 					OrdenesFactory,
+					CarritoFactory,
 					$state, 
 					$ionicPopup,
 					AuthService,
 					AUTH_EVENTS,
+					APP_EVENTS,
 					USER_ROLES) {
 
 	console.log("AppCtrl")
@@ -26,7 +28,7 @@ var AppCtrl = function($scope,
 	$scope.$on(AUTH_EVENTS.notAuthorized, function(event) {
 		var alertPopup = $ionicPopup.alert({
 			title: 'No es posible acceder!',
-			template: 'Este recurso no esta disponible para ti.'
+			template: 'Este recurso no está disponible para ti.'
 		});
 	});
 
@@ -40,24 +42,37 @@ var AppCtrl = function($scope,
 	});
 
 	$scope.$on(AUTH_EVENTS.perfilActualizado, function(event, args) {
+		console.log("event:AppCtrl.perfilActualizado");
+
 		AuthService.actualizarCredenciales();
 		$ionicPopup
 		.alert({
 			title: "Perfil de usuario",
-			template: args.msg
+			template: args.msg || "no hay mensaje"
+		});
+	});
+
+	$scope.$on(APP_EVENTS.noAccesoServidor, function(event, args) {
+		console.log("event:AppCtrl.noAccesoServidor");
+
+		//cambiar para que solo se ejcuute una sola vez este evento.
+		$ionicPopup
+		.alert({
+			title: "No hay conexión con el servidor",
+			template: "En este momento no hay conexión con el servidor, intenta más tarde."
 		});
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		$scope.usuario = UsuarioFactory.getUsuario();
-		
-		if($scope.usuario){
+		$scope.carrito = CarritoFactory;
+
+		if($scope.usuario.rol) {
 	    	OrdenesFactory
 			.cargarOrdenesEnProceso()
 			.then(function(){
 				console.log("AppCtrl.event:$ionicView.afterEnter, contOrdenesEnProceso", $scope.contOrdenesEnProceso)
 				$scope.contOrdenesEnProceso = OrdenesFactory.getOrdenesEnProceso().length;
-				
 			});
 		}
 	});
@@ -66,40 +81,7 @@ var AppCtrl = function($scope,
 		console.log("AppCtrl.logout():");	
 		AuthService.logout();
 		$state.go('autenticacion.inicio');
-	};	
-
-	
+	};		
 };
 
 app.controller('AppCtrl', AppCtrl);
-
-/*
-		var hideSheet = $ionicActionSheet.show({
-		destructiveText: 'Logout',
-		titleText: 'Are you sure you want to logout? This app is awsome so I recommend you to stay.',
-		cancelText: 'Cancel',
-		cancel: function() {},
-		buttonClicked: function(index) {
-		return true;
-		},
-		destructiveButtonClicked: function(){
-		$ionicLoading.show({
-		template: 'Logging out...'
-		});
-
-		try {
-		// Facebook logout
-		facebookConnectPlugin.logout(function(){
-		$ionicLoading.hide();
-		$state.go("autenticacion.inicio");
-		},
-		function(fail){
-		$ionicLoading.hide();
-		});
-		} catch (e) {
-		$ionicLoading.hide();
-		$state.go("autenticacion.inicio");
-		}
-		}
-		});
-		*/

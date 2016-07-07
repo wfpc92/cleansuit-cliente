@@ -55,7 +55,7 @@ CarritoCtrl.prototype.mostrarPopup = function($ionicPopup, optionsPopup, callbac
 };
 
 CarritoCtrl.prototype.cancelarOrden = function(CarritoFactory, $state, $ionicHistory) {
-	CarritoFactory.cancelarOrden();
+	CarritoFactory.vaciar();
 	CarritoFactory.actualizarContadores();
 	$state.go("app.inicio");
 	$ionicHistory.clearHistory();

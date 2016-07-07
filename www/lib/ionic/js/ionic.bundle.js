@@ -57914,6 +57914,7 @@ function($scope, $attrs, $ionicSideMenuDelegate, $ionicPlatform, $ionicBody, $io
       return;
     }
 
+
     self.content.setTranslateX(amount);
 
     if (amount >= 0) {
@@ -62987,13 +62988,16 @@ function($timeout, $ionicGesture, $window) {
             return $scope.sideMenuContentTranslateX || 0;
           },
           setTranslateX: ionic.animationFrameThrottle(function(amount) {
+            console.log("setTranslateX", content.offsetX, amount);
             var xTransform = content.offsetX + amount;
-            $element[0].style[ionic.CSS.TRANSFORM] = 'translate3d(' + xTransform + 'px,0,0)';
+            var yTransform = amount !== 0 ? '50px' : '0';
+            $element[0].style[ionic.CSS.TRANSFORM] = 'translate3d(' + xTransform + 'px,'+yTransform+',0)';
             $timeout(function() {
               $scope.sideMenuContentTranslateX = amount;
             });
           }),
           setMarginLeft: ionic.animationFrameThrottle(function(amount) {
+            console.log("setMarginLeft");
             if (amount) {
               amount = parseInt(amount, 10);
               $element[0].style[ionic.CSS.TRANSFORM] = 'translate3d(' + amount + 'px,0,0)';
@@ -63006,6 +63010,7 @@ function($timeout, $ionicGesture, $window) {
             }
           }),
           setMarginRight: ionic.animationFrameThrottle(function(amount) {
+            console.log("setMarginRight");
             if (amount) {
               amount = parseInt(amount, 10);
               $element[0].style.width = ($window.innerWidth - amount) + 'px';
@@ -63018,6 +63023,7 @@ function($timeout, $ionicGesture, $window) {
             $element[0].style[ionic.CSS.TRANSFORM] = 'translate3d(0,0,0)';
           }),
           setMarginLeftAndRight: ionic.animationFrameThrottle(function(amountLeft, amountRight) {
+            console.log("setMarginLeftAndRight");
             amountLeft = amountLeft && parseInt(amountLeft, 10) || 0;
             amountRight = amountRight && parseInt(amountRight, 10) || 0;
 

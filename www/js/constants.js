@@ -6,7 +6,12 @@ app
 	logoutSuccess: 'auth-logout-success',
 	sessionTimeout: 'auth-session-timeout',
 	notAuthenticated: 'auth-not-authenticated',
-	notAuthorized: 'auth-not-authorized'
+	notAuthorized: 'auth-not-authorized',
+	perfilActualizado: 'perfil-actualizado'
+})
+
+.constant('APP_EVENTS', {
+	noAccesoServidor: 'no-acceso-servidor', //hay conexion ainternet pero el servidor esta caido.
 })
  
 .constant('USER_ROLES', {
