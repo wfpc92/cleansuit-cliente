@@ -156,7 +156,7 @@ $registro: #80A3CD;
 	line-height: 33px;
 	padding-left: 5px;
 }
-.menu.scroll-content {
+.menu.scroll-content, .view {
 	background-color: $calm;
 }
 .menu {
@@ -182,14 +182,14 @@ $registro: #80A3CD;
 	}
 	.item-complex.item-icon-left { padding-left: 25px; }
 	.item-avatar {
-		padding: 110px 16px 29px 16px;
+		padding: 69px 16px 29px 16px;
 		img:first-child {
 			display: block;
 			max-width: 62px;
 			max-height: 62px;
 			border: 2px solid #348800;
 			left: 22px;
-			top: 90px;
+			top: 49px;
 		}
 		h2 {
 			color: $light;
@@ -406,7 +406,7 @@ p {
 		}
 	}
 	.descripcion {
-		padding: 25px 25px 0;
+		padding: 25px 25px 1px;
 		h3 {
 			font-size: 100%;
 			margin-bottom: 3px;
@@ -437,8 +437,9 @@ p {
 	line-height: 23px !important;
 }
 .bottom {
-	bottom: 75px;
+	margin-bottom: 66px;
 }
+.pdBoton { margin-bottom: 56px; }
 .contcarro {	
 	.carro {
 		background-color: $light;
@@ -476,6 +477,7 @@ p {
 			h2 {
 				color: #333;
 				white-space: normal;
+				font-family: 'fira_sansmedium';
 			}
 			h3{
 				display: inline-block;
@@ -563,7 +565,7 @@ p {
 }
 .tabs-striped.tabs-light .tab-item {
 	color: #52B1ED;
-	background-color: #F6F6F6;
+	background-color: #F8F8F8;
 }
 .tabs-striped.tabs-light .tab-item.tab-item-active,
 .tabs-top.tabs-striped .tab-item.activated {
@@ -808,18 +810,28 @@ p {
 			background-color: #FAFAFA;
 			border: none;
 			margin-bottom: 3px;
-			padding: 12px;
+			padding: 12px 52px 12px 12px;
 			min-height: 87px;
-			img {
+			div.img {
+				position: absolute;
 				width: 67px;
 				height: 67px;
-				border: 1px solid #E9E9E9;
+				top: 50%;
+				left: 10px;
+				margin-top: -33px;
+				img {
+					display: block;
+					height: 67px;
+					margin: 0 auto;
+				}
 			}
 			h2 {
 				font-family: 'fira_sansmedium';
 				color: #333333;
-				font-size: 1.1em;
-				padding-top: 3px;
+				font-size: 1em;
+				padding: 3px 0 0 0;
+				background-color: transparent;
+				white-space: normal;
 			}
 			h3 {
 				font-family: 'fira_sansmedium';
@@ -841,8 +853,7 @@ p {
 			}
 		}
 		.item-thumbnail-left {
-			padding: 12px 12px 12px 104px;
-			
+			padding: 12px 52px 12px 90px;
 		}
 		.card.totales {
 			padding: 12px 15px;
@@ -887,4 +898,40 @@ p {
 }
 #id-modal-mapa .scroll-content .scroll {
 	margin-top: 0;
+}
+
+#contenedor-mapa, #id-mapa {
+	height:100%;
+	margin:0;
+}
+
+.scroll {
+	height: 100%;
+	margin-top: 40px;
+}
+
+#id-mapa .centerMarker {
+	display: block;
+	width: 30px;
+	height: 44px;
+	position: absolute;
+	z-index: 100;
+	top: 50%;
+	margin-top: -44px;/*height*/
+	left: 50%;
+	margin-left: -15px;/*-width/2*/
+	background: url("../img/marker.png") no-repeat;
+}
+.inicio.overflow-scroll .scroll {
+	margin-top: 0;
+}
+#id-modal-mapa {
+	.bar .title.title-left {
+		height: 44px;
+		line-height: 44px;
+		font-size: 1.1em;
+	}
+	.bar .button.button-clear .icon:before {
+		font-size: 28px;
+	}
 }

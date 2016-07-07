@@ -139,7 +139,9 @@
 			<div class="list-orden">  
 				<div class="item" ng-repeat="item in orden.items" ng-class="{'item-thumbnail-left': item.tipo=='PRODUCTO'}">
 
-					<img ng-src="img/producto-detalle1.png" ng-show="item.tipo=='PRODUCTO'"/>
+					<div class="img">
+						<img ng-src="img/producto-detalle1.png" ng-show="item.tipo=='PRODUCTO'"/>
+					</div>
 					<h2>{{item.nombre}}</h2>
 					<p ng-show="item.tipo=='SUBSERVICIO'">{{item.categoria}}</p>
 					<h3>{{item.precio | currency : "$ ": 0}}</h3>

@@ -1,11 +1,11 @@
 <ion-view title="Cleansuit">
-	<ion-content class="bottom contcarro">
+	<ion-content class="pdBoton contcarro">
 		<div class="list carro">
 			<div class="item" ng-repeat="item in carrito.items"
 				ng-class="{'item-thumbnail-left' : item.tipo=='PRODUCTO'}">
 				<div class="img">
 					<img ng-src="img/producto-detalle1.png" ng-show="item.tipo=='PRODUCTO'"/>
-				</div>				
+				</div>
 				<h2>{{item.nombre}}</h2>
 				<p ng-show="item.tipo=='SERVICIO'">{{item.categoria}}</p>
 				<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>				
