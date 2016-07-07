@@ -18,7 +18,7 @@
 
                     <h2>
                         {{subservicio.nombre}} 
-                        <span ng-if="cantidadEnCarrito(subservicio._id) > 0" class="badge badge-dark icon-badge">{{cantidadEnCarrito(subservicio._id)}}</span>
+                        <span ng-if="carrito.cantidad(subservicio._id) > 0" class="badge badge-dark icon-badge">{{carrito.cantidad(subservicio._id)}}</span>
                     </h2>
                       
                     <p>{{subservicio.descripcion}}</p>
@@ -31,7 +31,7 @@
 
                     <ion-option-button class="light">
                         <div class="col text-center col-center fondo-gris">
-                            {{cantidadEnCarrito(subservicio._id)}}
+                            {{carrito.cantidad(subservicio._id)}}
                         </div>
                     </ion-option-button>
 

@@ -8,8 +8,11 @@ var OrdenEnProcesoCtrl = function ($scope,
 	var indexOrden = $stateParams.indexOrden;
 
 	$scope.orden = OrdenesFactory.getOrdenesEnProceso()[indexOrden];
+	$scope.orden.totales = $scope.carrito.calcularTotales($scope.orden.items);
 	//indica que la vista que se muestra es la de ordenes en proceso.
 	$scope.esOrdenEnProceso = true;
+
+	$scope.soloProductos = $scope.carrito.soloHayProductos($scope.orden.items);
 
 	console.log("index orden en proceso: "+indexOrden);
 	console.log($scope.orden)

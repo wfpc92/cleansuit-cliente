@@ -14,8 +14,8 @@
 					<div class="imagen">
 					<!--{{producto.foto_url}}-->
 						<img ng-src="img/producto-detalle1.png" class="badge-container" ng-cloack/>
-						<span ng-if="cantidadEnCarrito(producto._id) > 0" class="badge badge-dark icon-badge">
-							{{cantidadEnCarrito(producto._id)}}
+						<span ng-if="carrito.cantidad(producto._id) > 0" class="badge badge-dark icon-badge">
+							{{carrito.cantidad(producto._id)}}
 						</span>
 					</div>
 										
@@ -30,7 +30,7 @@
 
 					<ion-option-button class="light">
 						<div class="col text-center col-center">
-						  {{cantidadEnCarrito(producto._id)}}
+						  {{carrito.cantidad(producto._id)}}
 						</div>
 					</ion-option-button>
 
@@ -40,9 +40,6 @@
 				</ion-item>
 			</div>         
 		</ion-list>
-
-		
-
 	</ion-content>
 
    <footer-carrito carrito="carrito"></footer-carrito> 

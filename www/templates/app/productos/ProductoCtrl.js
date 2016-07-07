@@ -1,59 +1,31 @@
 var ProductoCtrl = function($scope, 
-	$stateParams, 
-	ProductosFactory, 
-	CarritoFactory, 
-	$ionicHistory, 
-	$state) {
-	var self = this;
-
-	this.$scope = $scope;
-	this.$stateParams = $stateParams;
-	this.ProductosFactory = ProductosFactory;
-	this.CarritoFactory = CarritoFactory;
-	this.$ionicHistory = $ionicHistory;
-	this.$state = $state;
-
+							$stateParams, 
+							ProductosFactory, 
+							$ionicHistory, 
+							$state) {
+	
+	var indexProducto = $stateParams.indexProducto;
+	$scope.producto = ProductosFactory.getProductos()[indexProducto];
+		
 	$scope.aumentarProducto = function(){
-		CarritoFactory.agregar($scope.producto, "PRODUCTO", 1);
-		CarritoFactory.limpiar();
+		$scope.carrito.agregar($scope.producto, "PRODUCTO", 1);
+		$scope.carrito.limpiar();
 	};
 
 	$scope.disminuirProducto = function(){
-		CarritoFactory.disminuir($scope.producto, "PRODUCTO", 1);
-		CarritoFactory.limpiar();
+		$scope.carrito.disminuir($scope.producto, "PRODUCTO", 1);
+		$scope.carrito.limpiar();
 	};
 
-	$scope.$on('$ionicView.afterEnter', function(event) {
-		self.viewAfterEnter();
-	});
-};
-
-ProductoCtrl.prototype.viewAfterEnter = function() {
-	var self = this;
-	console.log("se ha seleccionado el producto en $index: "+ self.$stateParams.indexProducto)
-	self.$scope.producto = self.ProductosFactory.getProductos()[self.$stateParams.indexProducto];
-	self.$scope.carrito = self.CarritoFactory;
-	
-	self.$scope.cantidadEnCarrito = function(indexProducto) {
-		//console.log("cantidad en carrito")
-		var item = self.CarritoFactory.items[indexProducto];
-		//console.log("item del carrito con index: "+indexServicio)
-		//console.log(item)
-		if(typeof item !== 'undefined'){
-			return item.cantidad
-		}
-		else {
-			return 0;
-		}
-	}
-
-	self.$scope.regresarCatalogo = function() {
-		self.$state.go("app.productos");
-		self.$ionicHistory.clearHistory();
-		self.$ionicHistory.nextViewOptions({
+	$scope.regresarCatalogo = function() {
+		$state.go("app.productos");
+		$ionicHistory.clearHistory();
+		$ionicHistory.nextViewOptions({
 			disableBack:'true'
 		})
-	}
+	};
+
+	
 };
 
 app.controller('ProductoCtrl', ProductoCtrl);

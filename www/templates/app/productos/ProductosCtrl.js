@@ -1,17 +1,16 @@
-var ProductosCtrl = function($scope, ProductosFactory, CarritoFactory, RecursosFactory) {
-	var self = this; 
+var ProductosCtrl = function($scope,
+							ProductosFactory) {
+	
 	$scope.productos = ProductosFactory.getProductos();
-	$scope.carrito = CarritoFactory;
-	this.$scope = $scope;
 	
 	$scope.aumentarProducto = function(index) {
-		CarritoFactory.agregar(index, "PRODUCTO", 1);
-		CarritoFactory.limpiar();
+		$scope.carrito.agregar(index, "PRODUCTO", 1);
+		$scope.carrito.limpiar();
 	};
 
 	$scope.disminuirProducto = function(index) {
-		CarritoFactory.disminuir(index, "PRODUCTO", 1);
-		CarritoFactory.limpiar();
+		$scope.carrito.disminuir(index, "PRODUCTO", 1);
+		$scope.carrito.limpiar();
 	};
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
@@ -28,21 +27,7 @@ var ProductosCtrl = function($scope, ProductosFactory, CarritoFactory, RecursosF
 			//error
 			console.log("hubo un error al cargar productos", error);
 		});
-	}
-
-	$scope.cantidadEnCarrito = function(indexProducto) {
-		//console.log("cantidad en carrito")
-		var item = self.$scope.carrito.items[indexProducto];
-		//console.log("item del carrito con index: "+indexServicio)
-		//console.log(item)
-		if(typeof item !== 'undefined'){
-			return item.cantidad
-		}
-		else {
-			return 0;
-		}
-	}
-
+	};
 
 	/*var element = document.getElementById("lstProductos");
 	ionic.onGesture('swipe', function() {

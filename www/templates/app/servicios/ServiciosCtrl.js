@@ -1,5 +1,7 @@
-var ServiciosCtrl = function($scope, ServiciosFactory, CarritoFactory, ModalCargaFactory) {
-	$scope.carrito = CarritoFactory;
+var ServiciosCtrl = function($scope, 
+							ServiciosFactory,
+							ModalCargaFactory) {
+
 	$scope.servicios = ServiciosFactory.getServicios();	
 
 	$scope.$on("$ionicView.afterEnter", function () {
@@ -8,7 +10,8 @@ var ServiciosCtrl = function($scope, ServiciosFactory, CarritoFactory, ModalCarg
 
 	$scope.cargarServicios = function() {
 		console.log("ejecutando cargarServicios desde ServiciosCtrl.");
-		ServiciosFactory.cargar()
+		ServiciosFactory
+		.cargar()
 		.then( function() { 
 			console.log("la operacion cargarServicios ha sido terminada. ")
 			$scope.servicios = ServiciosFactory.getServicios();
@@ -20,4 +23,3 @@ var ServiciosCtrl = function($scope, ServiciosFactory, CarritoFactory, ModalCarg
 };
 
 app.controller('ServiciosCtrl', ServiciosCtrl);
-

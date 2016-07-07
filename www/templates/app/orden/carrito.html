@@ -11,9 +11,9 @@
 				<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>				
 					
 				<div class="contador">
-					<i ng-click="item.tipo=='PRODUCTO' ? aumentarProducto(item) : aumentarServicio(item)" class="icon ico-mas"></i>
+					<i ng-click="item.tipo=='PRODUCTO' ? aumentar(item, 'PRODUCTO') : aumentar(item, 'SUBSERVICIO')" class="icon ico-mas"></i>
 					<span>{{item.cantidad || 0}}</span>
-					<i ng-click="item.tipo=='PRODUCTO' ? disminuirProducto(item) : disminuirServicio(item)" class="icon ico-menos"></i>
+					<i ng-click="item.tipo=='PRODUCTO' ? disminuir(item, 'PRODUCTO') : disminuir(item, 'SUBSERVICIO')" class="icon ico-menos"></i>
 				</div>
 			</div>
 		</div>
