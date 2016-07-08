@@ -68,6 +68,19 @@ app.directive('elementoCentrado', function(){
 
 
 
+.directive('menuTabs', function(){
+  return {
+    restrict: 'AEC',//'AEC' - matches either attribute or element or class name
+    scope: {
+        carrito:'='//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+    },
+    replace: false,//para reemplazar el contenedor  
+    transclude:false, //reinserta el contenido original
+    templateUrl:  function(elem, attr){
+        return 'templates/directives/menu-tabs.html';
+    }    
+  };
+})
 
 
 

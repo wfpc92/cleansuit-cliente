@@ -9,9 +9,9 @@
 			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
 					ui-sref="app.historial-orden({'indexOrden': {{$index}}})">
 
-				<h3>{{orden.fecha | date}}</h3>
+				<h3>{{orden.fecha | date : "dd 'de' MMMM 'de' yyyy"}}</h3>
 				<p>Orden de domicilio {{orden.estado}}</p>
-				<p># de orden: {{orden._id}}</p>
+				<p># de orden: {{orden.codigo | numberFixedLen:4}}</p>
 				<i class="icon ico-flechader assertive" ></i>
 
 			</ion-item>
