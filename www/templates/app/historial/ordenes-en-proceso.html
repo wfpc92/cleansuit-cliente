@@ -9,8 +9,8 @@
 			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
 					ui-sref="app.orden-en-proceso( {'indexOrden': {{$index}} })">
 
-				<h3>Orden No. {{orden._id}}</h3>
-				<p>{{orden.fecha | date}}</p>
+				<h3>Orden No. {{orden.codigo | numberFixedLen:4}}</h3>
+				<p>{{orden.fecha | date : "dd 'de' MMMM 'de' yyyy"}}</p>
 				<i class="icon ico-flechader assertive" ></i>
 
 			</ion-item>

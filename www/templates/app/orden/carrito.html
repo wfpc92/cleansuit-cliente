@@ -1,5 +1,8 @@
 <ion-view title="Cleansuit">
 	<ion-content class="pdBoton contcarro">
+
+		<menu-tabs carrito="carrito"></menu-tabs>
+
 		<div class="list carro">
 			<div class="item" ng-repeat="item in carrito.items"
 				ng-class="{'item-thumbnail-left' : item.tipo=='PRODUCTO'}">

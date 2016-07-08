@@ -1,6 +1,6 @@
 <ion-view >
 	<ion-content class="has-subheader estado-orden" scroll="true" padding="false" >
-		<h2># de orden: <span>{{orden._id}}</span></h2>
+		<h2># de orden: <span>{{orden.codigo | numberFixedLen:4}}</span></h2>
 		<div class="confirmacion">
 			<h3>Hemos recibido tu orden</h3>
 			<span>En este momento estamos procesando tu pedido.</span>

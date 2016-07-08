@@ -1,6 +1,7 @@
 <ion-side-menus enable-menu-with-back-views="false">
 
 	<ion-side-menu-content>
+		
 		<ion-nav-bar class="bar-positive">
 			<ion-nav-back-button></ion-nav-back-button>
 			<ion-nav-buttons side="left">
@@ -9,17 +10,17 @@
 			</ion-nav-buttons>
 		</ion-nav-bar>
 
-		<ion-tabs class="tabs-light ">
+		<ion-tabs class="tabs-light">
 			<ion-tab title="Promociones" ui-sref="app.inicio" class="tab-hidden">
 				<ion-nav-view name="panel-contenido"></ion-nav-view>
 			</ion-tab>
-			<ion-tab title="Servicios" ui-sref="app.servicios" badge="carrito.contServicios" badge-style="badge-dark" class="aIni">
+			<ion-tab title="Servicios" ui-sref="app.servicios" badge="carrito.contServicios" badge-style="badge-dark" class="aIni tab-hidden" >
 				<ion-nav-view name="mis-servicios"></ion-nav-view>
 			</ion-tab>
-			<ion-tab title="Productos" ui-sref="app.productos" badge="carrito.contProductos" class="aFin">
+			<ion-tab title="Productos" ui-sref="app.productos" badge="carrito.contProductos" class="aFin tab-hidden">
 				<ion-nav-view name="mis-productos"></ion-nav-view>
 			</ion-tab>
-			<ion-tab title="Carrito" ui-sref="app.carrito" class="tab-hidden">
+			<ion-tab title="Carrito" ui-sref="app.carrito" class="tab-hidden" >
 				<ion-nav-view name="mi-carrito"></ion-nav-view>
 			</ion-tab>
 		</ion-tabs>
