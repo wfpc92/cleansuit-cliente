@@ -16,7 +16,7 @@ var ProductosFactory = function(RecursosFactory){
 				console.log("....................###################3.................");
 				console.log("imprimiendo respuesta", JSON.stringify(respuesta));
 				if(respuesta){
-					_productos = respuesta.data;
+					_productos = respuesta.data.productos;
 				} else {
 					//error(respuesta.error);
 				}

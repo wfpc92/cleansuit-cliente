@@ -35,7 +35,7 @@ var AuthService = function($q,
  
 	function destroyUserCredentials() {
 		console.log("AuthService.destroyUserCredentials()")
-		UsuarioFactory.setUsuario(null);
+		UsuarioFactory.setUsuario({});
 		isAuthenticated = false;
 		//$http.defaults.headers.common['X-Auth-Token'] = undefined;
 		$http.defaults.headers.common.Authorization = undefined;
@@ -99,7 +99,9 @@ var AuthService = function($q,
 		registrar: registrar,
 		logout: logout,
     	isAuthorized: isAuthorized,
-		isAuthenticated: isAuthenticated,
+		isAuthenticated: function(){
+    		return isAuthenticated;
+    	},
 		actualizarCredenciales: actualizarCredenciales
 	};
 };

@@ -114,6 +114,19 @@ app.config(function($stateProvider,
 		}
 	})
 
+	.state('app.promociones-detalle', {
+		url: '/promociones/detalle/:indexPromocion',
+		views: {
+			'panel-contenido': {
+				templateUrl: 'templates/app/principal/promocion-detalle.html',
+				controller: 'PromocionDetalleCtrl'
+			}
+		}
+	})
+
+
+
+
 	.state('app.servicios', {
 		url: '/servicios',
 		views: {

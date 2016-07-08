@@ -10,15 +10,15 @@
 					<div class="list">
 						<label class="item item-input item-floating-label" name="Nombre Completo">
 							<span class="input-label">Nombre y Apellidos</span>
-							<input type="text" placeholder="NOMBRE Y APELLIDOS" ng-model="usuario.nombre">
+							<input type="text" placeholder="NOMBRE Y APELLIDOS" ng-model="usuario.nombre" pattern="(?=.*[a-zA-Z]).{1,100}" required>
 						</label>
 						<label class="item item-input item-floating-label" name="email">
 							<span class="input-label">Correo Electrónico</span>
-							<input type="text" placeholder="CORREO ELECTRÓNICO" ng-model="usuario.correo">
+							<input type="email" placeholder="CORREO ELECTRÓNICO" ng-model="usuario.correo">
 						</label>
 						<label class="item item-input item-floating-label" name="contrasena">
 							<span class="input-label">Contraseña</span>
-							<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena">
+							<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
 						</label>
 					</div>
 				</form>

@@ -13,8 +13,8 @@ var ServiciosFactory = function(RecursosFactory){
 			.get('/servicios', {})
 			.then(function(respuesta) {
 				console.log("Finaliza peticion GET a servidor para servicios.", respuesta)
-				if(!respuesta.error){
-					_servicios = respuesta.data;
+				if(respuesta){
+					_servicios = respuesta.data.servicios;
 				} else {
 					//error(respuesta.error);
 				}

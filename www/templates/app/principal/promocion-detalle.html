@@ -1,0 +1,30 @@
+<ion-view title="Cleansuit">
+  <ion-content>
+	
+	<div class="vista producto" layout="column" layout-align="center">
+		
+		<div layout="row" layout-align="center center" class="img">
+			<img ng-src="{{promocion.url_imagen}}" ng-cloack/>
+		</div>
+		
+		<div class="contenedor text-center">
+			<h2>Código: {{promocion.codigo}}</h2>
+		</div>
+
+		<div layout="row" layout-align="start start" class="descripcion">
+			<h3>Detalles</h3>
+			<p>{{promocion.descripcion}}</p> 
+		</div>
+	</div>	
+
+	<elemento-centrado>
+		<button class="bottom button button-positive" ng-click="regresarCatalogo()">
+			Regresar al Catálogo de Productos
+		</button>
+	</elemento-centrado>
+
+  </ion-content>
+
+  <footer-carrito carrito="carrito"></footer-carrito> 
+
+</ion-view>

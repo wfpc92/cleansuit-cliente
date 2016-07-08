@@ -1,5 +1,6 @@
 var CargaInicialFactory = function(CargarScriptsFactory,
-							ModalCargaFactory, 
+							ModalCargaFactory,
+							PromocionesFactory, 
 							ProductosFactory, 
 							ServiciosFactory,
 							MapasFactory) {
@@ -8,7 +9,6 @@ var CargaInicialFactory = function(CargarScriptsFactory,
 		productos: false,
 		servicios: false
 	};
-
 
 	return { 
 		recursos : recursos,
@@ -25,28 +25,35 @@ var CargaInicialFactory = function(CargarScriptsFactory,
 				console.log("hubo error al crear mapa: ", error)
 			});		
 
-			ModalCargaFactory.mostrar("Cargando productos...", null);
+			ModalCargaFactory.mostrar("Cargando datos...", null);
 
-			ProductosFactory.cargar()
+			PromocionesFactory
+			.cargar()
+			.then(function(){
+				recursos.promociones = true;
+				ModalCargaFactory.ocultar();
+				if(callback) callback();
+			}, function(error) {
+				recursos.promociones = false;
+			});
+
+			ProductosFactory
+			.cargar()
 			.then( function(){
+				//ModalCargaFactory.mostrar("Cargando productos...", null);
 				recursos.productos = true;
 			}, function (error){
 				recursos.productos = false;
 			})
-			.finally( function(){ 
-				console.log("----------------$$$$$$$$$$4----------------")
-				ModalCargaFactory.setMensaje("Cargando servicios...");
-				ServiciosFactory.cargar()
-				.then( function(){
-					recursos.servicios = true;
-				}, function (error){
-					recursos.servicios = false;
-				})
-				.finally( function(){ 
-					ModalCargaFactory.ocultar();
-					callback();
-				});
-			});		
+
+			ServiciosFactory
+			.cargar()
+			.then( function(){
+				recursos.servicios = true;
+			}, function (error){
+				recursos.servicios = false;
+			});
+				
 		}
 	};
 };

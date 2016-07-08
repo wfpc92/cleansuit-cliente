@@ -2,15 +2,19 @@
 
 <ion-view hide-back-button="true" title="CleanSuit">
 	<ion-content>
-		<div class="list promocion" ng-repeat="promo in promociones">
-			<div class="item item-image">
-				<div class="imagen">					
-					<img ng-src="{{promo.imagen_url}}" ng-cloak/>
+		<div class="list promocion" ng-repeat="promocion in promociones">
+
+			<div class="item item-image" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
+
+				<div class="imagen">
+					<img ng-src="{{promocion.url_imagen}}" ng-cloak/>
 					<span class="sombra"></span>
 				</div>				
-				<h3>Descuento del 20%</h3>
+				<h3>Descuento de {{promocion.descuento}}%</string></h3>
 			</div>
+		
 		</div>	
 	</ion-content>
+	
 	<footer-carrito carrito="carrito"></footer-carrito>
 </ion-view>

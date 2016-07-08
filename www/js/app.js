@@ -7,10 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('ClienteCleanSuit', ['ionic', 'angularLoad', 'ngCordova', 'ngResource'])
 
-.run(function($ionicPlatform,
-			$rootScope,
-			$state,
-			AuthService,AUTH_EVENTS) {
+.run(function($ionicPlatform) {
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -23,33 +20,4 @@ var app = angular.module('ClienteCleanSuit', ['ionic', 'angularLoad', 'ngCordova
 			StatusBar.styleDefault();
 		}
 	});
-	
-	//verificar si esta autenticado y autorizado.
-	$rootScope.$on('$stateChangeStart', function (event, next, toParams, fromState, fromParams) {
-		//console.log("event:$stateChangeStart", next, toParams, fromState, fromParams)
-		var authorizedRoles = next.data.authorizedRoles;
-		if (!AuthService.isAuthorized(authorizedRoles)) {
-			// usuario no autorizado
-			
-			if (AuthService.isAuthenticated) {
-				event.preventDefault();
-				if(next.name.indexOf("autenticacion.") !== -1){
-					// usuario quiere volver a autenticar?, no permitido
-					$state.go('app.inicio');
-				} else {
-					//solicitud de estado desconocido
-					$state.go('autenticacion.inicio');
-					$rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-				}
-				
-			} else {
-				if(next.name.indexOf("app.") !== -1){
-					// usuario no esta autenticado y quiere ingresar a la app
-					event.preventDefault();
-					$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
-				}
-			}
-		}
-	});
-
 });

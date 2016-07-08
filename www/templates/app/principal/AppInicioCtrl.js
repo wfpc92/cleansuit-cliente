@@ -1,16 +1,13 @@
 var AppInicioCtrl = function($scope, 
 							PromocionesFactory, 
-							CarritoFactory, 
 							$ionicTabsDelegate, 
 							CargaInicialFactory) {
 	
 	$ionicTabsDelegate.select(0);
-	
-	$scope.promociones = PromocionesFactory.getPromociones();
-	$scope.carrito = CarritoFactory; 
 
 	CargaInicialFactory
 	.iniciar(function() {
+		$scope.promociones = PromocionesFactory.getPromociones();
 		console.log("termina de ejecutar la funcion iniciar de CargaInicialFactory")
 	});
 };

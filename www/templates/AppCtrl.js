@@ -1,4 +1,5 @@
-var AppCtrl = function($scope, 
+var AppCtrl = function($scope,
+					$rootScope, 
 					UsuarioFactory,
 					OrdenesFactory,
 					CarritoFactory,
@@ -11,6 +12,37 @@ var AppCtrl = function($scope,
 
 	console.log("AppCtrl")
 
+
+	//verificar si esta autenticado y autorizado.
+	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+		//console.log("event:$stateChangeStart", toState, toParams, fromState, fromParams)
+		var authorizedRoles = toState.data.authorizedRoles;
+		if (!AuthService.isAuthorized(authorizedRoles)) {
+			//console.log("no esta autorizado")
+			// usuario no autorizado
+			if (AuthService.isAuthenticated()) {
+				//console.log("esta autenticado")
+				event.preventDefault();
+				if(toState.name.indexOf("autenticacion.") !== -1){
+					// usuario quiere volver a autenticar?, no permitido
+					$state.go('app.inicio');
+				} else {
+					//solicitud de estado desconocido
+					$state.go('autenticacion.inicio');
+					$rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+				}
+				
+			} else {
+				//console.log("no esta autenticado")
+				if(toState.name.indexOf("app.") !== -1){
+					// usuario no esta autenticado y quiere ingresar a la app
+					event.preventDefault();
+					$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+				}
+			}
+		}
+			
+	});
 	
 	$scope.$on(AUTH_EVENTS.loginSuccess, function(event, args){
 		$scope.usuario = UsuarioFactory.getUsuario();
