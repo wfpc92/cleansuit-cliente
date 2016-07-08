@@ -140,7 +140,7 @@
 				<div class="item" ng-repeat="item in orden.items" ng-class="{'item-thumbnail-left': item.tipo=='PRODUCTO'}">
 
 					<div class="img">
-						<img ng-src="{{producto.url_imagen}}" ng-if="item.tipo=='PRODUCTO'"/>
+						<img ng-src="{{item.url_imagen}}" ng-if="item.tipo=='PRODUCTO'"/>
 					</div>
 					<h2>{{item.nombre}}</h2>
 					<p ng-show="item.tipo=='SUBSERVICIO'">{{item.categoria}}</p>
