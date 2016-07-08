@@ -6,7 +6,7 @@
 				No hay productos para mostrar. <a ng-click="cargarProductos()">Cargar</a>
 			</div>
 		</div>
-		
+
 		<ion-list id="lsẗProductos" can-swipe="true" show-delete="false" show-reorder="false">
 			<div class="productos lista">
 				<ion-item class="item-thumbnail-left item-icon-right item-text-wrap" ng-repeat="producto in productos track by $index" ui-sref="app.producto({ 'indexProducto': {{$index}} })">

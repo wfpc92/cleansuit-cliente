@@ -13,13 +13,14 @@ var ProductosCtrl = function($scope,
 		$scope.carrito.limpiar();
 	};
 
-	$scope.$on('$ionicView.afterEnter', function(event) {
+	$scope.$on('$ionicView.beforeEnter', function(event) {
 		$scope.cargarProductos();
 	});
 
 	$scope.cargarProductos = function() {
 		console.log("ejecutando cargarProductos desde ProductosCtrl.");
-		ProductosFactory.cargar()
+		ProductosFactory
+		.cargar()
 		.then( function() { 
 			console.log("la operacion cargar productos ha sido terminada. ");
 			$scope.productos = ProductosFactory.getProductos();

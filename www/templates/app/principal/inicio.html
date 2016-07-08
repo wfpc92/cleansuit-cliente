@@ -2,6 +2,13 @@
 
 <ion-view hide-back-button="true" title="CleanSuit">
 	<ion-content>
+
+		<div clas="card" ng-show="promociones.length == 0">
+			<div class="item item-text-wrap">
+				No hay promociones aún para mostrar.
+			</div>
+		</div>
+
 		<div class="list promocion" ng-repeat="promocion in promociones">
 
 			<div class="item item-image" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
