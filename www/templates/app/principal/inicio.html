@@ -9,15 +9,18 @@
 			</div>
 		</div>
 
-		<div class="list promocion" ng-repeat="promocion in promociones">
+		<div class="list promociones" ng-repeat="promocion in promociones">
 
 			<div class="item item-image" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
 
 				<div class="imagen">
 					<img ng-src="{{promocion.url_imagen}}" ng-cloak/>
-					<span class="sombra"></span>
 				</div>				
-				<h3>Descuento de {{promocion.descuento}}%</string></h3>
+				<h3>
+					Descuento de {{promocion.descuento}}%
+					<i class="icon ico-flechader assertive"></i>
+				</h3>
+				
 			</div>
 		
 		</div>	
