@@ -53,7 +53,10 @@ img.logoinicio {
 			margin: 0 10px 0 0;
 		}
 	}
-	.button-positive { background-color: #2A4588; }
+	.button-positive {
+		position: relative;
+		background-color: #2A4588;
+	}
 	.row {
 		padding: 0;
 		.col {
@@ -63,6 +66,26 @@ img.logoinicio {
 		}
 	}
 }
+.sombras{
+	position: absolute;
+	width: 100%;
+	height: 56px;
+	top: -1px;
+	left: 0;
+}
+.sombra-positive {
+	@extend .sombras;
+	background: url('../img/positive.png') repeat-x;
+}
+.sombra-calm {
+	@extend .sombras;
+	background: url('../img/calm.png') repeat-x;
+}
+.sombra-balanced {
+	@extend .sombras;
+	background: url('../img/balanced.png') repeat-x;
+}
+
 .bar-footer.auto {}
 
 .bar {
@@ -158,6 +181,12 @@ $registro: #80A3CD;
 }
 .menu.scroll-content, .view {
 	background-color: $calm;
+}
+.menu-content {
+    box-shadow: -10px -10px 34px rgba(37,73,2,0.55);
+}
+.bar button.ico-menu {
+	padding: 2px 8px 0;
 }
 .menu {
 	.bar-header { display: none; }
@@ -858,6 +887,11 @@ p {
 		.card.totales {
 			padding: 12px 15px;
 		}
+	}
+}
+.estado-orden {
+	.historial-inf-ord {
+		padding:  20px 0px 15px;
 	}
 }
 .perfil {
