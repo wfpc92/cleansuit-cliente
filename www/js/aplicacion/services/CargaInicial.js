@@ -1,5 +1,6 @@
 var CargaInicialFactory = function(CargarScriptsFactory,
 							ModalCargaFactory,
+							CarritoFactory,
 							PromocionesFactory, 
 							ProductosFactory, 
 							ServiciosFactory,
@@ -26,6 +27,12 @@ var CargaInicialFactory = function(CargarScriptsFactory,
 			});		
 
 			ModalCargaFactory.mostrar("Cargando datos...", null);
+
+			CarritoFactory
+			.cargarDomicilio()
+			.then(function() {
+				recursos.domicilio = true;
+			});
 
 			PromocionesFactory
 			.cargar()

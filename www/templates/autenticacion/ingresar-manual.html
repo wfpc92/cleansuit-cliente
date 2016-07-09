@@ -10,11 +10,11 @@
 					 <div class="list">
 						<label class="item item-input item-floating-label" name="email">
 							<span class="input-label">Correo Electrónico</span>
-							<input type="text" placeholder="CORREO ELECTRÓNICO" ng-model="usuario.correo">
+							<input type="email" placeholder="CORREO ELECTRÓNICO" ng-model="usuario.correo" required>
 						</label>
 						<label class="item item-input item-floating-label" name="contrasena">
 							<span class="input-label">Contraseña</span>
-							<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena">
+							<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
 						</label>
 					</div>
 
@@ -23,7 +23,7 @@
 			</div>
 		</ion-content>
 
-		<a class="button button-calm button-full" ng-click="ingresar()">
+		<a class="button button-calm button-full" ng-click="ingresar()" ng-disabled="!formValido">
 			INGRESAR
 			<div class="sombra-balanced"></div>
 		</a>

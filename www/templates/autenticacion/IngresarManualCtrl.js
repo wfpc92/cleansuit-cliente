@@ -7,6 +7,7 @@ var IngresarManualCtrl = function($scope,
 	console.log("IngresarManualCtrl");
 	
 	$scope.error = "";
+	$scope.formValido= false;
 	$scope.usuario = {
 		correo: "",
 		contrasena: ""
@@ -23,6 +24,18 @@ var IngresarManualCtrl = function($scope,
 			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: msg});
 		});
 	};
+
+	$scope.$watchGroup([
+		'usuario.correo',
+		'usuario.contrasena',
+		], function(newV, oldV, scope){
+			if(newV[0] && newV[1] ){
+				$scope.formValido = true;
+			}
+			else {
+				$scope.formValido = false;	
+			}
+	});
 };
 
 app.controller('IngresarManualCtrl', IngresarManualCtrl);

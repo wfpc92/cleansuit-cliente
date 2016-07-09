@@ -1,4 +1,4 @@
-var CarritoFactory = function(){
+var CarritoFactory = function(RecursosFactory){
 	/**
 	 * [this.items ]
 	 * @type [{Object id:String producto o servicio
@@ -146,6 +146,18 @@ var CarritoFactory = function(){
 				delete this.items[i];
 			}
 			this.actualizarContadores();
+		},
+
+
+		cargarDomicilio: function() {
+			var self = this;
+			return RecursosFactory
+			.get("/configuraciones")
+			.then(function(respuesta) {
+				if(respuesta){
+					self.domicilio = respuesta.data.configuraciones.domicilio;
+				}
+			});
 		}
 	};
 };

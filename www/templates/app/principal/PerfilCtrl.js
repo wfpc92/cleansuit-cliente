@@ -26,10 +26,11 @@ var PerfilCtrl = function($scope,
 		$scope.$watchGroup([
 			'usuario.nombre',
 			'usuario.direccion',
-			'usuario.telefono'
+			'usuario.telefono',
+			'usuario.correo',
 			], function(newV, oldV, scope){
 				console.log("ws1: ", newV)
-				if(newV[0] && newV[1] && newV[2]){
+				if(newV[0] && newV[1] && newV[2]&& newV[3]){
 					$scope.formData.formValido = true;
 				}
 				else {
@@ -42,6 +43,7 @@ var PerfilCtrl = function($scope,
 			'usuario.contrasena',
 			'usuario.repetirContrasena'
 			], function(newV, oldV, scope) {
+				console.log($scope.formPerfil)
 				console.log("ws2: ", newV)
 				if(newV[0] && newV[1] && newV[0] == newV[1]){
 					$scope.formData.formValido = true;

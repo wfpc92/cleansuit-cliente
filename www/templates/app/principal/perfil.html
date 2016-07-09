@@ -4,7 +4,7 @@
 			<img src="img/camara.png">
 		</div> 
 
-		<form name="formularioPerfil" novalidate>
+		<form name="formPerfil" novalidate>
 			<div class="list">
 				<div class="item row">
 					<div class="col">
@@ -45,7 +45,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
-							<input type="text" placeholder="teléfono de contacto" name="telefono" ng-model="usuario.telefono" pattern="(?![.\n])(?=.*\d).{7,15}" >
+							<input type="tel" placeholder="teléfono de contacto" name="telefono" ng-model="usuario.telefono" pattern="(?![.\n])(?=.*\d).{7,15}">
 						</label>
 					</div>
 				</div>
@@ -54,7 +54,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Correo Electrónico</span>
-							<input type="email" placeholder="correo electrónico" name="correo" ng-model="usuario.correo" disabled required>
+							<input type="email" placeholder="correo electrónico" name="correo" ng-model="usuario.correo" required>
 						</label>
 					</div>
 				</div>
@@ -113,14 +113,22 @@
 					</span> 
 				</label>
 				-->
+			</div> 
+			<div ng-hide="true">
+				{{formData.formValido = (formPerfil.nombre.$dirty 
+										|| formPerfil.direccion.$dirty
+										|| formPerfil.telefono.$dirty
+										|| formPerfil.correo.$dirty)}} 		
+			</div>
 		
-			</div>  
 		</form> 
     </ion-content>
 
     <div class="bar bar-footer">
-    	<a ng-click="actualizar()" class="button button-calm button-full" ng-disabled="!formData.formValido"> 
-			Actualizar Perfil
+    	<a ng-click="actualizar()" class="button button-calm button-full" 
+    		ng-disabled="!formData.formValido"> 
+			
+    	Actualizar Perfil
 		</a>
     </div>
 
