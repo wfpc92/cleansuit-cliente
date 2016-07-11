@@ -90,9 +90,23 @@ var AppCtrl = function($scope,
 		//cambiar para que solo se ejcuute una sola vez este evento.
 		$ionicPopup
 		.alert({
+			title: 'No se puede acceder',
 			template: "Estamos experimentado problemas con nuestros servidores. Por favor, vuelve más tarde."
 		});
 	});
+
+	$scope.$on(APP_EVENTS.servidorNoEncontrado, function(event, args) {
+		console.log("event:AppCtrl.servidorNoEncontrado");
+
+		//cambiar para que solo se ejcuute una sola vez este evento.
+		$ionicPopup
+		.alert({
+			title: 'No se encuentra',
+			template: "Estamos experimentado problemas con nuestros servidores. Por favor, vuelve más tarde."
+		});
+	});
+
+	
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		$scope.usuario = UsuarioFactory.getUsuario();

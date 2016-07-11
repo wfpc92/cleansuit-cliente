@@ -27,11 +27,7 @@ var RecursosFactory = function($log, $http, API_ENDPOINT, APP_EVENTS, $rootScope
 		};
 
 		console.log("RecursosFactory.requestConfig: ", JSON.stringify(requestConfig))
-
-		return $http(requestConfig)
-		.catch(function() {
-			$rootScope.$broadcast(APP_EVENTS.noAccesoServidor);
-		});
+		return $http(requestConfig);
 	};
 
 	return {

@@ -13,6 +13,7 @@ app
 
 .constant('APP_EVENTS', {
 	noAccesoServidor: 'no-acceso-servidor', //hay conexion ainternet pero el servidor esta caido.
+	servidorNoEncontrado: 'servidor-no-encontrado'
 })
  
 .constant('USER_ROLES', {

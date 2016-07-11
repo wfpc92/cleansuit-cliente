@@ -1,7 +1,23 @@
-var AutenticacionInicioCtrl = function($scope, $ionicSideMenuDelegate, $ionicLoading, UsuarioFactory) {
+var AutenticacionInicioCtrl = function($scope, 
+									$ionicSideMenuDelegate, 
+									$ionicLoading, 
+									AuthService) {
 	
 	$ionicSideMenuDelegate.canDragContent(false);
 
+	$scope.ingresarFacebook = function() {
+		$ionicLoading.show({
+			template: "Loading..."
+		});
+		AuthService
+		.ingresarFacebook()
+		.finally(function(){
+			$ionicLoading.hide()
+		})
+	};
+
+	
+	/*
 	// This is the success callback from the login method
 	var fbLoginSuccess = function(response) {
 		if (!response.authResponse){
@@ -108,7 +124,7 @@ var AutenticacionInicioCtrl = function($scope, $ionicSideMenuDelegate, $ionicLoa
 				facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
 			}
 		});
-	};
+	};*/
 
 };
 
