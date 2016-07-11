@@ -1,8 +1,8 @@
-<div class="row">
-	<div class="col aIni" ui-sref="app.servicios">
+<div class="row tabs-menu">
+	<div class="col aIni" ui-sref="app.servicios" ng-class="{'active':banderas.sws}" ng-click="banderas.sws=true;banderas.swp=false">
 		Servicios <span class="badge" ng-if="carrito.contServicios !== 0">{{carrito.contServicios}}</span>
 	</div>
-	<div class="col aFIn" ui-sref="app.productos">
+	<div class="col aFin" ui-sref="app.productos" ng-class="{'active':banderas.swp}" ng-click="banderas.sws=false;banderas.swp=true">
 		Productos <span class="badge" ng-if="carrito.contProductos !== 0">{{carrito.contProductos}}</span>
 	</div>
 </div>

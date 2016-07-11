@@ -12,6 +12,10 @@ var AppCtrl = function($scope,
 
 	console.log("AppCtrl")
 
+	$scope.banderas = {
+		swp:false,
+		sws:false
+	};
 
 	//verificar si esta autenticado y autorizado.
 	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {

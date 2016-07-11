@@ -72,7 +72,8 @@ app.directive('elementoCentrado', function(){
   return {
     restrict: 'AEC',//'AEC' - matches either attribute or element or class name
     scope: {
-        carrito:'='//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+        carrito:'=',//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+        banderas: '='
     },
     replace: false,//para reemplazar el contenedor  
     transclude:false, //reinserta el contenido original
