@@ -6,6 +6,7 @@ var RegistrarManualCtrl = function($scope,
 
 	console.log("RegistrarManualCtrl");
 	$scope.error = "";
+	$scope.formValido= false;
 	$scope.usuario = {
 		nombre: "",
 		correo: "",
@@ -22,6 +23,21 @@ var RegistrarManualCtrl = function($scope,
 			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, { msg: msg });
 		});
 	};
+
+	$scope.$watchGroup([
+		'usuario.nombre',
+		'usuario.correo',
+		'usuario.contrasena',
+		], function(newV, oldV, scope){
+			console.log(newV)
+			if(newV[0] && newV[1] && newV[2]){
+				$scope.formValido = true;
+			}
+			else {
+				$scope.formValido = false;	
+			}
+	});
+
 };
 
 app.controller('RegistrarManualCtrl', RegistrarManualCtrl);

@@ -2,46 +2,49 @@ var PerfilCtrl = function($scope,
 						UsuarioFactory,
 						$ionicPopup,
 						AUTH_EVENTS,
-						$rootScope){
-	var self = this;
-
-
+						$rootScope, $state,$ionicHistory){
+	
+	console.log("PerfilCtrlPerfilCtrlPerfilCtrlPerfilCtrl")
 	$scope.actualizar = function() {
 		UsuarioFactory
 		.actualizarPerfil($scope.usuario)
 		.then(function(msg) {
+			$scope.usuario.contrasena = "";
+			$scope.usuario.repetirContrasena = "";
 			$rootScope.$broadcast(AUTH_EVENTS.perfilActualizado, {msg: msg});
+			$state.go("app.perfil", {}, {reload:true});
 		});
 	};
 
-	$scope.$on("$ionicView.afterEnter", function () {
-		$scope.usuario = UsuarioFactory.getUsuario();
-		//objeto para almacenar informacion de entrada
+	$scope.$on("$ionicView.beforeEnter", function () {
+		$scope.usuario = {};
+		$scope.usuario.nombre = UsuarioFactory.getUsuario().nombre;
+		$scope.usuario.direccion = UsuarioFactory.getUsuario().direccion;
+		$scope.usuario.telefono = UsuarioFactory.getUsuario().telefono;
+		$scope.usuario.correo = UsuarioFactory.getUsuario().correo;
 		$scope.formData = {
 			mostrarCambiarContrasena: false,
 			contrasenaModificada: false,
 			formValido: false
 		};
+	});
+	
 
-		$scope.$watchGroup([
-			'usuario.nombre',
-			'usuario.direccion',
-			'usuario.telefono'
-			], function(newV, oldV, scope){
+	$scope.$on("$ionicView.afterEnter", function () {
+		//objeto para almacenar informacion de entrada
+		
+
+
+		/*$scope.$watchGroup(['usuario.nombre', 'usuario.direccion', 'usuario.telefono', 'usuario.correo'],
+			function(newV, oldV, scope){
 				console.log("ws1: ", newV)
-				if(newV[0] && newV[1] && newV[2]){
-					$scope.formData.formValido = true;
-				}
-				else {
-					$scope.formData.formValido = false;	
-				}
+				console.log($scope.formularioPerfil)
+				//$scope.formData.formValido = newV[0] && newV[1] && newV[2]&& newV[3];
 			});
 
 
-		$scope.$watchGroup([
-			'usuario.contrasena',
-			'usuario.repetirContrasena'
-			], function(newV, oldV, scope) {
+		$scope.$watchGroup(['usuario.contrasena', 'usuario.repetirContrasena'],
+			function(newV, oldV, scope) {
 				console.log("ws2: ", newV)
 				if(newV[0] && newV[1] && newV[0] == newV[1]){
 					$scope.formData.formValido = true;
@@ -50,7 +53,7 @@ var PerfilCtrl = function($scope,
 				else {
 					$scope.formData.formValido = false;	
 				}
-			});
+			});*/
 	});
 
 };
