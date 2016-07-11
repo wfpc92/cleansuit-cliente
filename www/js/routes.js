@@ -4,6 +4,7 @@ app.config(function($stateProvider,
 					$compileProvider,
 					$ionicConfigProvider,
 					$httpProvider,
+					$localStorageProvider,
 					USER_ROLES) {
 
 
@@ -26,6 +27,9 @@ app.config(function($stateProvider,
 
 	$httpProvider.interceptors.push('AuthInterceptor');
 
+	$localStorageProvider.setKeyPrefix('CleanSuit-');
+
+
 
 	// Ionic uses AngularUI Router which uses the concept of states
 	// Learn more here: https://github.com/angular-ui/ui-router
@@ -41,7 +45,7 @@ app.config(function($stateProvider,
     	abstract: true,
       	templateUrl: "templates/autenticacion/plantilla.html",
 		data: {
-	    	authorizedRoles: [USER_ROLES.public]
+	    	rolesAutorizados: [USER_ROLES.public]
 	    }
 	})
 
@@ -100,7 +104,7 @@ app.config(function($stateProvider,
 		abstract: true,
 		templateUrl: 'templates/app/menu.html',//aqui estan las tabs,
 		data: {
-	    	authorizedRoles: [USER_ROLES.cliente]
+	    	rolesAutorizados: [USER_ROLES.cliente]
 	    }
 	})	
 

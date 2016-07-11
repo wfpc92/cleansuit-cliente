@@ -5,8 +5,9 @@ app
 	loginFailed: 'auth-login-failed',
 	logoutSuccess: 'auth-logout-success',
 	sessionTimeout: 'auth-session-timeout',
-	notAuthenticated: 'auth-not-authenticated',
-	notAuthorized: 'auth-not-authorized',
+	
+	noAutenticado: 'auth-not-authenticated',
+	noAutorizado: 'auth-not-authorized',
 	perfilActualizado: 'perfil-actualizado'
 })
 
