@@ -15,7 +15,7 @@ var AppCtrl = function($scope,
 	$scope.banderas = {
 		swp:false,
 		sws:false
-	};
+	}; 
 
 	
 	//verificar si esta autenticado y autorizado.
