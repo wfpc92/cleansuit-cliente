@@ -74,21 +74,30 @@ var AuthService = function($q,
 	};
 
 	var ingresarFacebook = function(a) {
-		return FacebookSvc
-		.autenticar()
-		.then(function(respuesta){
-			console.log(respuesta)
-			return RecursosFactory
-			.post('/ingresar/fb', {
-				'fb_token':respuesta.fb_token,
-				'fb_uid': respuesta.fb_uid
+		return $q(function(resolve, reject) {
+			FacebookSvc
+			.autenticar()
+			.then(function(respuesta){
+				console.log(JSON.stringify(respuesta))
+				RecursosFactory
+				.post('/ingresar/fb', {
+					'fb_token':respuesta.fb_token,
+					'fb_uid': respuesta.fb_uid
+				})
+				.then(function(res){
+					sesionFacebook = true;
+					return authCallback(resolve, reject, res);
+				})
 			})
-		})
+		});
 	};
  
 	var logout = function() {
 		console.log("AuthService.logout()")
 		eliminarCredenciales();
+		if(sesionFacebook){
+			FacebookSvc.logout();
+		}
 	};
 
 	var estaAutorizado = function(rolesAutorizados) {
