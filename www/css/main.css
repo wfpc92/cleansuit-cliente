@@ -9879,6 +9879,9 @@ img.logoinicio {
 .menu.scroll-content, .view {
   background-color: #44A01A; }
 
+.menu.scroll-content {
+  top: 0; }
+
 .menu-content {
   box-shadow: -10px -10px 34px rgba(37, 73, 2, 0.55); }
 
@@ -9911,14 +9914,14 @@ img.logoinicio {
   padding-left: 25px; }
 
 .menu .item-avatar {
-  padding: 69px 16px 29px 16px; }
+  padding: 109px 16px 29px 16px; }
   .menu .item-avatar img:first-child {
     display: block;
     max-width: 62px;
     max-height: 62px;
     border: 2px solid #348800;
     left: 22px;
-    top: 49px; }
+    top: 89px; }
   .menu .item-avatar h2 {
     color: #fff;
     font-family: 'fira_sansmedium';
@@ -10006,10 +10009,15 @@ p {
     top: -4px;
     left: 66px; }
 
+.item .badge {
+  display: inline-block; }
+
 .tabs .tab-item .badge.badge-dark, .badge.badge-dark,
 .tabs.tabs-light .tab-item .badge, .tabs-light > .tabs .tab-item .badge {
   background-color: #DB0000;
-  opacity: 1; }
+  opacity: 1;
+  text-align: center;
+  padding: 0; }
 
 .badge {
   background-color: #DB0000;
@@ -10027,8 +10035,6 @@ p {
   height: 97%; }
 
 .servicios .item .badge {
-  padding: 0px 5px;
-  display: inline-block;
   position: relative;
   top: -1px;
   right: 0; }
@@ -10244,55 +10250,50 @@ p {
   display: inline-block;
   margin: 22px auto; }
 
-.has-header-top {
-  top: 125px; }
-
+/* Tabs (inicio)*/
 .tabs-top > .tabs, .tabs.tabs-top {
-  border-bottom-width: 0px;
-  top: 54px; }
+  border-bottom-width: 0px; }
 
-.tab-nav a {
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  border-left: 1px solid;
-  height: 48px; }
+.tabs-menu {
+  padding: 18px 20px 6px;
+  color: #52B1ED;
+  font-family: 'fira_sansregular';
+  font-size: 1.2em;
+  line-height: 36px; }
+  .tabs-menu div {
+    height: 50px;
+    border-top: 1px solid #52B1ED;
+    border-bottom: 1px solid #52B1ED;
+    border-left: 1px solid #52B1ED;
+    text-align: center; }
+  .tabs-menu .aIni {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px; }
+  .tabs-menu .aFin {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-right: 1px solid #52B1ED; }
+  .tabs-menu .active {
+    font-family: 'fira_sansmedium';
+    color: #fff;
+    background-color: #52B1ED; }
+  .tabs-menu div .badge {
+    right: calc(30% - 30px);
+    top: 13px;
+    color: #fff;
+    padding: 0; }
 
-.tab-nav a.aIni {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px; }
-
-.tab-nav a.aFin {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-right: 1px solid; }
-
-.tab-nav .tab-item .badge {
-  right: calc(30% - 30px);
-  top: 13px; }
+.has-header {
+  top: 56px; }
 
 .tabs-striped.tabs-light .tabs {
   background-color: #F8F8F8;
-  padding: 17px 0 17px;
-  height: 80px; }
+  padding: 0;
+  display: none; }
 
-.tabs-striped.tabs-light .tab-item {
-  color: #52B1ED;
-  background-color: #F8F8F8; }
-
-.tabs-striped.tabs-light .tab-item.tab-item-active,
-.tabs-top.tabs-striped .tab-item.activated {
-  color: #fff;
-  background-color: #52B1ED;
-  border-color: #52B1ED;
-  margin-top: 0;
-  border: none; }
-
-.tabs-top > .tabs .tab-item.tab-item-active .badge,
-.tabs-top > .tabs .tab-item.activated .badge {
-  top: 15px; }
-
+/* Tabs (fin)*/
 .orden {
-  padding: 10px;
+  padding: 0px 10px 10px;
   font-family: 'fira_sansregular';
   color: #333; }
   .orden .titulo {
@@ -10380,8 +10381,8 @@ p {
   background: url("../img/proceso.png") no-repeat bottom right;
   background-color: #3DA0EB; }
 
-.has-header.has-subheader.has-tabs-top.estado-orden {
-  top: 125px; }
+.has-header.has-subheader.has-tabs-top {
+  top: 56px; }
 
 .estado-orden {
   padding: 15px 10px 10px;
@@ -10568,8 +10569,7 @@ p {
   margin: 0; }
 
 .scroll {
-  height: 100%;
-  margin-top: 40px; }
+  height: 100%; }
 
 #id-mapa .centerMarker {
   display: block;

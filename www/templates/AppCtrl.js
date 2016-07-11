@@ -1,6 +1,5 @@
 var AppCtrl = function($scope,
-					$rootScope,
-					$ionicHistory, 
+					$rootScope, 
 					UsuarioFactory,
 					OrdenesFactory,
 					CarritoFactory,
@@ -13,15 +12,20 @@ var AppCtrl = function($scope,
 
 	console.log("AppCtrl")
 
+	$scope.banderas = {
+		swp:false,
+		sws:false
+	}; 
+
 	
 	//verificar si esta autenticado y autorizado.
 	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 		//console.log("event:$stateChangeStart", toState, toParams, fromState, fromParams)
-		var rolesAutorizados = toState.data.rolesAutorizados;
-		if (!AuthService.estaAutorizado(rolesAutorizados)) {
+		var authorizedRoles = toState.data.authorizedRoles;
+		if (!AuthService.isAuthorized(authorizedRoles)) {
 			//console.log("no esta autorizado")
 			// usuario no autorizado
-			if (AuthService.estaAutenticado()) {
+			if (AuthService.isAuthenticated()) {
 				//console.log("esta autenticado")
 				event.preventDefault();
 				if(toState.name.indexOf("autenticacion.") !== -1){
@@ -30,7 +34,7 @@ var AppCtrl = function($scope,
 				} else {
 					//solicitud de estado desconocido
 					$state.go('autenticacion.inicio');
-					$rootScope.$broadcast(AUTH_EVENTS.noAutorizado);
+					$rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
 				}
 				
 			} else {
@@ -38,7 +42,7 @@ var AppCtrl = function($scope,
 				if(toState.name.indexOf("app.") !== -1){
 					// usuario no esta autenticado y quiere ingresar a la app
 					event.preventDefault();
-					$rootScope.$broadcast(AUTH_EVENTS.noAutenticado);
+					$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
 				}
 			}
 		}
@@ -58,14 +62,14 @@ var AppCtrl = function($scope,
 		});
 	});
 
-	$scope.$on(AUTH_EVENTS.noAutorizado, function(event) {
+	$scope.$on(AUTH_EVENTS.notAuthorized, function(event) {
 		var alertPopup = $ionicPopup.alert({
 			title: 'No es posible acceder!',
 			template: 'Este recurso no está disponible para ti.'
 		});
 	});
 
-	$scope.$on(AUTH_EVENTS.noAutenticado, function(event) {
+	$scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
 		AuthService.logout();
 		$state.go('autenticacion.inicio');
 		var alertPopup = $ionicPopup.alert({
@@ -77,6 +81,7 @@ var AppCtrl = function($scope,
 	$scope.$on(AUTH_EVENTS.perfilActualizado, function(event, args) {
 		console.log("event:AppCtrl.perfilActualizado");
 
+		AuthService.actualizarCredenciales();
 		$ionicPopup
 		.alert({
 			title: "Perfil de usuario",
@@ -112,7 +117,7 @@ var AppCtrl = function($scope,
 		$scope.usuario = UsuarioFactory.getUsuario();
 		$scope.carrito = CarritoFactory;
 
-		if($scope.usuario) {
+		if($scope.usuario.rol) {
 	    	OrdenesFactory
 			.cargarOrdenesEnProceso()
 			.then(function(){

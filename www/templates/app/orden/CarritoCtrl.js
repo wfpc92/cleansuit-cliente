@@ -10,6 +10,11 @@ var CarritoCtrl = function($scope,
 		}
 	});
 
+	$scope.$on("$ionicView.afterEnter", function () {
+		$scope.banderas.swp=false;
+		$scope.banderas.sws=false;
+	});
+
 	$scope.aumentar = function(item, tipo){
 		$scope.carrito.agregar(item, tipo, 1);
 	};

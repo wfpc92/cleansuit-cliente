@@ -10,6 +10,11 @@ var AppInicioCtrl = function($scope,
 		$scope.promociones = PromocionesFactory.getPromociones();
 		console.log("termina de ejecutar la funcion iniciar de CargaInicialFactory")
 	});
+
+	$scope.$on("$ionicView.afterEnter", function () {
+		$scope.banderas.swp=false;
+		$scope.banderas.sws=false;
+	})
 };
 
 app.controller('AppInicioCtrl', AppInicioCtrl);
