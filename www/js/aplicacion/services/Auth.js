@@ -3,7 +3,8 @@ var AuthService = function($q,
 						API_ENDPOINT,
 						USER_ROLES, 
 						UsuarioFactory,
-						RecursosFactory) {
+						RecursosFactory,
+						FacebookSvc) {
 
 	var estaAutenticado = false;
  
@@ -72,6 +73,18 @@ var AuthService = function($q,
 		});
 	};
 
+	var ingresarFacebook = function(a) {
+		return FacebookSvc
+		.autenticar()
+		.then(function(respuesta){
+			console.log(respuesta)
+			return RecursosFactory
+			.post('/ingresar/fb', {
+				'fb_token':respuesta.fb_token,
+				'fb_uid': respuesta.fb_uid
+			})
+		})
+	};
  
 	var logout = function() {
 		console.log("AuthService.logout()")
@@ -90,22 +103,24 @@ var AuthService = function($q,
  
 	return {
 		ingresar: ingresar,
+    	ingresarFacebook: ingresarFacebook,
 		registrar: registrar,
 		logout: logout,
     	estaAutorizado: estaAutorizado,
 		estaAutenticado: function(){
     		return estaAutenticado;
-    	}
+    	},
 	};
 };
 
-var AuthInterceptor = function ($rootScope, $q, AUTH_EVENTS) {
+var AuthInterceptor = function ($rootScope, $q, AUTH_EVENTS, APP_EVENTS) {
   return {
     responseError: function (response) {
-    	console.log("AuthInterceptor.responseError()")
+    	console.log("AuthInterceptor.responseError()", response)
     	$rootScope.$broadcast({
         	401: AUTH_EVENTS.noAutenticado,
-        	403: AUTH_EVENTS.noAutorizado
+        	403: AUTH_EVENTS.noAutorizado,
+        	404: APP_EVENTS.servidorNoEncontrado
       	}[response.status], response);
       	return $q.reject(response);
     }
