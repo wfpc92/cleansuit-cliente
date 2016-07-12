@@ -30,6 +30,7 @@ var ProductosCtrl = function($scope,
 		});
 	};
 
+	
 	/*var element = document.getElementById("lstProductos");
 	ionic.onGesture('swipe', function() {
 		console.log("swipe event")
