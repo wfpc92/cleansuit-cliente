@@ -1,14 +1,17 @@
 app.service("FacebookSvc", ["ngFB", function(n) {
-	return n.init({
+	n.init({
 		appId: "1732222377062073"
-	}), {
-		autenticar: function(e) {
+	})
+	
+	return {
+		autenticar: function() {
+			console.log("FacebookSvc.autenticar()", JSON.stringify(n))
 			return n.login({
 				scope: "email,public_profile",
-				location: !1
-			}).then(function(i) {
-				console.log(i)
-				if("connected" === i.status){
+				//location: !1
+			}).then(function(respuestaFacebook) {
+				console.log(respuestaFacebook)
+				if("connected" === respuestaFacebook.status){
 					return n.api({
 						path: "/me",
 						params: {
@@ -17,18 +20,20 @@ app.service("FacebookSvc", ["ngFB", function(n) {
 					})
 					.then(function(respuesta){
 						return {
-							fb_token: i.authResponse.accessToken,
+							fb_token: respuestaFacebook.authResponse.accessToken,
 							fb_uid: respuesta.id
 						}
 					}, function() {
 						console.log("error al obtener id de usuario.")
 					}); 
+				} else {
+					console.log("facebook no retorna un estado conectado")
 				}
-			}, function(n) {
-				console.log("no fue posible iniciar sesion con facebook", n)
+			}, function(errr) {
+				throw error;
 			});
 		},
-		cerrarSesion: function() {
+		logout: function() {
 			n.logout()
 		},
 		getDatos: function(e) {
