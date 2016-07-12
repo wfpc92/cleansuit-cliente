@@ -31,13 +31,15 @@ var CarritoCtrl = function($scope,
 	    	template: '¿Está seguro que desea cancelar esta orden?'
 	    })
 		.then(function(res) {
-			$scope.carrito.vaciar();
-			$scope.carrito.actualizarContadores();
-			$state.go("app.inicio");
-			$ionicHistory.clearHistory();
-			$ionicHistory.nextViewOptions({
-				disableBack:'true'
-			});
+			if(res) {
+				$scope.carrito.vaciar();
+				$scope.carrito.actualizarContadores();
+				$state.go("app.inicio");
+				$ionicHistory.clearHistory();
+				$ionicHistory.nextViewOptions({
+					disableBack:'true'
+				});
+			}
 		});
 	};
 };

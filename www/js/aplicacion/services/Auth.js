@@ -95,9 +95,7 @@ var AuthService = function($q,
 	var logout = function() {
 		console.log("AuthService.logout()")
 		eliminarCredenciales();
-		if(sesionFacebook){
-			FacebookSvc.logout();
-		}
+		FacebookSvc.logout();
 	};
 
 	var estaAutorizado = function(rolesAutorizados) {
