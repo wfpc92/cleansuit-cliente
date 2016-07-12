@@ -24,7 +24,6 @@ var ProductoCtrl = function($scope,
 			disableBack:'true'
 		})
 	};
-
 	
 };
 

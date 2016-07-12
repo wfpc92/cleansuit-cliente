@@ -16,6 +16,7 @@ app.directive('elementoCentrado', function(){
   };
 })
 
+    
 /**
  * muestra el footer para permitir solicitar un servicio o para mostrar 
  * el numero de servicios que ha solicitado

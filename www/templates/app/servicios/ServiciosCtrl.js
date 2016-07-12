@@ -19,6 +19,7 @@ var ServiciosCtrl = function($scope,
 			console.log(error);
 		});
 	};
+	
 
 };
 
