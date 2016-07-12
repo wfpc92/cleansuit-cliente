@@ -7,9 +7,9 @@ var AutenticacionInicioCtrl = function($scope,
 	$ionicSideMenuDelegate.canDragContent(false);
 
 	$scope.ingresarFacebook = function() {
-		$ionicLoading.show({
+		/*$ionicLoading.show({
 			template: "Loading..."
-		});
+		});*/
 		AuthService
 		.ingresarFacebook()
 		.then(function(msg) {
@@ -17,10 +17,10 @@ var AutenticacionInicioCtrl = function($scope,
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess, {msg: msg});
 		}, function(msg) {
 			console.log("AutenticacionInicioCtrl: err", msg);
-			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: msg});
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: msg.statusText});
 		})
 		.finally(function(){
-			$ionicLoading.hide()
+			//$ionicLoading.hide()
 		})
 	};
 };

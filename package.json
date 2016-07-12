@@ -23,14 +23,7 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-geolocation",
-    {
-      "variables": {
-        "APP_ID": "1732222377062073",
-        "APP_NAME": "CleanSuit"
-      },
-      "locator": "cordova-plugin-facebook4",
-      "id": "cordova-plugin-facebook4"
-    },
+    "cordova-plugin-appinbrowser",
     {
       "locator": "https://github.com/rodrigo-martinezd/cordova-dialog-gps.git",
       "id": "cl.rmd.cordova.dialoggps"
