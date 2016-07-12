@@ -660,7 +660,7 @@ $menu: #52B1ED;
 		label.item-checkbox {
 			border: none;
 			font-size: 1.1em;
-			
+			padding-top: 29px;
 			div span{
 				color: #666;
 			}
@@ -670,6 +670,7 @@ $menu: #52B1ED;
 		margin: -5px 0;
 		border-right: none;
 		border-left: none;
+		height: 80px;
 		.item-input { padding: 6px 14px 5px 14px; }
 		.der { padding: 6px 14px 5px 7px; }
 		.izq { padding: 6px 7px 5px 14px; }
@@ -677,7 +678,7 @@ $menu: #52B1ED;
 			color: #BABABA;
 			font-size: 1em;
 		}
-		input[type="text"] {
+		input {
 			font-size: 1.2em;
 			height: auto;
 		}
@@ -685,6 +686,9 @@ $menu: #52B1ED;
 		.icon {
 			color: #666;
 			font-size: 26px;
+		}
+		.ion-location {
+			font-size: 36px;
 		}
 	}
 }
@@ -934,6 +938,7 @@ $menu: #52B1ED;
 			margin: 0px;
 			border-bottom: 1px solid #E5E5E5;
 			padding-bottom: 0;
+			height: 70px;
 			.input-label {
 				color: #666666;
 				opacity: 0.6;
@@ -949,7 +954,10 @@ $menu: #52B1ED;
 				color: #666666;
 				font-size: 1.5em;
 			}
-
+			.item-stacked-label {
+				width: 100%;
+				padding-top: 0;
+			}
 		}
 
 	}
@@ -1003,7 +1011,7 @@ $menu: #52B1ED;
 		h3 {
 			background: $calm;
 			color: $light;
-			font-size: 24px;
+			font-size: 22px;
 		}
 	}
 	.popup-body {
@@ -1018,4 +1026,42 @@ $menu: #52B1ED;
 		}
 	}
 }
-
+.platform-android .popover {
+	margin-top: -17px;
+}
+.popover {
+	border: 1px solid #999999;
+	border-radius: 10px;
+	width: 270px;
+	margin-left: -10px !important;
+	.flecha {
+		position: absolute;
+		display: inline-block;
+		width: 21px;
+		height: 8px;
+		top: -8px;
+		right: 15px;
+		background: url('../img/span.png');
+	}
+	.scroll-content {
+		border-radius: 10px;
+		.list {
+			padding: 7px 15px 7px 18px;
+			.item {
+				color: #333333;
+				border-bottom: 1px solid #CCCCCC;
+				margin: 0;
+				padding: 8px 16px 10px;
+			}
+			.item:last-child {
+				border-bottom: none;
+			}
+		}
+	}	
+}
+.forma-pago.popover {
+	height: 100px;	
+}
+.popover-hora {
+	height: 180px;
+}
