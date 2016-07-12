@@ -9956,7 +9956,7 @@ p {
 
 .lista {
   padding-bottom: 60px;
-  margin: 10px; }
+  margin: 0px 10px 10px; }
   .lista .item {
     border: none;
     padding-bottom: 3px;
@@ -9971,7 +9971,8 @@ p {
       color: #76A900;
       font-size: 1.1em; }
   .lista .item-options {
-    background-color: #378413;
+    background-image: url("../img/botones.png");
+    background-size: 100%;
     height: 97%; }
     .lista .item-options .light {
       background-color: #378413; }
@@ -10040,7 +10041,7 @@ p {
   right: 0; }
 
 .promociones {
-  margin: 13px 13px 18px 13px; }
+  margin: 0px 13px 18px 13px; }
   .promociones .item {
     border: none;
     border-bottom: 2px solid #669900; }
@@ -10069,7 +10070,7 @@ p {
         background: url("../img/sompromo.png"); }
 
 .vista {
-  margin: 10px;
+  margin: 0px 10px 10px;
   box-shadow: 0 0 0;
   border-radius: 0px;
   background-color: #fff; }
@@ -10078,7 +10079,6 @@ p {
     text-align: center;
     color: #333;
     font-size: 1.6em;
-    margin-top: 10px;
     margin-bottom: 3px;
     padding-top: 27px; }
   .vista p {
@@ -10255,7 +10255,7 @@ p {
   border-bottom-width: 0px; }
 
 .tabs-menu {
-  padding: 18px 20px 6px;
+  padding: 18px 20px 18px;
   color: #52B1ED;
   font-family: 'fira_sansregular';
   font-size: 1.2em;
@@ -10293,7 +10293,7 @@ p {
 
 /* Tabs (fin)*/
 .orden {
-  padding: 0px 10px 10px;
+  padding: 0px 15px 10px;
   font-family: 'fira_sansregular';
   color: #333; }
   .orden .titulo {
@@ -10385,7 +10385,7 @@ p {
   top: 56px; }
 
 .estado-orden {
-  padding: 15px 10px 10px;
+  padding: 30px 15px;
   background-color: #f8f8f8; }
   .estado-orden h2 {
     font-family: 'fira_sansmedium';

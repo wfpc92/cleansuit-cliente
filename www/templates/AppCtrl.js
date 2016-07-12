@@ -18,6 +18,7 @@ var AppCtrl = function($scope,
 	}; 
 
 	
+	
 	//verificar si esta autenticado y autorizado.
 	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 		//console.log("event:$stateChangeStart", toState, toParams, fromState, fromParams)
