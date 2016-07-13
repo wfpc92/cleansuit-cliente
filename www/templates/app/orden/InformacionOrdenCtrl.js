@@ -213,7 +213,7 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 	var self = this;
 	self.$scope.formIncompleto = false;
 
-	/*if(self.$scope.soloProductos){
+	if(self.$scope.soloProductos) { 
 		self.$scope.$watchGroup([
 			'orden.entrega.direccion',
 			'orden.entrega.fecha',
@@ -221,7 +221,9 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				if(newV[0] && newV[1] && newV[2] && newV[3]){
+				console.log("productos", JSON.stringify(newV))
+				if(newV[0] && newV[1] && newV[2] 
+					&& newV[3] && newV[4] && newV[5]){
 					self.$scope.formIncompleto = false;
 				}
 				else {
@@ -229,7 +231,7 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 				}
 			});
 	} else {
-		self.$scope.$watchGroup([
+		self.$scope.$watchGroup([ 
 			'orden.recoleccion.direccion',
 			'orden.recoleccion.fecha',
 			'orden.recoleccion.hora',
@@ -239,14 +241,17 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				if(newV[0] && newV[1] && newV[2] && newV[3] && newV[4] && newV[5] && newV[6]){
+				console.log("servicios", JSON.stringify(newV))
+				if(newV[0] && newV[1] && newV[2] 
+					&& newV[3] && newV[4] && newV[5] 
+					&& newV[6] && newV[7] && newV[8] ){
 					self.$scope.formIncompleto = false;
 				}
 				else {
 					self.$scope.formIncompleto = true;	
 				}
 			});
-	}*/
+	}
 };
 
 InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {

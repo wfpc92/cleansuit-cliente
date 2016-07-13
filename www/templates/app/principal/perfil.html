@@ -2,10 +2,10 @@
     <ion-content class="bottom perfil">
     	<div class="cont-imagen">
     		<div class="imagen">
-				<img src="img/camara.png">
+				<img ng-src="{{usuario.url_foto || 'img/camara.png'}}" ng-click="subirFoto()"/>
 			</div> 
     	</div>
-
+    	
 		<form name="formPerfil" novalidate>
 			<div class="list">
 				<div class="item row">
@@ -120,17 +120,20 @@
 			
 			<!-- watch -->
 			<div ng-hide="true">
-				{{formData.formValido = (
-										(formPerfil.nombre.$dirty
-										|| formPerfil.direccion.$dirty
-										|| formPerfil.telefono.$dirty
-										|| formPerfil.correo.$dirty)
-										&& (formPerfil.nombre.$valid
-										&& formPerfil.direccion.$valid
-										&& formPerfil.telefono.$valid
-										&& formPerfil.correo.$valid)
-										|| (formPerfil.contrasena.$dirty && formPerfil.contrasena.$valid && (usuario.contrasena == usuario.repetirContrasena))
-										)}}
+				{{formData.formValido =
+					(
+						(formPerfil.nombre.$dirty && formPerfil.nombre.$valid)
+						|| (formPerfil.direccion.$dirty && formPerfil.direccion.$valid)
+						|| (formPerfil.telefono.$dirty && formPerfil.telefono.$valid)
+						|| (formPerfil.correo.$dirty)
+						|| usuario.data_foto
+						|| (formPerfil.contrasena.$dirty
+							&& formPerfil.contrasena.$valid
+							&& (usuario.contrasena == usuario.repetirContrasena
+							))
+					)
+					&& (formPerfil.correo.$valid)
+					}}
 			</div>
 		
 		</form> 

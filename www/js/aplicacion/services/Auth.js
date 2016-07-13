@@ -73,31 +73,72 @@ var AuthService = function($q,
 		});
 	};
 
-	var ingresarFacebook = function(a) {
+	var ingresarFacebook = function() {
 		return $q(function(resolve, reject) {
 			FacebookSvc
-			.autenticar()
+			.autenticar(resolve, reject)
 			.then(function(respuesta){
-				console.log(JSON.stringify(respuesta))
-				RecursosFactory
-				.post('/ingresar/fb', {
-					'fb_token':respuesta.fb_token,
-					'fb_uid': respuesta.fb_uid
-				})
-				.then(function(res){
-					sesionFacebook = true;
-					return authCallback(resolve, reject, res);
-				})
+				console.log("AuthService.ingresarFacebook(), ",JSON.stringify(respuesta))
+				if(respuesta){
+					RecursosFactory
+					.post('/ingresar/fb', {
+						'fb_token':respuesta.fb_token,
+						'fb_uid': respuesta.fb_uid
+					})
+					.then(function(respuesta){
+						console.log("AuthService.ingresarFacebook", respuesta)
+						
+						if(respuesta.data.success){
+							//si existe=true, el fb_uid ya esta registrado en el sistema
+							if(respuesta.data.existe){
+								return authCallback(resolve, reject, respuesta);		
+							} else {
+								return registrarFacebook(resolve, reject);
+							}
+						} else {
+							return reject(respuesta.error);
+						}
+						
+					}, function(err) {
+						//no se encuentra el servidor, AuthInterceptor maneja el error.
+					});
+				}
 			})
+		});
+	};
+
+	var registrarFacebook = function(resolve, reject) {
+		FacebookSvc
+		.getDatos(resolve, reject)
+		.then(function(respuesta) {
+			console.log("AuthService.registrarFacebook()", respuesta);
+			
+			RecursosFactory
+			.post('/ingresar/fb/crear', {
+				'fb_uid': respuesta.fb_uid,
+				'nombre': respuesta.nombre,
+				'correo': respuesta.correo 
+			})
+			.then(function(respuesta){
+				console.log("AuthService.ingresarFacebook", respuesta)
+				
+				if(respuesta.data.success){
+					//si existe=true, el fb_uid ya esta registrado en el sistema
+					return authCallback(resolve, reject, respuesta);		
+				}
+				
+			}, function(err) {
+				return reject(err);
+			});
+		}, function(err) {
+			return reject(err);
 		});
 	};
  
 	var logout = function() {
 		console.log("AuthService.logout()")
 		eliminarCredenciales();
-		if(sesionFacebook){
-			FacebookSvc.logout();
-		}
+		FacebookSvc.logout();
 	};
 
 	var estaAutorizado = function(rolesAutorizados) {
@@ -129,7 +170,8 @@ var AuthInterceptor = function ($rootScope, $q, AUTH_EVENTS, APP_EVENTS) {
     	$rootScope.$broadcast({
         	401: AUTH_EVENTS.noAutenticado,
         	403: AUTH_EVENTS.noAutorizado,
-        	404: APP_EVENTS.servidorNoEncontrado
+        	404: APP_EVENTS.servidorNoEncontrado,
+        	500: APP_EVENTS.servidorNoEncontrado,
       	}[response.status], response);
       	return $q.reject(response);
     }

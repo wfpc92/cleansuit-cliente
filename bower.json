@@ -6,7 +6,6 @@
   },
   "dependencies": {
     "angular-google-maps": "~2.0.13",
-    "google-map": "~0.4.1",
-    "facebook-connect-plugin": "https://cdn.rawgit.com/Wizcorp/phonegap-facebook-plugin/master/facebookConnectPlugin.js"
+    "google-map": "~0.4.1"
 }
 }

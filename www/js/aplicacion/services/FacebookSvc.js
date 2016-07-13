@@ -1,18 +1,25 @@
-app.service("FacebookSvc", ["ngFB", function(n) {
-	n.init({
+var FacebookSvc = function(ngFB,
+						$q) {
+	
+	ngFB.init({
 		appId: "1732222377062073"
 	})
 	
 	return {
-		autenticar: function() {
-			console.log("FacebookSvc.autenticar()", JSON.stringify(n))
-			return n.login({
-				scope: "email,public_profile",
-				//location: !1
-			}).then(function(respuestaFacebook) {
-				console.log(respuestaFacebook)
+		autenticar: function(resolve, reject) {
+			console.log("FacebookSvc.autenticar()")
+			/*return $q(function(resolve, reject, err) {
+				return resolve({fb_token: "token",
+				fb_uid: "id"})
+			});
+			*/
+			return ngFB.login({
+				scope: "email,public_profile"
+			})
+			.then(function(respuestaFacebook) {
+				console.log(JSON.stringify(respuestaFacebook))
 				if("connected" === respuestaFacebook.status){
-					return n.api({
+					return ngFB.api({
 						path: "/me",
 						params: {
 							fields: "id"
@@ -25,35 +32,39 @@ app.service("FacebookSvc", ["ngFB", function(n) {
 						}
 					}, function() {
 						console.log("error al obtener id de usuario.")
+						return reject("No se ha podido obtener información de usuario");
 					}); 
 				} else {
-					console.log("facebook no retorna un estado conectado")
+					console.log("facebook no retorna un estado conectado");
+					return reject(respuestaFacebook.status);
 				}
-			}, function(errr) {
-				throw error;
+			}, function(err) {
+				//el usuario cancela, o no hay internet.
+				//no hacer nada
 			});
 		},
 		logout: function() {
-			n.logout()
+			ngFB.logout()
 		},
-		getDatos: function(e) {
-			n.api({
+		getDatos: function(resolve, reject) {
+			return ngFB.api({
 				path: "/me",
 				params: {
 					fields: "email,name,first_name,last_name,id"
 				}
-			}).then(function(n) {
-				var i = n.name,
-					o = (n.first_name, n.last_name, n.id),
-					a = (n.first_name + " " + n.last_name).trim();
-				a.length > i.length && (i = a), e({
-					fid: o,
-					nombre: i,
-					email: n.email
-				}, null)
-			}, function(n) {
-				e(null, ErrorRed("No fué posible obtener la información de la cuenta de Facebook."))
+			})
+			.then(function(respuestaFacebook) {
+				console.log("FacebookSvc.getDatos()", respuestaFacebook);
+				return {
+					fb_uid: respuestaFacebook.id,
+					nombre: respuestaFacebook.name,
+					correo: respuestaFacebook.email
+				}
+			}, function(err) {
+				return reject(err);
 			})
 		}
 	}
-}]);
+};
+
+app.service("FacebookSvc", FacebookSvc);
