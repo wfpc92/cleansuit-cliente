@@ -1027,29 +1027,32 @@ $menu: #52B1ED;
 .gm-style-iw {
 	padding: 20px;	
 }
-.popup-container .popup {
-	width: 300px;
-	background-color: rgba(255, 255, 255, 1);
-	border-radius: 8px;
-	.popup-head {
-		border-top-right-radius: 8px;
-		border-top-left-radius: 8px;
-		background: $calm;
-		h3 {
+.popup-container  {
+	background: rgba(0,0,0,0.4);
+	.popup {
+		width: 300px;
+		background-color: rgba(255, 255, 255, 1);
+		border-radius: 8px;
+		.popup-head {
+			border-top-right-radius: 8px;
+			border-top-left-radius: 8px;
 			background: $calm;
-			color: $light;
-			font-size: 22px;
+			h3 {
+				background: $calm;
+				color: $light;
+				font-size: 22px;
+			}
 		}
-	}
-	.popup-body {
-		padding: 30px;
-	}
-	.popup-buttons {
-		padding: 10px 30px;
-		.button {
-			border-radius: 4px;
-			padding: 0px;
-			width: 100px;
+		.popup-body {
+			padding: 30px;
+		}
+		.popup-buttons {
+			padding: 10px 30px;
+			.button {
+				border-radius: 4px;
+				padding: 0px;
+				width: 100px;
+			}
 		}
 	}
 }
