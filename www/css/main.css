@@ -9899,11 +9899,11 @@ img.logoinicio {
 
 .menu .cerrar {
   font-family: 'fira_sansmedium';
-  margin-left: 25px;
+  margin-left: 23px;
   padding: 17px 15px 17px 70px; }
 
 .menu .item-complex.item-icon-left {
-  padding-left: 25px; }
+  padding-left: 23px; }
 
 .menu .item-avatar {
   padding: 89px 16px 15px; }
@@ -9911,7 +9911,7 @@ img.logoinicio {
     position: absolute;
     width: 62px;
     height: 62px;
-    left: 22px;
+    left: 20px;
     top: 89px;
     border: 2px solid #348800;
     overflow: hidden;
