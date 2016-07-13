@@ -12,7 +12,7 @@
 				<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
-							<span class="input-label">Nombres y Apellidos</span>
+							<span class="input-label">Nombres y apellidos</span>
 							<input type="text" placeholder="su nombre" name="nombre" ng-model="usuario.nombre" pattern="(?=.*[a-zA-Z]).{1,100}" required>
 						</label>
 					</div>
@@ -63,18 +63,19 @@
 					</div>
 				</div>
 
-				<div class="item col"  ng-hide="usuario.fb">
-					<div class="row item-icon-right">
-						<label class="item-input item-stacked-label">
-							<span class="input-label item-icon-right contrasena">Cambiar contraseña</span>
-						</label>
-						<i class="icon ico-flechaabajo" ng-click="formData.mostrarCambiarContrasena = !formData.mostrarCambiarContrasena"></i>
+				<div class="item row"  ng-hide="usuario.fb">
+					<div class="col">
+						<div class="row item-icon-right">
+							<label class="item-input item-stacked-label">
+								<span class="input-label item-icon-right contrasena">Cambiar contraseña</span>
+							</label>
+							<i class="icon ico-flechaabajo" ng-click="formData.mostrarCambiarContrasena = !formData.mostrarCambiarContrasena"></i>
+						</div>
+						<div class="row item-text-wrap" ng-if="formData.mostrarCambiarContrasena">
+							<p class="item-input item-text-wrap">Mínimo 6 caracteres, incluir números y caracteres.</p>
+						</div>
 					</div>
-					<div class="row" ng-if="formData.mostrarCambiarContrasena">
-						<label class="item-input item-stacked-label">
-							<span class="input-label item-icon-right">Mínimo 6 caracteres, incluir numeros y caracteres.</span>
-						</label>
-					</div>
+					
 				</div>	
 
 				<div class="item row" ng-if="formData.mostrarCambiarContrasena">
@@ -143,7 +144,7 @@
     <div class="bar bar-footer">
     	<a ng-click="actualizar()" class="button button-calm button-full" 
     		ng-disabled="!formData.formValido"> 
-    	Actualizar Perfil
+    	ACTUALIZAR PERFIL
 		</a>
     </div>
 

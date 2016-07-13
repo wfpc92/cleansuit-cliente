@@ -3,10 +3,10 @@
 
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
-
 		<div class="titulo">
 			INFORMACIÓN DE ORDEN
 		</div> 
+
 		<form name="formInformacionOrden"> 
 			<div class="list">
 				<div class="item row">
@@ -85,13 +85,8 @@
 				<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
-<<<<<<< HEAD
-							<span class="input-label">Fecha de Entrega</span>
+							<span class="input-label">Fecha de entrega</span>
 							<input type="date" placeholder="Fecha de recolección" ng-model="orden.entrega.fecha" required>
-=======
-							<span class="input-label item-icon-right">Fecha de entrega</span>
-							<input type="date" placeholder="Fecha de entrega" ng-model="orden.entrega.fecha" required>
->>>>>>> 9d6677d3fbb12c39e1593ca118b4d8dd2f36aa33
 						</label>
 					</div>
 				</div>
@@ -130,7 +125,7 @@
 			<resumen-totales totales="carrito.totales" ng-show="carrito.hayItems()"></resumen-totales>
 
 			<div class="list">
-				<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones">Acepto los Términos y Condiciones.</ion-checkbox>
+				<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones">Acepto los Términos y Condiciones.</ion-checkbox> 
 			</div>
 		</form>
 
