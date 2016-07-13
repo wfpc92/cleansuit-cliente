@@ -2,6 +2,9 @@ body {
 	font-family: 'fira_sansregular';
 	font-size: 14px;
 }
+.pane, .view {
+	background-color: #F8F8F8;
+}
 img.logo {
 	display: block;
 	width: 70%;
@@ -366,11 +369,11 @@ p {
 			color: $light;
 			text-align: left;
 			font-family: 'fira_sansmedium';
-			font-size: 1.4em;
-			padding: 15px 10px 19px 20px;
+			font-size: 1.18em;
+			padding: 13px 10px 13px 20px;
 			.ico-flechader:before {
 				position: absolute;
-				top: 18px;
+				top: 13px;
 				right: 21px;
 				color: $light;
 			}
@@ -587,7 +590,7 @@ p {
 }
 .cancelar {
 	font-family: 'fira_sansmedium';
-	font-size: 1.3em;
+	font-size: 1.1em;
 	display: inline-block;
 	margin: 22px auto;
 }
@@ -769,14 +772,14 @@ $menu: #52B1ED;
 	.confirmacion {
 		background: url('../img/carita.png') no-repeat center center;
 		background-color: #FFDB14;
-		height: 215px;
+		height: 130px;
 		text-align: center;
 		h3 {
 			display: inline-block;
 			color: #E65C00;
 			font-size: 1.6em;
 			font-family: 'fira_sansmedium';
-			margin-top: 92px;
+			margin-top: 30px;
 			margin-bottom: 8px;
 		}
 		span {
