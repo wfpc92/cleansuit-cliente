@@ -1,9 +1,11 @@
 <ion-view title="CleanSuit" cache-view="false">
     <ion-content class="bottom perfil">
-    	<div class="imagen">
-			<img src="img/camara.png">
-		</div> 
-
+    	<div class="cont-imagen">
+    		<div class="imagen">
+				<img src="img/camara.png">
+			</div> 
+    	</div>
+    	
 		<form name="formPerfil" novalidate>
 			<div class="list">
 				<div class="item row">
@@ -34,18 +36,19 @@
 
 				<div class="item row">
 					<div class="col">
-						<label class="item-input item-stacked-label">
-							<span class="input-label item-icon-right">Dirección de Residencia</span>
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label">Dirección de Residencia</span>
 							<input type="text" placeholder="dirección residencia" name="direccion" ng-model="usuario.direccion" pattern="(?![.\n])(?=.*[a-zA-Z]).{1,100}" required>
 						</label>
 					</div>
 				</div>
+				
 
 				<div class="item row">
 					<div class="col">
-						<label class="item-input item-stacked-label">
+						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
-							<input type="tel" placeholder="teléfono de contacto" name="telefono" ng-model="usuario.telefono" pattern="(?![.\n])(?=.*\d).{7,15}" required>
+							<input type="tel" placeholder="Teléfono de contacto" name="telefono" ng-model="usuario.telefono" pattern="(?![.\n])(?=.*\d).{7,15}" required>
 						</label>
 					</div>
 				</div>
@@ -75,18 +78,18 @@
 
 				<div class="item row" ng-if="formData.mostrarCambiarContrasena">
 					<div class="col">
-						<label class="item-input item-stacked-label">
+						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label">Nueva Contraseña</span>
-							<input type="password" name="contrasena" placeholder="su nueva contraseña" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
+							<input type="password" name="contrasena" placeholder="Nueva Contraseña" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
 						</label>
 					</div>
 				</div>
 
 				<div class="item row" ng-if="formData.mostrarCambiarContrasena">
 					<div class="col">
-						<label class="item-input item-stacked-label">
+						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label">Confirmar Nueva Contraseña</span>
-							<input type="password" name="repetirContrasena" placeholder="confirme su nueva contraseña" ng-model="usuario.repetirContrasena" required>
+							<input type="password" name="repetirContrasena" placeholder="Confirmar Nueva Contraseña" ng-model="usuario.repetirContrasena" required>
 						</label>
 					</div>
 				</div>

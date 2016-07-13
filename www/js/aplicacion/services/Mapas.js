@@ -90,6 +90,11 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 			contentString = "", //mensaje que se muestra al apuntar a una ubicacion no permitida
 			areasPoligonos = [
 				[
+					new google.maps.LatLng(4.88915, -74.04235),
+					new google.maps.LatLng(4.64486, -74.23461),
+					new google.maps.LatLng(4.46895, -74.05403)
+				],
+				[
 		  			new google.maps.LatLng(2.4579925872334303, -76.59548145463106),
 		  			new google.maps.LatLng(2.4569367687815498, -76.59446757962343),
 		  			new google.maps.LatLng(2.4568778144271235, -76.59610909154054)
@@ -146,7 +151,8 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 		controlUI.style.borderRadius = '3px';
 		controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
 		controlUI.style.cursor = 'pointer';
-		controlUI.style.marginBottom = '22px';
+		controlUI.style.marginBottom = '20px';
+		controlUI.style.marginRight = '10px';
 		controlUI.style.textAlign = 'center';
 		controlUI.title = 'Click to recenter the map';
 		centerControlDiv.appendChild(controlUI);
@@ -193,7 +199,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
         	title: 'Ubica el pin.'
         });
 
-		contentString = '<div>'+
+		contentString = '<div class="popup">'+
 			'<h5>No tenemos cobertura para este sitio</h5>'+
 			'<p><b>Cleansuit</b>, no tiene cobertura de domicilio para esta ubicacion'
 			'</p>'+
@@ -208,10 +214,10 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 		for (var i = 0; i < areasPoligonos.length; i++) {
 			poligonos[i] = new google.maps.Polygon({
 				paths: areasPoligonos[i],
-				strokeColor: '#FF0000',
+				strokeColor: 'transparent',
 				strokeOpacity: 0.8,
 				strokeWeight: 2,
-				fillColor: '#FF0000',
+				fillColor: 'transparent',
 				fillOpacity: 0.35,
 				map: mapa
 			});
