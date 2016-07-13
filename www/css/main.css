@@ -10459,7 +10459,9 @@ p {
       color: #fff;
       font-size: 1.4em;
       padding: 17px 0;
-      margin: 0; }
+      margin: 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px; }
     .historial-inf-ord .titulos h3, .historial-inf-ord .acerca .titulo h3, .acerca .historial-inf-ord .titulo h3, .historial-inf-ord .historial-ord .titulo h3, .historial-ord .historial-inf-ord .titulo h3, .historial-inf-ord .ord-en-proceso .titulo h3, .ord-en-proceso .historial-inf-ord .titulo h3 {
       background-color: #E5E5E5;
       color: #333333;
@@ -10537,13 +10539,21 @@ p {
 
 .perfil {
   padding: 20px 15px 15px; }
-  .perfil .imagen {
+  .perfil .cont-imagen {
     background-color: #fff;
     padding: 30px 0;
     text-align: center;
     border-bottom: 1px solid #E5E5E5; }
-    .perfil .imagen img {
-      display: inline-block; }
+    .perfil .cont-imagen .imagen {
+      width: 124px;
+      height: 124px;
+      margin: 0 auto;
+      border: 3px solid #E2E2E2;
+      border-radius: 65px;
+      overflow: hidden; }
+      .perfil .cont-imagen .imagen img {
+        width: 100%;
+        display: inline-block; }
   .perfil .list {
     margin-top: -1px; }
     .perfil .list .item {
@@ -10553,15 +10563,15 @@ p {
       padding-bottom: 0;
       height: 70px; }
       .perfil .list .item .input-label {
-        color: #666666;
-        opacity: 0.6;
+        color: #AEAEAE;
         font-size: 1em; }
       .perfil .list .item .input-label.contrasena {
         font-size: 1.2em; }
       .perfil .list .item input {
         color: #333333;
         font-size: 1.2em;
-        height: auto; }
+        height: auto;
+        font-family: 'fira_sansregular'; }
       .perfil .list .item .ico-flechaabajo {
         color: #666666;
         font-size: 1.5em; }
@@ -10597,12 +10607,13 @@ p {
   margin-top: 0; }
 
 #id-modal-mapa .bar .title.title-left {
-  height: 44px;
-  line-height: 44px;
+  height: 56px;
+  line-height: 56px;
   font-size: 1.1em; }
 
 #id-modal-mapa .bar .button.button-clear .icon:before {
-  font-size: 28px; }
+  font-size: 28px;
+  line-height: 43px; }
 
 .popup-container .popup {
   width: 300px;
@@ -10637,7 +10648,7 @@ p {
     position: absolute;
     display: inline-block;
     width: 21px;
-    height: 8px;
+    height: 9px;
     top: -8px;
     right: 15px;
     background: url("../img/span.png"); }
