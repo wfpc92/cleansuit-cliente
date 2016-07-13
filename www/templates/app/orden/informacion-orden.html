@@ -13,7 +13,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
 							<span class="input-label">Nombres y Apellidos</span>
-							<input type="text" placeholder="su nombres y Apellidos" value=" {{usuario.nombre}} " disabled>
+							<input type="text" placeholder="Nombres y Apellidos" value=" {{usuario.nombre}} " disabled>
 						</label>
 					</div>
 				
@@ -46,8 +46,8 @@
 				<div class="item row" ng-hide="soloProductos">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label item-icon-right">Dirección de Recolección</span>
-							<input type="text" placeholder="Dirección de Recolección" ng-model="orden.recoleccion.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100">
+							<span class="input-label item-icon-right">Dirección de recolección</span>
+							<input type="text" placeholder="Dirección de recolección" ng-model="orden.recoleccion.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100">
 						</label>
 						<i class="icon ion-location" ng-click="openModal('DIRECCIONRECOLECCION')"></i>
 					</div>
@@ -56,7 +56,7 @@
 				<div class="item row" ng-hide="soloProductos">
 					<div class="col">
 						<label class="item-input item-stacked-label">
-							<span class="input-label">Fecha de Recolección</span>
+							<span class="input-label">Fecha de recolección</span>
 							<input type="date" placeholder="Fecha de recolección" ng-model="orden.recoleccion.fecha" required>
 						</label>
 					</div>
@@ -65,8 +65,8 @@
 				<div class="item row" ng-hide="soloProductos">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label item-icon-right">Hora de Recolección</span>
-							<input type="text" placeholder="Hora de Recolección" ng-model="orden.recoleccion.hora" ng-disabled="true" required>
+							<span class="input-label item-icon-right">Hora de recolección</span>
+							<input type="text" placeholder="Hora de recolección" ng-model="orden.recoleccion.hora" ng-disabled="true" required>
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
 					</div>
@@ -75,8 +75,8 @@
 				<div class="item row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label item-icon-right">Dirección de Entrega</span>
-							<input type="text" placeholder="Dirección de Entrega" ng-model="orden.entrega.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100">
+							<span class="input-label item-icon-right">Dirección de entrega</span>
+							<input type="text" placeholder="Dirección de entrega" ng-model="orden.entrega.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100">
 						</label>
 						<i class="icon ion-location" ng-click="openModal('DIRECCIONENTREGA')"></i>
 					</div>
@@ -85,8 +85,13 @@
 				<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
+<<<<<<< HEAD
 							<span class="input-label">Fecha de Entrega</span>
 							<input type="date" placeholder="Fecha de recolección" ng-model="orden.entrega.fecha" required>
+=======
+							<span class="input-label item-icon-right">Fecha de entrega</span>
+							<input type="date" placeholder="Fecha de entrega" ng-model="orden.entrega.fecha" required>
+>>>>>>> 9d6677d3fbb12c39e1593ca118b4d8dd2f36aa33
 						</label>
 					</div>
 				</div>
@@ -94,8 +99,8 @@
 				<div class="item row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label item-icon-right">Hora de Entrega</span>
-							<input type="text" placeholder="Hora de Entrega" ng-model="orden.entrega.hora" ng-disabled="true" required>
+							<span class="input-label item-icon-right">Hora de entrega</span>
+							<input type="text" placeholder="Hora de entrega" ng-model="orden.entrega.hora" ng-disabled="true" required>
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORAENTREGA', $event)"></i>
 					</div>
@@ -114,8 +119,8 @@
 				<div class="item row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label item-icon-right">Forma de Pago</span>
-							<input type="text" placeholder="Forma de Pago" ng-model="orden.formaPago" ng-disabled="true" required>
+							<span class="input-label item-icon-right">Forma de pago</span>
+							<input type="text" placeholder="Forma de pago" ng-model="orden.formaPago" ng-disabled="true" required>
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('FORMAPAGO',$event)"></i>
 					</div>

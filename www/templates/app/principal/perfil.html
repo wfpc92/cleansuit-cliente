@@ -16,7 +16,7 @@
 							<input type="text" placeholder="su nombre" name="nombre" ng-model="usuario.nombre" pattern="(?=.*[a-zA-Z]).{1,100}" required>
 						</label>
 					</div>
-				</div> 
+				</div>
 
 				<!--
 				<div class="item row">
@@ -38,8 +38,8 @@
 				<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label">Dirección de Residencia</span>
-							<input type="text" placeholder="dirección residencia" name="direccion" ng-model="usuario.direccion" pattern="(?![.\n])(?=.*[a-zA-Z]).{3,100}" required>
+							<span class="input-label">Dirección de residencia</span>
+							<input type="text" placeholder="Dirección de residencia" name="direccion" ng-model="usuario.direccion" pattern="(?![.\n])(?=.*[a-zA-Z]).{1,100}" required>
 						</label>
 					</div>
 				</div>
@@ -57,8 +57,8 @@
 				<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
-							<span class="input-label item-icon-right">Correo Electrónico</span>
-							<input type="email" placeholder="correo electrónico" name="correo" ng-model="usuario.correo" required>
+							<span class="input-label item-icon-right">Correo electrónico</span>
+							<input type="email" placeholder="Correo electrónico" name="correo" ng-model="usuario.correo" required>
 						</label>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 				<div class="item col"  ng-hide="usuario.fb">
 					<div class="row item-icon-right">
 						<label class="item-input item-stacked-label">
-							<span class="input-label item-icon-right contrasena">Cambiar Contraseña</span>
+							<span class="input-label item-icon-right contrasena">Cambiar contraseña</span>
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="formData.mostrarCambiarContrasena = !formData.mostrarCambiarContrasena"></i>
 					</div>
@@ -80,8 +80,8 @@
 				<div class="item row" ng-if="formData.mostrarCambiarContrasena">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label">Nueva Contraseña</span>
-							<input type="password" name="contrasena" placeholder="Nueva Contraseña" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
+							<span class="input-label">Nueva contraseña</span>
+							<input type="password" name="contrasena" placeholder="Nueva contraseña" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
 						</label>
 					</div>
 				</div>
@@ -89,8 +89,8 @@
 				<div class="item row" ng-if="formData.mostrarCambiarContrasena">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label">Confirmar Nueva Contraseña</span>
-							<input type="password" name="repetirContrasena" placeholder="Confirmar Nueva Contraseña" ng-model="usuario.repetirContrasena" required>
+							<span class="input-label">Confirmar nueva contraseña</span>
+							<input type="password" name="repetirContrasena" placeholder="Confirmar nueva contraseña" ng-model="usuario.repetirContrasena" required>
 						</label>
 					</div>
 				</div>
@@ -121,18 +121,18 @@
 			
 			<!-- watch -->
 			<div ng-hide="true">
-				{{formData.formValido = 
+				{{formData.formValido =
 					(
 						(formPerfil.nombre.$dirty && formPerfil.nombre.$valid)
 						|| (formPerfil.direccion.$dirty && formPerfil.direccion.$valid)
 						|| (formPerfil.telefono.$dirty && formPerfil.telefono.$valid)
 						|| (formPerfil.correo.$dirty)
 						|| usuario.data_foto
-						|| (formPerfil.contrasena.$dirty 
-							&& formPerfil.contrasena.$valid 
+						|| (formPerfil.contrasena.$dirty
+							&& formPerfil.contrasena.$valid
 							&& (usuario.contrasena == usuario.repetirContrasena
 							))
-					) 
+					)
 					&& (formPerfil.correo.$valid)
 					}}
 			</div>

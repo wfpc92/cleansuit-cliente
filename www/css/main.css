@@ -9755,7 +9755,8 @@ img.logoinicio {
 .burbujas {
   display: block;
   width: 100%;
-  z-index: 5; }
+  z-index: 5;
+  margin-bottom: -1px; }
 
 .bar-footer {
   display: inline-table;
@@ -9771,8 +9772,9 @@ img.logoinicio {
       font-size: 20px;
       margin: 0 10px 0 0; }
   .bar-footer .button-positive {
+    height: 57px;
     position: relative;
-    background-color: #2A4588; }
+    background: url("../img/positive.png") repeat-x; }
   .bar-footer .row {
     padding: 0; }
     .bar-footer .row .col {
@@ -9782,20 +9784,10 @@ img.logoinicio {
       .bar-footer .row .col .button-balanced {
         margin-left: 1px; }
 
-.sombras, .sombra-positive, .sombra-calm, .sombra-balanced {
-  position: absolute;
-  width: 100%;
-  height: 56px;
-  top: -1px;
-  left: 0; }
-
-.sombra-positive {
-  background: url("../img/positive.png") repeat-x; }
-
-.sombra-calm {
+.button-calm.sombra {
   background: url("../img/calm.png") repeat-x; }
 
-.sombra-balanced {
+.button-balanced.sombra {
   background: url("../img/balanced.png") repeat-x; }
 
 .bar {
@@ -9893,7 +9885,7 @@ img.logoinicio {
 
 .menu .item-complex .item-content {
   background-color: #44A01A;
-  padding: 18px 15px 19px 16px;
+  padding: 17px 15px;
   padding-left: 70px; }
 
 .menu .item {
@@ -9908,25 +9900,36 @@ img.logoinicio {
 .menu .cerrar {
   font-family: 'fira_sansmedium';
   margin-left: 25px;
-  padding-left: 70px; }
+  padding: 17px 15px 17px 70px; }
 
 .menu .item-complex.item-icon-left {
   padding-left: 25px; }
 
 .menu .item-avatar {
-  padding: 109px 16px 29px 16px; }
-  .menu .item-avatar img:first-child {
-    display: block;
-    max-width: 62px;
-    max-height: 62px;
-    border: 2px solid #348800;
+  padding: 89px 16px 15px; }
+  .menu .item-avatar .imagen {
+    position: absolute;
+    width: 62px;
+    height: 62px;
     left: 22px;
-    top: 89px; }
-  .menu .item-avatar h2 {
-    color: #fff;
-    font-family: 'fira_sansmedium';
-    font-size: 1.1em;
+    top: 89px;
+    border: 2px solid #348800;
+    overflow: hidden;
+    border-radius: 30px; }
+    .menu .item-avatar .imagen img {
+      position: relative;
+      display: block;
+      width: 100%; }
+  .menu .item-avatar .nombre {
+    display: table;
+    height: 62px;
     margin-left: 75px; }
+    .menu .item-avatar .nombre h2 {
+      display: table-cell;
+      vertical-align: middle;
+      color: #fff;
+      font-family: 'fira_sansmedium';
+      font-size: 1.1em; }
 
 .menu .badge.badge-dark {
   background-color: #2E7300;
@@ -10154,6 +10157,8 @@ p {
   height: 56px; }
   .carrito .button {
     padding: 13px 0px; }
+  .carrito .ico-carrito::before {
+    color: #FFFBE8; }
   .carrito .icono {
     background-color: #378413; }
   .carrito .col.suma {
@@ -10615,6 +10620,9 @@ p {
   font-size: 28px;
   line-height: 43px; }
 
+.gm-style-iw {
+  padding: 20px; }
+
 .popup-container .popup {
   width: 300px;
   background-color: white;
@@ -10643,6 +10651,7 @@ p {
   border: 1px solid #999999;
   border-radius: 10px;
   width: 270px;
+  height: auto;
   margin-left: -10px !important; }
   .popover .flecha {
     position: absolute;
@@ -10652,20 +10661,25 @@ p {
     top: -8px;
     right: 15px;
     background: url("../img/span.png"); }
+  .popover .overflow-scroll, .popover .overflow-scroll .scroll {
+    position: relative; }
   .popover .scroll-content {
     border-radius: 10px; }
     .popover .scroll-content .list {
       padding: 7px 15px 7px 18px; }
       .popover .scroll-content .list .item {
         color: #333333;
+        border: none;
+        background-color: #F8F8F8;
         border-bottom: 1px solid #CCCCCC;
         margin: 0;
         padding: 8px 16px 10px; }
       .popover .scroll-content .list .item:last-child {
         border-bottom: none; }
 
-.forma-pago.popover {
-  height: 100px; }
-
-.popover-hora {
-  height: 180px; }
+/*.forma-pago.popover {
+	height: 100px;
+}
+.popover-hora {
+	height: 180px;
+}*/
