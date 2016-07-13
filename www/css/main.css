@@ -10547,7 +10547,10 @@ p {
     .perfil .cont-imagen .imagen {
       width: 124px;
       height: 124px;
-      border: 3px solid #E2E2E2; }
+      margin: 0 auto;
+      border: 3px solid #E2E2E2;
+      border-radius: 65px;
+      overflow: hidden; }
       .perfil .cont-imagen .imagen img {
         width: 100%;
         display: inline-block; }

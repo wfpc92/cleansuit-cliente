@@ -934,7 +934,10 @@ $menu: #52B1ED;
 		.imagen {
 			width: 124px;
 			height: 124px;
+			margin: 0 auto;
 			border: 3px solid #E2E2E2;
+			border-radius: 65px;
+			overflow: hidden;
 			img{
 				width: 100%;
 				display: inline-block;
