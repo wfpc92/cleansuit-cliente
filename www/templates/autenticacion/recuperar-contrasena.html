@@ -16,10 +16,12 @@
 							<input type="email" ng-model="formData.email" placeholder="CORREO ELECTRÓNICO" maxlength="320" ng-minlength="6" ng-maxlength="320">
 						</label>
 					</div>
+					<div ng-hide="true">
+					{{formValido = formRecuperarContrasena.correo.$valid}}
 				</form>
 			</div>
 		</ion-content>
-		<a ng-click="enviar()" class="button button-calm button-full" ng-disabled="!formData.formValido">
+		<a ng-click="enviar()" class="button button-calm button-full" ng-disabled="!formValido">
 			ENVIAR
 			<div class="sombra-balanced"></div>
 		</a>

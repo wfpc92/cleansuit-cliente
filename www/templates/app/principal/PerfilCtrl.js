@@ -42,6 +42,7 @@ var PerfilCtrl = function($scope,
 		$scope.usuario.telefono = UsuarioFactory.getUsuario().telefono;
 		$scope.usuario.correo = UsuarioFactory.getUsuario().correo;
 		$scope.usuario.url_foto = UsuarioFactory.getUsuario().url_foto; 
+		$scope.usuario.fb = UsuarioFactory.getUsuario().fb; 
 
 		$scope.formData = {
 			mostrarCambiarContrasena: false,

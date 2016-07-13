@@ -1,13 +1,4 @@
 var RecuperarContrasenaCtrl = function($scope, $ionicPopup) {
-	var self = this;
-
-	$scope.$on("$ionicView.afterEnter", function () {
-		$scope.formData = {
-			email: '',
-			formValido: false
-		};
-		self.viewAfterEnter($scope);
-	});
 
 	$scope.enviar = function() {
 		self.enviarCorreo($scope, function(){
@@ -23,23 +14,19 @@ var RecuperarContrasenaCtrl = function($scope, $ionicPopup) {
 				};
 			})
 		})
+
+		AuthService
+		.ingresar($scope.usuario)
+		.then(function(msg) {
+			console.log("IngresarManualCtrl.ingresar()", msg)
+			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess, {msg: msg});
+		}, function(msg) {
+			console.log("IngresarManualCtrl: err", msg);
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: msg});
+		});
+
+
 	};
-};
-
-RecuperarContrasenaCtrl.prototype.viewAfterEnter = function($scope) {
-	$scope.$watch('formData.email', function(newV, oldV, scope){
-		if(newV){
-			$scope.formData.formValido = true;
-		}else {
-			$scope.formData.formValido = false;
-		}
-	});
-};
-
-RecuperarContrasenaCtrl.prototype.enviarCorreo = function($scope, cllbck) {
-	console.log("aqui se ejecuta enviarcorreo desde un servicio se envia la peticion al servidor");
-	//al final se ejecuta el callback
-	cllbck();
 };
 
 app.controller('RecuperarContrasenaCtrl', RecuperarContrasenaCtrl);

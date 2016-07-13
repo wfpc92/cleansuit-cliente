@@ -54,12 +54,11 @@
 				</div>
 
 				<div class="item row" ng-hide="soloProductos">
-					<div class="col item-icon-right">
+					<div class="col">
 						<label class="item-input item-stacked-label">
-							<span class="input-label item-icon-right">Fecha de Recolección</span>
+							<span class="input-label">Fecha de Recolección</span>
 							<input type="date" placeholder="Fecha de recolección" ng-model="orden.recoleccion.fecha" required>
 						</label>
-						<i class="icon ico-flechaabajo" ng-click="openPopover('FECHARECOLECCION', $event)"></i>
 					</div>
 				</div>
 
@@ -84,12 +83,11 @@
 				</div>
 
 				<div class="item row">
-					<div class="col item-icon-right">
+					<div class="col">
 						<label class="item-input item-stacked-label">
-							<span class="input-label item-icon-right">Fecha de Entrega</span>
+							<span class="input-label">Fecha de Entrega</span>
 							<input type="date" placeholder="Fecha de recolección" ng-model="orden.entrega.fecha" required>
 						</label>
-						<i class="icon ico-flechaabajo" ng-click="openPopover('FECHAENTREGA', $event)"></i>
 					</div>
 				</div>
 
@@ -127,7 +125,7 @@
 			<resumen-totales totales="carrito.totales" ng-show="carrito.hayItems()"></resumen-totales>
 
 			<div class="list">
-				<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones" >Acepto los Términos y Condiciones.</ion-checkbox>
+				<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones">Acepto los Términos y Condiciones.</ion-checkbox>
 			</div>
 		</form>
 

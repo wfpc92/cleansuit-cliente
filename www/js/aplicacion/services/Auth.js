@@ -87,51 +87,17 @@ var AuthService = function($q,
 					})
 					.then(function(respuesta){
 						console.log("AuthService.ingresarFacebook", respuesta)
-						
 						if(respuesta.data.success){
 							//si existe=true, el fb_uid ya esta registrado en el sistema
-							if(respuesta.data.existe){
-								return authCallback(resolve, reject, respuesta);		
-							} else {
-								return registrarFacebook(resolve, reject);
-							}
+							return authCallback(resolve, reject, respuesta); 
 						} else {
-							return reject(respuesta.error);
+							return reject(respuesta.data.mensaje);
 						}
-						
 					}, function(err) {
 						//no se encuentra el servidor, AuthInterceptor maneja el error.
 					});
 				}
 			})
-		});
-	};
-
-	var registrarFacebook = function(resolve, reject) {
-		FacebookSvc
-		.getDatos(resolve, reject)
-		.then(function(respuesta) {
-			console.log("AuthService.registrarFacebook()", respuesta);
-			
-			RecursosFactory
-			.post('/ingresar/fb/crear', {
-				'fb_uid': respuesta.fb_uid,
-				'nombre': respuesta.nombre,
-				'correo': respuesta.correo 
-			})
-			.then(function(respuesta){
-				console.log("AuthService.ingresarFacebook", respuesta)
-				
-				if(respuesta.data.success){
-					//si existe=true, el fb_uid ya esta registrado en el sistema
-					return authCallback(resolve, reject, respuesta);		
-				}
-				
-			}, function(err) {
-				return reject(err);
-			});
-		}, function(err) {
-			return reject(err);
 		});
 	};
  
