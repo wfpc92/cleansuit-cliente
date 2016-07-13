@@ -78,7 +78,7 @@ var AuthService = function($q,
 			FacebookSvc
 			.autenticar(resolve, reject)
 			.then(function(respuesta){
-				console.log(JSON.stringify(respuesta))
+				console.log("AuthService.ingresarFacebook(), ",JSON.stringify(respuesta))
 				if(respuesta){
 					RecursosFactory
 					.post('/ingresar/fb', {

@@ -37,8 +37,7 @@
 			<ion-list>
 
 				<ion-item class="item-avatar item-text-wrap">
-					<img ng-src="/img/perfil.png">
-					<!--<img ng-src="{{usuario.fotoPerfil}}">-->
+					<img ng-src="{{usuario.url_foto || 'img/perfil.png'}}">
 					<h2>{{usuario.nombre | uppercase}}</h2>
 				</ion-item>
 

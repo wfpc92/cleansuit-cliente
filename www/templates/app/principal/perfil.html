@@ -1,9 +1,8 @@
 <ion-view title="CleanSuit" cache-view="false">
     <ion-content class="bottom perfil">
-    	<div class="imagen">
-			<img src="img/camara.png">
+    	<div class="imagen"  ng-if="!usuario.fb">
+			<img ng-src="{{usuario.url_foto || 'img/camara.png'}}" ng-click="subirFoto()"/>
 		</div> 
-
 		<form name="formPerfil" novalidate>
 			<div class="list">
 				<div class="item row">
@@ -13,7 +12,7 @@
 							<input type="text" placeholder="su nombre" name="nombre" ng-model="usuario.nombre" pattern="(?=.*[a-zA-Z]).{1,100}" required>
 						</label>
 					</div>
-				</div>
+				</div> 
 
 				<!--
 				<div class="item row">
@@ -36,7 +35,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Dirección de Residencia</span>
-							<input type="text" placeholder="dirección residencia" name="direccion" ng-model="usuario.direccion" pattern="(?![.\n])(?=.*[a-zA-Z]).{1,100}" required>
+							<input type="text" placeholder="dirección residencia" name="direccion" ng-model="usuario.direccion" pattern="(?![.\n])(?=.*[a-zA-Z]).{3,100}" required>
 						</label>
 					</div>
 				</div>
@@ -117,17 +116,20 @@
 			
 			<!-- watch -->
 			<div ng-hide="true">
-				{{formData.formValido = (
-										(formPerfil.nombre.$dirty
-										|| formPerfil.direccion.$dirty
-										|| formPerfil.telefono.$dirty
-										|| formPerfil.correo.$dirty)
-										&& (formPerfil.nombre.$valid
-										&& formPerfil.direccion.$valid
-										&& formPerfil.telefono.$valid
-										&& formPerfil.correo.$valid)
-										|| (formPerfil.contrasena.$dirty && formPerfil.contrasena.$valid && (usuario.contrasena == usuario.repetirContrasena))
-										)}}
+				{{formData.formValido = 
+					(
+						(formPerfil.nombre.$dirty && formPerfil.nombre.$valid)
+						|| (formPerfil.direccion.$dirty && formPerfil.direccion.$valid)
+						|| (formPerfil.telefono.$dirty && formPerfil.telefono.$valid)
+						|| (formPerfil.correo.$dirty)
+						|| usuario.data_foto
+						|| (formPerfil.contrasena.$dirty 
+							&& formPerfil.contrasena.$valid 
+							&& (usuario.contrasena == usuario.repetirContrasena
+							))
+					) 
+					&& (formPerfil.correo.$valid)
+					}}
 			</div>
 		
 		</form> 

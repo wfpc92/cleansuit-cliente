@@ -2,9 +2,28 @@ var PerfilCtrl = function($scope,
 						UsuarioFactory,
 						$ionicPopup,
 						AUTH_EVENTS,
-						$rootScope, $state,$ionicHistory){
+						$rootScope, 
+						$state,
+						$ionicHistory,
+						FotosFactory){
 	
-	console.log("PerfilCtrlPerfilCtrlPerfilCtrlPerfilCtrl")
+	console.log("PerfilCtrl");
+
+	$scope.subirFoto = function() {
+		FotosFactory
+		.seleccionarFoto()
+		.then(function(imgData){
+			if(imgData) {
+				$scope.usuario.url_foto = "data:image/jpeg;base64," + imgData;
+				$scope.usuario.data_foto = "data:image/jpeg;base64," + imgData;
+				console.log("termina seleccion de foto.")
+			}
+		}, function(err) {
+			//se cancela la seleccion de fotos.
+			console.log("PerfilCtrl.subirFoto(), err", err)
+		})
+	};
+
 	$scope.actualizar = function() {
 		UsuarioFactory
 		.actualizarPerfil($scope.usuario)
@@ -22,38 +41,13 @@ var PerfilCtrl = function($scope,
 		$scope.usuario.direccion = UsuarioFactory.getUsuario().direccion;
 		$scope.usuario.telefono = UsuarioFactory.getUsuario().telefono;
 		$scope.usuario.correo = UsuarioFactory.getUsuario().correo;
+		$scope.usuario.url_foto = UsuarioFactory.getUsuario().url_foto; 
+
 		$scope.formData = {
 			mostrarCambiarContrasena: false,
 			contrasenaModificada: false,
 			formValido: false
 		};
-	});
-	
-
-	$scope.$on("$ionicView.afterEnter", function () {
-		//objeto para almacenar informacion de entrada
-		
-
-
-		/*$scope.$watchGroup(['usuario.nombre', 'usuario.direccion', 'usuario.telefono', 'usuario.correo'],
-			function(newV, oldV, scope){
-				console.log("ws1: ", newV)
-				console.log($scope.formularioPerfil)
-				//$scope.formData.formValido = newV[0] && newV[1] && newV[2]&& newV[3];
-			});
-
-
-		$scope.$watchGroup(['usuario.contrasena', 'usuario.repetirContrasena'],
-			function(newV, oldV, scope) {
-				console.log("ws2: ", newV)
-				if(newV[0] && newV[1] && newV[0] == newV[1]){
-					$scope.formData.formValido = true;
-					$scope.formData.contrasenaModificada = true;
-				}
-				else {
-					$scope.formData.formValido = false;	
-				}
-			});*/
 	});
 
 };
