@@ -10626,26 +10626,28 @@ p {
 .gm-style-iw {
   padding: 20px; }
 
-.popup-container .popup {
-  width: 300px;
-  background-color: white;
-  border-radius: 8px; }
-  .popup-container .popup .popup-head {
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    background: #44A01A; }
-    .popup-container .popup .popup-head h3 {
-      background: #44A01A;
-      color: #fff;
-      font-size: 22px; }
-  .popup-container .popup .popup-body {
-    padding: 30px; }
-  .popup-container .popup .popup-buttons {
-    padding: 10px 30px; }
-    .popup-container .popup .popup-buttons .button {
-      border-radius: 4px;
-      padding: 0px;
-      width: 100px; }
+.popup-container {
+  background: rgba(0, 0, 0, 0.4); }
+  .popup-container .popup {
+    width: 300px;
+    background-color: white;
+    border-radius: 8px; }
+    .popup-container .popup .popup-head {
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+      background: #44A01A; }
+      .popup-container .popup .popup-head h3 {
+        background: #44A01A;
+        color: #fff;
+        font-size: 22px; }
+    .popup-container .popup .popup-body {
+      padding: 30px; }
+    .popup-container .popup .popup-buttons {
+      padding: 10px 30px; }
+      .popup-container .popup .popup-buttons .button {
+        border-radius: 4px;
+        padding: 0px;
+        width: 100px; }
 
 .platform-android .popover {
   margin-top: -17px; }
