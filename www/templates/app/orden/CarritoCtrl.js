@@ -27,7 +27,7 @@ var CarritoCtrl = function($scope,
 	$scope.cancelarOrden = function() {
 		$ionicPopup
 		.confirm({
-	    	title: 'Cancelar Orden?',
+	    	title: 'Cancelar Orden',
 	    	template: '¿Está seguro que desea cancelar esta orden?'
 	    })
 		.then(function(res) {

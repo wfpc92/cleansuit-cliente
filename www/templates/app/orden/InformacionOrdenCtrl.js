@@ -72,7 +72,7 @@ var InformacionOrdenCtrl = function($scope,
 	$scope.confirmarCancelarOrden = function() {
 		$ionicPopup
 			.confirm({
-		    	title: 'Cancelar Orden?',
+		    	title: 'Cancelar Orden',
 		    	template: '¿Está seguro que desea cancelar esta orden?'
 	    	})
 			.then(function(res) {
