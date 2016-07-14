@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="co.cleansuit.app-cliente" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
+<widget id="co.cleansuit.cliente" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
   <name>CleanSuit</name>
   <description>
-        Aplicación cliente CleanSuit.
-    </description>
-  <author email="wfpc92@hotmail.com" href="http://cautiva.co/">
-      Wilian Fernando Pantoja Carvajal
+    Limpieza del hogar, industria y lavado de tus prendas sin necesidad de salir de casa. ¡Dedica más tiempo a tu vida!
+  </description>
+  <author email="info@cautiva.co" href="http://cautiva.co">
+      Cautiva
   </author>
+
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
