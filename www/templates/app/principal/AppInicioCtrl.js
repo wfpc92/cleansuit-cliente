@@ -26,6 +26,8 @@ var AppInicioCtrl = function($scope,
 			}
 		}
 
+		arr = arr.sort();
+		
 		if(arr.length == 0){
 			etiqueta = "Descuento del " + promocion.descuento + "%";
 		} else if(arr.length == 1) {
