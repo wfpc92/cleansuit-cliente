@@ -28,10 +28,6 @@
     {
       "locator": "https://github.com/rodrigo-martinezd/cordova-dialog-gps.git",
       "id": "cl.rmd.cordova.dialoggps"
-    },
-    {
-      "locator": "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git",
-      "id": "cordova-plugin-datepicker"
     }
   ],
   "cordovaPlatforms": [

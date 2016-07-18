@@ -19,7 +19,7 @@
 						<img ng-src="{{promocion.url_imagen}}" ng-cloak/>
 					</div>
 					<h3>
-						Descuento de {{promocion.descuento}}%
+						{{generarEtiquetaDescuentos(promocion)}}
 						<i class="icon ico-flechader assertive"></i>
 					</h3>
 					
