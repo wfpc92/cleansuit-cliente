@@ -1,9 +1,9 @@
-var PromocionesFactory = function(RecursosFactory){
-	var _promociones = [] ;
-
+var PromocionesFactory = function(RecursosFactory, 
+								$localStorage){
+	
 	return {
 		getPromociones: function() {
-			return _promociones;
+			return $localStorage.promociones;
 		},
 
 		//carga lista de promociones desde el servidor
@@ -14,7 +14,7 @@ var PromocionesFactory = function(RecursosFactory){
 				console.log("imprimiendo respuesta");
 				console.log(respuesta);
 				if(respuesta){
-					_promociones = respuesta.data.promociones;
+					$localStorage.promociones = respuesta.data.promociones;
 				}
 			});
 		}

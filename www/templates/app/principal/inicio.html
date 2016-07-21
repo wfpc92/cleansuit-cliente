@@ -12,14 +12,14 @@
 		</div>
 
 		<div class="bottom">
-			<div class="list promociones" ng-repeat="promocion in promociones">
-				<div class="item item-image" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
+			<ion-list class="promociones">
+				<ion-item class="item-image" ng-repeat="promocion in promociones" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
 
 					<div class="imagen">
 						<img ng-src="{{promocion.url_imagen}}" ng-cloak/>
 					</div>
 					<h3>
-						{{generarEtiquetaDescuentos(promocion)}}
+						{{promocion.etiquetaDescuentos}}
 						<i class="icon ico-flechader assertive"></i>
 					</h3>
 					

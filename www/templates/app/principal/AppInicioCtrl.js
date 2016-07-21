@@ -8,20 +8,29 @@ var AppInicioCtrl = function($scope,
 	CargaInicialFactory
 	.iniciar(function() {
 		$scope.promociones = PromocionesFactory.getPromociones();
+		generarEtiquetasDescuentos();
 		console.log("termina de ejecutar la funcion iniciar de CargaInicialFactory")
 	});
 
 	$scope.$on("$ionicView.afterEnter", function () {
 		$scope.banderas.swp=false;
 		$scope.banderas.sws=false;
-	})
+		generarEtiquetasDescuentos();
+	});
 
-	$scope.generarEtiquetaDescuentos = function(promocion) {
+	function generarEtiquetasDescuentos() {
+		for (var i in $scope.promociones){
+			etiquetar($scope.promociones[i]);
+		}
+	}
+
+	function etiquetar(promocion) {
 		//promocion.items = {checked: boolean, descuento: number}
 		var arr = [], etiqueta, cadena;
-		console.log(promocion.items)
 		for(var i in promocion.items){
-			if (arr.indexOf(promocion.items[i].descuento) == -1 && promocion.items[i].descuento) {
+			if (promocion.items 
+				&& arr.indexOf(promocion.items[i].descuento) == -1 
+				&& promocion.items[i].descuento) {
 			    arr.push(promocion.items[i].descuento);
 			}
 		}
@@ -47,7 +56,7 @@ var AppInicioCtrl = function($scope,
 			etiqueta = "Descuentos del " + cadena + "%";
 		}
 
-		return etiqueta;
+		promocion.etiquetaDescuentos = etiqueta;
 	}
 };
 
