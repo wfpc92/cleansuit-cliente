@@ -50,9 +50,10 @@ app.directive('elementoCentrado', function(){
 
 .directive('resumenTotales', function(){
   return {
-    restrict: 'AEC',//'AEC' - matches either attribute or element or class name
+    restrict: 'E',//'AEC' - matches either attribute or element or class name
     scope: {
-        totales: '='//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+        totales: '=',//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+        descuento: '='
     },
     replace: false, //para reemplazar el contenedor 
     transclude: false, //reinserta el contenido original
@@ -61,6 +62,7 @@ app.directive('elementoCentrado', function(){
     },
     link : function(scope, element, attrs) {
         //funcion para asignar eventos, css, y cosillas varias al elemento
+        console.log(scope)
     }
     
   };

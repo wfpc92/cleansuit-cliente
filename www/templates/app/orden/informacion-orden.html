@@ -22,8 +22,7 @@
 							<span class="input-label">Apellidos</span>
 							<input type="text" placeholder="sus apellidos" value=" {{usuario.apellidos}} " disabled>
 						</label>
-					</div>
-					-->
+					</div>-->
 				</div>
 
 				<!--<div class="item row">
@@ -33,15 +32,13 @@
 							<input type="text" placeholder="departamento" value=" {{usuario.direccion.departamento}} " disabled>
 						</label>
 					</div>
-
 					<div class="col">
 						<label class="item-input item-stacked-label der">
 							<span class="input-label">Ciudad</span>
 							<input type="text" placeholder="ciudad" value=" {{usuario.direccion.ciudad}} " disabled>
 						</label>
 					</div>
-				</div>
-				-->
+				</div>-->
 
 				<div class="item row" ng-hide="soloProductos">
 					<div class="col item-icon-right">
@@ -120,9 +117,22 @@
 						<i class="icon ico-flechaabajo" ng-click="openPopover('FORMAPAGO',$event)"></i>
 					</div>
 				</div>
+
+				<div class="item row">
+					<div class="col col-75">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Cupón de Descuento</span>
+							<input type="text" placeholder="Cupón de descuento" ng-model="orden.cupon">
+						</label>
+					</div>
+					<div class="col">
+						<button class="button button-stable" ng-disabled="!orden.cupon" ng-click="validarCupon()">Validar</button>
+					</div>
+				</div>
 			</div>
 
-			<resumen-totales totales="carrito.totales" ng-show="carrito.hayItems()"></resumen-totales>
+			{{descuento}}
+			<resumen-totales totales="carrito.totales" descuento="descuento" ng-show="true || carrito.hayItems()"></resumen-totales>
 
 			<div class="list">
 				<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones">Acepto los Términos y Condiciones.</ion-checkbox> 

@@ -8,7 +8,8 @@ var InformacionOrdenCtrl = function($scope,
 									$ionicPopup,   
 									$rootScope, 
 									MapasFactory, 
-									ModalCargaFactory) {
+									ModalCargaFactory,
+									PromocionesFactory) {
 	
 	console.log("InformacionOrdenCtrl");
 	var self = this;
@@ -30,8 +31,13 @@ var InformacionOrdenCtrl = function($scope,
 	$scope.orden.entrega.direccion = $scope.usuario.direccion;
 	$scope.orden.telefono = $scope.usuario.telefono;
 
+	//FLAGS:
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
 	$scope.soloProductos = $scope.carrito.soloHayProductos();
+	//mostrar informacion de descuento en resumen totales.
+	$scope.descuento = {cupon:true}
+
+
 	console.log("solo hay productos: "+ $scope.soloProductos);
 
 	//se ejecuta al dar click en el icono de ubicacion de las direcciones, muestra ventana modal
@@ -56,6 +62,33 @@ var InformacionOrdenCtrl = function($scope,
     $scope.closePopover = function() {
     	$scope.popover.hide();
     };
+
+    $scope.validarCupon = function() {
+    	//mostrar venana emergente, si es verdadero, su coponha sido redimido.
+    	//falso: este cupon es incorrecto  o ha expirado.
+    	ModalCargaFactory.mostrar("Validando cupón de descuento...", null);
+    	PromocionesFactory
+    	.validarCupon($scope.orden.cupon)
+    	.then(function(respuesta) {
+    		if(respuesta.data.success) {
+    			tmp = respuesta.data.mensaje;
+    			$scope.carrito.aplicarCupon();
+    		} else {
+    			tmp = "No se pudo validar el cupón. Intenta de nuevo.";
+    		}
+    		
+    	}, function() {
+    		tmp = "No se pudo validar el cupón. Intenta de nuevo.";
+    	})
+    	.finally(function() {
+    		ModalCargaFactory.ocultar();
+    		$ionicPopup
+			.alert({
+		    	title: 'Cupón de descuento',
+		    	template: tmp
+	    	});	
+    	});
+    };
 	
 	//Cleanup the modal when we're done with it!
 	$scope.$on('$destroy', function() {
@@ -65,21 +98,22 @@ var InformacionOrdenCtrl = function($scope,
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
+		$scope.cupon = {aplicar:true};
     	self.viewAfterEnter();
 	});
 
 	//cancelar orden:
 	$scope.confirmarCancelarOrden = function() {
 		$ionicPopup
-			.confirm({
-		    	title: 'Cancelar Orden',
-		    	template: '¿Está seguro que desea cancelar esta orden?'
-	    	})
-			.then(function(res) {
-				if(res) {
-					self.cancelarOrden();
-				}
-			});
+		.confirm({
+	    	title: 'Cancelar Orden',
+	    	template: '¿Está seguro que desea cancelar esta orden?'
+    	})
+		.then(function(res) {
+			if(res) {
+				self.cancelarOrden();
+			}
+		});
 	};
 
 	$scope.realizarOrden = function() {

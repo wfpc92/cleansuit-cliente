@@ -17,6 +17,11 @@ var PromocionesFactory = function(RecursosFactory,
 					$localStorage.promociones = respuesta.data.promociones;
 				}
 			});
+		},
+
+		validarCupon: function(cupon) {
+			return RecursosFactory
+			.get('/promociones/validar-cupon', cupon);
 		}
 	};
 };
