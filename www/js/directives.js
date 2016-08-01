@@ -1,22 +1,22 @@
 app.directive('elementoCentrado', function(){
-  return {
-    restrict: 'AEC',//'AEC' - matches either attribute or element or class name
-    scope: {
-        'heightPercent':'='//cunado @ es unidireccional & para llamar funciones, = para hacer binding
-    },
-    replace: true,//para reemplazar el contenedor 
-    transclude:true, //reinserta el contenido original
-    templateUrl:  function(elem, attr){
-        return 'templates/directives/elemento-centrado.html';
-    },
-    link : function(scope, element, attrs) {
-        //funcion para asignar eventos, css, y cosillas varias al elemento
-    }
-    
-  };
+	return {
+		restrict: 'AEC',//'AEC' - matches either attribute or element or class name
+		scope: {
+				'heightPercent':'='//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+		},
+		replace: true,//para reemplazar el contenedor 
+		transclude:true, //reinserta el contenido original
+		templateUrl:  function(elem, attr){
+				return 'templates/directives/elemento-centrado.html';
+		},
+		link : function(scope, element, attrs) {
+				//funcion para asignar eventos, css, y cosillas varias al elemento
+		}
+		
+	};
 })
 
-    
+		
 /**
  * muestra el footer para permitir solicitar un servicio o para mostrar 
  * el numero de servicios que ha solicitado
@@ -28,62 +28,56 @@ app.directive('elementoCentrado', function(){
  * @return {[type]}                 [description]
  */
 .directive('footerCarrito', function(){
-  return {
-    restrict: 'AEC',//'AEC' - matches either attribute or element or class name
-    scope: {
-        carrito:'='//cunado @ es unidireccional & para llamar funciones, = para hacer binding
-    },
-    replace: true,//para reemplazar el contenedor  
-    transclude:false, //reinserta el contenido original
-    templateUrl:  function(elem, attr){
-        return 'templates/directives/footer-carrito.html';
-    },
-    link : function(scope, element, attrs) {
-        
-        //funcion para asignar eventos, css, y cosillas varias al elemento
-    }
-    
-  };
+	return {
+		restrict: 'AEC',//'AEC' - matches either attribute or element or class name
+		scope: {
+				carrito:'='//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+		},
+		replace: true,//para reemplazar el contenedor  
+		transclude:false, //reinserta el contenido original
+		templateUrl:  function(elem, attr){
+				return 'templates/directives/footer-carrito.html';
+		},
+		link : function(scope, element, attrs) {
+				
+				//funcion para asignar eventos, css, y cosillas varias al elemento
+		}
+		
+	};
 })
 
 
 
 .directive('resumenTotales', function(){
-  return {
-    restrict: 'E',//'AEC' - matches either attribute or element or class name
-    scope: {
-        totales: '=',//cunado @ es unidireccional & para llamar funciones, = para hacer binding
-        descuento: '='
-    },
-    replace: false, //para reemplazar el contenedor 
-    transclude: false, //reinserta el contenido original
-    templateUrl:  function(elem, attr){
-        return 'templates/directives/resumen-totales.html';
-    },
-    link : function(scope, element, attrs) {
-        //funcion para asignar eventos, css, y cosillas varias al elemento
-        console.log(scope)
-    }
-    
-  };
+	return {
+		restrict: 'E',//'AEC' - matches either attribute or element or class name
+		scope: {
+				totales: '='//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+		},
+		replace: false, //para reemplazar el contenedor 
+		transclude: false, //reinserta el contenido original
+		templateUrl:  function(elem, attr){
+				return 'templates/directives/resumen-totales.html';
+		}    
+	};
 })
 
 
 
 
 .directive('menuTabs', function(){
-  return {
-    restrict: 'AEC',//'AEC' - matches either attribute or element or class name
-    scope: {
-        carrito:'=',//cunado @ es unidireccional & para llamar funciones, = para hacer binding
-        banderas: '='
-    },
-    replace: false,//para reemplazar el contenedor  
-    transclude:false, //reinserta el contenido original
-    templateUrl:  function(elem, attr){
-        return 'templates/directives/menu-tabs.html';
-    }    
-  };
+	return {
+		restrict: 'AEC',//'AEC' - matches either attribute or element or class name
+		scope: {
+				carrito:'=',//cunado @ es unidireccional & para llamar funciones, = para hacer binding
+				banderas: '='
+		},
+		replace: false,//para reemplazar el contenedor  
+		transclude:false, //reinserta el contenido original
+		templateUrl:  function(elem, attr){
+				return 'templates/directives/menu-tabs.html';
+		}    
+	};
 })
 
 

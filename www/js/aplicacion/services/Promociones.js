@@ -21,7 +21,19 @@ var PromocionesFactory = function(RecursosFactory,
 
 		validarCupon: function(cupon) {
 			return RecursosFactory
-			.get('/promociones/validar-cupon', cupon);
+			.get('/promociones/validar-cupon', cupon)
+			.then(function(respuesta) {
+				if(respuesta.data.success) {
+					console.log("PromocionesFactory.validarCupon: true")
+	    			return respuesta.data.cupon;
+	    		} else {
+					console.log("PromocionesFactory.validarCupon: false")
+	    			return false;
+	    		}
+			}, function() {
+				console.log("PromocionesFactory.validarCupon: error")
+				return false;
+			});
 		}
 	};
 };

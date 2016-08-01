@@ -34,10 +34,6 @@ var InformacionOrdenCtrl = function($scope,
 	//FLAGS:
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
 	$scope.soloProductos = $scope.carrito.soloHayProductos();
-	//mostrar informacion de descuento en resumen totales.
-	$scope.descuento = {cupon:true}
-
-
 	console.log("solo hay productos: "+ $scope.soloProductos);
 
 	//se ejecuta al dar click en el icono de ubicacion de las direcciones, muestra ventana modal
@@ -69,16 +65,14 @@ var InformacionOrdenCtrl = function($scope,
     	ModalCargaFactory.mostrar("Validando cupón de descuento...", null);
     	PromocionesFactory
     	.validarCupon($scope.orden.cupon)
-    	.then(function(respuesta) {
-    		if(respuesta.data.success) {
-    			tmp = respuesta.data.mensaje;
-    			$scope.carrito.aplicarCupon();
+    	.then(function(cupon) {
+    		if(cupon) {
+    			tmp = "Cupón válido.";
+    			$scope.carrito.aplicarCupon(cupon);
     		} else {
     			tmp = "No se pudo validar el cupón. Intenta de nuevo.";
     		}
     		
-    	}, function() {
-    		tmp = "No se pudo validar el cupón. Intenta de nuevo.";
     	})
     	.finally(function() {
     		ModalCargaFactory.ocultar();
@@ -98,8 +92,7 @@ var InformacionOrdenCtrl = function($scope,
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		$scope.cupon = {aplicar:true};
-    	self.viewAfterEnter();
+		self.viewAfterEnter();
 	});
 
 	//cancelar orden:
