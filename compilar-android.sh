@@ -1,5 +1,6 @@
 #!/bin/sh
 echo "*** Compilando Android APK... ***\n"
+
 ionic build --release android
 
 cp release-signing.properties platforms/android/release-signing.properties
