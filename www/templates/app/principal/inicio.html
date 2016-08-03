@@ -12,22 +12,25 @@
 		</div>
 
 		<div class="bottom">
-			<ion-list class="promociones">
-				<ion-item class="item-image" ng-repeat="promocion in promociones" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
+			<ion-list>
+				<div class="promociones">
+					<ion-item class="item-image" ng-repeat="promocion in promociones" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
 
-					<div class="imagen">
-						<img ng-src="{{promocion.url_imagen}}" ng-cloak/>
-					</div>
-					<h3>
-						{{promocion.etiquetaDescuentos}}
-						<i class="icon ico-flechader assertive"></i>
-					</h3>
-					
-				</div>
-			</div>
+						<div class="imagen">
+							<img ng-src="{{promocion.url_imagen}}" ng-cloak/>
+						</div>
+						<h3>
+							{{promocion.etiquetaDescuentos}}
+							<i class="icon ico-flechader assertive"></i>
+						</h3>
+						
+					</ion-item>
+				</div>				
+			</ion-list>
 		</div>
 
 	</ion-content>
 	
 	<footer-carrito carrito="carrito"></footer-carrito>
+	
 </ion-view>

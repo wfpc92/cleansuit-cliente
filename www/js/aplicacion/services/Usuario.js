@@ -28,7 +28,7 @@ var UsuarioFactory = function(RecursosFactory,
 		getUsuario: function() {
 			//console.log("UsuarioFactory.getUsuario():", JSON.stringify($localStorage.usuario));//, _usuario)
 			return ($localStorage.usuario ? $localStorage.usuario : null);
-		},
+		}, 
 
 		deleteUsuario: function() {
 			console.log("UsuarioFactory.deleteUsuario():");//, _usuario)			
