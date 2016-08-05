@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "angular-google-maps": "~2.0.13",
-    "google-map": "~0.4.1"
-}
+    "google-map": "~0.4.1",
+    "angular-daterangepicker": "^0.2.2"
+  }
 }

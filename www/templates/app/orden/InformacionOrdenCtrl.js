@@ -64,11 +64,11 @@ var InformacionOrdenCtrl = function($scope,
     	//falso: este cupon es incorrecto  o ha expirado.
     	ModalCargaFactory.mostrar("Validando cupón de descuento...", null);
     	PromocionesFactory
-    	.validarCupon($scope.orden.cupon)
-    	.then(function(cupon) {
-    		if(cupon) {
-    			tmp = "Cupón válido.";
-    			$scope.carrito.aplicarCupon(cupon);
+    	.validar($scope.orden.cupon)
+    	.then(function(respuesta) {
+    		if(respuesta) {
+    			tmp = respuesta.mensaje;
+    			$scope.carrito.aplicarCupon(respuesta.promocion);
     		} else {
     			tmp = "No se pudo validar el cupón. Intenta de nuevo.";
     		}

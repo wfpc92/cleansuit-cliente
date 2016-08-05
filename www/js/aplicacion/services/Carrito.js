@@ -34,6 +34,7 @@ var CarritoFactory = function(RecursosFactory, PromocionesFactory){
 		 */
 		agregar : function(item, tipo, cantidad){
 			console.log("CarritoFactory.agregar()", item, tipo, cantidad);
+			if(!item){ return; }
 			//existe el item en el carrito de compra, aumentar cantidad
 			if(typeof this.items[item._id] !== 'undefined'){
 				this.items[item._id].cantidad += cantidad;
@@ -113,9 +114,8 @@ var CarritoFactory = function(RecursosFactory, PromocionesFactory){
 				subtotal += items[idItem].precio * items[idItem].cantidad;
 
 				//revisar en lista de descuentos del cupon si este item aplica para descuento
-				console.log("CarritoFactory.calcularTotales: ", this.totales.cupon, this.totales.cupon[idItem]);
 				if(this.totales.cupon && this.totales.cupon[idItem]){
-					console.log("CarritoFactory.calcularTotales: ", idItem);
+					console.log("CarritoFactory.calcularTotales: ", this.totales.cupon, this.totales.cupon[idItem]);
 					descuento += items[idItem].precio * (this.totales.cupon[idItem].descuento / 100.0);
 				}
 			}

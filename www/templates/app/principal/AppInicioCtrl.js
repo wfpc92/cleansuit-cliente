@@ -27,25 +27,26 @@ var AppInicioCtrl = function($scope,
 	function etiquetar(promocion) {
 		//promocion.items = {checked: boolean, descuento: number}
 		var arr = [], etiqueta, cadena;
+		
 		for(var i in promocion.items){
 			if (promocion.items 
 				&& arr.indexOf(promocion.items[i].descuento) == -1 
 				&& promocion.items[i].descuento) {
-			    arr.push(promocion.items[i].descuento);
+			    arr.push(parseInt(promocion.items[i].descuento));
 			}
 		}
-
-		arr = arr.sort();
+		
+		arr = arr.sort(function(a, b){return a-b});
 		
 		if(arr.length == 0){
 			etiqueta = "Descuento del " + promocion.descuento + "%";
 		} else if(arr.length == 1) {
 			etiqueta = "Descuento del " + arr[0] + "%";
 		} else {
-			var cadena = "";
+			cadena = "";
+
 			for (var i in arr) {
 				cadena += arr[i];
-				console.log(i, arr.length - 1)
 				if(i < arr.length - 2) {
 					cadena += ", ";
 				}
@@ -53,12 +54,12 @@ var AppInicioCtrl = function($scope,
 				 	cadena += " y "
 				}
 			}
+
 			etiqueta = "Descuentos del " + cadena + "%";
 		}
 
 		promocion.etiquetaDescuentos = etiqueta;
 	}
 };
-
 
 app.controller('AppInicioCtrl', AppInicioCtrl);

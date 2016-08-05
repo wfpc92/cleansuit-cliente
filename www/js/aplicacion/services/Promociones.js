@@ -19,13 +19,14 @@ var PromocionesFactory = function(RecursosFactory,
 			});
 		},
 
-		validarCupon: function(cupon) {
+		validar: function(cupon) {
 			return RecursosFactory
-			.get('/promociones/validar-cupon', cupon)
+			.get('/promociones/validar/'+cupon)
 			.then(function(respuesta) {
+				console.log(respuesta)
 				if(respuesta.data.success) {
 					console.log("PromocionesFactory.validarCupon: true")
-	    			return respuesta.data.cupon;
+	    			return respuesta.data;
 	    		} else {
 					console.log("PromocionesFactory.validarCupon: false")
 	    			return false;
