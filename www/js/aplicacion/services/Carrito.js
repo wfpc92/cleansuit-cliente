@@ -114,9 +114,11 @@ var CarritoFactory = function(RecursosFactory, PromocionesFactory){
 				subtotal += items[idItem].precio * items[idItem].cantidad;
 
 				//revisar en lista de descuentos del cupon si este item aplica para descuento
-				if(this.totales.cupon && this.totales.cupon[idItem]){
-					console.log("CarritoFactory.calcularTotales: ", this.totales.cupon, this.totales.cupon[idItem]);
-					descuento += items[idItem].precio * (this.totales.cupon[idItem].descuento / 100.0);
+				
+
+				if(this.totales.promocion && this.totales.promocion.items[idItem]){
+					console.log("CarritoFactory.calcularTotales: ",	this.totales.promocion, this.totales.promocion.items[idItem]);
+					descuento += items[idItem].precio * items[idItem].cantidad * (this.totales.promocion.items[idItem].descuento / 100.0);
 				}
 			}
 
@@ -152,10 +154,9 @@ var CarritoFactory = function(RecursosFactory, PromocionesFactory){
 			for(var i in this.items){
 				delete this.items[i];
 			}
-			this.cupon = null;
+			this.totales.promocion = null;
 			this.actualizarContadores();
 		},
-
 
 		cargarDomicilio: function() {
 			var self = this;
@@ -168,8 +169,10 @@ var CarritoFactory = function(RecursosFactory, PromocionesFactory){
 			});
 		},
 
-		aplicarCupon: function(cupon) {
-			this.totales.cupon = cupon;
+		aplicarPromocion: function(promocion) {
+			console.log("CarritoFactory.aplicarPromocion", promocion);
+			this.totales.promocion = promocion;
+			this.calcularTotales();
 		}
 	};
 };

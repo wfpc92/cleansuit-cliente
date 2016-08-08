@@ -68,11 +68,10 @@ var InformacionOrdenCtrl = function($scope,
     	.then(function(respuesta) {
     		if(respuesta) {
     			tmp = respuesta.mensaje;
-    			$scope.carrito.aplicarCupon(respuesta.promocion);
+    			$scope.carrito.aplicarPromocion(respuesta.promocion);
     		} else {
     			tmp = "No se pudo validar el cupón. Intenta de nuevo.";
     		}
-    		
     	})
     	.finally(function() {
     		ModalCargaFactory.ocultar();
@@ -144,8 +143,7 @@ var InformacionOrdenCtrl = function($scope,
 				$scope.orden.entrega.posicion = posicion;
 				break;
 		}
-		
-		//console.log("Posicion al finalizar ubicacion: ", posicion.lat(), ", ", posicion.lng());
+
 		$scope.modalMapa.hide();
 	};
 
@@ -225,10 +223,10 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	if(!$scope.mapa.verificarUbicacionGPS()) {
 		ModalCargaFactory.mostrar("Buscando posicion actual...", null);
 		$scope.modalMapa.show().then(function() {
-				$scope.mapa.obtenerUbicacionGPS(function() {
-					console.log("ubicacion obtenida GPS: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
-					ModalCargaFactory.ocultar();
-				}); 
+			$scope.mapa.obtenerUbicacionGPS(function() {
+				console.log("ubicacion obtenida GPS: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
+				ModalCargaFactory.ocultar();
+			}); 
 		});	
 	} else {
 		$scope.modalMapa.show();
@@ -305,6 +303,14 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraRecoleccion";
 			$scope.horas = [
+				"10:00 A.M. a 10:59 A.M.",
+				"11:00 A.M. a 11:59 A.M.",
+				"12:00 P.M. a 12:59 P.M.",
+				"1:00 P.M. a 1:59 P.M.",
+				"2:00 P.M. a 2:59 P.M.",
+				"3:00 P.M. a 3:59 P.M.",
+				"4:00 P.M. a 4:59 P.M.",
+				"5:00 P.M. a 5:59 P.M.",
 				"6:00 P.M. a 6:59 P.M.",
 				"7:00 P.M. a 7:59 P.M.",
 				"8:00 P.M. a 8:59 P.M.",
@@ -332,6 +338,14 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraEntrega";
 			$scope.horas = [
+				"10:00 A.M. a 10:59 A.M.",
+				"11:00 A.M. a 11:59 A.M.",
+				"12:00 P.M. a 12:59 P.M.",
+				"1:00 P.M. a 1:59 P.M.",
+				"2:00 P.M. a 2:59 P.M.",
+				"3:00 P.M. a 3:59 P.M.",
+				"4:00 P.M. a 4:59 P.M.",
+				"5:00 P.M. a 5:59 P.M.",
 				"6:00 P.M. a 6:59 P.M.",
 				"7:00 P.M. a 7:59 P.M.",
 				"8:00 P.M. a 8:59 P.M.",
