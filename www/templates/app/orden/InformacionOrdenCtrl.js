@@ -284,18 +284,21 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 		$scope = this.$scope, 
 		$ionicPopover = this.$ionicPopover,
 		tmpURL = null;
+	
+	console.log("construir popoperrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
 
 	switch(tipo) {
 		case "FECHARECOLECCION":
 			datePicker.show({
-				date: $scope.orden.recoleccion.fecha,
-				mode: 'date'
+				date: new Date(), //$scope.orden.recoleccion.fecha,
+				mode: 'date',
+				minDate: new Date(),
+				clearButton: false,
+				cancelButton: false
 			}, function(fecha){
-				$scope.$apply(function() {
-					$scope.orden.recoleccion.fecha = fecha;
-				});
+				$scope.orden.recoleccion.fecha = fecha;
 			}, function(error) {
-				console.log("datepicker, error", error)
+				console.log("datepicker, error", JSON.stringify(error))
 			});
 
 			break;
@@ -323,7 +326,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			};
 			break;
 		case "FECHAENTREGA":
-			datePicker.show({
+			/*datePicker.show({
 				date: $scope.orden.entrega.fecha,
 				mode: 'date'
 			}, function(fecha){
@@ -332,7 +335,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				});
 			}, function(error) {
 				console.log("datepicker, error", error)
-			});
+			});*/
 			break;
 		case "HORAENTREGA":
 			tmpURL = 'templates/app/orden/popover-hora.html';

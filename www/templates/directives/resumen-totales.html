@@ -7,7 +7,6 @@
 		<div class="col">Domicilio:</div>
 		<div class="col numero">{{totales.domicilio | currency : "$" : 0}}</div>
 	</div>
-	totales.descuento:{{totales.descuento || false}}
 	<div class="row" ng-if="totales.descuento">
 		<div class="col">Descuento:</div>
 		<div class="col numero">{{totales.descuento | currency : "$" : 0}}</div>

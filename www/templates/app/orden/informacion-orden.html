@@ -83,7 +83,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Fecha de entrega</span>
-							<input type="date" placeholder="Fecha de recolección" ng-model="orden.entrega.fecha" required>
+							<input type="text" placeholder="Fecha de recolección" ng-model="orden.entrega.fecha" ng-click="openPopover('FECHARECOLECCION', $event)" required>
 						</label>
 					</div>
 				</div>
@@ -99,12 +99,11 @@
 				</div>				
 				
 				<div class="item row">
-					<div class="col item-icon-right">
+					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
 							<input type="tel" placeholder="Teléfono de contacto" ng-model="orden.telefono" name="telefono"maxlength="10" ng-minlength="7" ng-maxlength="10">
 						</label>
-						<i class="icon ion-edit"></i>
 					</div>
 				</div>
 
@@ -119,19 +118,27 @@
 				</div>
 
 				<div class="item row">
+					<div class="col">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Voy a hacer un abono</span>
+							<input type="tel" placeholder="Abono" ng-model="orden.abono" name="abono" maxlength="12" ng-minlength="0">
+						</label>
+					</div>
+				</div>
+
+				<div class="item row">
 					<div class="col col-75">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Cupón de Descuento</span>
-							<input type="text" placeholder="Cupón de descuento" ng-model="orden.cupon">
+							<input type="text" placeholder="Cupón de descuento" ng-model="orden.cupon" ng-disabled="carrito.totales.promocion" >
 						</label>
 					</div>
 					<div class="col">
-						<button class="button button-stable" ng-disabled="!orden.cupon" ng-click="validarCupon()">Validar</button>
+						<button class="button button-stable" ng-click="validarCupon()" ng-disabled="carrito.totales.promocion">Validar</button>
 					</div>
 				</div>
 			</div>
 
-			{{descuento}}
 			<resumen-totales totales="carrito.totales" ng-show="true || carrito.hayItems()"></resumen-totales>
 
 			<div class="list">
