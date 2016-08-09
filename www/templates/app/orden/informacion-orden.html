@@ -54,7 +54,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Fecha de recolección</span>
-							<input type="date" placeholder="Fecha de recolección" ng-model="orden.recoleccion.fecha" required>
+							<input id="inputFechaRecoleccion" type="date" placeholder="Fecha de recolección" ng-model="orden.recoleccion.fecha" ng-click="openPopover('FECHARECOLECCION', $event)" readonly required>
 						</label>
 					</div>
 				</div>
@@ -83,7 +83,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Fecha de entrega</span>
-							<input type="text" placeholder="Fecha de recolección" ng-model="orden.entrega.fecha" ng-click="openPopover('FECHARECOLECCION', $event)" required>
+							<input id="inputFechaEntrega" type="date" placeholder="Fecha de entrega" ng-model="orden.entrega.fecha" ng-click="openPopover('FECHAENTREGA', $event)" readonly required>
 						</label>
 					</div>
 				</div>

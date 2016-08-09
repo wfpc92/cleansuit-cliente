@@ -7,7 +7,28 @@ var OrdenesFactory = function(CarritoFactory,
 	
 	nuevaOrden();
 
-	function nuevaOrden(){
+	function nuevaOrden() {
+		var ahora = new Date(2016, 8, 9, 21, 0, 0, 0);
+		console.log("AHORA: ...", ahora, ahora.getHours(), $scope.orden.recoleccion.fecha);
+		if(ahora.getHours() + 1 < 22) {
+			$scope.orden.recoleccion.fecha = ahora;
+			console.log("son menos de las 10");
+		} else {
+			$scope.orden.recoleccion.fecha = new Date(ahora.getTime() + (24 * 3600 * 1000));
+			console.log("son mas de las 10")
+		} 
+		console.log("recoleccion.fecha", $scope.orden.recoleccion.fecha)
+
+
+		//verificar si ahora + 1h es mayor de las 10 de la noche
+			if (ahora.getHours() + 1 >= 22) {
+				minDate = new Date(ahora.getTime() + (24 * 3600 * 1000));
+				console.log("calcular fechas", ahora, minDate) 
+			} else {
+				minDate = new Date();
+			}
+
+			
 		_orden = {
 			recoleccion: {
 				direccion: '',

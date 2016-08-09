@@ -29,8 +29,8 @@
       "id": "cl.rmd.cordova.dialoggps"
     },
     {
-      "locator": "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git",
-      "id": "cordova-plugin-datepicker"
+      "locator": "https://github.com/okaybmd/cordova-plugin-datepicker.git",
+      "id": "com.okaybmd.cordova.plugin.datepicker"
     },
     "cordova-plugin-inappbrowser"
   ],

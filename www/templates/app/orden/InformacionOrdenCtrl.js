@@ -13,7 +13,7 @@ var InformacionOrdenCtrl = function($scope,
 	
 	console.log("InformacionOrdenCtrl");
 	var self = this;
- 
+
 	this.$scope = $scope;
 	this.$ionicModal = $ionicModal;
 	this.$ionicPopup = $ionicPopup;	
@@ -279,81 +279,128 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 	}
 };
 
+
+InformacionOrdenCtrl.prototype.horasDisponibles = function(fecha) {
+	var self = this,
+		$scope = this.$scope, 
+		ahora = new Date(),
+		result = [],
+		inicio = 10, //index de horasDelDia de la hora de inicio
+		fin = 22, //index de horasDelDia de la hora final
+		horasDelDia = [
+			"12:00 A.M. a 12:59 A.M.",
+			"1:00 A.M. a 1:59 A.M.",
+			"2:00 A.M. a 2:59 A.M.",
+			"3:00 A.M. a 3:59 A.M.",
+			"4:00 A.M. a 4:59 A.M.",
+			"5:00 A.M. a 5:59 A.M.",
+			"6:00 A.M. a 6:59 A.M.",
+			"7:00 A.M. a 7:59 A.M.",
+			"8:00 A.M. a 8:59 A.M.",
+			"9:00 A.M. a 9:59 A.M.",
+			"10:00 A.M. a 10:59 A.M.",
+			"11:00 A.M. a 11:59 A.M.",
+			"12:00 P.M. a 12:59 P.M.",
+			"1:00 P.M. a 1:59 P.M.",
+			"2:00 P.M. a 2:59 P.M.",
+			"3:00 P.M. a 3:59 P.M.",
+			"4:00 P.M. a 4:59 P.M.",
+			"5:00 P.M. a 5:59 P.M.",
+			"6:00 P.M. a 6:59 P.M.",
+			"7:00 P.M. a 7:59 P.M.",
+			"8:00 P.M. a 8:59 P.M.",
+			"9:00 P.M. a 9:59 P.M.",
+			"10:00 P.M. a 10:59 P.M.",
+			"11:00 P.M. a 11:59 P.M.",
+		];
+
+	//si la fecha es hoy se debe comprobar las horas 
+	if(fecha <= ahora) {
+		console.log("es hoy");
+		var inicio = ahora.getHours() + 1;
+		result = horasDelDia.slice(inicio, fin);
+	} else {
+		result = horasDelDia.slice(inicio, fin);
+	}
+	return result;
+};
+
 InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 	var self = this,
 		$scope = this.$scope, 
 		$ionicPopover = this.$ionicPopover,
 		tmpURL = null;
-	
-	console.log("construir popoperrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
 
 	switch(tipo) {
 		case "FECHARECOLECCION":
+			var ahora = new Date(),
+				minDate = new Date($scope.orden.recoleccion.fecha);
+
+			//datePicker, fuente:https://www.npmjs.com/package/cordova-okaybmd-date-picker-plugin
 			datePicker.show({
-				date: new Date(), //$scope.orden.recoleccion.fecha,
+				date: $scope.orden.recoleccion.fecha,
 				mode: 'date',
-				minDate: new Date(),
-				clearButton: false,
-				cancelButton: false
+				minDate: minDate.getTime(),
+				clearButton: true,
+				windowTitle: '',
+				doneButtonLabel: "Establecer",
+				cancelButtonLabel: "Cancelar",
+				clearButtonLabel: "Eliminar",
 			}, function(fecha){
-				$scope.orden.recoleccion.fecha = fecha;
+				console.log("FECHARECOLECCION", fecha);
+				if(fecha !== 'CANCEL') {
+					$scope.orden.recoleccion.fecha = fecha;
+					$scope.$digest();
+				}
 			}, function(error) {
 				console.log("datepicker, error", JSON.stringify(error))
+				//en caso que no funcione la aplicacion con el plkgin se envia una señal
+				//para que se active la seleccion de la fecha por defecto.
+				document.getElementById("inputFechaRecoleccion").readOnly = false;
 			});
-
 			break;
+
+		case "FECHAENTREGA":
+			//datePicker, fuente:https://www.npmjs.com/package/cordova-okaybmd-date-picker-plugin
+			datePicker.show({
+				date: $scope.orden.entrega.fecha,
+				mode: 'date',
+				minDate: $scope.orden.recoleccion.fecha.getTime(),
+				clearButton: true,
+				windowTitle: '',
+				doneButtonLabel: "Establecer",
+				cancelButtonLabel: "Cancelar",
+				clearButtonLabel: "Eliminar",
+			}, function(fecha){
+				console.log("construirPopover.FECHAENTREGA: ", $scope.orden.entrega.fecha, fecha);
+				if(fecha !== 'CANCEL') {
+					$scope.orden.entrega.fecha = fecha;
+					$scope.$digest();
+				}
+			}, function(error) {
+				console.log("datepicker, error", JSON.stringify(error))
+				//en caso que no funcione la aplicacion con el plkgin se envia una señal
+				//para que se active la seleccion de la fecha por defecto.
+				document.getElementById("inputFechaEntrega").readOnly = false;
+			});
+			break;
+
 		case "HORARECOLECCION":
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraRecoleccion";
-			$scope.horas = [
-				"10:00 A.M. a 10:59 A.M.",
-				"11:00 A.M. a 11:59 A.M.",
-				"12:00 P.M. a 12:59 P.M.",
-				"1:00 P.M. a 1:59 P.M.",
-				"2:00 P.M. a 2:59 P.M.",
-				"3:00 P.M. a 3:59 P.M.",
-				"4:00 P.M. a 4:59 P.M.",
-				"5:00 P.M. a 5:59 P.M.",
-				"6:00 P.M. a 6:59 P.M.",
-				"7:00 P.M. a 7:59 P.M.",
-				"8:00 P.M. a 8:59 P.M.",
-				"9:00 P.M. a 10:00 P.M."
-			];
-
+			//seleccionar las horas validas segun la fecha que seleccione.
+			$scope.horas = this.horasDisponibles($scope.orden.recoleccion.fecha);
+			
 			$scope.setHora = function($index){
 				$scope.orden.recoleccion.hora = $scope.horas[$index];
 				$scope.closePopover();
 			};
 			break;
-		case "FECHAENTREGA":
-			/*datePicker.show({
-				date: $scope.orden.entrega.fecha,
-				mode: 'date'
-			}, function(fecha){
-				$scope.$apply(function() {
-					$scope.orden.entrega.fecha = fecha;
-				});
-			}, function(error) {
-				console.log("datepicker, error", error)
-			});*/
-			break;
 		case "HORAENTREGA":
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraEntrega";
-			$scope.horas = [
-				"10:00 A.M. a 10:59 A.M.",
-				"11:00 A.M. a 11:59 A.M.",
-				"12:00 P.M. a 12:59 P.M.",
-				"1:00 P.M. a 1:59 P.M.",
-				"2:00 P.M. a 2:59 P.M.",
-				"3:00 P.M. a 3:59 P.M.",
-				"4:00 P.M. a 4:59 P.M.",
-				"5:00 P.M. a 5:59 P.M.",
-				"6:00 P.M. a 6:59 P.M.",
-				"7:00 P.M. a 7:59 P.M.",
-				"8:00 P.M. a 8:59 P.M.",
-				"9:00 P.M. a 10:00 P.M."
-			];
+			//seleccionar las horas validas segun la fecha que seleccione.
+			$scope.horas = this.horasDisponibles($scope.orden.entrega.fecha);
 
 			$scope.setHora = function($index){
 				$scope.orden.entrega.hora = $scope.horas[$index];
