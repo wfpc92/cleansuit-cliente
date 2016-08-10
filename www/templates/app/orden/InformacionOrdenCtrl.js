@@ -11,7 +11,7 @@ var InformacionOrdenCtrl = function($scope,
 									ModalCargaFactory,
 									PromocionesFactory) {
 	
-	console.log("InformacionOrdenCtrl%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+	console.log("InformacionOrdenCtrl");
 	var self = this;
 
 	this.$scope = $scope;
@@ -23,6 +23,7 @@ var InformacionOrdenCtrl = function($scope,
 	this.$rootScope = $rootScope;
 	this.MapasFactory = MapasFactory;
 	this.ModalCargaFactory = ModalCargaFactory;
+	this.OrdenesFactory = OrdenesFactory;
 
 	$scope.orden = OrdenesFactory.getOrden();
 
@@ -30,6 +31,23 @@ var InformacionOrdenCtrl = function($scope,
 	$scope.orden.recoleccion.direccion = $scope.usuario.direccion;
 	$scope.orden.entrega.direccion = $scope.usuario.direccion;
 	$scope.orden.telefono = $scope.usuario.telefono;
+
+	if (!$scope.orden.recoleccion.fecha) {
+		var ahora = new Date();
+		//ahora = new Date(2016, 7, 9, 10, 00, 0, 0); //para probar varas fechas
+		var unaHoraDespues = new Date(ahora.getTime() + (60 * 60 * 1000));
+			
+		if(unaHoraDespues.getHours() < 22) {
+			//verificar si es una hora valida: antes de las 10 de las noche
+			$scope.orden.recoleccion.fecha = ahora;
+		} else {
+			//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
+			$scope.orden.recoleccion.fecha = new Date(ahora.getTime() + (24 * 3600 * 1000));
+		}
+		console.log("recolecion.fecha", $scope.orden.recoleccion.fecha.toString())
+	}
+	
+	$scope.orden.entrega.fecha = $scope.orden.entrega.fecha || $scope.orden.recoleccion.fecha;
 
 	//FLAGS:
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
@@ -147,7 +165,8 @@ var InformacionOrdenCtrl = function($scope,
 		$scope.modalMapa.hide();
 	};
 
-	$ionicModal.fromTemplateUrl("templates/app/orden/modal-mapa.html", {
+	$ionicModal
+	.fromTemplateUrl("templates/app/orden/modal-mapa.html", {
 		scope: $scope.scopeModal,
 		animation: 'slide-in-up'
 	}).then(function(modal) {
@@ -280,7 +299,7 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 };
 
 
-InformacionOrdenCtrl.prototype.horasDisponibles = function(fecha) {
+InformacionOrdenCtrl.prototype.horasRecoleccion = function(fecha) {
 	var self = this,
 		$scope = this.$scope, 
 		ahora = new Date(),
@@ -318,11 +337,66 @@ InformacionOrdenCtrl.prototype.horasDisponibles = function(fecha) {
 	if(fecha <= ahora) {
 		console.log("es hoy");
 		var inicio = fecha.getHours() + 1;
+		if(inicio < 10) {
+			inicio = 10;
+		}
 		result = horasDelDia.slice(inicio, fin);
 	} else {
 		console.log("no es hoy");
 		result = horasDelDia.slice(inicio, fin);
 	}
+	console.log(result)
+	return result;
+};
+
+
+InformacionOrdenCtrl.prototype.horasEntrega = function() {
+	var self = this,
+		$scope = this.$scope, 
+		ahora = new Date(),
+		result = [],
+		inicio = 10, //index de horasDelDia de la hora de inicio
+		fin = 22, //index de horasDelDia de la hora final
+		horasDelDia = [
+			"12:00 A.M. a 12:59 A.M.",
+			"1:00 A.M. a 1:59 A.M.",
+			"2:00 A.M. a 2:59 A.M.",
+			"3:00 A.M. a 3:59 A.M.",
+			"4:00 A.M. a 4:59 A.M.",
+			"5:00 A.M. a 5:59 A.M.",
+			"6:00 A.M. a 6:59 A.M.",
+			"7:00 A.M. a 7:59 A.M.",
+			"8:00 A.M. a 8:59 A.M.",
+			"9:00 A.M. a 9:59 A.M.",
+			"10:00 A.M. a 10:59 A.M.",
+			"11:00 A.M. a 11:59 A.M.",
+			"12:00 P.M. a 12:59 P.M.",
+			"1:00 P.M. a 1:59 P.M.",
+			"2:00 P.M. a 2:59 P.M.",
+			"3:00 P.M. a 3:59 P.M.",
+			"4:00 P.M. a 4:59 P.M.",
+			"5:00 P.M. a 5:59 P.M.",
+			"6:00 P.M. a 6:59 P.M.",
+			"7:00 P.M. a 7:59 P.M.",
+			"8:00 P.M. a 8:59 P.M.",
+			"9:00 P.M. a 9:59 P.M.",
+			"10:00 P.M. a 10:59 P.M.",
+			"11:00 P.M. a 11:59 P.M.",
+		];
+
+	var index = horasDelDia.indexOf($scope.orden.recoleccion.hora);
+
+	//si la fecha es hoy se debe comprobar las horas 
+	if($scope.orden.recoleccion.fecha.getDate() == $scope.orden.entrega.fecha.getDate()
+		&& $scope.orden.recoleccion.fecha.getMonth() == $scope.orden.entrega.fecha.getMonth() 
+		&& $scope.orden.recoleccion.fecha.getFullYear() == $scope.orden.entrega.fecha.getFullYear()) {
+		console.log("fecha de recoleccion igual a fecha de entrega");
+
+		if(index !== -1) {
+			var inicio = index + 1;
+		}
+	} 
+	result = horasDelDia.slice(inicio, fin);
 	console.log(result)
 	return result;
 };
@@ -389,7 +463,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraRecoleccion";
 			//seleccionar las horas validas segun la fecha que seleccione.
-			$scope.horas = this.horasDisponibles($scope.orden.recoleccion.fecha);
+			$scope.horas = this.horasRecoleccion();
 			
 			$scope.setHora = function($index){
 				$scope.orden.recoleccion.hora = $scope.horas[$index];
@@ -400,7 +474,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraEntrega";
 			//seleccionar las horas validas segun la fecha que seleccione.
-			$scope.horas = this.horasDisponibles($scope.orden.entrega.fecha);
+			$scope.horas = this.horasEntrega();
 
 			$scope.setHora = function($index){
 				$scope.orden.entrega.hora = $scope.horas[$index];
@@ -430,8 +504,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 
 InformacionOrdenCtrl.prototype.cancelarOrden = function() {
 	var self = this;
-	self.$scope.carrito.vaciar();
-	self.$scope.carrito.actualizarContadores();
+	self.OrdenesFactory.limpiarOrden();
 	self.$state.go("app.inicio");
 	self.$ionicHistory.clearHistory();
 	self.$ionicHistory.nextViewOptions({

@@ -8,10 +8,6 @@ var OrdenesFactory = function(CarritoFactory,
 	nuevaOrden();
 
 	function nuevaOrden() {
-		var ahora = new Date();
-		//var ahora = new Date(2016, 7, 9, 21, 00, 0, 0); //para probar varas fechas
-		var unaHoraDespues = new Date(ahora.getTime() + (60 * 60 * 1000));
-			
 		_orden = {
 			recoleccion: {
 				direccion: '',
@@ -27,19 +23,10 @@ var OrdenesFactory = function(CarritoFactory,
 			},
 			formaPago : '',
 			telefono: '',
+			abono: '',
+			cupon: '',
 			terminosCondiciones : false
 		};
- 
-		
-		if(unaHoraDespues.getHours() < 22) {
-			_orden.recoleccion.fecha = ahora;
-			console.log("son menos de las 10");
-		} else {
-			//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
-			_orden.recoleccion.fecha = new Date(ahora.getTime() + (24 * 3600 * 1000));
-			console.log("son mas de las 10")
-		} 
-		console.log("recoleccion.fecha", _orden.recoleccion.fecha)
 
 		CarritoFactory.vaciar();
 	};
@@ -110,6 +97,10 @@ var OrdenesFactory = function(CarritoFactory,
 		getHistorialOrdenes: function() {
 			return _historialOrdenes;
 		},
+
+		limpiarOrden: function() {
+			nuevaOrden();
+		}
 	};
 
 };
