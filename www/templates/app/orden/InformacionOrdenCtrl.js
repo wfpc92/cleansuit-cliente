@@ -11,7 +11,7 @@ var InformacionOrdenCtrl = function($scope,
 									ModalCargaFactory,
 									PromocionesFactory) {
 	
-	console.log("InformacionOrdenCtrl");
+	console.log("InformacionOrdenCtrl%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 	var self = this;
 
 	this.$scope = $scope;
@@ -117,7 +117,7 @@ var InformacionOrdenCtrl = function($scope,
 			$ionicHistory.clearHistory();
 			$ionicHistory.clearCache()
 			$ionicHistory.nextViewOptions({
-				disableBack:'true'
+				disableBack: 'true'
 			}); 
 			$state.go("app.realizar-orden");
 		}, function(err) {
@@ -317,11 +317,13 @@ InformacionOrdenCtrl.prototype.horasDisponibles = function(fecha) {
 	//si la fecha es hoy se debe comprobar las horas 
 	if(fecha <= ahora) {
 		console.log("es hoy");
-		var inicio = ahora.getHours() + 1;
+		var inicio = fecha.getHours() + 1;
 		result = horasDelDia.slice(inicio, fin);
 	} else {
+		console.log("no es hoy");
 		result = horasDelDia.slice(inicio, fin);
 	}
+	console.log(result)
 	return result;
 };
 
@@ -333,9 +335,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 
 	switch(tipo) {
 		case "FECHARECOLECCION":
-			var ahora = new Date(),
-				minDate = new Date($scope.orden.recoleccion.fecha);
-
+			var minDate = new Date($scope.orden.recoleccion.fecha);
 			//datePicker, fuente:https://www.npmjs.com/package/cordova-okaybmd-date-picker-plugin
 			datePicker.show({
 				date: $scope.orden.recoleccion.fecha,

@@ -8,45 +8,39 @@ var OrdenesFactory = function(CarritoFactory,
 	nuevaOrden();
 
 	function nuevaOrden() {
-		var ahora = new Date(2016, 8, 9, 21, 0, 0, 0);
-		console.log("AHORA: ...", ahora, ahora.getHours(), $scope.orden.recoleccion.fecha);
-		if(ahora.getHours() + 1 < 22) {
-			$scope.orden.recoleccion.fecha = ahora;
-			console.log("son menos de las 10");
-		} else {
-			$scope.orden.recoleccion.fecha = new Date(ahora.getTime() + (24 * 3600 * 1000));
-			console.log("son mas de las 10")
-		} 
-		console.log("recoleccion.fecha", $scope.orden.recoleccion.fecha)
-
-
-		//verificar si ahora + 1h es mayor de las 10 de la noche
-			if (ahora.getHours() + 1 >= 22) {
-				minDate = new Date(ahora.getTime() + (24 * 3600 * 1000));
-				console.log("calcular fechas", ahora, minDate) 
-			} else {
-				minDate = new Date();
-			}
-
+		var ahora = new Date();
+		//var ahora = new Date(2016, 7, 9, 21, 00, 0, 0); //para probar varas fechas
+		var unaHoraDespues = new Date(ahora.getTime() + (60 * 60 * 1000));
 			
 		_orden = {
 			recoleccion: {
 				direccion: '',
 				posicion:'',
-				fecha: new Date(),
+				fecha: null,
 				hora:''
 			},
 			entrega : {
 				direccion: '',
 				posicion:'',
-				fecha: new Date(),
+				fecha: null,
 				hora:''
 			},
 			formaPago : '',
 			telefono: '',
 			terminosCondiciones : false
 		};
+ 
 		
+		if(unaHoraDespues.getHours() < 22) {
+			_orden.recoleccion.fecha = ahora;
+			console.log("son menos de las 10");
+		} else {
+			//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
+			_orden.recoleccion.fecha = new Date(ahora.getTime() + (24 * 3600 * 1000));
+			console.log("son mas de las 10")
+		} 
+		console.log("recoleccion.fecha", _orden.recoleccion.fecha)
+
 		CarritoFactory.vaciar();
 	};
 
