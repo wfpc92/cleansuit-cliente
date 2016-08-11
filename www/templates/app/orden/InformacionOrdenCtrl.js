@@ -34,7 +34,7 @@ var InformacionOrdenCtrl = function($scope,
 
 	if (!$scope.orden.recoleccion.fecha) {
 		var ahora = new Date();
-		//ahora = new Date(2016, 7, 9, 10, 00, 0, 0); //para probar varas fechas
+		ahora = new Date(2016, 7, 10, 22, 00, 0, 0); //para probar varas fechas
 		var unaHoraDespues = new Date(ahora.getTime() + (60 * 60 * 1000));
 			
 		if(unaHoraDespues.getHours() < 22) {
@@ -298,54 +298,54 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 	}
 };
 
+InformacionOrdenCtrl.prototype.horasDelDia = [
+	"12:00 A.M. a 12:59 A.M.",
+	"1:00 A.M. a 1:59 A.M.",
+	"2:00 A.M. a 2:59 A.M.",
+	"3:00 A.M. a 3:59 A.M.",
+	"4:00 A.M. a 4:59 A.M.",
+	"5:00 A.M. a 5:59 A.M.",
+	"6:00 A.M. a 6:59 A.M.",
+	"7:00 A.M. a 7:59 A.M.",
+	"8:00 A.M. a 8:59 A.M.",
+	"9:00 A.M. a 9:59 A.M.",
+	"10:00 A.M. a 10:59 A.M.",
+	"11:00 A.M. a 11:59 A.M.",
+	"12:00 P.M. a 12:59 P.M.",
+	"1:00 P.M. a 1:59 P.M.",
+	"2:00 P.M. a 2:59 P.M.",
+	"3:00 P.M. a 3:59 P.M.",
+	"4:00 P.M. a 4:59 P.M.",
+	"5:00 P.M. a 5:59 P.M.",
+	"6:00 P.M. a 6:59 P.M.",
+	"7:00 P.M. a 7:59 P.M.",
+	"8:00 P.M. a 8:59 P.M.",
+	"9:00 P.M. a 9:59 P.M.",
+	"10:00 P.M. a 10:59 P.M.",
+	"11:00 P.M. a 11:59 P.M.",
+];
 
-InformacionOrdenCtrl.prototype.horasRecoleccion = function(fecha) {
+InformacionOrdenCtrl.prototype.horasRecoleccion = function() {
 	var self = this,
 		$scope = this.$scope, 
-		ahora = new Date(),
+		fecha = $scope.orden.recoleccion.fecha;
+		hoy = new Date(),
 		result = [],
 		inicio = 10, //index de horasDelDia de la hora de inicio
-		fin = 22, //index de horasDelDia de la hora final
-		horasDelDia = [
-			"12:00 A.M. a 12:59 A.M.",
-			"1:00 A.M. a 1:59 A.M.",
-			"2:00 A.M. a 2:59 A.M.",
-			"3:00 A.M. a 3:59 A.M.",
-			"4:00 A.M. a 4:59 A.M.",
-			"5:00 A.M. a 5:59 A.M.",
-			"6:00 A.M. a 6:59 A.M.",
-			"7:00 A.M. a 7:59 A.M.",
-			"8:00 A.M. a 8:59 A.M.",
-			"9:00 A.M. a 9:59 A.M.",
-			"10:00 A.M. a 10:59 A.M.",
-			"11:00 A.M. a 11:59 A.M.",
-			"12:00 P.M. a 12:59 P.M.",
-			"1:00 P.M. a 1:59 P.M.",
-			"2:00 P.M. a 2:59 P.M.",
-			"3:00 P.M. a 3:59 P.M.",
-			"4:00 P.M. a 4:59 P.M.",
-			"5:00 P.M. a 5:59 P.M.",
-			"6:00 P.M. a 6:59 P.M.",
-			"7:00 P.M. a 7:59 P.M.",
-			"8:00 P.M. a 8:59 P.M.",
-			"9:00 P.M. a 9:59 P.M.",
-			"10:00 P.M. a 10:59 P.M.",
-			"11:00 P.M. a 11:59 P.M.",
-		];
+		fin = 22; //index de horasDelDia de la hora final
 
 	//si la fecha es hoy se debe comprobar las horas 
-	if(fecha <= ahora) {
-		console.log("es hoy");
-		var inicio = fecha.getHours() + 1;
+	if(fecha.getDate() == hoy.getDate()
+		&& fecha.getMonth() == hoy.getMonth() 
+		&& fecha.getFullYear() == hoy.getFullYear()) {
+		inicio = fecha.getHours() + 1;
 		if(inicio < 10) {
 			inicio = 10;
 		}
-		result = horasDelDia.slice(inicio, fin);
+		result = this.horasDelDia.slice(inicio, fin);
 	} else {
-		console.log("no es hoy");
-		result = horasDelDia.slice(inicio, fin);
+		result = this.horasDelDia.slice(inicio, fin);
 	}
-	console.log(result)
 	return result;
 };
 
@@ -356,35 +356,9 @@ InformacionOrdenCtrl.prototype.horasEntrega = function() {
 		ahora = new Date(),
 		result = [],
 		inicio = 10, //index de horasDelDia de la hora de inicio
-		fin = 22, //index de horasDelDia de la hora final
-		horasDelDia = [
-			"12:00 A.M. a 12:59 A.M.",
-			"1:00 A.M. a 1:59 A.M.",
-			"2:00 A.M. a 2:59 A.M.",
-			"3:00 A.M. a 3:59 A.M.",
-			"4:00 A.M. a 4:59 A.M.",
-			"5:00 A.M. a 5:59 A.M.",
-			"6:00 A.M. a 6:59 A.M.",
-			"7:00 A.M. a 7:59 A.M.",
-			"8:00 A.M. a 8:59 A.M.",
-			"9:00 A.M. a 9:59 A.M.",
-			"10:00 A.M. a 10:59 A.M.",
-			"11:00 A.M. a 11:59 A.M.",
-			"12:00 P.M. a 12:59 P.M.",
-			"1:00 P.M. a 1:59 P.M.",
-			"2:00 P.M. a 2:59 P.M.",
-			"3:00 P.M. a 3:59 P.M.",
-			"4:00 P.M. a 4:59 P.M.",
-			"5:00 P.M. a 5:59 P.M.",
-			"6:00 P.M. a 6:59 P.M.",
-			"7:00 P.M. a 7:59 P.M.",
-			"8:00 P.M. a 8:59 P.M.",
-			"9:00 P.M. a 9:59 P.M.",
-			"10:00 P.M. a 10:59 P.M.",
-			"11:00 P.M. a 11:59 P.M.",
-		];
-
-	var index = horasDelDia.indexOf($scope.orden.recoleccion.hora);
+		fin = 22; //index de horasDelDia de la hora final
+		
+	var index = this.horasDelDia.indexOf($scope.orden.recoleccion.hora);
 
 	//si la fecha es hoy se debe comprobar las horas 
 	if($scope.orden.recoleccion.fecha.getDate() == $scope.orden.entrega.fecha.getDate()
@@ -393,10 +367,15 @@ InformacionOrdenCtrl.prototype.horasEntrega = function() {
 		console.log("fecha de recoleccion igual a fecha de entrega");
 
 		if(index !== -1) {
+			console.log("index encontrado: ", index, $scope.orden.recoleccion.hora)
 			var inicio = index + 1;
+			if(inicio >= 21) {
+				inicio = 10;
+				$scope.orden.entrega.fecha = new Date($scope.orden.entrega.fecha.getTime() + (24 * 3600 * 1000));
+			}
 		}
 	} 
-	result = horasDelDia.slice(inicio, fin);
+	result = this.horasDelDia.slice(inicio, fin);
 	console.log(result)
 	return result;
 };
@@ -409,8 +388,21 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 
 	switch(tipo) {
 		case "FECHARECOLECCION":
-			var minDate = new Date($scope.orden.recoleccion.fecha);
+			
 			//datePicker, fuente:https://www.npmjs.com/package/cordova-okaybmd-date-picker-plugin
+			if(typeof datePicker == 'undefined'){
+				document.getElementById("inputFechaRecoleccion").readOnly = false;
+				break;
+			}
+
+			var minDate = new Date();
+			var unaHoraDespues = new Date(minDate.getTime() + (60 * 60 * 1000));
+			
+			if(unaHoraDespues.getHours() >= 22) {
+				//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
+				minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
+			}
+
 			datePicker.show({
 				date: $scope.orden.recoleccion.fecha,
 				mode: 'date',
@@ -436,6 +428,12 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 
 		case "FECHAENTREGA":
 			//datePicker, fuente:https://www.npmjs.com/package/cordova-okaybmd-date-picker-plugin
+			
+			if(typeof datePicker == 'undefined'){
+				document.getElementById("inputFechaEntrega").readOnly = false;
+				break;
+			}
+
 			datePicker.show({
 				date: $scope.orden.entrega.fecha,
 				mode: 'date',
