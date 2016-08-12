@@ -226,7 +226,7 @@ app.config(function($stateProvider,
 	.state('app.ordenes-en-proceso', {
 		url: '/ordenes-en-proceso',
 		views: {
-			'mi-carrito': {
+			'panel-contenido': {
 				templateUrl: 'templates/app/historial/ordenes-en-proceso.html',
 				controller: 'OrdenesEnProcesoCtrl'
 			}

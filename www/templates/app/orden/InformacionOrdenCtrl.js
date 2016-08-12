@@ -34,10 +34,14 @@ var InformacionOrdenCtrl = function($scope,
 
 	if (!$scope.orden.recoleccion.fecha) {
 		var ahora = new Date();
-		ahora = new Date(2016, 7, 10, 22, 00, 0, 0); //para probar varas fechas
+		//ahora = new Date(2016, 7, 11, 20, 00, 0, 0); //para probar varas fechas
 		var unaHoraDespues = new Date(ahora.getTime() + (60 * 60 * 1000));
-			
-		if(unaHoraDespues.getHours() < 22) {
+		console.log(unaHoraDespues)
+		//si se adiciona una hora despues y se pasa al siguiente dia: 
+		if(ahora.getDate() == unaHoraDespues.getDate()
+			&& ahora.getMonth() == unaHoraDespues.getMonth() 
+			&& ahora.getFullYear() == unaHoraDespues.getFullYear()
+			&& unaHoraDespues.getHours() < 22) {
 			//verificar si es una hora valida: antes de las 10 de las noche
 			$scope.orden.recoleccion.fecha = ahora;
 		} else {
@@ -339,9 +343,10 @@ InformacionOrdenCtrl.prototype.horasRecoleccion = function() {
 		&& fecha.getMonth() == hoy.getMonth() 
 		&& fecha.getFullYear() == hoy.getFullYear()) {
 		inicio = fecha.getHours() + 1;
-		if(inicio < 10) {
+		if (inicio < 10) {
 			inicio = 10;
 		}
+		
 		result = this.horasDelDia.slice(inicio, fin);
 	} else {
 		result = this.horasDelDia.slice(inicio, fin);

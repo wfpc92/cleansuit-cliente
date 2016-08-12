@@ -5,17 +5,19 @@
 		<ion-content class="form">
 			<div class="formulario">
 				<img class="burbujas" ng-src="img/burbujas.svg" />
-				<form class="list" name="formRecuperarContrasena" novalidate>
+				<form name="formRecuperarContrasena" novalidate>
 					<h2>¿No recuerdas tu contraseña?<br>¡No te precoupes!</h2>
 					<p>
 						Escribe tu correo electrónico y te enviaremos<br>información para recuperar tu contraseña
 					</p>
-					<div class="list">
-						<label class="item item-input item-floating-label">
-							<span class="input-label">Correo Electrónico</span>
-							<input type="email" name="correo" ng-model="usuario.email" placeholder="CORREO ELECTRÓNICO" maxlength="320" ng-minlength="6" ng-maxlength="320" required>
-						</label>
-					</div>
+					<ion-list>
+						<ion-item>
+							<label class="item-input item-floating-label">
+								<span class="input-label">Correo Electrónico</span>
+								<input type="email" name="correo" ng-model="usuario.email" placeholder="CORREO ELECTRÓNICO" maxlength="320" ng-minlength="6" ng-maxlength="320" required>
+							</label>
+						</ion-item>
+					</ion-list>
 					<div ng-hide="true"> 
 						{{form.valido = formRecuperarContrasena.correo.$valid}}
 					</div>

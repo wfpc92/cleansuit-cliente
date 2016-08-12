@@ -4,7 +4,7 @@ var HistorialOrdenCtrl = function ($scope,
 	
 	var indexOrden = $stateParams.indexOrden;
 	$scope.orden = OrdenesFactory.getHistorialOrdenes()[indexOrden];
-	$scope.orden.totales = $scope.carrito.calcularTotales($scope.orden.items);
+	$scope.orden.totales = $scope.carrito.calcularTotales($scope.orden);
 
 	console.log("HistorialOrdenCtrl", $scope.orden)
 	$scope.esOrdenEnProceso = false;

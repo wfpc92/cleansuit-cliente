@@ -1,8 +1,9 @@
 var ServiciosCtrl = function($scope, 
 							ServiciosFactory,
-							ModalCargaFactory) {
+							ModalCargaFactory,
+							OrdenesFactory) {
 
-	$scope.servicios = ServiciosFactory.getServicios();	
+	$scope.servicios = ServiciosFactory.getServicios();
 
 	$scope.$on("$ionicView.afterEnter", function () {
 		$scope.cargarServicios();

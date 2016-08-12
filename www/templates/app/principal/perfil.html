@@ -8,15 +8,15 @@
     	</div>
     	
 		<form name="formPerfil" novalidate>
-			<div class="list">
-				<div class="item row">
+			<ion-list>
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
 							<span class="input-label">Nombres y apellidos</span>
 							<input type="text" placeholder="su nombre" name="nombre" ng-model="usuario.nombre" pattern="(?=.*[a-zA-Z]).{1,100}" required>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
 				<!--
 				<div class="item row">
@@ -35,35 +35,35 @@
 					</div>
 				</div>-->
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label">Dirección de residencia</span>
 							<input type="text" placeholder="Dirección de residencia" name="direccion" ng-model="usuario.direccion" pattern="(?![.\n])(?=.*[a-zA-Z]).{1,100}" required>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 				
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
 							<input type="tel" placeholder="Teléfono de contacto" name="telefono" ng-model="usuario.telefono" pattern="(?![.\n])(?=.*\d).{7,15}" required>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Correo electrónico</span>
 							<input type="email" placeholder="Correo electrónico" name="correo" ng-model="usuario.correo" required>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row"  ng-hide="usuario.fb">
+				<ion-item class="row" ng-hide="usuario.fb">
 					<div class="col">
 						<div class="row item-icon-right">
 							<label class="item-input item-stacked-label">
@@ -76,25 +76,25 @@
 						</div>
 					</div>
 					
-				</div>	
+				</ion-item>	
 
-				<div class="item row" ng-if="formData.mostrarCambiarContrasena">
+				<ion-item class="row" ng-if="formData.mostrarCambiarContrasena">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label">Nueva contraseña</span>
 							<input type="password" name="contrasena" placeholder="Nueva contraseña" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row" ng-if="formData.mostrarCambiarContrasena">
+				<ion-item class="row" ng-if="formData.mostrarCambiarContrasena">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label">Confirmar nueva contraseña</span>
 							<input type="password" name="repetirContrasena" placeholder="Confirmar nueva contraseña" ng-model="usuario.repetirContrasena" required>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
 				<!--
 				<label class="item item-input item-stacked-label">
@@ -118,7 +118,7 @@
 					</span> 
 				</label>
 				-->
-			</div> 
+			</ion-list> 
 			
 			<!-- watch -->
 			<div ng-hide="true">

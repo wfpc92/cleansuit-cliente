@@ -1,4 +1,5 @@
-var CarritoFactory = function(RecursosFactory, PromocionesFactory){
+var CarritoFactory = function(RecursosFactory, 
+							PromocionesFactory){
 	/**
 	 * [this.items ]
 	 * @type [{Object id:String producto o servicio
@@ -8,6 +9,8 @@ var CarritoFactory = function(RecursosFactory, PromocionesFactory){
 	
 	return {
 		items: {},
+
+		servicioDirecto: false,
 
 		domicilio: 0,
 
@@ -22,7 +25,7 @@ var CarritoFactory = function(RecursosFactory, PromocionesFactory){
 			for(var i in this.items){
 				cont += 1;
 			}
-			return (cont > 0) ? true : false;
+			return ((cont > 0) ? true : false) || this.servicioDirecto;
 		},
 
 		/**
@@ -100,32 +103,37 @@ var CarritoFactory = function(RecursosFactory, PromocionesFactory){
 						break;		
 				}
 			}
+
+			/*if(this.contServicios > 0) {
+				this.servicioDirecto = false;
+			}*/
 		},
 		
-		calcularTotales : function(items){//calcular precios de total y subtotal
-			var subtotal = 0, descuento = 0;
+		calcularTotales : function(){//calcular precios de total y subtotal
+			var subtotal = 0, descuento = 0;			
 			
-			//si no hay items recibidos, calcular con atributo privado.
-			if(!items){
-				items = this.items;
-			}
-
-			for (var idItem in items) {//precio * cantidad			 	
-				subtotal += items[idItem].precio * items[idItem].cantidad;
+			for (var idItem in this.items) {//precio * cantidad			 	
+				subtotal += this.items[idItem].precio * this.items[idItem].cantidad;
 
 				//revisar en lista de descuentos del cupon si este item aplica para descuento
-				
-
 				if(this.totales.promocion && this.totales.promocion.items[idItem]){
 					console.log("CarritoFactory.calcularTotales: ",	this.totales.promocion, this.totales.promocion.items[idItem]);
-					descuento += items[idItem].precio * items[idItem].cantidad * (this.totales.promocion.items[idItem].descuento / 100.0);
+					descuento +=this.items[idItem].precio * this.items[idItem].cantidad * (this.totales.promocion.items[idItem].descuento / 100.0);
 				}
 			}
 
-			this.totales.subtotal = subtotal;
-			this.totales.domicilio = (subtotal !== 0 ? this.domicilio : 0);
-			this.totales.descuento = descuento !== 0 ? descuento * -1 : null;
-			this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio - descuento: 0);
+			if (this.servicioDirecto) {
+				this.totales.subtotal = null;
+				this.totales.domicilio = null;
+				this.totales.descuento = null;
+				this.totales.total = null;
+			} else {
+				this.totales.subtotal = subtotal;
+				this.totales.domicilio = (subtotal !== 0 ? this.domicilio : 0);
+				this.totales.descuento = descuento !== 0 ? descuento * -1 : null;
+				this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio - descuento: 0);
+			}
+			console.log("CarritoFactory.calcularTotales", this.totales)
 			return this.totales;
 		},
 
@@ -155,6 +163,7 @@ var CarritoFactory = function(RecursosFactory, PromocionesFactory){
 				delete this.items[i];
 			}
 			this.totales.promocion = null;
+			this.servicioDirecto = false;
 			this.actualizarContadores();
 		},
 

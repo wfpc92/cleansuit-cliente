@@ -1,10 +1,10 @@
 <ion-popover-view id="{{idPopover}}" class="popover-hora">
 	<span class="flecha"></span>
 	<ion-content>
-		<div class="list">
-			<div class="item" ng-repeat="hora in horas track by $index" ng-click="setHora($index)">
+		<ion-list>
+			<ion-item ng-repeat="hora in horas track by $index" ng-click="setHora($index)">
 				{{hora}}
-			</div>
-		</div>
+			</ion-item>
+		</ion-list>
 	</ion-content>
 </ion-popover-view>

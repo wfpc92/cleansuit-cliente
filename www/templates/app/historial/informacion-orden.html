@@ -12,11 +12,11 @@
 			<div class="estado">
 				<h3>Puedes observar cómo va tu pedido:</h3>
 				
-				<div class="list">
-					<div class="item text-center" ng-repeat="estado in estados" ng-class="{activated: (estado.id == orden.estado)}">
+				<ion-list>
+					<ion-item class=" text-center" ng-repeat="estado in estados" ng-class="{activated: (estado.id == orden.estado)}">
 						{{estado.titulo}}
-					</div>
-				</div>
+					</ion-item>
+				</ion-list>
 				
 				<elemento-centrado>
 					<button class="button button-positive" ng-click="regresarPrincipal()">Regresar a principal</button>
@@ -28,19 +28,19 @@
 
 		<div class="historial-inf-ord">
 			<div class="titulos">
-				<h2>ORDEN {{orden.estado | uppercase}}</h2>
+				<h2>{{miEstado.titulo2 | uppercase}}</h2>
 				<h3>INFORMACIÓN DE ORDEN</h3>
 			</div>
 
-			<div class="list">
-				<div class="item row">
+			<ion-list>
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Nombres y Apellidos</span>
 							<input type="text" placeholder="nombres y apellidos" value=" {{orden.cliente_id.nombre}} " disabled>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
 				<!--<div class="item row" ng-if="false">
 					<div class="col">
@@ -57,87 +57,97 @@
 					</div>
 				</div>-->
 
-				<div class="item row" ng-hide="soloProductos">
+				<ion-item class="row" ng-hide="soloProductos">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Dirección de Recolección</span>
 							<input type="text" placeholder="su dirección" value=" {{orden.orden.recoleccion.direccion}} " disabled>
 						</label>
 					</div>
-				</div> 
+				</ion-item>
 
 
-				<div class="item row" ng-hide="soloProductos">
+				<ion-item class="row" ng-hide="soloProductos">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Fecha de Recolección</span>
 							<input type="text" placeholder="hora de recolección" value=" {{orden.orden.recoleccion.fecha | date}} " disabled>
 						</label>
 					</div>
-				</div> 
+				</ion-item>
 
-				<div class="item row" ng-hide="soloProductos">
+				<ion-item class="row" ng-hide="soloProductos">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Hora de Recolección</span>
 							<input type="text" placeholder="hora de recolección" value=" {{orden.orden.recoleccion.hora}} " disabled>
 						</label>
 					</div>
-				</div> 
+				</ion-item>
 
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Dirección de Entrega</span>
 							<input type="text" placeholder="dirección de entrega" value=" {{orden.orden.entrega.direccion}} " disabled>
 						</label>
 					</div>
-				</div> 
+				</ion-item>
 
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Fecha de Entrega</span>
 							<input type="text" placeholder="hora de entrega" value=" {{orden.orden.entrega.fecha | date}} " disabled>
 						</label>
 					</div>
-				</div> 
+				</ion-item>
 
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Hora de Entrega</span>
 							<input type="text" placeholder="hora de entrega" value=" {{orden.orden.entrega.hora}} " disabled>
 						</label>
 					</div>
-				</div> 
+				</ion-item>
 
 
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
 							<input type="tel" placeholder="su teléfono" value=" {{orden.orden.telefono}} " disabled>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label item-icon-right">Forma de Pago</span>
 							<input type="text" placeholder="forma de pago" value=" {{orden.orden.formaPago}} " disabled >
 						</label>
 					</div>
-				</div>
-			</div>
+				</ion-item>
 
-			<div class="list-orden">  
-				<div class="item" ng-repeat="item in orden.items" ng-class="{'item-thumbnail-left': item.tipo=='PRODUCTO'}">
+				<ion-item class="row" ng-if="orden.orden.cupon">
+					<div class="col">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Cupón de Descuento</span>
+							<input type="text" placeholder="Cupón de descuento" ng-model="orden.orden.cupon" disabled>
+						</label>
+					</div>
+				</ion-item>
+
+			</ion-list>
+
+			<ion-list class="list-orden">  
+				<ion-item ng-repeat="item in orden.items" ng-class="{'item-thumbnail-left': item.tipo=='PRODUCTO'}">
 
 					<div class="img">
 						<img ng-src="{{item.url_imagen}}" ng-if="item.tipo=='PRODUCTO'"/>
@@ -148,9 +158,9 @@
 					<div class="cantidad">
 						{{item.cantidad || 0}}
 					</div>
-				</div>
-				<resumen-totales totales="orden.totales"></resumen-totales>   
-			</div>
+				</ion-item>
+				<resumen-totales totales="orden.orden.totales"></resumen-totales>   
+			</ion-list>
 		</div>		
 
 	</ion-content>
