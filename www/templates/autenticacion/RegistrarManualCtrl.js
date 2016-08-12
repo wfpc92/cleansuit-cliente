@@ -6,7 +6,7 @@ var RegistrarManualCtrl = function($scope,
 
 	console.log("RegistrarManualCtrl");
 	$scope.error = "";
-	$scope.formValido= false;
+	$scope.formValido = [];
 	$scope.usuario = {
 		nombre: "",
 		correo: "",
@@ -14,6 +14,22 @@ var RegistrarManualCtrl = function($scope,
 	};
 
 	$scope.registrar = function() {
+		if (!$scope.formValido[0]) {
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: "Escriba su nombre."});
+			return;
+		}
+		
+		if (!$scope.formValido[1]) {
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: "Escriba un córreo válido."});
+			return;
+		}
+
+		if (!$scope.formValido[2]) {
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: "La contraseña debe tener mínimo 6 caracteres."});
+			return;
+		}
+
+
 		AuthService
 		.registrar($scope.usuario)
 		.then(function(msg) {
@@ -29,15 +45,9 @@ var RegistrarManualCtrl = function($scope,
 		'usuario.correo',
 		'usuario.contrasena',
 		], function(newV, oldV, scope){
-			console.log(newV)
-			if(newV[0] && newV[1] && newV[2]){
-				$scope.formValido = true;
-			}
-			else {
-				$scope.formValido = false;	
-			}
+			console.log("RegistrarManualCtrl.watch", newV);
+			$scope.formValido = newV;
 	});
-
 };
 
 app.controller('RegistrarManualCtrl', RegistrarManualCtrl);

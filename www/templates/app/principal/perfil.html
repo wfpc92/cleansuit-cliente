@@ -82,7 +82,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label">Nueva contraseña</span>
-							<input type="password" name="contrasena" placeholder="Nueva contraseña" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
+							<input type="password" name="contrasena" placeholder="Nueva contraseña" ng-model="usuario.contrasena" pattern="(?=^.{6,15}$)(?![.\n])((?=.*\d)|(?=.*[a-zA-Z])|(?=.*\W+)).*$" required>
 						</label>
 					</div>
 				</ion-item>

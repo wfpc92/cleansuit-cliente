@@ -17,7 +17,7 @@
 						<ion-item>
 							<label class="item-input item-floating-label" name="contrasena">
 								<span class="input-label">Contraseña</span>
-								<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
+								<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena" pattern="(?=^.{6,15}$)(?![.\n])((?=.*\d)|(?=.*[a-zA-Z])|(?=.*\W+)).*$" required>
 							</label>
 						</ion-item>
 					</ion-list>

@@ -7,13 +7,22 @@ var IngresarManualCtrl = function($scope,
 	console.log("IngresarManualCtrl");
 	
 	$scope.error = "";
-	$scope.formValido= false;
+	$scope.formValido = [];
 	$scope.usuario = {
 		correo: "",
 		contrasena: ""
 	};
 
 	$scope.ingresar = function() {
+		if (!$scope.formValido[0]) {
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: "Escriba un córreo válido."});
+			return;
+		}
+		if (!$scope.formValido[1]) {
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: "La contraseña debe tener mínimo 6 caracteres."});
+			return;
+		}
+
 		AuthService
 		.ingresar($scope.usuario)
 		.then(function(msg) {
@@ -29,12 +38,8 @@ var IngresarManualCtrl = function($scope,
 		'usuario.correo',
 		'usuario.contrasena',
 		], function(newV, oldV, scope){
-			if(newV[0] && newV[1] ){
-				$scope.formValido = true;
-			}
-			else {
-				$scope.formValido = false;	
-			}
+			console.log("IngresarManualCtrl.watch", newV)
+			$scope.formValido = newV;
 	});
 };
 
