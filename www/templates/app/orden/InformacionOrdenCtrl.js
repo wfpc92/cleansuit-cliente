@@ -356,14 +356,15 @@ InformacionOrdenCtrl.prototype.horasEntrega = function() {
 		ahora = new Date(),
 		result = [],
 		inicio = 10, //index de horasDelDia de la hora de inicio
-		fin = 22; //index de horasDelDia de la hora final
-		
-	var index = this.horasDelDia.indexOf($scope.orden.recoleccion.hora);
+		fin = 22, //index de horasDelDia de la hora final
+		fr = $scope.orden.recoleccion.fecha,
+		fe = $scope.orden.entrega.fecha,
+		index = this.horasDelDia.indexOf($scope.orden.recoleccion.hora);
 
 	//si la fecha es hoy se debe comprobar las horas 
-	if($scope.orden.recoleccion.fecha.getDate() == $scope.orden.entrega.fecha.getDate()
-		&& $scope.orden.recoleccion.fecha.getMonth() == $scope.orden.entrega.fecha.getMonth() 
-		&& $scope.orden.recoleccion.fecha.getFullYear() == $scope.orden.entrega.fecha.getFullYear()) {
+	if(fr.getDate() == fe.getDate()
+		&& fr.getMonth() == fe.getMonth() 
+		&& fr.getFullYear() == fe.getFullYear()) {
 		console.log("fecha de recoleccion igual a fecha de entrega");
 
 		if(index !== -1) {
@@ -376,7 +377,6 @@ InformacionOrdenCtrl.prototype.horasEntrega = function() {
 		}
 	} 
 	result = this.horasDelDia.slice(inicio, fin);
-	console.log(result)
 	return result;
 };
 

@@ -1,12 +1,10 @@
 var OrdenesFactory = function(CarritoFactory,
 							RecursosFactory){
-	var _orden = {}, 
+	var _orden = null, 
 		_ultimaOrden = {},
 		_ordenesEnProceso = [],
 		_historialOrdenes = [];
 	
-	nuevaOrden();
-
 	function nuevaOrden() {
 		_orden = {
 			recoleccion: {
@@ -27,13 +25,15 @@ var OrdenesFactory = function(CarritoFactory,
 			cupon: '',
 			terminosCondiciones : false
 		};
-
 		CarritoFactory.vaciar();
 	};
 
 	return {
 		
 		getOrden: function() {
+			if(!_orden) {
+				nuevaOrden();
+			}
 			return _orden;
 		},
 
@@ -99,7 +99,7 @@ var OrdenesFactory = function(CarritoFactory,
 		},
 
 		limpiarOrden: function() {
-			nuevaOrden();
+			orden = null;
 		}
 	};
 
