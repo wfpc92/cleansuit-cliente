@@ -8,8 +8,8 @@
 		</div> 
 
 		<form name="formInformacionOrden"> 
-			<div class="list">
-				<div class="item row">
+			<ion-list>
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
 							<span class="input-label">Nombres y Apellidos</span>
@@ -23,7 +23,7 @@
 							<input type="text" placeholder="sus apellidos" value=" {{usuario.apellidos}} " disabled>
 						</label>
 					</div>-->
-				</div>
+				</ion-item>
 
 				<!--<div class="item row">
 					<div class="col">
@@ -40,7 +40,7 @@
 					</div>
 				</div>-->
 
-				<div class="item row" ng-hide="soloProductos">
+				<ion-item class="row" ng-hide="soloProductos">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Dirección de recolección</span>
@@ -48,18 +48,18 @@
 						</label>
 						<i class="icon ion-location" ng-click="openModal('DIRECCIONRECOLECCION')"></i>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row" ng-hide="soloProductos">
+				<ion-item class="row" ng-hide="soloProductos">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Fecha de recolección</span>
 							<input id="inputFechaRecoleccion" type="date" placeholder="Fecha de recolección" ng-model="orden.recoleccion.fecha" ng-click="openPopover('FECHARECOLECCION', $event)" readonly required>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row" ng-hide="soloProductos">
+				<ion-item class="row" ng-hide="soloProductos">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Hora de recolección</span>
@@ -67,9 +67,9 @@
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Dirección de entrega</span>
@@ -77,18 +77,18 @@
 						</label>
 						<i class="icon ion-location" ng-click="openModal('DIRECCIONENTREGA')"></i>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Fecha de entrega</span>
 							<input id="inputFechaEntrega" type="date" placeholder="Fecha de entrega" ng-model="orden.entrega.fecha" ng-click="openPopover('FECHAENTREGA', $event)" readonly required>
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Hora de entrega</span>
@@ -96,18 +96,18 @@
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORAENTREGA', $event)"></i>
 					</div>
-				</div>				
+				</ion-item>			
 				
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
 							<input type="tel" placeholder="Teléfono de contacto" ng-model="orden.telefono" name="telefono"maxlength="10" ng-minlength="7" ng-maxlength="10">
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Forma de pago</span>
@@ -115,18 +115,18 @@
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('FORMAPAGO',$event)"></i>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Voy a hacer un abono</span>
 							<input type="tel" placeholder="Abono" ng-model="orden.abono" name="abono" maxlength="12" ng-minlength="0">
 						</label>
 					</div>
-				</div>
+				</ion-item>
 
-				<div class="item row">
+				<ion-item class="row">
 					<div class="col col-75">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Cupón de Descuento</span>
@@ -136,13 +136,17 @@
 					<div class="col">
 						<button class="button button-stable" ng-click="validarCupon()" ng-disabled="carrito.totales.promocion">Validar</button>
 					</div>
-				</div>
-			</div>
+				</ion-item>
+			</ion-list>
 
 			<resumen-totales totales="carrito.totales" ng-show="true || carrito.hayItems()"></resumen-totales>
 
-			<div class="list">
-				<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones">Acepto los Términos y Condiciones.</ion-checkbox> 
+			<ion-list>
+				<ion-item>
+					<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones">
+						Acepto los Términos y Condiciones.
+					</ion-checkbox> 
+				</ion-item>
 			</div>
 		</form>
 

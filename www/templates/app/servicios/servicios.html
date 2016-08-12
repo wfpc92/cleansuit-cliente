@@ -3,8 +3,16 @@
 
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
-		
-  		<div clas="card" ng-show="servicios.length == 0">
+		<div class="card">
+			Solicitar servicio directo
+			<ion-checkbox ng-model="carrito.servicioDirecto" ng-click="carrito.calcularTotales()" ng-checked="carrito.servicioDirecto"></ion-checkbox>
+		</div>
+
+		<div class="card">
+			Cotiza el valor de los servicios...
+		</div>
+
+  		<div class="card" ng-show="servicios.length == 0">
 			<div class="item item-text-wrap">
 				No hay Servicios para mostrar. <a ng-click="cargarServicios()">Cargar</a>
 			</div>

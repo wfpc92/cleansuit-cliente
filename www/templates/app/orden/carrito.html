@@ -3,9 +3,15 @@
 
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
+		<ion-list class="carro">
+			<ion-item class="item-icon-right item-text-wrap" ng-if="carrito.servicioDirecto">
+				<h2>Servicio directo</h2>
+				<p>El total del servicio sera estimado por el domiciliario.</p>
+				<i  class="icon ion-ios-close-outline" ng-click="carrito.servicioDirecto=false;carrito.calcularTotales()" ></i>
+					
+			</ion-item>
 
-		<div class="list carro">
-			<div class="item" ng-repeat="item in carrito.items"
+			<ion-item ng-repeat="item in carrito.items"
 				ng-class="{'item-thumbnail-left' : item.tipo=='PRODUCTO'}">
 				<div class="img">
 					<img ng-src="{{item.url_imagen}}" ng-if="item.tipo=='PRODUCTO'"/>
@@ -19,8 +25,8 @@
 					<span>{{item.cantidad || 0}}</span>
 					<i ng-click="item.tipo=='PRODUCTO' ? disminuir(item, 'PRODUCTO') : disminuir(item, 'SUBSERVICIO')" class="icon ico-menos"></i>
 				</div>
-			</div>
-		</div>
+			</ion-item>
+		</ion-list>
 
 		<resumen-totales totales="carrito.totales" ng-show="carrito.hayItems()"></resumen-totales>
 
@@ -37,7 +43,7 @@
 	</ion-content>
 
 	<div class="bar bar-footer">
-		<a ui-sref="app.informacion-orden" class="button button-calm button-full" ng-disabled="carrito.contProductos + carrito.contServicios == 0"> 
+		<a ui-sref="app.informacion-orden" class="button button-calm button-full" ng-disabled="carrito.contProductos + carrito.contServicios == 0 && !carrito.servicioDirecto"> 
 			SIGUIENTE
 		</a>
 	</div>

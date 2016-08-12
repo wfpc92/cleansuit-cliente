@@ -8,7 +8,6 @@ var OrdenEnProcesoCtrl = function ($scope,
 	var indexOrden = $stateParams.indexOrden;
 
 	$scope.orden = OrdenesFactory.getOrdenesEnProceso()[indexOrden];
-	$scope.orden.totales = $scope.carrito.calcularTotales($scope.orden.items);
 	//indica que la vista que se muestra es la de ordenes en proceso.
 	$scope.esOrdenEnProceso = true;
 
@@ -17,7 +16,8 @@ var OrdenEnProcesoCtrl = function ($scope,
 	console.log("index orden en proceso: "+indexOrden);
 	console.log($scope.orden)
 
-	$scope.estados = EstadosFactory.estados;
+	$scope.estados = EstadosFactory.estados($scope.orden);
+	$scope.miEstado = EstadosFactory.getEstado($scope.orden);
 
 	$scope.regresarPrincipal = function() {
 		$ionicHistory.clearHistory();

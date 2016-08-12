@@ -1,7 +1,8 @@
 var CarritoCtrl = function($scope, 
 						$ionicHistory, 
 						$state, 
-						$ionicPopup) {
+						$ionicPopup,
+						OrdenesFactory) {
 	
 	//se ejecuta al dejar la vista, limpiar carrito.
 	$scope.$on('$ionicView.leave', function(event, view){
@@ -32,8 +33,7 @@ var CarritoCtrl = function($scope,
 	    })
 		.then(function(res) {
 			if(res) {
-				$scope.carrito.vaciar();
-				$scope.carrito.actualizarContadores();
+				OrdenesFactory.limpiarOrden();
 				$state.go("app.inicio");
 				$ionicHistory.clearHistory();
 				$ionicHistory.nextViewOptions({

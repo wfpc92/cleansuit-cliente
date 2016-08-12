@@ -6,26 +6,34 @@
 			<div class="formulario">
 				<!--<p>Ingrese los siguientes datos<br>para registrarse</p>-->
 				<img class="burbujas" ng-src="img/burbujas.svg" />
-				<form class="list">
-					<div class="list">
-						<label class="item item-input item-floating-label" name="Nombre Completo">
-							<span class="input-label">Nombre y Apellidos</span>
-							<input type="text" placeholder="NOMBRE Y APELLIDOS" ng-model="usuario.nombre" pattern="(?=.*[a-zA-Z]).{1,100}" required>
-						</label>
-						<label class="item item-input item-floating-label" name="email">
-							<span class="input-label">Correo Electrónico</span>
-							<input type="email" placeholder="CORREO ELECTRÓNICO" ng-model="usuario.correo" required>
-						</label>
-						<label class="item item-input item-floating-label" name="contrasena">
-							<span class="input-label">Contraseña (minimo 6 caracteres)</span>
-							<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-zA-Z]).*$" required>
-						</label>
-					</div>
+				<form>
+					<ion-list>
+						<ion-item>
+							<label class="item-input item-floating-label" name="Nombre Completo">
+								<span class="input-label">Nombre y Apellidos</span>
+								<input type="text" placeholder="NOMBRE Y APELLIDOS" ng-model="usuario.nombre" pattern="(?=.*[a-zA-Z]).{1,100}" required>
+							</label>
+						</ion-item>
+						
+						<ion-item>
+							<label class="item-input item-floating-label" name="email">
+								<span class="input-label">Correo Electrónico</span>
+								<input type="email" placeholder="CORREO ELECTRÓNICO" ng-model="usuario.correo" required>
+							</label>
+						</ion-item>
+						
+						<ion-item>
+							<label class="item-input item-floating-label" name="contrasena">
+								<span class="input-label">Contraseña (minimo 6 caracteres)</span>
+								<input type="password" placeholder="CONTRASEÑA" ng-model="usuario.contrasena" pattern="(?=^.{6,15}$)(?![.\n])((?=.*\d)|(?=.*[a-zA-Z])|(?=.*\W+)).*$" required>
+							</label>
+						</ion-item>
+					</ion-list>
 				</form>
 			</div>
 		</ion-content>
 		
-		<a class="button button-balanced button-full sombra" ng-click="registrar()" ng-disabled="!formValido">
+		<a class="button button-balanced button-full sombra" ng-click="registrar()">
 			REGISTRARME
 		</a>
 	</div>

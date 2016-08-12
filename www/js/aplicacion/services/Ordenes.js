@@ -42,11 +42,13 @@ var OrdenesFactory = function(CarritoFactory,
 		},
 
 		enviarOrden : function() { 
-			console.log("OrdenFactory.enviarOrden(): ");			
+			console.log("OrdenFactory.enviarOrden(): ");	
 			var orden = {
 				orden: _orden,
 				items: CarritoFactory.items
-			};		
+			};
+			orden.orden.servicioDirecto = CarritoFactory.servicioDirecto;	
+			orden.orden.totales = CarritoFactory.totales;		
 			
 			return RecursosFactory
 			.post("/ordenes", orden)
