@@ -1,6 +1,7 @@
 app.config(function($stateProvider,
 					$urlRouterProvider,
 					$logProvider,
+					$provide,
 					$compileProvider,
 					$ionicConfigProvider,
 					$httpProvider,
@@ -11,7 +12,58 @@ app.config(function($stateProvider,
 	//forzar a ionic que tenga las tabs arriba para todas las plataformas
 	$ionicConfigProvider.tabs.position('top');
   
-	//$logProvider.debugEnabled(false);
+	$logProvider.debugEnabled(true);
+
+	var toJSON = function(arguments) {
+		var args = null;
+		args = [].slice.call(arguments);
+    	args[0] = ["CleanSuit", ': ', typeof args[0] == 'object' ? JSON.stringify(args[0]) : args[0]].join('');
+    		
+    	if(typeof args == 'object') {
+    		for(var i = 1; i < args.length; i++) {
+    			if(typeof args[i] == 'object') {
+    				args[i] = JSON.stringify(args[i]);		
+    			}
+    		}
+    	}
+		return args;
+	}
+
+    $provide.decorator('$log', function ($delegate) {
+        //Original methods
+        var origLog = $delegate.log,
+        	origInfo = $delegate.info,
+        	origWarn = $delegate.warn,
+        	origError = $delegate.error,
+        	origDebug = $delegate.debug;
+        
+        if ($logProvider.debugEnabled()) {
+        	
+        	$delegate.log = function () {
+                origLog.apply(null, toJSON(arguments));
+	        };
+	    
+	        $delegate.info = function () {
+	            origInfo.apply(null, toJSON(arguments))
+	        };
+
+	        $delegate.warn = function () {
+	            origWarn.apply(null, toJSON(arguments))
+	        };
+
+	        $delegate.error = function () {
+	            origError.apply(null, toJSON(arguments))
+	        };
+
+	        $delegate.debug = function () {
+	            origDebug.apply(null, toJSON(arguments))
+	        };
+        }     
+
+        return $delegate;
+    });
+
+
 	$compileProvider.debugInfoEnabled(false);
 	$ionicConfigProvider.scrolling.jsScrolling(false);
 	
