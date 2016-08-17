@@ -1,7 +1,7 @@
 var OrdenesFactory = function(CarritoFactory,
 							RecursosFactory){
 	var _orden = null, 
-		_ultimaOrden = {},
+		_ultimaOrden = null,
 		_ordenesEnProceso = [],
 		_historialOrdenes = [];
 	
@@ -25,7 +25,6 @@ var OrdenesFactory = function(CarritoFactory,
 			cupon: '',
 			terminosCondiciones : false
 		};
-		CarritoFactory.vaciar();
 	};
 
 	return {
@@ -102,6 +101,7 @@ var OrdenesFactory = function(CarritoFactory,
 
 		limpiarOrden: function() {
 			orden = null;
+			CarritoFactory.vaciar();
 		}
 	};
 

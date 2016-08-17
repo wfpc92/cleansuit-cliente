@@ -2,7 +2,10 @@ var CarritoCtrl = function($scope,
 						$ionicHistory, 
 						$state, 
 						$ionicPopup,
-						OrdenesFactory) {
+						OrdenesFactory,
+						$log) {
+	
+	console.log("CarritoCtrl");
 	
 	//se ejecuta al dejar la vista, limpiar carrito.
 	$scope.$on('$ionicView.leave', function(event, view){

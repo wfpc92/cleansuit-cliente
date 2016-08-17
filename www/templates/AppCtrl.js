@@ -10,7 +10,7 @@ var AppCtrl = function($scope,
 					APP_EVENTS,
 					USER_ROLES) {
 
-	console.log("AppCtrl")
+	console.log("AppCtrl");
 
 	$scope.banderas = {
 		swp:false,

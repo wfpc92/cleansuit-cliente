@@ -9,10 +9,11 @@ var InformacionOrdenCtrl = function($scope,
 									$rootScope, 
 									MapasFactory, 
 									ModalCargaFactory,
-									PromocionesFactory) {
+									PromocionesFactory,
+									$log) {
 	
 	console.log("InformacionOrdenCtrl");
-	var self = this;
+	var self = this; 
 
 	this.$scope = $scope;
 	this.$ionicModal = $ionicModal;
@@ -26,6 +27,7 @@ var InformacionOrdenCtrl = function($scope,
 	this.OrdenesFactory = OrdenesFactory;
 
 	$scope.orden = OrdenesFactory.getOrden();
+	$log.debug($scope.carrito);
 
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
 	$scope.orden.recoleccion.direccion = $scope.usuario.direccion;
@@ -36,7 +38,6 @@ var InformacionOrdenCtrl = function($scope,
 		var ahora = new Date();
 		//ahora = new Date(2016, 7, 11, 20, 00, 0, 0); //para probar varas fechas
 		var unaHoraDespues = new Date(ahora.getTime() + (60 * 60 * 1000));
-		console.log(unaHoraDespues)
 		//si se adiciona una hora despues y se pasa al siguiente dia: 
 		if(ahora.getDate() == unaHoraDespues.getDate()
 			&& ahora.getMonth() == unaHoraDespues.getMonth() 

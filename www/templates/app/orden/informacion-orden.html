@@ -130,7 +130,7 @@
 					<div class="col col-75">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Cupón de Descuento</span>
-							<input type="text" placeholder="Cupón de descuento" ng-model="orden.cupon" ng-disabled="carrito.totales.promocion" >
+							<input type="text" placeholder="Cupón de descuento" ng-model="orden.cupon" ng-change="orden.cupon=orden.cupon.toUpperCase();" ng-disabled="carrito.totales.promocion" >
 						</label>
 					</div>
 					<div class="col">

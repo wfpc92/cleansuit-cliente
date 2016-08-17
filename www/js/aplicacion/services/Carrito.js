@@ -1,5 +1,6 @@
 var CarritoFactory = function(RecursosFactory, 
-							PromocionesFactory){
+							PromocionesFactory, 
+							$log){
 	/**
 	 * [this.items ]
 	 * @type [{Object id:String producto o servicio
@@ -77,13 +78,13 @@ var CarritoFactory = function(RecursosFactory,
 		 * @return {[type]} [description]
 		 */
 		limpiar : function(){//limpiar los items que no tienen cantidades.
-			//console.log("CarritoFactory.limpiar(): antes", this.items)
+			$log.debug("CarritoFactory.limpiar(): antes", this.items);
 			for(var i in this.items){
 				if(this.items[i].cantidad == 0 ){
 					delete this.items[i];
 				}
 			}
-			//console.log("CarritoFactory.limpiar(): despues", this.items)
+			$log.debug("CarritoFactory.limpiar(): despues", this.items);
 			this.actualizarContadores();
 		},
 
