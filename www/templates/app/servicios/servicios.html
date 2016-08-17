@@ -3,13 +3,14 @@
 
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
-		<div class="card">
-			Solicitar servicio directo
+		<div class="card solicitud-vacia">
+			<h3>Solicitar directa</h3>
+			Solicita de forma rápida alguno de nuestros servicios. El valor del servicio lo estima el domiciliario.
 			<ion-checkbox ng-model="carrito.servicioDirecto" ng-click="carrito.calcularTotales()" ng-checked="carrito.servicioDirecto"></ion-checkbox>
 		</div>
 
-		<div class="card">
-			Cotiza el valor de los servicios...
+		<div class="card cotizar">
+			Puedes cotizar el valor de tu servicio en las siguientes secciones
 		</div>
 
   		<div class="card" ng-show="servicios.length == 0">

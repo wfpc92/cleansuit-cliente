@@ -10183,67 +10183,66 @@ p {
 .pdBoton {
   margin-bottom: 56px; }
 
-.contcarro .carro {
-  background-color: #fff;
-  padding: 10px;
-  margin-bottom: 0;
-  position: relative; }
-  .contcarro .carro .item-thumbnail-left {
-    padding-left: 95px; }
-  .contcarro .carro .item {
-    position: relative;
-    border: none;
-    margin-bottom: 3px;
-    padding-bottom: 8px;
-    padding-right: 120px;
-    padding-top: 16px;
-    font-family: 'fira_sansmedium';
-    min-height: 100px;
-    background-color: #FAFAFA; }
-    .contcarro .carro .item .img {
-      width: 65px;
-      height: 65px;
-      position: absolute;
-      top: 50%;
-      left: 10px;
-      margin-top: -34px;
-      /*border: 1px solid #E9E9E9;*/ }
-      .contcarro .carro .item .img img {
-        display: block;
-        height: 100%;
-        width: auto;
-        margin: 0 auto; }
-    .contcarro .carro .item h2 {
-      color: #333;
-      white-space: normal;
-      font-family: 'fira_sansmedium'; }
-    .contcarro .carro .item h3 {
+.contcarro .list {
+  padding: 0 10px; }
+
+.contcarro .carro .item-thumbnail-left {
+  padding-left: 95px; }
+
+.contcarro .carro .item {
+  position: relative;
+  border: none;
+  margin-bottom: 5px;
+  padding-bottom: 8px;
+  padding-right: 120px;
+  padding-top: 16px;
+  font-family: 'fira_sansmedium';
+  min-height: 100px;
+  background-color: #FAFAFA; }
+  .contcarro .carro .item .img {
+    width: 65px;
+    height: 65px;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    margin-top: -34px;
+    /*border: 1px solid #E9E9E9;*/ }
+    .contcarro .carro .item .img img {
+      display: block;
+      height: 100%;
+      width: auto;
+      margin: 0 auto; }
+  .contcarro .carro .item h2 {
+    color: #333;
+    white-space: normal;
+    font-family: 'fira_sansmedium'; }
+  .contcarro .carro .item h3 {
+    display: inline-block;
+    color: #76A900;
+    font-size: 1.1em;
+    width: auto; }
+  .contcarro .carro .item .contador {
+    color: #2E7300;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    height: 35px;
+    font-size: 1.5em;
+    margin-top: -17.5px; }
+    .contcarro .carro .item .contador .icon {
       display: inline-block;
-      color: #76A900;
-      font-size: 1.1em;
-      width: auto; }
-    .contcarro .carro .item .contador {
-      color: #2E7300;
+      font-size: 35px; }
+    .contcarro .carro .item .contador .ico-mas {
+      margin-right: 30px; }
+    .contcarro .carro .item .contador span {
       position: absolute;
-      top: 50%;
-      right: 10px;
-      height: 35px;
-      font-size: 1.5em;
-      margin-top: -17.5px; }
-      .contcarro .carro .item .contador .icon {
-        display: inline-block;
-        font-size: 35px; }
-      .contcarro .carro .item .contador .ico-mas {
-        margin-right: 30px; }
-      .contcarro .carro .item .contador span {
-        position: absolute;
-        top: 7px;
-        left: 41px;
-        width: 26px;
-        text-align: center; }
+      top: 7px;
+      left: 41px;
+      width: 26px;
+      text-align: center; }
 
 .card.totales {
-  margin: 0 0 0 0;
+  margin: 0 10px;
   padding: 5px 15px;
   width: auto;
   box-shadow: none;
@@ -10683,9 +10682,77 @@ p {
       .popover .scroll-content .list .item:last-child {
         border-bottom: none; }
 
+input[readonly]:not(.cloned-text-input) {
+  background-color: transparent; }
+
 /*.forma-pago.popover {
 	height: 100px;
-}
-.popover-hora {
-	height: 180px;
 }*/
+.popover-hora {
+  top: 76px !important;
+  left: 54px !important; }
+
+.cotizar {
+  background-color: #76A900;
+  color: #FFFFFF;
+  text-align: center;
+  box-shadow: none;
+  border-radius: 0;
+  font-size: 1.2em;
+  border: 1px solid #B7D07C;
+  padding: 14px 10px 17px;
+  margin-bottom: 0;
+  font-family: 'fira_sansmedium'; }
+
+.solicitud-vacia {
+  position: relative;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 17px 55px 14px 24px;
+  color: #666666;
+  font-size: 14px; }
+  .solicitud-vacia h3 {
+    font-size: 1.3em;
+    color: #333333;
+    margin-bottom: 1px;
+    font-family: 'fira_sansmedium'; }
+  .solicitud-vacia label {
+    position: absolute;
+    display: block;
+    top: 50%;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin-top: -12px;
+    background-color: transparent !important; }
+    .solicitud-vacia label .checkbox {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      top: auto;
+      right: auto;
+      left: auto;
+      margin-top: 0px;
+      padding: 0; }
+      .solicitud-vacia label .checkbox .checkbox-icon {
+        width: 30px;
+        height: 30px; }
+      .solicitud-vacia label .checkbox .checkbox-icon:before {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border: 2px solid #3DA0EB;
+        background-color: #EFF8FF;
+        border-radius: 7px; }
+      .solicitud-vacia label .checkbox .checkbox-icon:after {
+        top: 3px;
+        left: 3px;
+        width: 24px;
+        height: 24px;
+        background: url("../img/checkbox.png");
+        transform: rotate(0deg);
+        border-width: 0px; }
+
+.card .item:last-child {
+  border-top: 0; }

@@ -515,19 +515,19 @@ p {
 	margin-bottom: 66px;
 }
 .pdBoton { margin-bottom: 56px; }
-.contcarro {	
+.contcarro {
+	.list {
+		padding: 0 10px;
+	}
 	.carro {
-		background-color: $light;
-		padding: 10px;
-		margin-bottom: 0;
-		position: relative;	
+		
 		.item-thumbnail-left {
 			padding-left: 95px;
 		}
 		.item {
 			position: relative;
 			border: none;
-			margin-bottom: 3px;
+			margin-bottom: 5px;
 			padding-bottom: 8px;
 			padding-right:  120px;
 			padding-top: 16px;
@@ -586,7 +586,7 @@ p {
 	}	
 }
 .card.totales {
-	margin: 0 0 0 0;
+	margin: 0 10px;
 	padding: 5px 15px;
 	width: auto;
 	box-shadow: none;
@@ -1104,9 +1104,84 @@ $menu: #52B1ED;
 		}
 	}	
 }
+input[readonly]:not(.cloned-text-input) {
+	background-color: transparent;
+}
 /*.forma-pago.popover {
 	height: 100px;
-}
-.popover-hora {
-	height: 180px;
 }*/
+.popover-hora {
+	top: 76px !important; 
+    left: 54px !important;
+}
+.cotizar {
+	background-color: #76A900;
+	color: #FFFFFF;
+	text-align: center;
+	box-shadow: none;
+	border-radius: 0;
+	font-size: 1.2em;
+	border: 1px solid #B7D07C;
+	padding: 14px 10px 17px;
+	margin-bottom: 0;
+	font-family: 'fira_sansmedium';
+}
+.solicitud-vacia {
+	position: relative;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 17px 55px 14px 24px;
+	color: #666666;
+	font-size: 14px;
+	h3 {
+		font-size: 1.3em;
+		color: #333333;
+		margin-bottom: 1px;
+		font-family: 'fira_sansmedium';
+	}
+	label {
+		position: absolute;
+		display: block;
+		top: 50%;
+		right: 12px;
+		width: 30px;
+		height: 30px;
+		padding: 0;
+		margin-top: -12px;
+		background-color: transparent !important;
+		.checkbox {
+			position: relative;
+			width: 30px;
+			height: 30px;
+			top: auto;
+			right: auto;
+			left: auto;
+			margin-top: 0px;
+			padding: 0;
+			.checkbox-icon {
+				width: 30px;
+				height: 30px;
+			}
+			.checkbox-icon:before {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				border: 2px solid #3DA0EB;
+				background-color: #EFF8FF;
+				border-radius: 7px;
+			}
+			.checkbox-icon:after {
+				top: 3px;
+				left: 3px;
+				width: 24px;
+				height: 24px;
+				background: url('../img/checkbox.png');
+				transform: rotate(0deg);
+				border-width: 0px;
+			}
+		}
+	}
+}
+.card .item:last-child {
+	border-top: 0;
+}
