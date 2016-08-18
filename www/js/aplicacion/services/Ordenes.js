@@ -1,4 +1,5 @@
-var OrdenesFactory = function(CarritoFactory,
+var OrdenesFactory = function(UsuarioFactory,
+							CarritoFactory,
 							RecursosFactory){
 	var _orden = null, 
 		_ultimaOrden = null,
@@ -25,6 +26,10 @@ var OrdenesFactory = function(CarritoFactory,
 			cupon: '',
 			terminosCondiciones : false
 		};
+		
+		_orden.recoleccion.direccion = UsuarioFactory.getUsuario().direccion;
+		_orden.entrega.direccion = UsuarioFactory.getUsuario().direccion;
+		_orden.telefono = UsuarioFactory.getUsuario().telefono;
 	};
 
 	return {
@@ -42,7 +47,7 @@ var OrdenesFactory = function(CarritoFactory,
 
 		enviarOrden : function() { 
 			console.log("OrdenFactory.enviarOrden(): ");	
-			var orden = {
+			var self = this, orden = {
 				orden: _orden,
 				items: CarritoFactory.items
 			};
@@ -53,7 +58,7 @@ var OrdenesFactory = function(CarritoFactory,
 			.post("/ordenes", orden)
 			.then(function(response) {
 				console.log("OrdenesFactory.realizarOrden(): ", response);
-				nuevaOrden();
+				self.limpiarOrden();
 				_ultimaOrden = response.data.orden;
 
 			}, function(err) {

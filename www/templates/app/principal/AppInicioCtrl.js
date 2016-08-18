@@ -1,9 +1,12 @@
 var AppInicioCtrl = function($scope, 
 							PromocionesFactory, 
 							$ionicTabsDelegate, 
-							CargaInicialFactory) {
+							CargaInicialFactory,
+							$log) {
 	
 	$ionicTabsDelegate.select(0);
+
+	$log.debug("AppInicioCtrl");
 
 	CargaInicialFactory
 	.iniciar(function() {

@@ -13,8 +13,8 @@ var UsuarioFactory = function(RecursosFactory,
 					$localStorage.usuario.telefono = response.data.usuario.telefono;
 					$localStorage.usuario.correo = response.data.usuario.correo;
 					$localStorage.usuario.url_foto = response.data.usuario.url_foto;
-					return response.data.mensaje;
 				}
+				return response.data.mensaje;
 			}, function(err) {
 				console.log("UsuarioFactory.actualizarPerfil(): ", err);
 			});

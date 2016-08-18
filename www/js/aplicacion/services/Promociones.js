@@ -11,8 +11,7 @@ var PromocionesFactory = function(RecursosFactory,
 			return RecursosFactory
 			.get('/promociones', {})
 			.then(function(respuesta) {
-				console.log("imprimiendo respuesta");
-				console.log(respuesta);
+				console.log("PromocionesFactory.cargar()", respuesta);
 				if(respuesta){
 					$localStorage.promociones = respuesta.data.promociones;
 				}

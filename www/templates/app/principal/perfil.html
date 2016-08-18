@@ -39,7 +39,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label">Dirección de residencia</span>
-							<input type="text" placeholder="Dirección de residencia" name="direccion" ng-model="usuario.direccion" pattern="(?![.\n])(?=.*[a-zA-Z]).{1,100}" required>
+							<input type="text" placeholder="Dirección de residencia" name="direccion" ng-model="usuario.direccion" pattern="(?![.\n])(?=.*[a-zA-Z]).{3,100}" >
 						</label>
 					</div>
 				</ion-item>
@@ -49,7 +49,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
-							<input type="tel" placeholder="Teléfono de contacto" name="telefono" ng-model="usuario.telefono" pattern="(?![.\n])(?=.*\d).{7,15}" required>
+							<input type="tel" placeholder="Teléfono de contacto" name="telefono" ng-model="usuario.telefono" pattern="(?![.\n])(?=.*\d).{7,15}" >
 						</label>
 					</div>
 				</ion-item>
@@ -124,17 +124,19 @@
 			<div ng-hide="true">
 				{{formData.formValido =
 					(
-						(formPerfil.nombre.$dirty && formPerfil.nombre.$valid)
-						|| (formPerfil.direccion.$dirty && formPerfil.direccion.$valid)
-						|| (formPerfil.telefono.$dirty && formPerfil.telefono.$valid)
-						|| (formPerfil.correo.$dirty)
-						|| usuario.data_foto
-						|| (formPerfil.contrasena.$dirty
-							&& formPerfil.contrasena.$valid
-							&& (usuario.contrasena == usuario.repetirContrasena
-							))
+						(formPerfil.contrasena.$dirty && formPerfil.contrasena.$valid
+							&& (usuario.contrasena == usuario.repetirContrasena)
+						)
+						&& formPerfil.nombre.$valid
+						&& formPerfil.direccion.$valid
+						&& formPerfil.telefono.$valid
+						&& formPerfil.correo.$valid
 					)
-					&& (formPerfil.correo.$valid)
+					|| (formPerfil.nombre.$dirty && formPerfil.nombre.$valid)
+					|| (formPerfil.direccion.$dirty && formPerfil.direccion.$valid)
+					|| (formPerfil.telefono.$dirty && formPerfil.telefono.$valid)
+					|| (formPerfil.correo.$dirty && formPerfil.correo.$valid)
+
 					}}
 			</div>
 		

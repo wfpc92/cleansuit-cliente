@@ -123,17 +123,18 @@ var CarritoFactory = function(RecursosFactory,
 				}
 			}
 
+			this.totales.descuento = descuento !== 0 ? descuento * -1 : null;
+
 			if (this.servicioDirecto) {
-				this.totales.subtotal = null;
-				this.totales.domicilio = null;
-				this.totales.descuento = null;
+				this.totales.subtotal = subtotal !== 0 ? subtotal : null;
+				this.totales.domicilio = this.domicilio;
 				this.totales.total = null;
 			} else {
 				this.totales.subtotal = subtotal;
-				this.totales.domicilio = (subtotal !== 0 ? this.domicilio : 0);
-				this.totales.descuento = descuento !== 0 ? descuento * -1 : null;
+				this.totales.domicilio = subtotal !== 0 ? this.domicilio : 0;
 				this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio - descuento: 0);
 			}
+
 			console.log("CarritoFactory.calcularTotales", this.totales)
 			return this.totales;
 		},
@@ -141,18 +142,19 @@ var CarritoFactory = function(RecursosFactory,
 		soloHayProductos : function(items){
 			var cont = 0;
 			
-			if(!items){
+			if (!items){
 				items = this.items;
 			}
 
-			for(i in items){
-				if(items[i].tipo == 'PRODUCTO'){
+			for (i in items){
+				if (items[i].tipo == 'PRODUCTO'){
 					cont++;
 				} else {
 					return false;
 				}
 			}
-			return cont > 0 ? true : false;
+
+			return !this.servicioDirecto && cont > 0 ? true : false;
 		},
 
 		/**
@@ -173,6 +175,7 @@ var CarritoFactory = function(RecursosFactory,
 			return RecursosFactory
 			.get("/configuraciones")
 			.then(function(respuesta) {
+				console.log("CarritoFactory.cargarDomicilio()", respuesta)
 				if(respuesta){
 					self.domicilio = respuesta.data.configuraciones.domicilio;
 				}

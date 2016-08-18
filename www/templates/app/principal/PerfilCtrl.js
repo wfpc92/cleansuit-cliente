@@ -15,7 +15,6 @@ var PerfilCtrl = function($scope,
 		.then(function(imgData){
 			if(imgData) {
 				$scope.usuario.url_foto = "data:image/jpeg;base64," + imgData;
-				$scope.usuario.data_foto = "data:image/jpeg;base64," + imgData;
 				console.log("termina seleccion de foto.")
 			}
 		}, function(err) {
@@ -23,7 +22,7 @@ var PerfilCtrl = function($scope,
 			console.log("PerfilCtrl.subirFoto(), err", err)
 		})
 	};
-
+	
 	$scope.actualizar = function() {
 		UsuarioFactory
 		.actualizarPerfil($scope.usuario)

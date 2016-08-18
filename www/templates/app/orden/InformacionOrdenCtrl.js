@@ -30,10 +30,7 @@ var InformacionOrdenCtrl = function($scope,
 	$log.debug($scope.carrito);
 
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
-	$scope.orden.recoleccion.direccion = $scope.usuario.direccion;
-	$scope.orden.entrega.direccion = $scope.usuario.direccion;
-	$scope.orden.telefono = $scope.usuario.telefono;
-
+	
 	if (!$scope.orden.recoleccion.fecha) {
 		var ahora = new Date();
 		//ahora = new Date(2016, 7, 11, 20, 00, 0, 0); //para probar varas fechas
