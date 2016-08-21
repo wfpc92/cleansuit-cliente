@@ -25,7 +25,7 @@ app.config(function($stateProvider,
     				args[i] = JSON.stringify(args[i]);		
     			}
     		}
-    	}
+    	} else {return arguments}
 		return args;
 	}
 
@@ -52,6 +52,7 @@ app.config(function($stateProvider,
 	        };
 
 	        $delegate.error = function () {
+	        	console.log(arguments)
 	            origError.apply(null, toJSON(arguments))
 	        };
 

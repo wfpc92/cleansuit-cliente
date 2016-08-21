@@ -1,5 +1,6 @@
 var ProductosCtrl = function($scope,
-							ProductosFactory) {
+							ProductosFactory,
+							TutorialFactory) {
 	
 	$scope.productos = ProductosFactory.getProductos();
 	
@@ -30,11 +31,8 @@ var ProductosCtrl = function($scope,
 		});
 	};
 
-	
-	/*var element = document.getElementById("lstProductos");
-	ionic.onGesture('swipe', function() {
-		console.log("swipe event")
-	},element, {});*/
+	$scope.tutorial = TutorialFactory;
+	$scope.tipo = "PRODUCTOS";
 };
 
 app.controller('ProductosCtrl', ProductosCtrl);
