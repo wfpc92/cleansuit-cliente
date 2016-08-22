@@ -2,7 +2,9 @@ body {
 	font-family: 'fira_sansregular';
 	font-size: 14px;
 }
-
+.pane.autenticacion {
+	background-color: #FFFFFF;
+}
 .pane, .view {
 	background-color: #F8F8F8;
 }
@@ -106,15 +108,21 @@ $registro: #80A3CD;
 	.formulario {
 		width: 100%;
 		position: absolute;
-		bottom: 90px;
+		bottom: 56px;
 		height: 68%;
 		min-height: 335px;
 	}
-	form.list {		
+	form {		
 		background-color: $positive;
 		padding-top: 21px;
 		height: 102%;
 		min-height: 280px;
+		.item {
+			margin: 0;
+			padding: 0;
+			border-style: none;
+			background-color: $positive;
+		}
 		input, label {
 			background-color: $positive;
 			border: none;

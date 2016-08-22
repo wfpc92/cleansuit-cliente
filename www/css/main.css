@@ -9723,6 +9723,9 @@ body {
   font-family: 'fira_sansregular';
   font-size: 14px; }
 
+.pane.autenticacion {
+  background-color: #FFFFFF; }
+
 .pane, .view {
   background-color: #F8F8F8; }
 
@@ -9814,15 +9817,20 @@ img.logoinicio {
   .form .formulario {
     width: 100%;
     position: absolute;
-    bottom: 90px;
+    bottom: 56px;
     height: 68%;
     min-height: 335px; }
-  .form form.list {
+  .form form {
     background-color: #00479A;
     padding-top: 21px;
     height: 102%;
     min-height: 280px; }
-    .form form.list input, .form form.list label {
+    .form form .item {
+      margin: 0;
+      padding: 0;
+      border-style: none;
+      background-color: #00479A; }
+    .form form input, .form form label {
       background-color: #00479A;
       border: none;
       color: #fff;
@@ -9832,30 +9840,30 @@ img.logoinicio {
       padding: 0;
       font-family: 'fira_sansregular';
       padding-bottom: 10px; }
-    .form form.list input {
+    .form form input {
       border-bottom: 1px solid #fff;
       width: 100%;
       font-size: 1.21em; }
-    .form form.list span {
+    .form form span {
       color: #80A3CD;
       text-align: left;
       padding-bottom: 5px;
       font-size: 0.9em;
       text-transform: uppercase; }
-    .form form.list input::-webkit-input-placeholder {
+    .form form input::-webkit-input-placeholder {
       color: #80A3CD;
       font-size: 0.740em !important; }
-    .form form.list a {
+    .form form a {
       display: block;
       width: 180px;
       margin: 8px auto 25px;
       color: #fff;
       text-decoration: none; }
-    .form form.list p {
+    .form form p {
       color: #fff;
       text-align: center;
       margin-bottom: 20px; }
-    .form form.list h2 {
+    .form form h2 {
       text-align: center;
       color: #80A3CD;
       font-size: 1.67em; }
