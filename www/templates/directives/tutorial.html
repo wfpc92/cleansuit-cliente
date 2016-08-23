@@ -3,4 +3,11 @@
 <div ng-if="tutorial.mostrarTutorial(tipo)">
 	HOLA
 	<button ng-click="tutorial.realizarTutorial(tipo)">Finalizar tutorial</button>
+	
+	<div id="tutorialBackdrop" ng-class="{'backdrop visible backdrop-loading active': tutorial.mostrarTutorial(tipo)}">
+
+	</div>
+
+	
+
 </div>

@@ -9,8 +9,9 @@
 			</div>
 		</div>
 
-		<tutorial tutorial="tutorial" tipo="tipo"></tutorial>
-		<ion-list id="lstProductos" can-swipe="true">
+		<tutorial tutorial="tutorial" tipo="tipo" ng-if="productos.length > 0"></tutorial>
+		
+		<ion-list id="{{idLst}}" can-swipe="true">
 			<div class="productos lista">
 				<ion-item class="item-thumbnail-left item-icon-right item-text-wrap" ng-repeat="producto in productos track by $index" ui-sref="app.producto({ 'indexProducto': {{$index}} })">
 

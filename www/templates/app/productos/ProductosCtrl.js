@@ -24,6 +24,7 @@ var ProductosCtrl = function($scope,
 		.cargar()
 		.then( function() { 
 			console.log("la operacion cargar productos ha sido terminada. ");
+			//$scope.productos = [];
 			$scope.productos = ProductosFactory.getProductos();
 		}, function(error) {
 			//error

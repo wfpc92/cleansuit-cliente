@@ -6,7 +6,7 @@ var TutorialFactory = function($localStorage, UsuarioFactory) {
 	//buscar si el usuario ya realizo el tutorial anteriormente en este dispositivo.
 	if (typeof $localStorage.tutorial !== 'undefined') {
 		for (var i  in $localStorage.tutorial) {
-			console.log($localStorage.tutorial[i]);	
+			//console.log($localStorage.tutorial[i]);	
 			if ($localStorage.tutorial[i].correoUsuario == UsuarioFactory.getUsuario().correo) {
 				existe = true;
 				break;
@@ -22,9 +22,22 @@ var TutorialFactory = function($localStorage, UsuarioFactory) {
 			if (existe) {
 				return false;
 			}
-			console.log("TutorialFactory.mostrarTutorial()", tipo)
+			//console.log("TutorialFactory.mostrarTutorial()", tipo)
 			switch (tipo) {
 				case "PRODUCTOS":
+					var idLst = "#lstProductos .list .productos > .item";
+					var primerItem = document.querySelector(idLst);
+					if (primerItem) {
+						var ele = angular.element(primerItem);
+						console.log(ele);
+					}
+					else {
+						this.cancelarTutorial();
+					}
+					console.log();
+					var ele = angular.element(document.getElementById(idLst));
+					console.log(ele)
+					//lstProductos
 					return !tP;
 					break;
 				case "SUBSERVICIOS":
@@ -56,12 +69,12 @@ var TutorialFactory = function($localStorage, UsuarioFactory) {
 			}
 			
 			if (tP && tSs) {
-		console.log("TutorialFactory.realizarTutorial()2", tipo, tP, tSs)
+				//console.log("TutorialFactory.realizarTutorial()2", tipo, tP, tSs)
 				if (typeof $localStorage.tutorial == 'undefined') {
-		console.log("TutorialFactory.realizarTutorial()3", tipo, tP, tSs)
+					//console.log("TutorialFactory.realizarTutorial()3", tipo, tP, tSs)
 					$localStorage.tutorial = [];
 				}
-		console.log("TutorialFactory.realizarTutorial()4", tipo, tP, tSs)
+				//console.log("TutorialFactory.realizarTutorial()4", tipo, tP, tSs)
 				$localStorage.tutorial.push({
 					correoUsuario: UsuarioFactory.getUsuario().correo,
 					tutorialRealizado: true
@@ -69,7 +82,6 @@ var TutorialFactory = function($localStorage, UsuarioFactory) {
 				existe = true;
 			}
 		}
-
 	};
 };
 
