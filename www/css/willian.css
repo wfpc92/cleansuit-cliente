@@ -3,3 +3,13 @@
 .has-header-top {
 	top: 124px;
 }*/
+
+.transicionSwipeDerecha {
+	
+}
+
+@-webkit-keyframes transicionSwipeDerecha {
+    to {
+        -webkit-transform: translateX(-79px);
+    }
+}

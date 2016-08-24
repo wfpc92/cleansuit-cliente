@@ -38,10 +38,11 @@ var CargaInicialFactory = function(CargarScriptsFactory,
 			.cargar()
 			.then(function(){
 				recursos.promociones = true;
-				ModalCargaFactory.ocultar();
 				if(callback) callback();
 			}, function(error) {
 				recursos.promociones = false;
+			}).finally(function() {
+				ModalCargaFactory.ocultar();
 			});
 
 			ProductosFactory

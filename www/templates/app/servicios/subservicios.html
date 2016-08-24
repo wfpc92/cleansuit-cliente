@@ -13,7 +13,15 @@
             <div class="col text-center">{{servicio.descripcion}}</div> 
         </div>
 
-        <ion-list can-swipe="true" show-delete="false" show-reorder="false">
+        <div clas="card" ng-show="servicio.subservicios.length == 0">
+            <div class="item item-text-wrap">
+                No hay subservicios para mostrar.
+            </div>
+        </div>
+
+        <tutorial ng-if="servicio.subservicios.length > 0"></tutorial>
+
+        <ion-list id="{{idLst}}" ng-if="servicio.subservicios.length > 0" can-swipe="true" show-delete="false" show-reorder="false">
             <div class="servicios lista">
                 <ion-item class="item-icon-right item-text-wrap" ng-repeat="subservicio in servicio.subservicios track by $index" 
                     ui-sref="app.subservicio({ 

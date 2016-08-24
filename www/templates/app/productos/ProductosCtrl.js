@@ -1,7 +1,6 @@
 var ProductosCtrl = function($scope,
 							ProductosFactory,
 							TutorialFactory) {
-	
 	$scope.productos = ProductosFactory.getProductos();
 	
 	$scope.aumentarProducto = function(index) {
@@ -16,6 +15,12 @@ var ProductosCtrl = function($scope,
 
 	$scope.$on('$ionicView.beforeEnter', function(event) {
 		$scope.cargarProductos();
+	});
+
+	$scope.$on('$ionicView.afterEnter', function(event) {
+		if ($scope.productos.length > 0) {
+			TutorialFactory.mostrarTutorial($scope.tipo);
+		}
 	});
 
 	$scope.cargarProductos = function() {
@@ -34,6 +39,8 @@ var ProductosCtrl = function($scope,
 
 	$scope.tutorial = TutorialFactory;
 	$scope.tipo = "PRODUCTOS";
+	$scope.idLst = "lstProductos";
+	TutorialFactory.setIdLst("#" + $scope.idLst);
 };
 
 app.controller('ProductosCtrl', ProductosCtrl);

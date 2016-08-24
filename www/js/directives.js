@@ -85,11 +85,11 @@ app.directive('elementoCentrado', function(){
 .directive('tutorial', function(){
 	return {
 		restrict: 'E',//'AEC' - matches either attribute or element or class name
-		scope: {
+		/*scope: {
 				tutorial:'=',//cunado @ es unidireccional & para llamar funciones, = para hacer binding
 				tipo: '=',
 				idLst: '='
-		},
+		},*/
 		replace: false,//para reemplazar el contenedor  
 		transclude:false, //reinserta el contenido original
 		templateUrl:  function(elem, attr){

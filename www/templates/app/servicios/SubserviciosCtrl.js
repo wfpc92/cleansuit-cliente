@@ -16,11 +16,18 @@ var SubserviciosCtrl = function($scope,
 		console.log("Disminuir item de servicio del carrito desde SubserviciosCtrl");
 		$scope.carrito.disminuir(subservicio, "SERVICIO", 1);
 		$scope.carrito.limpiar();
-	};
+	};	
 
+	$scope.$on('$ionicView.afterEnter', function(event) {
+		if ($scope.servicio.subservicios.length > 0) {
+			TutorialFactory.mostrarTutorial($scope.tipo);
+		}
+	});
 
 	$scope.tutorial = TutorialFactory;
 	$scope.tipo = "SUBSERVICIOS";
+	$scope.idLst = "lstSubservicios";
+	TutorialFactory.setIdLst("#" + $scope.idLst);
 };
 
 

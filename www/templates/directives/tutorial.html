@@ -1,13 +1,5 @@
-{{tipo}}
-{{tutorial}}
-<div ng-if="tutorial.mostrarTutorial(tipo)">
-	HOLA
-	<button ng-click="tutorial.realizarTutorial(tipo)">Finalizar tutorial</button>
-	
-	<div id="tutorialBackdrop" ng-class="{'backdrop visible backdrop-loading active': tutorial.mostrarTutorial(tipo)}">
 
-	</div>
-
-	
-
+<div ng-if="!tutorial.realizado(tipo)">
+	<img id="tutMano" ng-src="img/right-hand.png" style="width:50px; height:auto; display:none"/>
+	<img id="tutTexto" ng-src="img/texto.png" style="width:50px; height:auto; display:none"/>
 </div>
