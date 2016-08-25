@@ -1,7 +1,8 @@
 var SubserviciosCtrl = function($scope, 
 							$stateParams,
 							ServiciosFactory,
-							TutorialFactory) {
+							TutorialFactory,
+							$timeout) {
 
 	$scope.indexServicio = $stateParams.indexServicio;
 	$scope.servicio = ServiciosFactory.getServicios()[$scope.indexServicio];
@@ -20,7 +21,9 @@ var SubserviciosCtrl = function($scope,
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		if ($scope.servicio.subservicios.length > 0) {
-			TutorialFactory.mostrarTutorial($scope.tipo);
+			$timeout(function(){
+				TutorialFactory.mostrarTutorial($scope.tipo);
+			}, 500);
 		}
 	});
 

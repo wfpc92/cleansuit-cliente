@@ -8,9 +8,10 @@ var TutorialFactory = function($localStorage,
 		existe = false,// indica si existe registro de haber realizado tutorial en este dispositivo
 		duracion = 1300,//duracion despues que termina la transicion de la mano
 		idLst = "",
-		loaderInstance;
-		var mano, imgMano;
-		var texto, imgTexto;
+		mano,
+		imgMano,
+		texto,
+		imgTexto;
 
 
 	//buscar si el usuario ya realizo el tutorial anteriormente en este dispositivo.
@@ -23,6 +24,13 @@ var TutorialFactory = function($localStorage,
 			}
 		}
 	}
+
+	$ionicBackdrop.getElement().on("click", function() {
+		mano.css({"display": "none"});
+		texto.css({"display": "none"});
+		$ionicBackdrop.release();
+	});
+
 
 	return {
 		/**
@@ -56,24 +64,21 @@ var TutorialFactory = function($localStorage,
 				return false;
 			}
 
-			if (!imgMano) {
-				var hei = document.getElementById("tutMano").height;
-				mano = angular.element(document.getElementById("tutMano"));
-				texto = angular.element(document.getElementById("tutTexto"));
-				imgMano = $document[0].body.appendChild(mano[0]);
-				imgTexto = $document[0].body.appendChild(texto[0]);
-			}
-
+			mano = mano || angular.element(document.getElementById("tutMano"));
+			texto = texto || angular.element(document.getElementById("tutTexto"));
+			console.log($document[0].body.appendChild(mano[0]));
+			imgMano = imgMano || $document[0].body.appendChild(mano[0]);
+			imgTexto = imgTexto || $document[0].body.appendChild(texto[0]);
+		
 			$ionicBackdrop.retain();
 
-			var header = angular.element(document.querySelector(".bar-header"))[0];
-			var lst = angular.element(document.querySelector(idLst))[0];
-			var top = (header.offsetHeight + lst.offsetTop + 30) ,
+			var header = angular.element(document.querySelector(".bar-header"))[0],
+				lst = angular.element(document.querySelector(idLst))[0],
+				top = (header.offsetHeight + lst.offsetTop + 30),
 				left = ((1.0 - 0.25) * lst.children[0].offsetWidth);
-				console.log("left:", left)
+				
 
 			if (lst) {
-				
 				mano.addClass("transicionSwipeDerecha");
 				
 				mano.css({
@@ -105,7 +110,6 @@ var TutorialFactory = function($localStorage,
 
 				//cuando termine la animacion del movimiento, volverlo a hacer
 				$timeout(function() {
-					console.log("removing")
 					mano.removeClass("transicionSwipeDerecha");
 					mano.css({
 						opacity:0,
@@ -116,18 +120,21 @@ var TutorialFactory = function($localStorage,
 							left: left +"px", //79 equivale a la cantidad de pixeles que se corrio en .transicionSwipeDerecha
 							opacity: 1,
 							transition: "opacity 0.3s linear",
-							"-webkit-animation": "none",
-							"-webkit-transform": "none"
 						});
-						/*mano.css({
-							left: (left + 79) +"px", //79 equivale a la cantidad de pixeles que se corrio en .transicionSwipeDerecha
-							opacity: 1,
-							transform: "left 0s linear",
-							transition: "opacity 0.3s linear"
-						});*/
-						//mano.removeClass("notransition");
-						mano.addClass("transicionSwipeDerecha");
+						mano.addClass("transicionSwipeIzquierda")
+						
+						mano.css({
+							"-webkit-animation": "transicionSwipeIzquierda "+ duracion +"ms ease-in-out",
+							"-webkit-animation-fill-mode": "forwards",
+							"-webkit-transform": "translateX(0)"
+						});
 
+						$timeout(function() {
+							mano.css({
+								opacity:0,
+								"transition": "opacity 0.3s linear"
+							});
+						}, duracion);
 					}, 300);
 				}, duracion);
 			}

@@ -5,7 +5,7 @@
 }
 
 .transicionSwipeIzquierda {
-	transform: translateX(79px)
+
 }
 
 .notransition {
@@ -24,6 +24,6 @@
 
 @-webkit-keyframes transicionSwipeIzquierda {
     to {
-        -webkit-transform: translateX(79px);
+        -webkit-transform: translateX(-79px);
     }
 }

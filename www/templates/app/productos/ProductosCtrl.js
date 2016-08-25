@@ -1,6 +1,7 @@
 var ProductosCtrl = function($scope,
 							ProductosFactory,
-							TutorialFactory) {
+							TutorialFactory,
+							$timeout) {
 	$scope.productos = ProductosFactory.getProductos();
 	
 	$scope.aumentarProducto = function(index) {
@@ -19,7 +20,9 @@ var ProductosCtrl = function($scope,
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		if ($scope.productos.length > 0) {
-			TutorialFactory.mostrarTutorial($scope.tipo);
+			$timeout(function(){
+				TutorialFactory.mostrarTutorial($scope.tipo);	
+			}, 500);
 		}
 	});
 
