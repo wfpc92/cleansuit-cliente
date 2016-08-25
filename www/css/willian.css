@@ -1,15 +1,29 @@
 
-/*
-.has-header-top {
-	top: 124px;
-}*/
 
 .transicionSwipeDerecha {
 	
 }
 
+.transicionSwipeIzquierda {
+	transform: translateX(79px)
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
 @-webkit-keyframes transicionSwipeDerecha {
     to {
         -webkit-transform: translateX(-79px);
+    }
+}
+
+@-webkit-keyframes transicionSwipeIzquierda {
+    to {
+        -webkit-transform: translateX(79px);
     }
 }
