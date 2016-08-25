@@ -51,10 +51,10 @@ app.config(function($stateProvider,
 	            origWarn.apply(null, toJSON(arguments))
 	        };
 
-	        $delegate.error = function () {
+	        /*$delegate.error = function () {
 	        	console.log(arguments)
 	            origError.apply(null, toJSON(arguments))
-	        };
+	        };*/
 
 	        $delegate.debug = function () {
 	            origDebug.apply(null, toJSON(arguments))

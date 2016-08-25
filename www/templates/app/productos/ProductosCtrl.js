@@ -20,9 +20,7 @@ var ProductosCtrl = function($scope,
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		if ($scope.productos.length > 0) {
-			$timeout(function(){
-				TutorialFactory.mostrarTutorial($scope.tipo);	
-			}, 500);
+			TutorialFactory.mostrarTutorial($scope.tipo);	
 		}
 	});
 
