@@ -4,7 +4,8 @@ var CargaInicialFactory = function(CargarScriptsFactory,
 							PromocionesFactory, 
 							ProductosFactory, 
 							ServiciosFactory,
-							MapasFactory) {
+							MapasFactory,
+							ConfiguracionesFactory) {
 	var recursos = {
 		mapsScript : false,
 		productos: false,
@@ -28,10 +29,10 @@ var CargaInicialFactory = function(CargarScriptsFactory,
 
 			ModalCargaFactory.mostrar("Cargando datos...", null);
 
-			CarritoFactory
-			.cargarDomicilio()
+			ConfiguracionesFactory
+			.cargar()
 			.then(function() {
-				recursos.domicilio = true;
+				recursos.configuraciones = true;
 			});
 
 			PromocionesFactory
