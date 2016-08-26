@@ -9817,9 +9817,8 @@ img.logoinicio {
   .form .formulario {
     width: 100%;
     position: absolute;
-    bottom: 56px;
-    height: 68%;
-    min-height: 335px; }
+    bottom: 0px;
+    padding-bottom: 54px; }
   .form form {
     background-color: #00479A;
     padding-top: 21px;
