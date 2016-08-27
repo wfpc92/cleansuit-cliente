@@ -170,11 +170,7 @@ var TutorialFactory = function($localStorage,
 		/**
 		 *  verificar si el usuario ya realizo cierto tutorial. mostrar el tutorial.
 		 */
-		mostrarTutorial: function(tipo) {
-			$timeout(function(){
-				mostrarTutorial(tipo);
-			}, 800);
-		},
+		mostrarTutorial: mostrarTutorial,
 
 		/**
 		 * el tutorial acaba de ser ejecutado y debe almacenarse en memoria para no volver a mostrar,

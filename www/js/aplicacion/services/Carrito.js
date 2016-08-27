@@ -1,6 +1,7 @@
 var CarritoFactory = function(RecursosFactory, 
 							PromocionesFactory, 
-							$log){
+							$log, 
+							ConfiguracionesFactory){
 	/**
 	 * [this.items ]
 	 * @type [{Object id:String producto o servicio
@@ -127,7 +128,7 @@ var CarritoFactory = function(RecursosFactory,
 
 			if (this.servicioDirecto) {
 				this.totales.subtotal = subtotal !== 0 ? subtotal : null;
-				this.totales.domicilio = this.domicilio;
+				this.totales.domicilio = ConfiguracionesFactory.getCofiguraciones().domicilio;
 				this.totales.total = null;
 			} else {
 				this.totales.subtotal = subtotal;
@@ -170,23 +171,12 @@ var CarritoFactory = function(RecursosFactory,
 			this.actualizarContadores();
 		},
 
-		cargarDomicilio: function() {
-			var self = this;
-			return RecursosFactory
-			.get("/configuraciones")
-			.then(function(respuesta) {
-				console.log("CarritoFactory.cargarDomicilio()", respuesta)
-				if(respuesta){
-					self.domicilio = respuesta.data.configuraciones.domicilio;
-				}
-			});
-		},
-
 		aplicarPromocion: function(promocion) {
 			console.log("CarritoFactory.aplicarPromocion", promocion);
 			this.totales.promocion = promocion;
 			this.calcularTotales();
 		}
+
 	};
 };
 

@@ -8,6 +8,11 @@
 
 }
 
+.terminosCondiciones {
+  text-decoration:underline;
+  color: blue;
+}
+
 .notransition {
   -webkit-transition: none !important;
   -moz-transition: none !important;

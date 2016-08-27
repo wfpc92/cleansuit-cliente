@@ -10,7 +10,8 @@ var InformacionOrdenCtrl = function($scope,
 									MapasFactory, 
 									ModalCargaFactory,
 									PromocionesFactory,
-									$log) {
+									$log,
+									ConfiguracionesFactory) {
 	
 	console.log("InformacionOrdenCtrl");
 	var self = this; 
@@ -77,6 +78,14 @@ var InformacionOrdenCtrl = function($scope,
     
     $scope.closePopover = function() {
     	$scope.popover.hide();
+    };
+
+    $scope.abrirModalTC = function() {
+    	$scope.modalTC
+    	.show()
+    	.then(function() {
+
+    	});
     };
 
     $scope.validarCupon = function() {
@@ -183,6 +192,24 @@ var InformacionOrdenCtrl = function($scope,
 					.children[0] //#contenedor-mapa
 					.appendChild($scope.mapa.mapaDOM);
 		});
+	});
+
+
+	$scope.scopeModalTC = $rootScope.$new();
+	$scope.scopeModalTC.terminosCondiciones = ConfiguracionesFactory.getConfiguraciones().terminosCondiciones;
+	$scope.scopeModalTC.finalizarTC = function(opc) {
+		$scope.modalTC.hide();
+		$scope.orden.terminosCondiciones = opc;
+	};
+
+
+	$ionicModal
+	.fromTemplateUrl("templates/app/orden/modal-terminos-condiciones.html", {
+		scope: $scope.scopeModalTC,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modalTC = modal;
+		$scope.scopeModalTC.modalTC = modal;
 	});
 };
 

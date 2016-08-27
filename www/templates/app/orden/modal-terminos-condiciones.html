@@ -1,0 +1,18 @@
+
+<ion-modal-view hide-back-button="true" cache-view="false" id="{{idModal}}">
+	<ion-header-bar>
+		<h1 class="title item-text-wrap">Términos y Condiciones</h1>
+		<div class="button button-clear" ng-click="modalTC.hide()">
+			<span class="icon ion-close">
+		</div>
+	</ion-header-bar>
+
+	<ion-content >
+		<div ng-bind-html="terminosCondiciones">
+		</div>
+		<div class="button-bar">
+		  <a class="button" ng-click="finalizarTC(true)">Acepto</a>
+		  <a class="button" ng-click="finalizarTC(false)">No Acepto</a>
+		</div>
+	</ion-content>
+</ion-modal-view>

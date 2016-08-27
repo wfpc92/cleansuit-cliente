@@ -1,7 +1,16 @@
-var ConfiguracionesFactory = function(RecursosFactory) {
-	var configuraciones;
+var ConfiguracionesFactory = function(RecursosFactory,
+									$localStorage) {
+	
+	var getConfiguraciones = function() {
+		if (!$localStorage.configuraciones) {
+			$localStorage.configuraciones = {
+				domicilio: 0
+			};
+		}
+		return $localStorage.configuraciones;
+	}
 
-	function cargar() {
+	var cargar = function() {
 		return RecursosFactory
 		.get("/configuraciones")
 		.then(function(response) {
@@ -14,25 +23,23 @@ var ConfiguracionesFactory = function(RecursosFactory) {
 		});
 	}
 
-	function cargarVersionInventario() {
+	var cargarVersionInventario = function() {
 		return RecursosFactory
 		.get("/configuraciones/version-inventario")
 		.then(function(response) {
 			console.log("ConfiguracionesFactory.cargarVersionInventario()", response);
 			if (response.data.success) {
-				if (!$localStorage.configuraciones) {
-					$localStorage.configuraciones = {};
-				}
-				
-				$localStorage.configuraciones.versionInventario = response.data.versionInventario;
-				return response.data.configuraciones
+				getConfiguraciones().versionInventario = response.data.versionInventario;
+				return getConfiguraciones().versionInventario;
 			}
 			return null;			
 		});	
 	}
 
 	return {
+		getConfiguraciones: getConfiguraciones,
 		cargar: cargar,
+		cargarVersionInventario: cargarVersionInventario
 	};
 };
 
