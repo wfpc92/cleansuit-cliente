@@ -4,8 +4,9 @@ var ProductoCtrl = function($scope,
 							$ionicHistory, 
 							$state) {
 	
+	console.log("ProductoCtrl");
 	var indexProducto = $stateParams.indexProducto;
-	$scope.producto = ProductosFactory.getProductos()[indexProducto];
+	$scope.producto = ProductosFactory.productos[indexProducto];
 		
 	$scope.aumentarProducto = function(){
 		$scope.carrito.agregar($scope.producto, "PRODUCTO", 1);

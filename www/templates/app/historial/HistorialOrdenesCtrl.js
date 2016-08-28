@@ -1,10 +1,14 @@
 var HistorialOrdenesCtrl = function ($scope, 
 									OrdenesFactory) {
-		
+	
+	console.log("HistorialOrdenesCtrl");
+	
+	$scope.ordenes = OrdenesFactory.historialOrdenes;
+
 	OrdenesFactory
 	.cargarHistorialOrdenes()
-	.then(function() {
-		$scope.ordenes = OrdenesFactory.getHistorialOrdenes();
+	.finally(function() {
+		$scope.ordenes = OrdenesFactory.historialOrdenes;
 	});
 };
 

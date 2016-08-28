@@ -1,25 +1,32 @@
-var ProductosFactory = function(RecursosFactory){
+var ProductosFactory = function(RecursosFactory,
+							$localStorage){
+	
+	var setProductos = function(productos) {
+		for (var i in $localStorage.productos) {
+			delete $localStorage.productos[i];
+		}
+		
+		for (var i in productos) {
+			$localStorage.productos[i] = productos[i];
+		}
+	};
 
-	var _productos = [];
-
+	if (!$localStorage.productos) {
+		$localStorage.productos = [];
+	}
+	
 	return {
-		getProductos : function() {
-			return _productos;
-		},
+		productos : $localStorage.productos,
 
 		//carga una lista de productos desde el servidor
 		cargar: function() {
 			return RecursosFactory
 			.get('/productos', {})
 			.then(function(respuesta) {
-				console.log(respuesta)
-				console.log("....................###################3.................");
-				console.log("imprimiendo respuesta", JSON.stringify(respuesta));
+				console.log("ProductosFactory.cargar()", respuesta);
 				if(respuesta){
-					_productos = respuesta.data.productos;
-				} else {
-					//error(respuesta.error);
-				}
+					setProductos(respuesta.data.productos);
+				} 
 			});
 		}
 	};

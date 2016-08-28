@@ -3,21 +3,16 @@ var ServiciosCtrl = function($scope,
 							ModalCargaFactory,
 							OrdenesFactory) {
 
-	$scope.servicios = ServiciosFactory.getServicios();
-
-	$scope.$on("$ionicView.afterEnter", function () {
-		$scope.cargarServicios();
-	});
-
+	console.log("ServiciosCtrl");
+	$scope.servicios = ServiciosFactory.servicios;
+	
 	$scope.cargarServicios = function() {
 		console.log("ejecutando cargarServicios desde ServiciosCtrl.");
 		ServiciosFactory
 		.cargar()
-		.then( function() { 
+		.then(function() { 
 			console.log("la operacion cargarServicios ha sido terminada. ")
-			$scope.servicios = ServiciosFactory.getServicios();
-		}, function(error) {
-			console.log(error);
+			$scope.servicios = ServiciosFactory.servicios;
 		});
 	};
 	

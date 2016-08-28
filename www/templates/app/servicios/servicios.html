@@ -4,7 +4,7 @@
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
 		<div class="card solicitud-vacia">
-			<h3>Solicitar directa</h3>
+			<h3>Solicitud directa</h3>
 			Solicita de forma rápida alguno de nuestros servicios. El valor del servicio lo estima el domiciliario.
 			<ion-checkbox ng-model="carrito.servicioDirecto" ng-click="carrito.calcularTotales()" ng-checked="carrito.servicioDirecto"></ion-checkbox>
 		</div>
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 
-		<ion-list>
+		<ion-list ng-if="servicios.length > 0">
 			<div class="categorias lista">
 				<ion-item class="item-icon-right item-text-wrap" ng-repeat="servicio in servicios track by $index" 
 					ui-sref="app.subservicios({ 'indexServicio': {{$index}} })">

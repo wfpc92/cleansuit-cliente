@@ -4,8 +4,9 @@ var SubserviciosCtrl = function($scope,
 							TutorialFactory,
 							$timeout) {
 
+	console.log("SubserviciosCtrl");
 	$scope.indexServicio = $stateParams.indexServicio;
-	$scope.servicio = ServiciosFactory.getServicios()[$scope.indexServicio];
+	$scope.servicio = ServiciosFactory.servicios[$scope.indexServicio];
 
 	$scope.aumentarSubservicio = function(subservicio){
 		console.log("Agregar item de subservicio al carrito desde SubserviciosCtrl");

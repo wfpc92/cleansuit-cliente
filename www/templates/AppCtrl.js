@@ -1,9 +1,10 @@
 var AppCtrl = function($scope,
 					$rootScope, 
-					UsuarioFactory,
-					OrdenesFactory,
-					CarritoFactory,
 					$state, 
+					UsuarioFactory,
+					ControlDescargasFactory,
+					CarritoFactory,
+					OrdenesFactory,
 					$ionicPopup,
 					AuthService,
 					AUTH_EVENTS,
@@ -116,11 +117,11 @@ var AppCtrl = function($scope,
 		$scope.carrito = CarritoFactory;
 
 		if($scope.usuario) {
-	    	OrdenesFactory
-			.cargarOrdenesEnProceso()
-			.then(function(){
+	    	ControlDescargasFactory
+			.cargarVersiones()
+			.then(function() {
 				console.log("AppCtrl.event:$ionicView.afterEnter, contOrdenesEnProceso", $scope.contOrdenesEnProceso)
-				$scope.contOrdenesEnProceso = OrdenesFactory.getOrdenesEnProceso().length;
+				$scope.contOrdenesEnProceso = OrdenesFactory.ordenesEnProceso.length;
 			});
 		}
 	});

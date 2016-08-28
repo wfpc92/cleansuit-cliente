@@ -4,8 +4,9 @@ var PromocionDetalleCtrl = function($scope,
 							$ionicHistory, 
 							$state) {
 	
+	console.log("PromocionDetalleCtrl");
 	var indexPromocion = $stateParams.indexPromocion;
-	$scope.promocion = PromocionesFactory.getPromociones()[indexPromocion];
+	$scope.promocion = PromocionesFactory.promociones[indexPromocion];
 		
 	$scope.regresarCatalogo = function() {
 		$ionicHistory.clearHistory();

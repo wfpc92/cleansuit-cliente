@@ -330,7 +330,7 @@ app.config(function($stateProvider,
 		url: '/about',
 		views: {
 			'panel-contenido': {
-				templateUrl: 'templates/app/principal/about.html',
+				templateUrl: 'templates/app/principal/acerca.html',
 				controller: 'AcercaCtrl'
 			}
 		}

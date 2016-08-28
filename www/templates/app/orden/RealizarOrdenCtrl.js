@@ -2,6 +2,7 @@ var RealizarOrdenCtrl = function($scope,
 								OrdenesFactory,
 								$state, 
 								$ionicHistory) {
+	console.log("RealizarOrdenCtrl");
 	var self = this;
  
 	$scope.$on('$ionicView.afterEnter', function(event) {
