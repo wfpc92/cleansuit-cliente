@@ -4,7 +4,8 @@ var ConfiguracionesFactory = function(RecursosFactory,
 	var getConfiguraciones = function() {
 		if (!$localStorage.configuraciones) {
 			$localStorage.configuraciones = {
-				domicilio: 0
+				domicilio: 0,
+				versiones: {}
 			};
 		}
 		return $localStorage.configuraciones;
@@ -23,23 +24,29 @@ var ConfiguracionesFactory = function(RecursosFactory,
 		});
 	}
 
-	var cargarVersionInventario = function() {
+	var cargarVersiones = function() {
 		return RecursosFactory
-		.get("/configuraciones/version-inventario")
+		.get("/configuraciones/versiones")
 		.then(function(response) {
-			console.log("ConfiguracionesFactory.cargarVersionInventario()", response);
+			console.log("ConfiguracionesFactory.cargarVersiones()", response);
 			if (response.data.success) {
-				getConfiguraciones().versionInventario = response.data.versionInventario;
-				return getConfiguraciones().versionInventario;
+				var anterior = getConfiguraciones().versiones,
+					nueva = response.data.versiones;
+
+				getConfiguraciones().versiones = nueva;
+				return {
+					anterior: anterior,
+					nueva: nueva
+				};
 			}
-			return null;			
+			return null;
 		});	
 	}
 
 	return {
 		getConfiguraciones: getConfiguraciones,
 		cargar: cargar,
-		cargarVersionInventario: cargarVersionInventario
+		cargarVersiones: cargarVersiones
 	};
 };
 

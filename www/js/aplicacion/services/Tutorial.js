@@ -26,13 +26,6 @@ var TutorialFactory = function($localStorage,
 		}
 	}
 
-	$ionicBackdrop.getElement().on("click", function() {
-		mano.css({"display": "none"});
-		texto.css({"display": "none"});
-		$ionicBackdrop.release();
-		realizarTutorial(tipoTutorial);
-	});
-
 	var realizado = function(tipo) {
 		if (existe) {
 			return true;
@@ -91,6 +84,12 @@ var TutorialFactory = function($localStorage,
 		imgTexto = imgTexto || document.body.appendChild(texto[0]);
 		
 		$ionicBackdrop.retain();
+		$ionicBackdrop.getElement().on("click", function() {
+			mano.css({"display": "none"});
+			texto.css({"display": "none"});
+			$ionicBackdrop.release();
+			realizarTutorial(tipoTutorial);
+		});
 
 		var header = 56,
 			lst = angular.element(document.querySelector(idLst))[0],

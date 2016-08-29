@@ -1,19 +1,31 @@
 var PromocionesFactory = function(RecursosFactory, 
 								$localStorage){
 	
+	var setPromociones = function(promociones) {
+		for (var i in $localStorage.promociones) {
+			delete $localStorage.promociones[i];
+		}
+		
+		for (var i in promociones) {
+			$localStorage.promociones[i] = promociones[i];
+		}
+	};
+
+	if (!$localStorage.promociones) {
+		$localStorage.promociones = [];
+	}
+
 	return {
-		getPromociones: function() {
-			return $localStorage.promociones;
-		},
+		promociones: $localStorage.promociones,
 
 		//carga lista de promociones desde el servidor
-		cargar: function(callback) {
+		cargar: function() {
 			return RecursosFactory
 			.get('/promociones', {})
 			.then(function(respuesta) {
 				console.log("PromocionesFactory.cargar()", respuesta);
 				if(respuesta){
-					$localStorage.promociones = respuesta.data.promociones;
+					setPromociones(respuesta.data.promociones);
 				}
 			});
 		},

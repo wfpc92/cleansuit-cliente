@@ -5,9 +5,10 @@ var OrdenEnProcesoCtrl = function ($scope,
 								$ionicHistory,
 								$state) {
 	
+	console.log("OrdenEnProcesoCtrl");
 	var indexOrden = $stateParams.indexOrden;
 
-	$scope.orden = OrdenesFactory.getOrdenesEnProceso()[indexOrden];
+	$scope.orden = OrdenesFactory.ordenesEnProceso[indexOrden];
 	//indica que la vista que se muestra es la de ordenes en proceso.
 	$scope.esOrdenEnProceso = true;
 

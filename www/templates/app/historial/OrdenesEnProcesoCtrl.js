@@ -2,14 +2,13 @@ var OrdenesEnProcesoCtrl =  function ($scope,
 									OrdenesFactory) {
 	
 	console.log("OrdenesEnProcesoCtrl")
+	$scope.ordenes = OrdenesFactory.ordenesEnProceso;
+
 	OrdenesFactory
 	.cargarOrdenesEnProceso() 
 	.then(function() {
-		console.log("OrdenesEnProcesoCtrl: ", OrdenesFactory.getOrdenesEnProceso())
-		$scope.ordenes = OrdenesFactory.getOrdenesEnProceso();
-	}, function(err) {
-		console.log("OrdenesEnProcesoCtrl: ", err)
-	})
+		$scope.ordenes = OrdenesFactory.ordenesEnProceso;
+	});
 	
 };
 

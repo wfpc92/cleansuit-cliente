@@ -1,25 +1,33 @@
-var ServiciosFactory = function(RecursosFactory){
-	var _servicios = [];
+var ServiciosFactory = function(RecursosFactory,
+							$localStorage){
 	
-	return {
+	var setServicios = function(servicios) {
+		for (var i in $localStorage.servicios) {
+			delete $localStorage.servicios[i];
+		}
+		
+		for (var i in servicios) {
+			$localStorage.servicios[i] = servicios[i];
+		}
+	};
 
-		getServicios: function() {
-			return _servicios;
-		},
+	if (!$localStorage.servicios) {
+		$localStorage.servicios = [];
+	}
+
+	return {
+		servicios: $localStorage.servicios,
 
 		cargar: function() {
-			console.log("Enviando peticion GET a servidor para obtener servicios.")
 			return RecursosFactory
 			.get('/servicios', {})
 			.then(function(respuesta) {
-				console.log("Finaliza peticion GET a servidor para servicios.", respuesta)
+				console.log("ServiciosFactory.cargar()", respuesta)
 				if(respuesta){
-					_servicios = respuesta.data.servicios;
-				} else {
-					//error(respuesta.error);
+					setServicios(respuesta.data.servicios);
 				}
 			});
-		},
+		}
 	};
 };
 

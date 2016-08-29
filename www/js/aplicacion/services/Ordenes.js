@@ -1,11 +1,39 @@
 var OrdenesFactory = function(UsuarioFactory,
 							CarritoFactory,
-							RecursosFactory){
+							RecursosFactory,
+							$localStorage){
 	var _orden = null, 
-		_ultimaOrden = null,
-		_ordenesEnProceso = [],
-		_historialOrdenes = [];
+		_ultimaOrden = null;
+
+	var setOrdenesEnProceso = function(ordenesEnProceso) {
+		for (var i in $localStorage.ordenesEnProceso) {
+			delete $localStorage.ordenesEnProceso[i];
+		}
+		
+		for (var i in ordenesEnProceso) {
+			$localStorage.ordenesEnProceso[i] = ordenesEnProceso[i];
+		}
+	};
+
+	var setHistorialOrdenes = function(historialOrdenes) {
+		for (var i in $localStorage.historialOrdenes) {
+			delete $localStorage.historialOrdenes[i];
+		}
+		
+		for (var i in historialOrdenes) {
+			$localStorage.historialOrdenes[i] = historialOrdenes[i];
+		}
+	};
+
+	if (!$localStorage.ordenesEnProceso) {
+		$localStorage.ordenesEnProceso = [];
+	}
 	
+	if (!$localStorage.historialOrdenes) {
+		$localStorage.historialOrdenes = [];
+	}
+	
+
 	function nuevaOrden() {
 		_orden = {
 			recoleccion: {
@@ -33,7 +61,10 @@ var OrdenesFactory = function(UsuarioFactory,
 	};
 
 	return {
-		
+		ordenesEnProceso: $localStorage.ordenesEnProceso,
+
+		historialOrdenes: $localStorage.historialOrdenes,
+
 		getOrden: function() {
 			if(!_orden) {
 				nuevaOrden();
@@ -46,7 +77,6 @@ var OrdenesFactory = function(UsuarioFactory,
 		},
 
 		enviarOrden : function() { 
-			console.log("OrdenFactory.enviarOrden(): ");	
 			var self = this, orden = {
 				orden: _orden,
 				items: CarritoFactory.items
@@ -54,6 +84,7 @@ var OrdenesFactory = function(UsuarioFactory,
 			orden.orden.servicioDirecto = CarritoFactory.servicioDirecto;	
 			orden.orden.totales = CarritoFactory.totales;		
 			
+			console.log("OrdenFactory.enviarOrden(): ", orden);	
 			return RecursosFactory
 			.post("/ordenes", orden)
 			.then(function(response) {
@@ -61,49 +92,31 @@ var OrdenesFactory = function(UsuarioFactory,
 				self.limpiarOrden();
 				_ultimaOrden = response.data.orden;
 
-			}, function(err) {
-				console.log("OrdenesFactory.realizarOrden(): ", err);
 			});
 		},
 		
 		cargarOrdenesEnProceso: function() {
-			console.log("Enviando peticion GET a servidor para obtener ordenes en proceso.")
 			return RecursosFactory
 			.get('/ordenes/en-proceso', {})
 			.then(function(respuesta) {
-				if(respuesta) {
-					console.log("Finaliza peticion GET a servidor para ordenes en proceso.")
-					console.log("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
-					_ordenesEnProceso = respuesta.data.ordenes;
-				} else {
-					console.log("OrdenesFactory.cargarOrdenesEnProceso(): no hay respuesta del servidor");
+				console.log("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
+				if(respuesta.data.success) {
+					setOrdenesEnProceso(respuesta.data.ordenes);
 				}
 			});
 		},
 
 		cargarHistorialOrdenes: function() {
-			console.log("Enviando peticion GET a servidor para obtener historial de ordenes.")
 			return RecursosFactory
 			.get('/ordenes/historial', {})
 			.then(function(respuesta) {
-				if(respuesta) {
-					console.log("Finaliza peticion GET a servidor para historial de ordenes.")
-					console.log("OrdenesFactory: ", respuesta)
-					_historialOrdenes = respuesta.data.ordenes;
-				} else {
-					console.log("OrdenesFactory.cargarHistorial(): no hay respuesta del servidor");
+				console.log("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
+				if(respuesta.data.success) {
+					setHistorialOrdenes(respuesta.data.ordenes);
 				}
 			});
 		},
 		
-		getOrdenesEnProceso: function() {
-			return _ordenesEnProceso;
-		},
-
-		getHistorialOrdenes: function() {
-			return _historialOrdenes;
-		},
-
 		limpiarOrden: function() {
 			orden = null;
 			CarritoFactory.vaciar();

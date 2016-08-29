@@ -128,7 +128,7 @@ var CarritoFactory = function(RecursosFactory,
 
 			if (this.servicioDirecto) {
 				this.totales.subtotal = subtotal !== 0 ? subtotal : null;
-				this.totales.domicilio = ConfiguracionesFactory.getCofiguraciones().domicilio;
+				this.totales.domicilio = ConfiguracionesFactory.getConfiguraciones().domicilio;
 				this.totales.total = null;
 			} else {
 				this.totales.subtotal = subtotal;

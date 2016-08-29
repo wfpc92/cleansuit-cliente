@@ -7,12 +7,12 @@
 
 		<div clas="card" ng-show="promociones.length == 0">
 			<div class="item item-text-wrap">
-				No hay promociones aún para mostrar.
+				No hay promociones aún para mostrar. <a ng-click="cargarPromociones()">mostrar</a>
 			</div>
 		</div>
 
 		<div class="bottom">
-			<ion-list>
+			<ion-list ng-if="promociones.length > 0">
 				<div class="promociones">
 					<ion-item class="item-image" ng-repeat="promocion in promociones" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
 
