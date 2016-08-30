@@ -5,11 +5,11 @@
 
 		
 		<div class="vista" layout="column" layout-align="center">
-			<h1>{{::subservicio.nombre}}</h1>
-			<p>{{::subservicio.descripcion}}</p>
+			<h1>{{subservicio.nombre}}</h1>
+			<p>{{subservicio.descripcion}}</p>
 
 			<div class="contenedor">
-					<h3>{{::subservicio.precio | currency : "$ " : 0}}</h3>
+					<h3>{{subservicio.precio | currency : "$ " : 0}}</h3>
 					<div class="contador">
 							<i ng-click="aumentarSubservicio(subservicio)" class="icon ico-mas"></i>
 							<span>{{carrito.cantidad(subservicio._id)}}</span>
@@ -19,7 +19,7 @@
 			
 			<div layout="row" layout-align="start start" class="descripcion">
 					<h3>Detalles</h3>
-					<p>{{::subservicio.detalles}}</p>    
+					<p>{{subservicio.detalles}}</p>    
 			</div>
 		</div>
 

@@ -125,14 +125,13 @@ var CarritoFactory = function(RecursosFactory,
 			}
 
 			this.totales.descuento = descuento !== 0 ? descuento * -1 : null;
+			this.totales.domicilio = ConfiguracionesFactory.getConfiguraciones().domicilio || 0;	
 
 			if (this.servicioDirecto) {
 				this.totales.subtotal = subtotal !== 0 ? subtotal : null;
-				this.totales.domicilio = ConfiguracionesFactory.getConfiguraciones().domicilio;
 				this.totales.total = null;
 			} else {
 				this.totales.subtotal = subtotal;
-				this.totales.domicilio = subtotal !== 0 ? this.domicilio : 0;
 				this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio - descuento: 0);
 			}
 

@@ -1,19 +1,23 @@
 var PromocionesFactory = function(RecursosFactory, 
 								$localStorage){
 	
+	var init = function() {
+		$localStorage.promociones = $localStorage.promociones || [];
+	};
+
 	var setPromociones = function(promociones) {
+		init();
+
 		for (var i in $localStorage.promociones) {
 			delete $localStorage.promociones[i];
 		}
-		
+	
 		for (var i in promociones) {
 			$localStorage.promociones[i] = promociones[i];
 		}
 	};
 
-	if (!$localStorage.promociones) {
-		$localStorage.promociones = [];
-	}
+	init();	
 
 	return {
 		promociones: $localStorage.promociones,

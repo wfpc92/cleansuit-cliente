@@ -4,7 +4,9 @@ var ProductosCtrl = function($scope,
 							$timeout) {
 	
 	console.log("ProductosCtrl");
-	$scope.productos = ProductosFactory.productos;
+	$scope.$on("$ionicView.beforeEnter", function() {
+		$scope.productos = ProductosFactory.productos;
+	});	
 	
 	$scope.aumentarProducto = function(index) {
 		$scope.carrito.agregar(index, "PRODUCTO", 1);

@@ -5,7 +5,14 @@ var OrdenesFactory = function(UsuarioFactory,
 	var _orden = null, 
 		_ultimaOrden = null;
 
+	var init = function() {
+		$localStorage.ordenesEnProceso = $localStorage.ordenesEnProceso || [];
+		$localStorage.historialOrdenes = $localStorage.historialOrdenes || [];	
+	};
+
 	var setOrdenesEnProceso = function(ordenesEnProceso) {
+		init();
+
 		for (var i in $localStorage.ordenesEnProceso) {
 			delete $localStorage.ordenesEnProceso[i];
 		}
@@ -16,23 +23,17 @@ var OrdenesFactory = function(UsuarioFactory,
 	};
 
 	var setHistorialOrdenes = function(historialOrdenes) {
+		init();
+
 		for (var i in $localStorage.historialOrdenes) {
 			delete $localStorage.historialOrdenes[i];
 		}
+		
 		
 		for (var i in historialOrdenes) {
 			$localStorage.historialOrdenes[i] = historialOrdenes[i];
 		}
 	};
-
-	if (!$localStorage.ordenesEnProceso) {
-		$localStorage.ordenesEnProceso = [];
-	}
-	
-	if (!$localStorage.historialOrdenes) {
-		$localStorage.historialOrdenes = [];
-	}
-	
 
 	function nuevaOrden() {
 		_orden = {
@@ -59,6 +60,8 @@ var OrdenesFactory = function(UsuarioFactory,
 		_orden.entrega.direccion = UsuarioFactory.getUsuario().direccion;
 		_orden.telefono = UsuarioFactory.getUsuario().telefono;
 	};
+
+	init();
 
 	return {
 		ordenesEnProceso: $localStorage.ordenesEnProceso,
@@ -91,7 +94,7 @@ var OrdenesFactory = function(UsuarioFactory,
 				console.log("OrdenesFactory.realizarOrden(): ", response);
 				self.limpiarOrden();
 				_ultimaOrden = response.data.orden;
-
+				self.cargarOrdenesEnProceso();
 			});
 		},
 		
