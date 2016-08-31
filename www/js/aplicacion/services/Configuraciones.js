@@ -2,14 +2,16 @@ var ConfiguracionesFactory = function(RecursosFactory,
 									$localStorage) {
 	
 	var getConfiguraciones = function() {
-		if (!$localStorage.configuraciones) {
-			$localStorage.configuraciones = {
-				domicilio: 0,
-				versiones: {}
-			};
-		}
-		return $localStorage.configuraciones;
-	}
+		return $localStorage.configuraciones = $localStorage.configuraciones || {};
+	};
+
+	var getVersiones = function() {
+		return $localStorage.versiones = $localStorage.versiones || {};
+	};
+
+	var setVersiones = function(v) {
+		$localStorage.versiones = v;
+	};
 
 	var cargar = function() {
 		return RecursosFactory
@@ -18,11 +20,11 @@ var ConfiguracionesFactory = function(RecursosFactory,
 			console.log("ConfiguracionesFactory.cargar()", response);
 			if (response.data.success) {
 				$localStorage.configuraciones = response.data.configuraciones;
-				return response.data.configuraciones
+				return response.data.configuraciones;
 			}
 			return null;			
 		});
-	}
+	};
 
 	var cargarVersiones = function() {
 		return RecursosFactory
@@ -30,18 +32,20 @@ var ConfiguracionesFactory = function(RecursosFactory,
 		.then(function(response) {
 			console.log("ConfiguracionesFactory.cargarVersiones()", response);
 			if (response.data.success) {
-				var anterior = getConfiguraciones().versiones,
+				var anterior = getVersiones(),
 					nueva = response.data.versiones;
 
-				getConfiguraciones().versiones = nueva;
 				return {
 					anterior: anterior,
-					nueva: nueva
+					nueva: nueva,
+					cb: function() {
+						setVersiones(nueva);
+					}
 				};
 			}
 			return null;
 		});	
-	}
+	};
 
 	return {
 		getConfiguraciones: getConfiguraciones,

@@ -5,9 +5,12 @@ var ProductoCtrl = function($scope,
 							$state) {
 	
 	console.log("ProductoCtrl");
-	var indexProducto = $stateParams.indexProducto;
-	$scope.producto = ProductosFactory.productos[indexProducto];
-		
+	
+	$scope.$on("$ionicView.beforeEnter", function() {
+		var indexProducto = $stateParams.indexProducto;
+		$scope.producto = ProductosFactory.productos[indexProducto];
+	});	
+
 	$scope.aumentarProducto = function(){
 		$scope.carrito.agregar($scope.producto, "PRODUCTO", 1);
 		$scope.carrito.limpiar();

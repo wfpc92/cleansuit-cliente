@@ -1,19 +1,23 @@
 var ServiciosFactory = function(RecursosFactory,
 							$localStorage){
 	
+	var init = function() {
+		$localStorage.servicios = $localStorage.servicios || [];
+	};
+
 	var setServicios = function(servicios) {
+		init();
+
 		for (var i in $localStorage.servicios) {
 			delete $localStorage.servicios[i];
 		}
-		
+
 		for (var i in servicios) {
 			$localStorage.servicios[i] = servicios[i];
 		}
 	};
-
-	if (!$localStorage.servicios) {
-		$localStorage.servicios = [];
-	}
+	
+	init();
 
 	return {
 		servicios: $localStorage.servicios,

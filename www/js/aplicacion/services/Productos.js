@@ -1,19 +1,23 @@
 var ProductosFactory = function(RecursosFactory,
 							$localStorage){
 	
+	var init = function() {
+		$localStorage.productos = $localStorage.productos || [];
+	};
+
 	var setProductos = function(productos) {
+		init();
+
 		for (var i in $localStorage.productos) {
 			delete $localStorage.productos[i];
-		}
-		
+		}	
+
 		for (var i in productos) {
 			$localStorage.productos[i] = productos[i];
 		}
 	};
 
-	if (!$localStorage.productos) {
-		$localStorage.productos = [];
-	}
+	init();
 	
 	return {
 		productos : $localStorage.productos,

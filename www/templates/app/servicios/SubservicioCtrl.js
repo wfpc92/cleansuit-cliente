@@ -5,9 +5,6 @@ var SubservicioCtrl = function($scope,
 							$state) {
 
 	console.log("SubservicioCtrl");
-	var i = $stateParams.indexServicio;
-	var j = $stateParams.indexSubservicio; 
-	$scope.subservicio = ServiciosFactory.servicios[i].subservicios[j];
 	
 	$scope.aumentarSubservicio = function(subservicio){
 		console.log("Agregar item de servicio al carrito desde SubservicioCtrl");
@@ -28,6 +25,12 @@ var SubservicioCtrl = function($scope,
 			disableBack:'true'
 		})
 	};
+
+	$scope.$on("$ionicView.beforeEnter", function() {
+		var i = $stateParams.indexServicio;
+		var j = $stateParams.indexSubservicio; 
+		$scope.subservicio = ServiciosFactory.servicios[i].subservicios[j];
+	});
 };
 
 

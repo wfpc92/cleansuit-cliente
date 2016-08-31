@@ -4,7 +4,6 @@ var ServiciosCtrl = function($scope,
 							OrdenesFactory) {
 
 	console.log("ServiciosCtrl");
-	$scope.servicios = ServiciosFactory.servicios;
 	
 	$scope.cargarServicios = function() {
 		console.log("ejecutando cargarServicios desde ServiciosCtrl.");
@@ -16,7 +15,9 @@ var ServiciosCtrl = function($scope,
 		});
 	};
 	
-
+	$scope.$on("$ionicView.beforeEnter", function() {
+		$scope.servicios = ServiciosFactory.servicios;
+	});	
 };
 
 app.controller('ServiciosCtrl', ServiciosCtrl);

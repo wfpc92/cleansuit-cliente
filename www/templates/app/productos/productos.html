@@ -23,9 +23,9 @@
 						</span>
 					</div>
 										
-					<h2>{{::producto.nombre}}</h2>
-					<p>{{::producto.desc_corta}}</p>
-					<h3>{{::producto.precio | currency : "$ " : 0}}</h3>
+					<h2>{{producto.nombre}}</h2>
+					<p>{{producto.desc_corta}}</p>
+					<h3>{{producto.precio | currency : "$ " : 0}}</h3>
 					<i class="icon ico-flechader assertive"></i>
 
 					<ion-option-button class="light text-center mas" ng-click="aumentarProducto(producto)">
