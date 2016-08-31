@@ -1,7 +1,8 @@
 var ProductosCtrl = function($scope,
 							ProductosFactory,
 							TutorialFactory,
-							$timeout) {
+							$timeout,
+							ModalCargaFactory) {
 	
 	console.log("ProductosCtrl");
 	$scope.$on("$ionicView.beforeEnter", function() {

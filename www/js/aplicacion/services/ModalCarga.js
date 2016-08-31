@@ -11,7 +11,6 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 			$scope.mensajeModal = $scope.mensajeModal || mensaje;
 			
 			$scope.hide = function() {
-				console.log("hide")
 				self.ocultar();
 			};
 			

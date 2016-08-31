@@ -82,8 +82,6 @@ app.config(function($stateProvider,
 
 	$localStorageProvider.setKeyPrefix('CleanSuit-');
 
-
-
 	// Ionic uses AngularUI Router which uses the concept of states
 	// Learn more here: https://github.com/angular-ui/ui-router
 	// Set up the various states which the app can be in.
@@ -248,7 +246,7 @@ app.config(function($stateProvider,
 
 	.state('app.informacion-orden', {
 		url: '/informacion-orden',
-		cache: false,
+		//cache: false,
 		views: {
 			'mi-carrito': {
 				templateUrl: 'templates/app/orden/informacion-orden.html',
@@ -261,7 +259,7 @@ app.config(function($stateProvider,
 
 	.state('app.realizar-orden', {
 		url: '/realizar-orden',
-		cache: false,
+		//cache: false,
 		views: {
 			'mi-carrito': {
 				templateUrl: 'templates/app/orden/estado-orden.html',
@@ -278,6 +276,7 @@ app.config(function($stateProvider,
 	
 	.state('app.ordenes-en-proceso', {
 		url: '/ordenes-en-proceso',
+		cache:false,
 		views: {
 			'panel-contenido': {
 				templateUrl: 'templates/app/historial/ordenes-en-proceso.html',
@@ -288,6 +287,7 @@ app.config(function($stateProvider,
 
 	.state('app.orden-en-proceso', {
 		url: '/ordenes-en-proceso/:indexOrden',
+		cache:false,
 		views: {
 			'panel-contenido': {
 				templateUrl: 'templates/app/historial/informacion-orden.html',
@@ -298,6 +298,7 @@ app.config(function($stateProvider,
 
 	.state('app.historial-ordenes', {
 		url: '/historial-ordenes',
+		cache:false,
 		views: {
 			'panel-contenido': {
 				templateUrl: 'templates/app/historial/historial-ordenes.html',
@@ -308,6 +309,7 @@ app.config(function($stateProvider,
 
 	.state('app.historial-orden', {
 		url: '/historial-ordenes/:indexOrden',
+		cache:false,
 		views: {
 			'panel-contenido': {
 				templateUrl: 'templates/app/historial/informacion-orden.html',
