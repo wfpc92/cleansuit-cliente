@@ -32,18 +32,25 @@ var CarritoCtrl = function($scope,
 		$ionicPopup
 		.confirm({
 	    	title: 'Cancelar Orden',
-	    	template: '¿Está seguro que desea cancelar esta orden?'
-	    })
-		.then(function(res) {
-			if(res) {
-				OrdenesFactory.limpiarOrden();
-				$state.go("app.inicio");
-				$ionicHistory.clearHistory();
-				$ionicHistory.nextViewOptions({
-					disableBack:'true'
-				});
-			}
-		});
+	    	template: '¿Está seguro que desea cancelar esta orden?',
+	    	buttons: [
+		    	{
+		    		text: 'Si',
+		    		onTap: function(e) {
+		    			OrdenesFactory.limpiarOrden();
+						$state.go("app.inicio");
+						$ionicHistory.clearHistory();
+						$ionicHistory.nextViewOptions({
+							disableBack:'true'
+						});
+		    		}
+		    	},
+		      	{
+			    	text: '<b>No</b>',
+			    	type: 'button-positive'
+		      	}
+		    ]
+	    });
 	};
 };
 

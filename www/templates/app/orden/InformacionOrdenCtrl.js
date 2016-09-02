@@ -95,6 +95,8 @@ var InformacionOrdenCtrl = function($scope,
     	PromocionesFactory
     	.validar($scope.orden.cupon)
     	.then(function(respuesta) {
+    		console.log("InformacionOrdenCtrl.validarCupon()")
+    		console.log(JSON.stringify(respuesta))
     		if(respuesta) {
     			tmp = respuesta.mensaje;
     			$scope.carrito.aplicarPromocion(respuesta.promocion);
@@ -128,13 +130,20 @@ var InformacionOrdenCtrl = function($scope,
 		$ionicPopup
 		.confirm({
 	    	title: 'Cancelar Orden',
-	    	template: '¿Está seguro que desea cancelar esta orden?'
-    	})
-		.then(function(res) {
-			if(res) {
-				self.cancelarOrden();
-			}
-		});
+	    	template: '¿Está seguro que desea cancelar esta orden?',
+	    	buttons: [
+		    	{
+		    		text: 'Si',
+		    		onTap: function(e) {
+		    			self.cancelarOrden();
+		    		}
+		    	},
+		      	{
+			    	text: '<b>No</b>',
+			    	type: 'button-positive'
+		      	}
+		    ]
+    	});
 	};
 
 	$scope.realizarOrden = function() {

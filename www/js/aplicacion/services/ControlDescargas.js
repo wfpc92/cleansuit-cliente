@@ -15,7 +15,7 @@ var ControlDescargasFactory = function($q,
 		carga();
 	};
 
-	var comprobarCarga = function(carga, n) {
+	var comprobarCarga = function(carga, n) { 
 		if(carga == n) {
 			ModalCargaFactory.ocultar();
 			if(cb) {
