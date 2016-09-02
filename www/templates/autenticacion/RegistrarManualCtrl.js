@@ -29,7 +29,6 @@ var RegistrarManualCtrl = function($scope,
 			return;
 		}
 
-
 		AuthService
 		.registrar($scope.usuario)
 		.then(function(msg) {

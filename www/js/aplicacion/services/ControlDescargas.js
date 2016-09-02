@@ -109,6 +109,7 @@ var ControlDescargasFactory = function($q,
 
 	var cargaInicial = function() {
 		deferred = $q.defer();
+		ModalCargaFactory.mostrar("Actualizando información...", null);	
 		console.log("Cargando datos iniciales... ");
 
 		//crear mapa de google maps
@@ -120,7 +121,10 @@ var ControlDescargasFactory = function($q,
 			console.log("hubo error al crear mapa: ", error)
 		});	
 
-		cargarVersiones();
+		cargarVersiones()
+		.finally(function() {
+			ModalCargaFactory.ocultar();
+		});
 
 		return deferred.promise;
 	};

@@ -7,9 +7,6 @@ var AutenticacionInicioCtrl = function($scope,
 	$ionicSideMenuDelegate.canDragContent(false);
 
 	$scope.ingresarFacebook = function() {
-		/*$ionicLoading.show({
-			template: "Loading..."
-		});*/
 		AuthService
 		.ingresarFacebook()
 		.then(function(msg) {

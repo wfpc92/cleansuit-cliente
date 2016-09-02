@@ -5,16 +5,16 @@
 
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>		
 
-		<div clas="card" ng-show="promociones.length == 0">
+		<div clas="card" ng-show="!hayPromociones()">
 			<div class="item item-text-wrap">
-				No hay promociones aún para mostrar. <a ng-click="cargarPromociones()">mostrar</a>
+				Debes tener conexión a internet para mostrarte las promociones. <a ng-click="cargarPromociones()">cargar</a>
 			</div>
 		</div>
 
 		<div class="bottom">
-			<ion-list ng-if="promociones.length > 0">
+			<ion-list ng-if="hayPromociones()">
 				<div class="promociones">
-					<ion-item class="item-image" ng-repeat="promocion in promociones" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
+					<ion-item class="item-image" ng-repeat="promocion in promociones track by $index" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
 
 						<div class="imagen">
 							<img ng-src="{{promocion.url_imagen}}" ng-cloak/>
