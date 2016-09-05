@@ -1118,9 +1118,16 @@ input[readonly]:not(.cloned-text-input) {
 /*.forma-pago.popover {
 	height: 100px;
 }*/
-.popover-hora {
+.popover-hora {	
 	top: 76px !important; 
     left: 54px !important;
+    .list {
+    	background-color: #FAFAFA;
+    	border-radius: 10px;
+    }
+    .popover-arrow:after{
+    	display: none;
+    }
 }
 .cotizar {
 	background-color: #76A900;

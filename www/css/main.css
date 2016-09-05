@@ -10699,6 +10699,11 @@ input[readonly]:not(.cloned-text-input) {
 .popover-hora {
   top: 76px !important;
   left: 54px !important; }
+  .popover-hora .list {
+    background-color: #FAFAFA;
+    border-radius: 10px; }
+  .popover-hora .popover-arrow:after {
+    display: none; }
 
 .cotizar {
   background-color: #76A900;
