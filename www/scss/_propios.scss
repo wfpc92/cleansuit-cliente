@@ -685,7 +685,7 @@ $menu: #52B1ED;
 		}
 		label.item-checkbox {
 			border: none;
-			font-size: 1.1em;
+			font-size: 0.9em;
 			padding-top: 29px;
 			div span{
 				color: #666;
@@ -742,7 +742,8 @@ $menu: #52B1ED;
 	.descripcion {
 		background-color: $light;
 		padding: 38px 25px;
-		p{margin-bottom: 20px;}
+		color: #666666;
+		p {margin-bottom: 20px;}
 	}
 }
 .historial-ord, .ord-en-proceso {
@@ -1191,4 +1192,47 @@ input[readonly]:not(.cloned-text-input) {
 }
 .card .item:last-child {
 	border-top: 0;
+}
+.terminos {
+	font-size: 1.1em;
+	margin: 0;
+	padding: 0;
+	label .item-content {
+		font-size: 1.1em;
+	}
+	.enlace {
+		position: absolute;
+		top: 25px;
+		left: 55px;
+		z-index: 100;
+	}
+}
+.modal-terminos {
+	.bar-header {
+		background-color: #44A01A;
+		.title-left {
+			color: #FFFFFF;
+		}
+		span.icon:before {
+			width: 30px;
+			height: 30px;
+			text-indent: -9999px;
+			background: url('../img/ico_cerrar.png');
+			margin-top: 7px;
+		}
+	}
+	.contenido {
+		background-color: #FFFFFF;
+		color: #666666;
+		padding: 30px;
+		.button-bar {
+			margin-top: 30px;
+			.button {
+				border-radius: 4px;
+				padding: 0px;
+				margin: 0 5px;
+
+			}
+		}
+	}
 }
