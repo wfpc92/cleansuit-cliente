@@ -89,14 +89,14 @@ img.logoinicio {
 }
 .row-center, .col-center { padding: 0; }
 
-.bar .title.title-left { 
+.bar .title.title-left, .bar .title { 
 	color: #004C9E;
 	font-size: 20px;
 	height: 56px;
 	line-height: 56px;
 }
 .bar.bar-positive {	
-	.title.title-left {
+	.title.title-left, .title {
 		color: #80A3CD;
 	}
 }
@@ -652,7 +652,7 @@ $menu: #52B1ED;
 .has-header {
 	top: 56px;
 }
-.tabs-striped.tabs-light .tabs {
+.tabs-striped.tabs-light .tabs, .tabs-top > .tabs {
 	background-color: #F8F8F8;
 	padding: 0;
 	display: none;
@@ -1210,7 +1210,7 @@ input[readonly]:not(.cloned-text-input) {
 .modal-terminos {
 	.bar-header {
 		background-color: #44A01A;
-		.title-left {
+		.title-left, .title{
 			color: #FFFFFF;
 		}
 		span.icon:before {

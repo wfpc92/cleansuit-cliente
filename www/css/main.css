@@ -9803,13 +9803,13 @@ img.logoinicio {
 .row-center, .col-center {
   padding: 0; }
 
-.bar .title.title-left {
+.bar .title.title-left, .bar .title {
   color: #004C9E;
   font-size: 20px;
   height: 56px;
   line-height: 56px; }
 
-.bar.bar-positive .title.title-left {
+.bar.bar-positive .title.title-left, .bar.bar-positive .title {
   color: #80A3CD; }
 
 .form {
@@ -10267,8 +10267,7 @@ p {
 
 /* Tabs (inicio)*/
 .tabs-top > .tabs, .tabs.tabs-top {
-  border-bottom-width: 0px; 
-  display: none; }
+  border-bottom-width: 0px; }
 
 .tabs-menu {
   padding: 18px 20px 18px;
@@ -10302,7 +10301,7 @@ p {
 .has-header {
   top: 56px; }
 
-.tabs-striped.tabs-light .tabs {
+.tabs-striped.tabs-light .tabs, .tabs-top > .tabs {
   background-color: #F8F8F8;
   padding: 0;
   display: none; }
@@ -10780,7 +10779,7 @@ input[readonly]:not(.cloned-text-input) {
 
 .modal-terminos .bar-header {
   background-color: #44A01A; }
-  .modal-terminos .bar-header .title-left {
+  .modal-terminos .bar-header .title-left, .modal-terminos .bar-header .title {
     color: #FFFFFF; }
   .modal-terminos .bar-header span.icon:before {
     width: 30px;
