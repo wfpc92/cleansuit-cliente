@@ -142,10 +142,11 @@
 			<resumen-totales totales="carrito.totales" ng-show="true || carrito.hayItems()"></resumen-totales>
 
 			<ion-list>
-				<ion-item class="item-text-wrap">
+				<ion-item class="item-text-wrap terminos">
 					<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones"></ion-checkbox>
-					Acepto los <a ng-click="abrirModalTC()">Términos y Condiciones.</a>
-					
+					<div class="enlace">
+						Acepto los <a ng-click="abrirModalTC()">Términos y Condiciones.</a>
+					</div>			
 				</ion-item>
 			</div>
 		</form>

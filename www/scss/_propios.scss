@@ -89,14 +89,14 @@ img.logoinicio {
 }
 .row-center, .col-center { padding: 0; }
 
-.bar .title.title-left { 
+.bar .title.title-left, .bar .title { 
 	color: #004C9E;
 	font-size: 20px;
 	height: 56px;
 	line-height: 56px;
 }
 .bar.bar-positive {	
-	.title.title-left {
+	.title.title-left, .title {
 		color: #80A3CD;
 	}
 }
@@ -652,7 +652,7 @@ $menu: #52B1ED;
 .has-header {
 	top: 56px;
 }
-.tabs-striped.tabs-light .tabs {
+.tabs-striped.tabs-light .tabs, .tabs-top > .tabs {
 	background-color: #F8F8F8;
 	padding: 0;
 	display: none;
@@ -685,7 +685,7 @@ $menu: #52B1ED;
 		}
 		label.item-checkbox {
 			border: none;
-			font-size: 1.1em;
+			font-size: 0.9em;
 			padding-top: 29px;
 			div span{
 				color: #666;
@@ -742,7 +742,8 @@ $menu: #52B1ED;
 	.descripcion {
 		background-color: $light;
 		padding: 38px 25px;
-		p{margin-bottom: 20px;}
+		color: #666666;
+		p {margin-bottom: 20px;}
 	}
 }
 .historial-ord, .ord-en-proceso {
@@ -1117,9 +1118,16 @@ input[readonly]:not(.cloned-text-input) {
 /*.forma-pago.popover {
 	height: 100px;
 }*/
-.popover-hora {
+.popover-hora {	
 	top: 76px !important; 
     left: 54px !important;
+    .list {
+    	background-color: #FAFAFA;
+    	border-radius: 10px;
+    }
+    .popover-arrow:after{
+    	display: none;
+    }
 }
 .cotizar {
 	background-color: #76A900;
@@ -1191,4 +1199,47 @@ input[readonly]:not(.cloned-text-input) {
 }
 .card .item:last-child {
 	border-top: 0;
+}
+.terminos {
+	font-size: 1.1em;
+	margin: 0;
+	padding: 0;
+	label .item-content {
+		font-size: 1.1em;
+	}
+	.enlace {
+		position: absolute;
+		top: 25px;
+		left: 55px;
+		z-index: 100;
+	}
+}
+.modal-terminos {
+	.bar-header {
+		background-color: #44A01A;
+		.title-left, .title{
+			color: #FFFFFF;
+		}
+		span.icon:before {
+			width: 30px;
+			height: 30px;
+			text-indent: -9999px;
+			background: url('../img/ico_cerrar.png');
+			margin-top: 7px;
+		}
+	}
+	.contenido {
+		background-color: #FFFFFF;
+		color: #666666;
+		padding: 30px;
+		.button-bar {
+			margin-top: 30px;
+			.button {
+				border-radius: 4px;
+				padding: 0px;
+				margin: 0 5px;
+
+			}
+		}
+	}
 }
