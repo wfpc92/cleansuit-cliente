@@ -5,7 +5,7 @@ var AppCtrl = function($scope,
 					ControlDescargasFactory,
 					CarritoFactory,
 					OrdenesFactory,
-					$ionicPopup,
+					PopupFactory,
 					AuthService,
 					AUTH_EVENTS,
 					APP_EVENTS,
@@ -56,14 +56,14 @@ var AppCtrl = function($scope,
 
 
 	$scope.$on(AUTH_EVENTS.loginFailed, function(event, args){
-		var alertPopup = $ionicPopup.alert({
+		var alertPopup = PopupFactory.alert({
 			title: 'Verifica por favor!',
 			template: args.msg
 		});
 	});
 
 	$scope.$on(AUTH_EVENTS.noAutorizado, function(event) {
-		var alertPopup = $ionicPopup.alert({
+		var alertPopup = PopupFactory.alert({
 			title: 'No es posible acceder!',
 			template: 'Este recurso no está disponible para ti.'
 		});
@@ -72,7 +72,7 @@ var AppCtrl = function($scope,
 	$scope.$on(AUTH_EVENTS.noAutenticado, function(event) {
 		AuthService.logout();
 		$state.go('autenticacion.inicio');
-		var alertPopup = $ionicPopup.alert({
+		var alertPopup = PopupFactory.alert({
 			title: 'Usuario no autenticado!',
 			template: 'Debes iniciar sesion.'
 		});
@@ -81,8 +81,7 @@ var AppCtrl = function($scope,
 	$scope.$on(AUTH_EVENTS.perfilActualizado, function(event, args) {
 		console.log("event:AppCtrl.perfilActualizado");
 
-		$ionicPopup
-		.alert({
+		PopupFactory.alert({
 			title: "Perfil de usuario",
 			template: args.msg || "no hay mensaje"
 		});
@@ -91,26 +90,20 @@ var AppCtrl = function($scope,
 	$scope.$on(APP_EVENTS.noAccesoServidor, function(event, args) {
 		console.log("event:AppCtrl.noAccesoServidor");
 
-		//cambiar para que solo se ejcuute una sola vez este evento.
-		$ionicPopup
-		.alert({
+		PopupFactory.alert({
 			title: 'No se puede acceder',
-			template: "Estamos experimentado problemas con nuestros servidores. Por favor, vuelve más tarde."
+			template: "Al parecer no tienes una conexión a internet. Por favor, intenta conectarte a una red e intenta ingresar de nuevo."
 		});
 	});
 
 	$scope.$on(APP_EVENTS.servidorNoEncontrado, function(event, args) {
 		console.log("event:AppCtrl.servidorNoEncontrado");
 
-		//cambiar para que solo se ejcuute una sola vez este evento.
-		$ionicPopup
-		.alert({
+		PopupFactory.alert({
 			title: 'No se encuentra',
 			template: "Estamos experimentado problemas con nuestros servidores. Por favor, vuelve más tarde."
 		});
 	});
-
-	
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		$scope.usuario = UsuarioFactory.getUsuario();

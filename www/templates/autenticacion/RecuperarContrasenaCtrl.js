@@ -1,5 +1,5 @@
 var RecuperarContrasenaCtrl = function($scope,
-									$ionicPopup,
+									PopupFactory,
 									RecursosFactory) {
 
 	$scope.form = {};
@@ -16,16 +16,10 @@ var RecuperarContrasenaCtrl = function($scope,
 			} else {
 				mensaje = respuesta.data.mensaje
 			}
-			$ionicPopup
+			PopupFactory
 			.alert({
 		    	title: 'Recuperar Contraseña',
 		    	template: mensaje
-		    })
-		}, function(err) {
-			$ionicPopup
-			.alert({
-		    	title: 'Recuperar Contraseña',
-		    	template: JSON.stringify(err)
 		    })
 		});
 

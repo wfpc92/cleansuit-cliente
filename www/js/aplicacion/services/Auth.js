@@ -93,8 +93,6 @@ var AuthService = function($q,
 						} else {
 							return reject(respuesta.data.mensaje);
 						}
-					}, function(err) {
-						//no se encuentra el servidor, AuthInterceptor maneja el error.
 					});
 				}
 			})
@@ -109,6 +107,10 @@ var AuthService = function($q,
 
 	var estaAutorizado = function(rolesAutorizados) {
 		console.log("AuthService.estaAutorizado()")
+		if(!UsuarioFactory.getUsuario()){
+			return false;
+		}
+
 		if (!angular.isArray(rolesAutorizados)) {
 			rolesAutorizados = [rolesAutorizados];
 		}
@@ -129,20 +131,4 @@ var AuthService = function($q,
 	};
 };
 
-var AuthInterceptor = function ($rootScope, $q, AUTH_EVENTS, APP_EVENTS) {
-  return {
-    responseError: function (response) {
-    	console.log("AuthInterceptor.responseError()", response)
-    	$rootScope.$broadcast({
-        	401: AUTH_EVENTS.noAutenticado,
-        	403: AUTH_EVENTS.noAutorizado,
-        	404: APP_EVENTS.servidorNoEncontrado,
-        	500: APP_EVENTS.servidorNoEncontrado,
-      	}[response.status], response);
-      	return $q.reject(response);
-    }
-  };
-};
-
-app.service('AuthService', AuthService)
-	.factory('AuthInterceptor', AuthInterceptor);
+app.service('AuthService', AuthService);

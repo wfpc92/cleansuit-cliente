@@ -15,6 +15,7 @@ var PerfilCtrl = function($scope,
 		.then(function(imgData){
 			if(imgData) {
 				$scope.usuario.url_foto = "data:image/jpeg;base64," + imgData;
+				$scope.formData.actualizaFoto = true;
 				console.log("termina seleccion de foto.")
 			}
 		}, function(err) {
@@ -44,6 +45,7 @@ var PerfilCtrl = function($scope,
 		$scope.usuario.fb = UsuarioFactory.getUsuario().fb; 
 
 		$scope.formData = {
+			actualizaFoto: false,
 			mostrarCambiarContrasena: false,
 			contrasenaModificada: false,
 			formValido: false
