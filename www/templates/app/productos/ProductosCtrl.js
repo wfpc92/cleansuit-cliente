@@ -5,10 +5,8 @@ var ProductosCtrl = function($scope,
 							ModalCargaFactory) {
 	
 	console.log("ProductosCtrl");
-	$scope.$on("$ionicView.beforeEnter", function() {
-		$scope.productos = ProductosFactory.productos;
-	});	
-	
+	$scope.productos = ProductosFactory.productos;
+
 	$scope.aumentarProducto = function(index) {
 		$scope.carrito.agregar(index, "PRODUCTO", 1);
 		$scope.carrito.limpiar();
@@ -36,8 +34,20 @@ var ProductosCtrl = function($scope,
 		ProductosFactory
 		.cargar()
 		.then( function() {
-			$scope.productos = ProductosFactory.productos;
+			//$scope.productos = ProductosFactory.productos;
 		});
+	};
+
+	$scope.hayProductos = function() {
+		if(!$scope.productos) {
+			return false;
+		}
+
+		if($scope.productos.length > 0) {
+			return true;
+		}
+		
+		return false;
 	};
 
 	$scope.tutorial = TutorialFactory;

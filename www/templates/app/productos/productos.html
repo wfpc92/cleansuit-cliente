@@ -3,15 +3,15 @@
 		 
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
- 		<div clas="card" ng-show="productos.length == 0">
+ 		<div clas="card" ng-show="!hayProductos()">
 			<div class="item item-text-wrap">
-				No hay productos para mostrar. <a ng-click="cargarProductos()">Cargar</a>
+				<a ng-click="cargarProductos()">Cargar</a> lista de productos.
 			</div>
 		</div>
 
-		<tutorial ng-if="productos.length > 0"></tutorial>
+		<tutorial ng-if="hayProductos()"></tutorial>
 		
-		<ion-list id="{{idLst}}" ng-if="productos.length > 0" can-swipe="true">
+		<ion-list id="{{idLst}}" ng-if="hayProductos()" can-swipe="true">
 			<div class="productos lista">
 				<ion-item class="item-thumbnail-left item-icon-right item-text-wrap" ng-repeat="producto in productos track by $index" ui-sref="app.producto({ 'indexProducto': {{$index}} })">
 

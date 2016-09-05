@@ -10267,7 +10267,8 @@ p {
 
 /* Tabs (inicio)*/
 .tabs-top > .tabs, .tabs.tabs-top {
-  border-bottom-width: 0px; }
+  border-bottom-width: 0px; 
+  display: none; }
 
 .tabs-menu {
   padding: 18px 20px 18px;

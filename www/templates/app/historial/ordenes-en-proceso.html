@@ -5,13 +5,13 @@
 			<p>Estas son las ordenes que actualmente<br/>tiene en proceso.</p>
 		</div>
 
-		<div class="card" ng-if="ordenes.length == 0">
+		<div class="card" ng-if="!hayOrdenes()">
 			<div class="item item-text-wrap">
 				No hay Ordenes en Proceso para mostrar.
 			</div>
 		</div>
 
-		<ion-list ng-if="ordenes.length > 0">
+		<ion-list ng-if="hayOrdenes()">
 			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
 					ui-sref="app.orden-en-proceso( {'indexOrden': {{$index}} })">
 
@@ -20,9 +20,6 @@
 				<i class="icon ico-flechader assertive" ></i>
 
 			</ion-item>
-		</ion-list>
-
-		
-		
+		</ion-list>		
 	</ion-content>
 </ion-view>

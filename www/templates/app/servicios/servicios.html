@@ -13,13 +13,13 @@
 			Puedes cotizar el valor de tu servicio en las siguientes secciones
 		</div>
 
-  		<div class="card" ng-show="servicios.length == 0">
+  		<div class="card" ng-show="!hayServicios()">
 			<div class="item item-text-wrap">
-				No hay Servicios para mostrar. <a ng-click="cargarServicios()">Cargar</a>
+				<a ng-click="cargarServicios()">Cargar</a> servicios.
 			</div>
 		</div>
 
-		<ion-list ng-if="servicios.length > 0">
+		<ion-list ng-if="hayServicios()">
 			<div class="categorias lista">
 				<ion-item class="item-icon-right item-text-wrap" ng-repeat="servicio in servicios track by $index" 
 					ui-sref="app.subservicios({ 'indexServicio': {{$index}} })">
