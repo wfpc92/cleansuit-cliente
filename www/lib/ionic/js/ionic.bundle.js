@@ -52152,8 +52152,8 @@ IonicModule
     },
 
     navBar: {
-      alignTitle: 'left',
-      positionPrimaryButtons: 'right',
+      alignTitle: 'center',
+      positionPrimaryButtons: 'left',
       positionSecondaryButtons: 'right'
     },
 
@@ -52164,7 +52164,7 @@ IonicModule
     },
 
     form: {
-      checkbox: 'square',
+      checkbox: 'circle',
       toggle: 'small'
     },
 
