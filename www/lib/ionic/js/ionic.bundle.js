@@ -52144,7 +52144,43 @@ IonicModule
 
   // iOS (it is the default already)
   // -------------------------
-  setPlatformConfig('ios', {});
+  setPlatformConfig('ios', {
+
+    views: {
+      transition: 'android',
+      swipeBackEnabled: false
+    },
+
+    navBar: {
+      alignTitle: 'left',
+      positionPrimaryButtons: 'right',
+      positionSecondaryButtons: 'right'
+    },
+
+    backButton: {
+      icon: 'ion-android-arrow-back',
+      text: false,
+      previousTitleText: false
+    },
+
+    form: {
+      checkbox: 'square',
+      toggle: 'small'
+    },
+
+    spinner: {
+      icon: 'android'
+    },
+
+    tabs: {
+      style: 'striped',
+      position: 'top'
+    },
+
+    scrolling: {
+      jsScrolling: false
+    }
+  });
 
 
 
