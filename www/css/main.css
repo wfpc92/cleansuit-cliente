@@ -3616,10 +3616,10 @@ ion-infinite-scroll {
   top: 88px; }
 
 .has-tabs-top {
-  top: 93px; }
+  top: 56px; }
 
 .has-header.has-subheader.has-tabs-top {
-  top: 137px; }
+  top: 56px; }
 
 .has-footer {
   bottom: 44px; }
@@ -5343,7 +5343,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   .menu .scroll-content {
     z-index: 10; }
   .menu .bar-header {
-    z-index: 9; 
+    z-index: 9;
     background-color: #44A01A;
 }
 
@@ -5440,9 +5440,9 @@ ion-tabs.tabs-color-active-dark .tab-item {
   .platform-ios.platform-cordova .modal-wrapper .modal .has-subheader {
     top: 88px; }
   .platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-tabs-top {
-    top: 93px; }
+    top: 56px; }
   .platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-subheader.has-tabs-top {
-    top: 137px; }
+    top: 56px; }
   .modal-backdrop-bg {
     -webkit-transition: opacity 300ms ease-in-out;
     transition: opacity 300ms ease-in-out;
@@ -9797,10 +9797,10 @@ a.button {
   top: 108px; }
 
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
-  top: 113px; }
+  top: 56px; }
 
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
-  top: 157px; }
+  top: 56px; }
 
 .platform-ios.platform-cordova .popover .bar-header:not(.bar-subheader) {
   height: 44px; }
