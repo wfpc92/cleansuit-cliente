@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('ClienteCleanSuit', ['ionic', 
+var app = angular.module('ClienteCleanSuit', ['ionic',
 											'ngAnimate',
 											'angularLoad',
 											'ngCordova',
@@ -13,9 +13,6 @@ var app = angular.module('ClienteCleanSuit', ['ionic',
 											'ngOpenFB'])
 
 .run(function($ionicPlatform) {
-	
-	ionic.Platform.setPlatform('android');
-
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
