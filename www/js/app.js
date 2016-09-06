@@ -13,6 +13,8 @@ var app = angular.module('ClienteCleanSuit', ['ionic',
 											'ngOpenFB'])
 
 .run(function($ionicPlatform) {
+	
+	ionic.Platform.setPlatform('android');
 
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
