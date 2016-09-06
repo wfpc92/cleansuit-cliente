@@ -52169,7 +52169,7 @@ IonicModule
     },
 
     spinner: {
-      icon: 'android'
+      icon: 'ios'
     },
 
     tabs: {
