@@ -614,6 +614,7 @@ p {
 $menu: #52B1ED;
 .tabs-top > .tabs, .tabs.tabs-top {
 	border-bottom-width: 0px;
+	display: none;
 }
 .tabs-menu {
 	padding: 18px 20px 18px;
@@ -708,7 +709,10 @@ $menu: #52B1ED;
 			font-size: 1.2em;
 			height: auto;
 		}
-		input[disabled]{ background-color: $light; }
+		input[disabled]{
+			background-color: $light;
+			color: #111;
+		}
 		.icon {
 			color: #666;
 			font-size: 26px;
@@ -771,10 +775,21 @@ $menu: #52B1ED;
 		background-color: #3DA0EB;
 	}
 }
-.has-header.has-subheader.has-tabs-top {
+/*, .has-tabs-top, .has-header.has-subheader.has-tabs-top,
+.platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-tabs-top,
+.platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-subheader.has-tabs-top,
+.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top,
+.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top*/
+
+.has-header.has-subheader.has-tabs-top,
+.platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-tabs-top,
+.platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-subheader.has-tabs-top,
+.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top,
+.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
 	top: 56px;
 }
-.estado-orden {	
+
+.estado-orden {
 	padding: 30px 15px;
 	background-color: #f8f8f8;
 	h2 {
@@ -1101,7 +1116,7 @@ $menu: #52B1ED;
 			.item {
 				color: #333333;
 				border: none;
-				background-color: #F8F8F8;
+				background-color: #FAFAFA;
 				border-bottom: 1px solid #CCCCCC;
 				margin: 0;
 				padding: 8px 16px 10px;
@@ -1242,4 +1257,13 @@ input[readonly]:not(.cloned-text-input) {
 			}
 		}
 	}
+}
+.button.validar {
+  margin-top: 16px;
+  padding: 7px;
+  line-height: 19px;
+  min-height: auto;
+}
+.loading-container .loading {
+	background-color: #44a01a;
 }
