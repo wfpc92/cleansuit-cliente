@@ -1,10 +1,11 @@
 var RegistrarManualCtrl = function($scope,
 								$ionicPopup,
 								AuthService,
+								$log,
 								AUTH_EVENTS,
 								$rootScope) {
 
-	console.log("RegistrarManualCtrl");
+	$log.debug("RegistrarManualCtrl");
 	$scope.error = "";
 	$scope.formValido = [];
 	$scope.usuario = {
@@ -32,7 +33,7 @@ var RegistrarManualCtrl = function($scope,
 		AuthService
 		.registrar($scope.usuario)
 		.then(function(msg) {
-			console.log("RegistrarManualCtrl:", msg)
+			$log.debug("RegistrarManualCtrl:", msg)
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess, { msg: msg });
 		}, function(msg) {
 			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, { msg: msg });
@@ -44,7 +45,7 @@ var RegistrarManualCtrl = function($scope,
 		'usuario.correo',
 		'usuario.contrasena',
 		], function(newV, oldV, scope){
-			console.log("RegistrarManualCtrl.watch", newV);
+			$log.debug("RegistrarManualCtrl.watch", newV);
 			$scope.formValido = newV;
 	});
 };

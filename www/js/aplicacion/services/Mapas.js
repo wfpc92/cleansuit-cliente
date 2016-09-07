@@ -1,4 +1,4 @@
-var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ionicPopup) {
+var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ionicPopup, $log) {
 	var deferred = null,
 		mapa = null,
 		marker = null,
@@ -20,21 +20,21 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 	};
 
 	var detectarPosicionGPS = function(callback) {
-		console.log("detectando posicion actual...");
+		$log.debug("detectando posicion actual...");
 		
 		if(!latLng) {
 			$cordovaGeolocation
 				.getCurrentPosition({timeout: 5000, enableHighAccuracy: true})
 				.then(function(position) {
-					console.log("posicion detectada con gps: ", position.coords.latitude, position.coords.longitude)
+					$log.debug("posicion detectada con gps: ", position.coords.latitude, position.coords.longitude)
 					latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
 				}, function(error){
 					//mostrar ventana de error.
-					console.log("posicion no se puede obtener: ", error);
-					console.log(JSON.stringify(error));
+					$log.debug("posicion no se puede obtener: ", error);
+					$log.debug(JSON.stringify(error));
 					
 					document.addEventListener("deviceready",function() {
-						console.log("deviceready lanzado... llamando cordova.dialogGPS()")
+						$log.debug("deviceready lanzado... llamando cordova.dialogGPS()")
 						/**
 						* @param message {string}       message to be displayed.
 						* @param description {string}   description of the propertie that you want change.
@@ -64,7 +64,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 					}
 				});
 		} else {
-			console.log("ya se detecto una posicion en... ", latLng.lat(), latLng.lng())
+			$log.debug("ya se detecto una posicion en... ", latLng.lat(), latLng.lng())
 			if(callback) {
 				callback();
 			}
@@ -168,7 +168,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 
 		// Setup the click event listeners: simply set the map to Chicago.
 		controlUI.addEventListener('click', function() {
-			console.log("aqui se realiza ubicacion GPS....")
+			$log.debug("aqui se realiza ubicacion GPS....")
 			buscarYUbicarGPS();
 		});
 		
@@ -227,7 +227,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 	};
 
 	var asignarEventos = function() {
-		console.log("asiganando eventos para mapa... ")
+		$log.debug("asiganando eventos para mapa... ")
 
 		mapa.setOptions({
 			draggable: true
@@ -242,7 +242,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 				puntoEnPoligono = false, 
 				posicionArea = -1;
 
-			console.log("Evento lanzado, center_changed, posicion: ", posCentro.lat(), posCentro.lng());
+			$log.debug("Evento lanzado, center_changed, posicion: ", posCentro.lat(), posCentro.lng());
 			
 			if(!posCentro) {
 				return;
@@ -261,11 +261,11 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 			
 			//el punto se encuentra dentro del area del poligono	
 			if(puntoEnPoligono){
-				console.log("si esta dentor del area " + posicionArea);
+				$log.debug("si esta dentor del area " + posicionArea);
 				elemMarker.style.background = 'url("img/marker.png") no-repeat';
 			}
 			else{
-				console.log("no esta dentro del area");
+				$log.debug("no esta dentro del area");
 				elemMarker.style.background = 'url("img/marker-rojo.png") no-repeat';
 				marker.setPosition(mapa.getCenter());
 				infoWindow.open(mapa, marker);
@@ -295,7 +295,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 				return new google.maps.LatLng(mapa.getCenter().lat(), mapa.getCenter().lng());
 			},
 			setPosicion: function(posicion) {
-				console.log("SetPosicion: ", posicion.lat(), posicion.lng());
+				$log.debug("SetPosicion: ", posicion.lat(), posicion.lng());
 				marker.setPosition(posicion);
 				mapa.setCenter(posicion);
 				return this;
@@ -317,17 +317,17 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 		getMapa: function() {
 			deferred = $q.defer();
 			if(!mapa) {
-				console.log("mapa google no ha sido creado, construyendo dom...")
+				$log.debug("mapa google no ha sido creado, construyendo dom...")
 				CargarScriptsFactory.cargarGoogleMaps(function() {
-					console.log("creando mapa de google...")
+					$log.debug("creando mapa de google...")
 					initMap();
 					resultado();			
 				}, function() {
-					console.log("no se ha podido cargar el script de google maps")
+					$log.debug("no se ha podido cargar el script de google maps")
 				});
 			}
 			else {
-				console.log("mapa google ya ha sido previamente construido.")
+				$log.debug("mapa google ya ha sido previamente construido.")
 				resultado();
 			}
 			return deferred.promise;

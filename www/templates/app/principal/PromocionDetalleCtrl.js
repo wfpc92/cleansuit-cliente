@@ -1,10 +1,11 @@
 var PromocionDetalleCtrl = function($scope, 
-							$stateParams, 
+							$stateParams,
+							$log,
 							PromocionesFactory, 
 							$ionicHistory, 
 							$state) {
 	
-	console.log("PromocionDetalleCtrl");
+	$log.debug("PromocionDetalleCtrl");
 	var indexPromocion = $stateParams.indexPromocion;
 	$scope.promocion = PromocionesFactory.promociones[indexPromocion];
 		

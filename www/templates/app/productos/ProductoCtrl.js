@@ -2,9 +2,10 @@ var ProductoCtrl = function($scope,
 							$stateParams, 
 							ProductosFactory, 
 							$ionicHistory, 
-							$state) {
+							$state,
+							$log) {
 	
-	console.log("ProductoCtrl");
+	$log.debug("ProductoCtrl");
 	
 	var indexProducto = $stateParams.indexProducto;
 	$scope.producto = ProductosFactory.productos[indexProducto];

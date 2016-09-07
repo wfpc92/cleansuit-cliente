@@ -14,7 +14,7 @@ var AppInicioCtrl = function($scope,
 	.finally(function() {
 		//cuando termina de descargar las promociones
 		//$scope.promociones = PromocionesFactory.promociones;
-		console.log("=============", PromocionesFactory.promociones)
+		$log.debug("=============", PromocionesFactory.promociones)
 	});
 
 	$scope.$on("$ionicView.beforeEnter", function () {
@@ -25,7 +25,7 @@ var AppInicioCtrl = function($scope,
 	});
 
 	$scope.cargarPromociones = function() {
-		console.log("AppInicioCtrl.cargarPromociones().");
+		$log.debug("AppInicioCtrl.cargarPromociones().");
 		PromocionesFactory
 		.cargar()
 		.then(function() { 

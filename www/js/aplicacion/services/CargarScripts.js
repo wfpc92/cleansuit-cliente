@@ -1,4 +1,5 @@
-var CargarScriptsFactory = function(angularLoad) {
+var CargarScriptsFactory = function(angularLoad,
+									$log) {
 	var recursos = {
 		googleMaps: false
 	};
@@ -7,15 +8,15 @@ var CargarScriptsFactory = function(angularLoad) {
 		cargarGoogleMaps : function(callback, error) {
 			var self = this;
 			if(!recursos.googleMaps) {
-				console.log("cargando Script google maps...")
+				$log.debug("cargando Script google maps...")
 				angularLoad.loadScript('https://maps.googleapis.com/maps/api/js').then(function () {
-					console.log("exito script google maps.")
+					$log.debug("exito script google maps.")
 					recursos.googleMaps = true;
 					if(callback) {
 						callback();
 					}	
 				}).catch(function () {
-					console.log("error script google maps.");
+					$log.debug("error script google maps.");
 					recursos.googleMaps = false;
 					if(error) {
 						error();
@@ -23,10 +24,10 @@ var CargarScriptsFactory = function(angularLoad) {
 				});
 			}
 			else {
-				console.log("Script google maps ya ha sido cargado.")
+				$log.debug("Script google maps ya ha sido cargado.")
 			}
 		}
 	};
 };
 
-app.factory("CargarScriptsFactory", ['angularLoad', CargarScriptsFactory]);
+app.factory("CargarScriptsFactory", CargarScriptsFactory);

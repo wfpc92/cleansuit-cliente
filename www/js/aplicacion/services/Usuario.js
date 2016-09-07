@@ -1,12 +1,13 @@
 var UsuarioFactory = function(RecursosFactory,
-							$localStorage){
+							$localStorage,
+							$log){
 	
 	return {
 		actualizarPerfil: function(usuario) {
 			return RecursosFactory
 			.post("/cliente", usuario)
 			.then(function(response) {
-				console.log("UsuarioFactory.actualizarPerfil(): ", response);
+				$log.debug("UsuarioFactory.actualizarPerfil(): ", response);
 				if(response.data.success) {
 					$localStorage.usuario.nombre = response.data.usuario.nombre;
 					$localStorage.usuario.direccion = response.data.usuario.direccion;
@@ -16,22 +17,22 @@ var UsuarioFactory = function(RecursosFactory,
 				}
 				return response.data.mensaje;
 			}, function(err) {
-				console.log("UsuarioFactory.actualizarPerfil(): ", err);
+				$log.debug("UsuarioFactory.actualizarPerfil(): ", err);
 			});
 		},
 
 		setUsuario: function(usuario) {
-			console.log("UsuarioFactory.setUsuario():", usuario)
+			$log.debug("UsuarioFactory.setUsuario():", usuario)
 			$localStorage.usuario = usuario;
 		},
 
 		getUsuario: function() {
-			//console.log("UsuarioFactory.getUsuario():", JSON.stringify($localStorage.usuario));//, _usuario)
+			//$log.debug("UsuarioFactory.getUsuario():", JSON.stringify($localStorage.usuario));//, _usuario)
 			return ($localStorage.usuario ? $localStorage.usuario : null);
 		}, 
 
 		deleteUsuario: function() {
-			console.log("UsuarioFactory.deleteUsuario():");//, _usuario)			
+			$log.debug("UsuarioFactory.deleteUsuario():");//, _usuario)			
 			delete $localStorage.usuario;
 		}
 	};

@@ -5,7 +5,8 @@ var ControlDescargasFactory = function($q,
 									ServiciosFactory,
 									MapasFactory,
 									ConfiguracionesFactory,
-									OrdenesFactory) {
+									OrdenesFactory,
+									$log) {
 	
 	var deferred,
 		cb;
@@ -31,7 +32,7 @@ var ControlDescargasFactory = function($q,
 		.cargar()
 		.finally(function() {
 			comprobarCarga(++carga, n);
-			console.log("ControlDescargasFactory.inventario(),PromocionesFactory.cargar(), finally", PromocionesFactory.promociones)
+			$log.debug("ControlDescargasFactory.inventario(),PromocionesFactory.cargar(), finally", PromocionesFactory.promociones)
 			deferred.resolve();
 		});
 
@@ -110,15 +111,15 @@ var ControlDescargasFactory = function($q,
 	var cargaInicial = function() {
 		deferred = $q.defer();
 		ModalCargaFactory.mostrar("Actualizando información...", null);	
-		console.log("Cargando datos iniciales... ");
+		$log.debug("Cargando datos iniciales... ");
 
 		//crear mapa de google maps
 		MapasFactory
 		.getMapa()
 		.then(function(mapa) {
-			console.log("mapa de google creado: ", mapa)
+			$log.log("mapa de google creado: ", mapa)
 		}, function(error) {
-			console.log("hubo error al crear mapa: ", error)
+			$log.log("hubo error al crear mapa: ", error)
 		});	
 
 		cargarVersiones()

@@ -5,7 +5,7 @@ var CarritoCtrl = function($scope,
 						OrdenesFactory,
 						$log) {
 	
-	console.log("CarritoCtrl");
+	$log.debug("CarritoCtrl");
 	
 	//se ejecuta al dejar la vista, limpiar carrito.
 	$scope.$on('$ionicView.leave', function(event, view){

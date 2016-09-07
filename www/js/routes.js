@@ -29,7 +29,7 @@ app.config(function($stateProvider,
 		return args;
 	}
 
-    $provide.decorator('$log', function ($delegate) {
+    /*$provide.decorator('$log', function ($delegate) {
         //Original methods
         var origLog = $delegate.log,
         	origInfo = $delegate.info,
@@ -43,26 +43,13 @@ app.config(function($stateProvider,
                 origLog.apply(null, toJSON(arguments));
 	        };
 	    
-	        $delegate.info = function () {
-	            origInfo.apply(null, toJSON(arguments))
-	        };
-
-	        $delegate.warn = function () {
-	            origWarn.apply(null, toJSON(arguments))
-	        };
-
-	        /*$delegate.error = function () {
-	        	console.log(arguments)
-	            origError.apply(null, toJSON(arguments))
-	        };*/
-
 	        $delegate.debug = function () {
 	            origDebug.apply(null, toJSON(arguments))
 	        };
         }     
 
         return $delegate;
-    });
+    });*/
 
 
 	$compileProvider.debugInfoEnabled(false);
@@ -75,11 +62,11 @@ app.config(function($stateProvider,
 	$ionicConfigProvider.views.forwardCache(true);
 	$ionicConfigProvider.views.maxCache(5);
 
-	$httpProvider.interceptors.push(function ($rootScope, $q, AUTH_EVENTS, APP_EVENTS) {
+	$httpProvider.interceptors.push(function ($rootScope, $q, $log, AUTH_EVENTS, APP_EVENTS) {
 		return {
 			responseError: function (response) {
-				console.log("AuthInterceptor.responseError()");
-				console.log(JSON.stringify(response));
+				$log.log("AuthInterceptor.responseError()");
+				$log.log(JSON.stringify(response));
 				
 				if(response.status == 0) {
 					response.status = 106;
@@ -254,7 +241,7 @@ app.config(function($stateProvider,
 
 	.state('app.carrito', {
 		url: '/carrito',
-		//cache: false,
+		cache: false,
 		views: {
 			'mi-carrito': {
 				templateUrl: 'templates/app/orden/carrito.html',
@@ -266,7 +253,7 @@ app.config(function($stateProvider,
 
 	.state('app.informacion-orden', {
 		url: '/informacion-orden',
-		//cache: false,
+		cache: false,
 		views: {
 			'mi-carrito': {
 				templateUrl: 'templates/app/orden/informacion-orden.html',
@@ -279,7 +266,7 @@ app.config(function($stateProvider,
 
 	.state('app.realizar-orden', {
 		url: '/realizar-orden',
-		//cache: false,
+		cache: false,
 		views: {
 			'mi-carrito': {
 				templateUrl: 'templates/app/orden/estado-orden.html',

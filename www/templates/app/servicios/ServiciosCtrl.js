@@ -1,18 +1,18 @@
-var ServiciosCtrl = function($scope, 
+var ServiciosCtrl = function($scope,
+							$log,
 							ServiciosFactory,
 							ModalCargaFactory,
 							OrdenesFactory) {
 
-	console.log("ServiciosCtrl");
+	$log.debug("ServiciosCtrl");
 	$scope.servicios = ServiciosFactory.servicios;
 
 	$scope.cargarServicios = function() {
-		console.log("ejecutando cargarServicios desde ServiciosCtrl.");
+		$log.debug("ejecutando cargarServicios desde ServiciosCtrl.");
 		ServiciosFactory
 		.cargar()
 		.then(function() { 
-			console.log("la operacion cargarServicios ha sido terminada. ")
-			//$scope.servicios = ServiciosFactory.servicios;
+			$log.debug("la operacion cargarServicios ha sido terminada. ")
 		});
 	};
 
@@ -27,10 +27,6 @@ var ServiciosCtrl = function($scope,
 		
 		return false;
 	};
-	
-	/*$scope.$on("$ionicView.beforeEnter", function() {
-		$scope.servicios = ServiciosFactory.servicios;
-	});	*/
 };
 
 app.controller('ServiciosCtrl', ServiciosCtrl);

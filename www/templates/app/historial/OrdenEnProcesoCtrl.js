@@ -1,11 +1,12 @@
 var OrdenEnProcesoCtrl = function ($scope,
 								$stateParams,
+								$log,
 								OrdenesFactory,
 								EstadosFactory,
 								$ionicHistory,
 								$state) {
 	
-	console.log("OrdenEnProcesoCtrl");
+	$log.debug("OrdenEnProcesoCtrl");
 	var indexOrden = $stateParams.indexOrden;
 
 	$scope.orden = OrdenesFactory.ordenesEnProceso[indexOrden];
@@ -14,8 +15,8 @@ var OrdenEnProcesoCtrl = function ($scope,
 
 	$scope.soloProductos = $scope.carrito.soloHayProductos($scope.orden.items);
 
-	console.log("index orden en proceso: "+indexOrden);
-	console.log($scope.orden)
+	$log.debug("index orden en proceso: "+indexOrden);
+	$log.debug($scope.orden)
 
 	$scope.estados = EstadosFactory.estados($scope.orden);
 	$scope.miEstado = EstadosFactory.getEstado($scope.orden);

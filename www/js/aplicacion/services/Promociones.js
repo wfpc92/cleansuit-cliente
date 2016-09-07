@@ -1,5 +1,6 @@
 var PromocionesFactory = function(RecursosFactory, 
-								$localStorage){
+								$localStorage,
+								$log){
 	
 	var init = function() {
 		$localStorage.promociones = $localStorage.promociones || [];
@@ -27,7 +28,7 @@ var PromocionesFactory = function(RecursosFactory,
 			return RecursosFactory
 			.get('/promociones', {})
 			.then(function(respuesta) {
-				console.log("PromocionesFactory.cargar()", respuesta);
+				$log.debug("PromocionesFactory.cargar()", respuesta);
 				if(respuesta){
 					setPromociones(respuesta.data.promociones);
 				}
@@ -38,16 +39,16 @@ var PromocionesFactory = function(RecursosFactory,
 			return RecursosFactory
 			.get('/promociones/validar/'+cupon)
 			.then(function(respuesta) {
-				console.log(respuesta)
+				$log.debug(respuesta)
 				if(respuesta.data.success) {
-					console.log("PromocionesFactory.validarCupon: true")
+					$log.debug("PromocionesFactory.validarCupon: true")
 	    			return respuesta.data;
 	    		} else {
-					console.log("PromocionesFactory.validarCupon: false")
+					$log.debug("PromocionesFactory.validarCupon: false")
 	    			return false;
 	    		}
 			}, function() {
-				console.log("PromocionesFactory.validarCupon: error")
+				$log.debug("PromocionesFactory.validarCupon: error")
 				return false;
 			});
 		}

@@ -38,7 +38,7 @@ var CarritoFactory = function(RecursosFactory,
 		 * @return {void}
 		 */
 		agregar : function(item, tipo, cantidad){
-			console.log("CarritoFactory.agregar()", item, tipo, cantidad);
+			$log.debug("CarritoFactory.agregar()", item, tipo, cantidad);
 			if(!item){ return; }
 			//existe el item en el carrito de compra, aumentar cantidad
 			if(typeof this.items[item._id] !== 'undefined'){
@@ -46,7 +46,7 @@ var CarritoFactory = function(RecursosFactory,
 			}
 			//no existe hay que agregarlo al carrito de compras
 			else {
-				console.log("no existe el item... creando")
+				$log.debug("no existe el item... creando")
 				this.items[item._id] = item;
 				this.items[item._id].tipo = tipo;
 				this.items[item._id].cantidad = cantidad;
@@ -57,7 +57,7 @@ var CarritoFactory = function(RecursosFactory,
 		},
 
 		disminuir : function(item, tipo, cantidad){
-			console.log("CarritoFactory.disminuir()", item, tipo, cantidad);
+			$log.debug("CarritoFactory.disminuir()", item, tipo, cantidad);
 			//existe el item en el carrito de compra, disminuri cantidad
 			if(typeof this.items[item._id] !== 'undefined'){
 				this.items[item._id].cantidad -= cantidad;
@@ -92,7 +92,7 @@ var CarritoFactory = function(RecursosFactory,
 		actualizarContadores : function(){
 			this.contProductos = 0;
 			this.contServicios = 0;
-			console.log("CarritoFactory.actualizarContadores()", this.items);
+			$log.debug("CarritoFactory.actualizarContadores()", this.items);
 			for (var i in this.items) {
 				switch(this.items[i].tipo){
 					case "PRODUCTO":
@@ -119,7 +119,7 @@ var CarritoFactory = function(RecursosFactory,
 
 				//revisar en lista de descuentos del cupon si este item aplica para descuento
 				if(this.totales.promocion && this.totales.promocion.items[idItem]){
-					console.log("CarritoFactory.calcularTotales: ",	this.totales.promocion, this.totales.promocion.items[idItem]);
+					$log.debug("CarritoFactory.calcularTotales: ",	this.totales.promocion, this.totales.promocion.items[idItem]);
 					descuento +=this.items[idItem].precio * this.items[idItem].cantidad * (this.totales.promocion.items[idItem].descuento / 100.0);
 				}
 			}
@@ -135,7 +135,7 @@ var CarritoFactory = function(RecursosFactory,
 				this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio - descuento: 0);
 			}
 
-			console.log("CarritoFactory.calcularTotales", this.totales)
+			$log.debug("CarritoFactory.calcularTotales", this.totales)
 			return this.totales;
 		},
 
@@ -171,7 +171,7 @@ var CarritoFactory = function(RecursosFactory,
 		},
 
 		aplicarPromocion: function(promocion) {
-			console.log("CarritoFactory.aplicarPromocion", promocion);
+			$log.debug("CarritoFactory.aplicarPromocion", promocion);
 			this.totales.promocion = promocion;
 			this.calcularTotales();
 		}

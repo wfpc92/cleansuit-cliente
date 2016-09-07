@@ -4,10 +4,11 @@ var PerfilCtrl = function($scope,
 						AUTH_EVENTS,
 						$rootScope, 
 						$state,
+						$log,
 						$ionicHistory,
 						FotosFactory){
 	
-	console.log("PerfilCtrl");
+	$log.debug("PerfilCtrl");
 
 	$scope.subirFoto = function() {
 		FotosFactory
@@ -16,11 +17,11 @@ var PerfilCtrl = function($scope,
 			if(imgData) {
 				$scope.usuario.url_foto = "data:image/jpeg;base64," + imgData;
 				$scope.formData.actualizaFoto = true;
-				console.log("termina seleccion de foto.")
+				$log.debug("termina seleccion de foto.")
 			}
 		}, function(err) {
 			//se cancela la seleccion de fotos.
-			console.log("PerfilCtrl.subirFoto(), err", err)
+			$log.debug("PerfilCtrl.subirFoto(), err", err)
 		})
 	};
 	

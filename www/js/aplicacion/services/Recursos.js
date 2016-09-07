@@ -8,7 +8,7 @@ var RecursosFactory = function($log, $http, API_ENDPOINT, APP_EVENTS, $rootScope
 
 	this.solicitud = function(metodo, recurso, getParams, postParams) {
 		
-		console.log("solicitud para consumir servicio de api cleansuit");
+		$log.debug("solicitud para consumir servicio de api cleansuit");
 
 		var requestConfig = {
 			url: self._apiUrl + recurso, 
@@ -26,7 +26,7 @@ var RecursosFactory = function($log, $http, API_ENDPOINT, APP_EVENTS, $rootScope
 			error : null
 		};
 
-		console.log("RecursosFactory.requestConfig: ", JSON.stringify(requestConfig))
+		$log.debug("RecursosFactory.requestConfig: ", JSON.stringify(requestConfig))
 		return $http(requestConfig);
 	};
 

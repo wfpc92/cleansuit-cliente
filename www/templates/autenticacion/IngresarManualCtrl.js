@@ -2,9 +2,10 @@ var IngresarManualCtrl = function($scope,
 								AuthService,
 								$ionicPopup,
 								$rootScope,
+								$log,
 								AUTH_EVENTS) {
 
-	console.log("IngresarManualCtrl");
+	$log.debug("IngresarManualCtrl");
 	
 	$scope.error = "";
 	$scope.formValido = [];
@@ -26,10 +27,10 @@ var IngresarManualCtrl = function($scope,
 		AuthService
 		.ingresar($scope.usuario)
 		.then(function(msg) {
-			console.log("IngresarManualCtrl.ingresar()", msg)
+			$log.debug("IngresarManualCtrl.ingresar()", msg)
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess, {msg: msg});
 		}, function(msg) {
-			console.log("IngresarManualCtrl: err", msg);
+			$log.debug("IngresarManualCtrl: err", msg);
 			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: msg});
 		});
 	};
@@ -38,7 +39,7 @@ var IngresarManualCtrl = function($scope,
 		'usuario.correo',
 		'usuario.contrasena',
 		], function(newV, oldV, scope){
-			console.log("IngresarManualCtrl.watch", newV)
+			$log.debug("IngresarManualCtrl.watch", newV)
 			$scope.formValido = newV;
 	});
 };

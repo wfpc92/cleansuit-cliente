@@ -24,9 +24,6 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 				hideOnStateChange: true
 			};	
 
-			if(!active) {
-
-			}
 			$ionicLoading.show(opciones)
 			active = true;
 
@@ -42,6 +39,7 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 			if(active) {
 				$ionicLoading.hide();
 				active = false;
+				$scope.cerrar = false; 
 			}
 		},
 		setMensaje: function(mensaje) {

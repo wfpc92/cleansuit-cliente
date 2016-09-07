@@ -1,5 +1,6 @@
 var ProductosFactory = function(RecursosFactory,
-							$localStorage){
+							$localStorage,
+							$log){
 	
 	var init = function() {
 		$localStorage.productos = $localStorage.productos || [];
@@ -27,7 +28,7 @@ var ProductosFactory = function(RecursosFactory,
 			return RecursosFactory
 			.get('/productos', {})
 			.then(function(respuesta) {
-				console.log("ProductosFactory.cargar()", respuesta);
+				$log.debug("ProductosFactory.cargar()", respuesta);
 				if(respuesta){
 					setProductos(respuesta.data.productos);
 				} 

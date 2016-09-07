@@ -1,5 +1,6 @@
 var ServiciosFactory = function(RecursosFactory,
-							$localStorage){
+							$localStorage,
+							$log){
 	
 	var init = function() {
 		$localStorage.servicios = $localStorage.servicios || [];
@@ -26,7 +27,7 @@ var ServiciosFactory = function(RecursosFactory,
 			return RecursosFactory
 			.get('/servicios', {})
 			.then(function(respuesta) {
-				console.log("ServiciosFactory.cargar()", respuesta)
+				$log.debug("ServiciosFactory.cargar()", respuesta)
 				if(respuesta){
 					setServicios(respuesta.data.servicios);
 				}

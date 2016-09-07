@@ -1,7 +1,8 @@
 var OrdenesFactory = function(UsuarioFactory,
 							CarritoFactory,
 							RecursosFactory,
-							$localStorage){
+							$localStorage,
+							$log){
 	var _orden = null, 
 		_ultimaOrden = null;
 
@@ -87,11 +88,11 @@ var OrdenesFactory = function(UsuarioFactory,
 			orden.orden.servicioDirecto = CarritoFactory.servicioDirecto;	
 			orden.orden.totales = CarritoFactory.totales;		
 			
-			console.log("OrdenFactory.enviarOrden(): ", orden);	
+			$log.debug("OrdenFactory.enviarOrden(): ", orden);	
 			return RecursosFactory
 			.post("/ordenes", orden)
 			.then(function(response) {
-				console.log("OrdenesFactory.realizarOrden(): ", response);
+				$log.debug("OrdenesFactory.realizarOrden(): ", response);
 				self.limpiarOrden();
 				_ultimaOrden = response.data.orden;
 				self.cargarOrdenesEnProceso();
@@ -102,7 +103,7 @@ var OrdenesFactory = function(UsuarioFactory,
 			return RecursosFactory
 			.get('/ordenes/en-proceso', {})
 			.then(function(respuesta) {
-				console.log("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
+				$log.debug("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
 				if(respuesta.data.success) {
 					setOrdenesEnProceso(respuesta.data.ordenes);
 				}
@@ -113,7 +114,7 @@ var OrdenesFactory = function(UsuarioFactory,
 			return RecursosFactory
 			.get('/ordenes/historial', {})
 			.then(function(respuesta) {
-				console.log("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
+				$log.debug("OrdenesFactory.cargarOrdenesEnProceso()", respuesta)
 				if(respuesta.data.success) {
 					setHistorialOrdenes(respuesta.data.ordenes);
 				}

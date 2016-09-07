@@ -1,6 +1,7 @@
 var AutenticacionInicioCtrl = function($scope, 
 									$ionicSideMenuDelegate, 
-									$ionicLoading, 
+									$ionicLoading,
+									$log,
 									AuthService,
 									$rootScope, AUTH_EVENTS) {
 	
@@ -10,10 +11,10 @@ var AutenticacionInicioCtrl = function($scope,
 		AuthService
 		.ingresarFacebook()
 		.then(function(msg) {
-			console.log("AutenticacionInicioCtrl.ingresarFacebook()", msg)
+			$log.debug("AutenticacionInicioCtrl.ingresarFacebook()", msg)
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess, {msg: msg});
 		}, function(msg) {
-			console.log("AutenticacionInicioCtrl: err", msg);
+			$log.debug("AutenticacionInicioCtrl: err", msg);
 			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: msg.statusText});
 		})
 		.finally(function(){

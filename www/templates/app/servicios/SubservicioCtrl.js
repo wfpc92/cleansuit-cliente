@@ -1,19 +1,20 @@
 var SubservicioCtrl = function($scope,
 							$stateParams,
+							$log,
 							ServiciosFactory,
 							$ionicHistory,
 							$state) {
 
-	console.log("SubservicioCtrl");
+	$log.debug("SubservicioCtrl");
 	
 	$scope.aumentarSubservicio = function(subservicio){
-		console.log("Agregar item de servicio al carrito desde SubservicioCtrl");
+		$log.debug("Agregar item de servicio al carrito desde SubservicioCtrl");
 		$scope.carrito.agregar(subservicio, "SUBSERVICIO", 1);
 		$scope.carrito.limpiar();
 	};
 
 	$scope.disminuirSubservicio = function(subservicio){
-		console.log("Disminuir item de servicio del carrito desde SubservicioCtrl");
+		$log.debug("Disminuir item de servicio del carrito desde SubservicioCtrl");
 		$scope.carrito.disminuir(subservicio, "SUBSERVICIO", 1);
 		$scope.carrito.limpiar();
 	};	

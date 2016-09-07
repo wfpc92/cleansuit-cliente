@@ -1,7 +1,8 @@
-var AcercaCtrl = function($scope, 
+var AcercaCtrl = function($scope,
+						$log,
 						ConfiguracionesFactory){
 
-	console.log("AcercaCtrl");
+	$log.debug("AcercaCtrl");
 
 	$scope.$on("$ionicView.beforeEnter", function () {
 		$scope.sobreEmpresa = ConfiguracionesFactory.getConfiguraciones().sobreEmpresa;

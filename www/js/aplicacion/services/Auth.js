@@ -4,12 +4,13 @@ var AuthService = function($q,
 						USER_ROLES, 
 						UsuarioFactory,
 						RecursosFactory,
-						FacebookSvc) {
+						FacebookSvc,
+						$log) {
 
 	var estaAutenticado = false;
  
 	function cargarCredenciales() {
-		console.log("AuthService.cargarCredenciales()")
+		$log.debug("AuthService.cargarCredenciales()")
 		
 		if (UsuarioFactory.getUsuario()) {
 			useCredentials();
@@ -17,13 +18,13 @@ var AuthService = function($q,
 	}
  
 	function guardarCredenciales(usuario) {
-		console.log("AuthService.guardarCredenciales()")
+		$log.debug("AuthService.guardarCredenciales()")
 		UsuarioFactory.setUsuario(usuario);
 		useCredentials(usuario);
 	}
  
 	function useCredentials() {
-		console.log("AuthService.useCredentials()")
+		$log.debug("AuthService.useCredentials()")
 		estaAutenticado = true;
  
     	// Set the token as header for your requests!
@@ -33,7 +34,7 @@ var AuthService = function($q,
 	}
  
 	function eliminarCredenciales() {
-		console.log("AuthService.eliminarCredenciales()")
+		$log.debug("AuthService.eliminarCredenciales()")
 		UsuarioFactory.deleteUsuario();
 		estaAutenticado = false;
 		//$http.defaults.headers.common['X-Auth-Token'] = undefined;
@@ -56,7 +57,7 @@ var AuthService = function($q,
 			RecursosFactory
 			.post('/registrar', usuario)
 			.then(function(res) {
- 				console.log("AuthService.registrar()", res)
+ 				$log.debug("AuthService.registrar()", res)
 				return authCallback(resolve, reject, res);
 			});
 		});
@@ -67,7 +68,7 @@ var AuthService = function($q,
 			RecursosFactory
 			.post('/ingresar', usuario)
 			.then(function(res) {
- 				console.log("AuthService.ingresar()", res)
+ 				$log.debug("AuthService.ingresar()", res)
 				return authCallback(resolve, reject, res);
 			});
 		});
@@ -78,7 +79,7 @@ var AuthService = function($q,
 			FacebookSvc
 			.autenticar(resolve, reject)
 			.then(function(respuesta){
-				console.log("AuthService.ingresarFacebook(), ",JSON.stringify(respuesta))
+				$log.debug("AuthService.ingresarFacebook(), ",JSON.stringify(respuesta))
 				if(respuesta){
 					RecursosFactory
 					.post('/ingresar/fb', {
@@ -86,7 +87,7 @@ var AuthService = function($q,
 						'fb_uid': respuesta.fb_uid
 					})
 					.then(function(respuesta){
-						console.log("AuthService.ingresarFacebook", respuesta)
+						$log.debug("AuthService.ingresarFacebook", respuesta)
 						if(respuesta.data.success){
 							//si existe=true, el fb_uid ya esta registrado en el sistema
 							return authCallback(resolve, reject, respuesta); 
@@ -100,13 +101,13 @@ var AuthService = function($q,
 	};
  
 	var logout = function() {
-		console.log("AuthService.logout()")
+		$log.debug("AuthService.logout()")
 		eliminarCredenciales();
 		FacebookSvc.logout();
 	};
 
 	var estaAutorizado = function(rolesAutorizados) {
-		console.log("AuthService.estaAutorizado()")
+		$log.debug("AuthService.estaAutorizado()")
 		if(!UsuarioFactory.getUsuario()){
 			return false;
 		}

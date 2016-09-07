@@ -1,6 +1,7 @@
 var AppCtrl = function($scope,
 					$rootScope, 
 					$state, 
+					$log,
 					UsuarioFactory,
 					ControlDescargasFactory,
 					CarritoFactory,
@@ -11,7 +12,7 @@ var AppCtrl = function($scope,
 					APP_EVENTS,
 					USER_ROLES) {
 
-	console.log("AppCtrl");
+	$log.debug("AppCtrl");
 
 	$scope.banderas = {
 		swp:false,
@@ -20,13 +21,13 @@ var AppCtrl = function($scope,
 	
 	//verificar si esta autenticado y autorizado.
 	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-		//console.log("event:$stateChangeStart", toState, toParams, fromState, fromParams)
+		//$log.debug("event:$stateChangeStart", toState, toParams, fromState, fromParams)
 		var rolesAutorizados = toState.data.rolesAutorizados;
 		if (!AuthService.estaAutorizado(rolesAutorizados)) {
-			//console.log("no esta autorizado")
+			//$log.debug("no esta autorizado")
 			// usuario no autorizado
 			if (AuthService.estaAutenticado()) {
-				//console.log("esta autenticado")
+				//$log.debug("esta autenticado")
 				event.preventDefault();
 				if(toState.name.indexOf("autenticacion.") !== -1){
 					// usuario quiere volver a autenticar?, no permitido
@@ -38,7 +39,7 @@ var AppCtrl = function($scope,
 				}
 				
 			} else {
-				//console.log("no esta autenticado")
+				//$log.debug("no esta autenticado")
 				if(toState.name.indexOf("app.") !== -1){
 					// usuario no esta autenticado y quiere ingresar a la app
 					event.preventDefault();
@@ -79,7 +80,7 @@ var AppCtrl = function($scope,
 	});
 
 	$scope.$on(AUTH_EVENTS.perfilActualizado, function(event, args) {
-		console.log("event:AppCtrl.perfilActualizado");
+		$log.debug("event:AppCtrl.perfilActualizado");
 
 		PopupFactory.alert({
 			title: "Perfil de usuario",
@@ -88,7 +89,7 @@ var AppCtrl = function($scope,
 	});
 
 	$scope.$on(APP_EVENTS.noAccesoServidor, function(event, args) {
-		console.log("event:AppCtrl.noAccesoServidor");
+		$log.debug("event:AppCtrl.noAccesoServidor");
 
 		PopupFactory.alert({
 			title: 'No se puede acceder',
@@ -97,7 +98,7 @@ var AppCtrl = function($scope,
 	});
 
 	$scope.$on(APP_EVENTS.servidorNoEncontrado, function(event, args) {
-		console.log("event:AppCtrl.servidorNoEncontrado");
+		$log.debug("event:AppCtrl.servidorNoEncontrado");
 
 		PopupFactory.alert({
 			title: 'No se encuentra',
@@ -113,14 +114,14 @@ var AppCtrl = function($scope,
 	    	ControlDescargasFactory
 			.cargarVersiones()
 			.then(function() {
-				console.log("AppCtrl.event:$ionicView.afterEnter, contOrdenesEnProceso", $scope.contOrdenesEnProceso)
+				$log.debug("AppCtrl.event:$ionicView.afterEnter, contOrdenesEnProceso", $scope.contOrdenesEnProceso)
 				$scope.contOrdenesEnProceso = OrdenesFactory.ordenesEnProceso.length;
 			});
 		}
 	});
 
 	$scope.logout = function() {
-		console.log("AppCtrl.logout():");	
+		$log.debug("AppCtrl.logout():");	
 		AuthService.logout();
 		$state.go('autenticacion.inicio');
 	};		

@@ -1,19 +1,20 @@
 var SubserviciosCtrl = function($scope, 
 							$stateParams,
+							$log, 
 							ServiciosFactory,
 							TutorialFactory,
 							$timeout) {
 
-	console.log("SubserviciosCtrl");
+	$log.debug("SubserviciosCtrl");
 	
 	$scope.aumentarSubservicio = function(subservicio){
-		console.log("Agregar item de subservicio al carrito desde SubserviciosCtrl");
+		$log.debug("Agregar item de subservicio al carrito desde SubserviciosCtrl");
 		$scope.carrito.agregar(subservicio, "SUBSERVICIO", 1);
 		$scope.carrito.limpiar();
 	};
 
 	$scope.disminuirSubservicio = function(subservicio){
-		console.log("Disminuir item de servicio del carrito desde SubserviciosCtrl");
+		$log.debug("Disminuir item de servicio del carrito desde SubserviciosCtrl");
 		$scope.carrito.disminuir(subservicio, "SERVICIO", 1);
 		$scope.carrito.limpiar();
 	};	

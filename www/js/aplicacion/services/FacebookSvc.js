@@ -1,5 +1,6 @@
 var FacebookSvc = function(ngFB,
-						$q) {
+						$q,
+						$log) {
 	
 	ngFB.init({
 		appId: "1732222377062073"
@@ -7,7 +8,7 @@ var FacebookSvc = function(ngFB,
 	
 	return {
 		autenticar: function(resolve, reject) {
-			console.log("FacebookSvc.autenticar()")
+			$log.debug("FacebookSvc.autenticar()")
 			/*return $q(function(resolve, reject, err) {
 				return resolve({fb_token: "token",
 				fb_uid: "id"})
@@ -17,7 +18,7 @@ var FacebookSvc = function(ngFB,
 				scope: "email,public_profile"
 			})
 			.then(function(respuestaFacebook) {
-				console.log(JSON.stringify(respuestaFacebook))
+				$log.debug(JSON.stringify(respuestaFacebook))
 				if("connected" === respuestaFacebook.status){
 					return ngFB.api({
 						path: "/me",
@@ -31,11 +32,11 @@ var FacebookSvc = function(ngFB,
 							fb_uid: respuesta.id
 						}
 					}, function() {
-						console.log("error al obtener id de usuario.")
+						$log.debug("error al obtener id de usuario.")
 						return reject("No se ha podido obtener información de usuario");
 					}); 
 				} else {
-					console.log("facebook no retorna un estado conectado");
+					$log.debug("facebook no retorna un estado conectado");
 					return reject(respuestaFacebook.status);
 				}
 			}, function(err) {
@@ -54,7 +55,7 @@ var FacebookSvc = function(ngFB,
 				}
 			})
 			.then(function(respuestaFacebook) {
-				console.log("FacebookSvc.getDatos()", respuestaFacebook);
+				$log.debug("FacebookSvc.getDatos()", respuestaFacebook);
 				return {
 					fb_uid: respuestaFacebook.id,
 					nombre: respuestaFacebook.name,

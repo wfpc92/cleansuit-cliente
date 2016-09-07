@@ -1,13 +1,14 @@
 var RealizarOrdenCtrl = function($scope, 
 								OrdenesFactory,
 								$state, 
+								$log,
 								$ionicHistory) {
-	console.log("RealizarOrdenCtrl");
+	$log.debug("RealizarOrdenCtrl");
 	var self = this;
  
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		$scope.orden = OrdenesFactory.getUltimaOrden();
-		console.log("RealizarOrdenCtrl, ", $scope.orden)
+		$log.debug("RealizarOrdenCtrl, ", $scope.orden)
 	});
 
 	$scope.regresarPrincipal = function() {

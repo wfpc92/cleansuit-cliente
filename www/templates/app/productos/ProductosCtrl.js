@@ -1,10 +1,11 @@
 var ProductosCtrl = function($scope,
+							$log,
 							ProductosFactory,
 							TutorialFactory,
 							$timeout,
 							ModalCargaFactory) {
 	
-	console.log("ProductosCtrl");
+	$log.debug("ProductosCtrl");
 	$scope.productos = ProductosFactory.productos;
 
 	$scope.aumentarProducto = function(index) {
@@ -30,7 +31,7 @@ var ProductosCtrl = function($scope,
 	});
 
 	$scope.cargarProductos = function() {
-		console.log("ProductosCtrl.cargarProductos()");
+		$log.debug("ProductosCtrl.cargarProductos()");
 		ProductosFactory
 		.cargar()
 		.then( function() {

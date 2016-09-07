@@ -1,5 +1,6 @@
 var ConfiguracionesFactory = function(RecursosFactory,
-									$localStorage) {
+									$localStorage,
+									$log) {
 	
 	var getConfiguraciones = function() {
 		return $localStorage.configuraciones = $localStorage.configuraciones || {};
@@ -17,7 +18,7 @@ var ConfiguracionesFactory = function(RecursosFactory,
 		return RecursosFactory
 		.get("/configuraciones")
 		.then(function(response) {
-			console.log("ConfiguracionesFactory.cargar()", response);
+			$log.debug("ConfiguracionesFactory.cargar()", response);
 			if (response.data.success) {
 				$localStorage.configuraciones = response.data.configuraciones;
 				return response.data.configuraciones;
@@ -30,7 +31,7 @@ var ConfiguracionesFactory = function(RecursosFactory,
 		return RecursosFactory
 		.get("/configuraciones/versiones")
 		.then(function(response) {
-			console.log("ConfiguracionesFactory.cargarVersiones()", response);
+			$log.debug("ConfiguracionesFactory.cargarVersiones()", response);
 			if (response.data.success) {
 				var anterior = getVersiones(),
 					nueva = response.data.versiones;

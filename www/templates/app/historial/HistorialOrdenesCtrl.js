@@ -1,7 +1,8 @@
 var HistorialOrdenesCtrl = function ($scope, 
+									$log,
 									OrdenesFactory) {
 	
-	console.log("HistorialOrdenesCtrl");
+	$log.debug("HistorialOrdenesCtrl");
 	
 	$scope.ordenes = OrdenesFactory.historialOrdenes;
 

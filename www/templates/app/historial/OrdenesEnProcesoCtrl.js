@@ -1,7 +1,8 @@
 var OrdenesEnProcesoCtrl =  function ($scope,
+									$log,
 									OrdenesFactory) {
 	
-	console.log("OrdenesEnProcesoCtrl")
+	$log.debug("OrdenesEnProcesoCtrl")
 	$scope.ordenes = OrdenesFactory.ordenesEnProceso;
 
 	OrdenesFactory

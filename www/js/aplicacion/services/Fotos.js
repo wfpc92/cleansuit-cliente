@@ -1,4 +1,5 @@
-var FotosFactory = function($cordovaCamera) {
+var FotosFactory = function($cordovaCamera,
+						$log) {
 	
 	var seleccionarFoto = function() {
 		var opciones = {
@@ -18,7 +19,7 @@ var FotosFactory = function($cordovaCamera) {
 			return imageData;
 		}, function(err) {
 			// error
-			console.log("FotosFactory.obtenerFoto(), err", err)
+			$log.debug("FotosFactory.obtenerFoto(), err", err)
 		});
 	};
 

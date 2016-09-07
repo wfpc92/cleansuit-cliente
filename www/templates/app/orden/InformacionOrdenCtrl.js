@@ -13,7 +13,7 @@ var InformacionOrdenCtrl = function($scope,
 									$log,
 									ConfiguracionesFactory) {
 	
-	console.log("InformacionOrdenCtrl");
+	$log.debug("InformacionOrdenCtrl");
 	var self = this; 
 
 	this.$scope = $scope;
@@ -26,6 +26,7 @@ var InformacionOrdenCtrl = function($scope,
 	this.MapasFactory = MapasFactory;
 	this.ModalCargaFactory = ModalCargaFactory;
 	this.OrdenesFactory = OrdenesFactory;
+	this.$log = $log;
 
 	$scope.orden = OrdenesFactory.getOrden();
 	$log.debug($scope.carrito);
@@ -47,15 +48,15 @@ var InformacionOrdenCtrl = function($scope,
 			//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
 			$scope.orden.recoleccion.fecha = new Date(ahora.getTime() + (24 * 3600 * 1000));
 		}
-		console.log("recolecion.fecha", $scope.orden.recoleccion.fecha.toString())
+		//$log.debug("recolecion.fecha", $scope.orden.recoleccion.fecha.toString())
 	}
 	
 	$scope.orden.entrega.fecha = $scope.orden.entrega.fecha || $scope.orden.recoleccion.fecha;
 
 	//FLAGS:
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
-	$scope.soloProductos = $scope.carrito.soloHayProductos();
-	console.log("solo hay productos: "+ $scope.soloProductos);
+	
+	//$log.debug("solo hay productos: "+ $scope.soloProductos);
 
 	//se ejecuta al dar click en el icono de ubicacion de las direcciones, muestra ventana modal
 	//con un mapa para ubicar un punto, basado en su ubicacion actual. 
@@ -95,8 +96,8 @@ var InformacionOrdenCtrl = function($scope,
     	PromocionesFactory
     	.validar($scope.orden.cupon)
     	.then(function(respuesta) {
-    		console.log("InformacionOrdenCtrl.validarCupon()")
-    		console.log(JSON.stringify(respuesta))
+    		//$log.debug("InformacionOrdenCtrl.validarCupon()")
+    		//$log.debug(JSON.stringify(respuesta))
     		if(respuesta) {
     			tmp = respuesta.mensaje;
     			$scope.carrito.aplicarPromocion(respuesta.promocion);
@@ -123,6 +124,7 @@ var InformacionOrdenCtrl = function($scope,
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		self.viewAfterEnter();
+		$scope.soloProductos = $scope.carrito.soloHayProductos();
 	});
 
 	//cancelar orden:
@@ -147,11 +149,11 @@ var InformacionOrdenCtrl = function($scope,
 	};
 
 	$scope.realizarOrden = function() {
-		console.log("InformacionOrdenCtrl: realizarOrden(): ");
+		//$log.debug("InformacionOrdenCtrl: realizarOrden(): ");
 		OrdenesFactory
 		.enviarOrden()
 		.then(function() {
-			console.log("exito")
+			//$log.debug("exito")
 			$ionicHistory.clearHistory();
 			$ionicHistory.clearCache()
 			$ionicHistory.nextViewOptions({
@@ -159,7 +161,7 @@ var InformacionOrdenCtrl = function($scope,
 			}); 
 			$state.go("app.realizar-orden");
 		}, function(err) {
-			console.log(err)
+			//$log.debug(err)
 		})
 	};
 
@@ -170,7 +172,7 @@ var InformacionOrdenCtrl = function($scope,
 	
 	$scope.scopeModal.finalizaUbicacion = function(tipo) {
 		var posicion = $scope.mapa.getPosicion();
-		console.log("finaliza ubicacion: ", posicion.lat(), posicion.lng() );
+		//$log.debug("finaliza ubicacion: ", posicion.lat(), posicion.lng() );
 		
 		switch(tipo) {
 			case "DIRECCIONRECOLECCION":
@@ -193,7 +195,7 @@ var InformacionOrdenCtrl = function($scope,
 		$scope.modalMapa = modal;
 		MapasFactory.getMapa().then(function(mapa) {
 			$scope.mapa = mapa;
-			console.log("mapa obtenido: ", $scope.mapa)
+			//$log.debug("mapa obtenido: ", $scope.mapa)
 			$scope.modalMapa
 					.modalEl //ion-modal
 					.children[1] //ion-content
@@ -235,16 +237,16 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 		ModalCargaFactory = self.ModalCargaFactory,
 		posicion = null;
 
-	console.log("abriendo ventana modal para "+tipo+"...")
+	//self.$log.debug("abriendo ventana modal para "+tipo+"...")
 	
 	switch(tipo) {
 		case "DIRECCIONRECOLECCION":
 			//ubicar la posicion en el mapa almacenada
 			if($scope.orden.recoleccion.posicion) {
 				posicion = $scope.orden.recoleccion.posicion;
-				console.log("DIRECCIONRECOLECCION: ", posicion.lat(), posicion.lng());
+				//self.$log.debug("DIRECCIONRECOLECCION: ", posicion.lat(), posicion.lng());
 			} else {
-				console.log("DIRECCIONRECOLECCION: null");
+				//self.$log.debug("DIRECCIONRECOLECCION: null");
 			}
 
 			//mostrar la ventana modal con el mapa configurado en la posicion almacenada.
@@ -256,9 +258,9 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 			//ubicar la posicion en el mapa almacenada
 			if($scope.orden.entrega.posicion) {
 				posicion = $scope.orden.entrega.posicion;
-				console.log("DIRECCIONENTREGA: ", posicion.lat(), posicion.lng())
+				//self.$log.debug("DIRECCIONENTREGA: ", posicion.lat(), posicion.lng())
 			} else {
-				console.log("DIRECCIONENTREGA: null");
+				//self.$log.debug("DIRECCIONENTREGA: null");
 			}
 
 			//mostrar la ventana modal con el mapa configurado en la posicion almacenada.
@@ -268,7 +270,7 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 	}
 
 	if(!$scope.mapa) {
-		console.log("no existe el mapa...");
+		//self.$log.debug("no existe el mapa...");
 		//mostrar ventana de error 
 		return;
 	}
@@ -281,7 +283,7 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 		ModalCargaFactory.mostrar("Buscando posicion actual...", null);
 		$scope.modalMapa.show().then(function() {
 			$scope.mapa.obtenerUbicacionGPS(function() {
-				console.log("ubicacion obtenida GPS: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
+				//self.$log.debug("ubicacion obtenida GPS: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
 				ModalCargaFactory.ocultar();
 			}); 
 		});	
@@ -303,7 +305,7 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				console.log("productos", JSON.stringify(newV))
+				//self.$log.debug("productos", JSON.stringify(newV))
 				if(newV[0] && newV[1] && newV[2] 
 					&& newV[3] && newV[4] && newV[5]){
 					self.$scope.formIncompleto = false;
@@ -323,7 +325,7 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				console.log("servicios", JSON.stringify(newV))
+				//self.$log.debug("servicios", JSON.stringify(newV))
 				if(newV[0] && newV[1] && newV[2] 
 					&& newV[3] && newV[4] && newV[5] 
 					&& newV[6] && newV[7] && newV[8] ){
@@ -404,10 +406,10 @@ InformacionOrdenCtrl.prototype.horasEntrega = function() {
 	if(fr.getDate() == fe.getDate()
 		&& fr.getMonth() == fe.getMonth() 
 		&& fr.getFullYear() == fe.getFullYear()) {
-		console.log("fecha de recoleccion igual a fecha de entrega");
+		//self.$log.debug("fecha de recoleccion igual a fecha de entrega");
 
 		if(index !== -1) {
-			console.log("index encontrado: ", index, $scope.orden.recoleccion.hora)
+			//self.$log.debug("index encontrado: ", index, $scope.orden.recoleccion.hora)
 			var inicio = index + 1;
 			if(inicio >= 21) {
 				inicio = 10;
@@ -452,13 +454,13 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				cancelButtonLabel: "Cancelar",
 				clearButtonLabel: "Eliminar",
 			}, function(fecha){
-				console.log("FECHARECOLECCION", fecha);
+				//self.$log.debug("FECHARECOLECCION", fecha);
 				if(fecha !== 'CANCEL') {
 					$scope.orden.recoleccion.fecha = fecha;
 					$scope.$digest();
 				}
 			}, function(error) {
-				console.log("datepicker, error", JSON.stringify(error))
+				//self.$log.debug("datepicker, error", JSON.stringify(error))
 				//en caso que no funcione la aplicacion con el plkgin se envia una señal
 				//para que se active la seleccion de la fecha por defecto.
 				document.getElementById("inputFechaRecoleccion").readOnly = false;
@@ -483,13 +485,13 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				cancelButtonLabel: "Cancelar",
 				clearButtonLabel: "Eliminar",
 			}, function(fecha){
-				console.log("construirPopover.FECHAENTREGA: ", $scope.orden.entrega.fecha, fecha);
+				//self.$log.debug("construirPopover.FECHAENTREGA: ", $scope.orden.entrega.fecha, fecha);
 				if(fecha !== 'CANCEL') {
 					$scope.orden.entrega.fecha = fecha;
 					$scope.$digest();
 				}
 			}, function(error) {
-				console.log("datepicker, error", JSON.stringify(error))
+				//self.$log.debug("datepicker, error", JSON.stringify(error))
 				//en caso que no funcione la aplicacion con el plkgin se envia una señal
 				//para que se active la seleccion de la fecha por defecto.
 				document.getElementById("inputFechaEntrega").readOnly = false;

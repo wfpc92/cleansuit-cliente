@@ -3,7 +3,9 @@ var TutorialFactory = function($localStorage,
 							$ionicBackdrop,
 							$timeout,
 							$document,
-							$ionicPopup) {
+							$ionicPopup,
+							$log) {
+	
 	var tP = false, // indica si ya seha mostrado en vista deproductos
 		tSs = false, // indica si ya seha mostrado en vista de subservicios
 		existe = false,// indica si existe registro de haber realizado tutorial en este dispositivo
@@ -18,7 +20,7 @@ var TutorialFactory = function($localStorage,
 	//buscar si el usuario ya realizo el tutorial anteriormente en este dispositivo.
 	if (typeof $localStorage.tutorial !== 'undefined') {
 		for (var i  in $localStorage.tutorial) {
-			//console.log($localStorage.tutorial[i]);	
+			//$log.debug($localStorage.tutorial[i]);	
 			if ($localStorage.tutorial[i].correoUsuario == UsuarioFactory.getUsuario().correo) {
 				existe = true;
 				break;
@@ -58,12 +60,12 @@ var TutorialFactory = function($localStorage,
 		}
 		
 		if (tP && tSs) {
-			//console.log("TutorialFactory.realizarTutorial()2", tipo, tP, tSs)
+			//$log.debug("TutorialFactory.realizarTutorial()2", tipo, tP, tSs)
 			if (typeof $localStorage.tutorial == 'undefined') {
-				//console.log("TutorialFactory.realizarTutorial()3", tipo, tP, tSs)
+				//$log.debug("TutorialFactory.realizarTutorial()3", tipo, tP, tSs)
 				$localStorage.tutorial = [];
 			}
-			//console.log("TutorialFactory.realizarTutorial()4", tipo, tP, tSs)
+			//$log.debug("TutorialFactory.realizarTutorial()4", tipo, tP, tSs)
 			$localStorage.tutorial.push({
 				correoUsuario: UsuarioFactory.getUsuario().correo,
 				tutorialRealizado: true
