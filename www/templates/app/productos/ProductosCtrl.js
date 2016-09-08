@@ -3,6 +3,7 @@ var ProductosCtrl = function($scope,
 							ProductosFactory,
 							TutorialFactory,
 							$timeout,
+							$ionicListDelegate,
 							ModalCargaFactory) {
 	
 	$log.debug("ProductosCtrl");
@@ -28,6 +29,10 @@ var ProductosCtrl = function($scope,
 
 	$scope.$on("$ionicView.beforeLeave", function() {
 		$timeout.cancel($scope.timeoutTutorial);
+	});
+
+	$scope.$on("limpiarLista", function() {
+		$ionicListDelegate.closeOptionButtons();
 	});
 
 	$scope.cargarProductos = function() {

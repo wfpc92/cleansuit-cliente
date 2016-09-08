@@ -14,8 +14,19 @@ var TutorialFactory = function($localStorage,
 		mano,
 		imgMano,
 		texto,
-		imgTexto;
+		imgTexto,
+		colorFonfo = "rgba(19, 118, 229, 0.9)";
+		//90% de opacidad
 
+		/*
+		medidas de 320:
+		mano:
+			58ancho
+			41alto
+		nube: 
+			249ancho
+			169alto*/
+			//area de desplazamiento de 130px
 
 	//buscar si el usuario ya realizo el tutorial anteriormente en este dispositivo.
 	if (typeof $localStorage.tutorial !== 'undefined') {
@@ -85,6 +96,7 @@ var TutorialFactory = function($localStorage,
 		imgMano = imgMano || document.body.appendChild(mano[0]);
 		imgTexto = imgTexto || document.body.appendChild(texto[0]);
 		
+		$ionicBackdrop.getElement().css("background-color", colorFonfo);
 		$ionicBackdrop.retain();
 		$ionicBackdrop.getElement().on("click", function() {
 			mano.css({"display": "none"});
@@ -95,8 +107,8 @@ var TutorialFactory = function($localStorage,
 
 		var header = 56,
 			lst = angular.element(document.querySelector(idLst))[0],
-			top = (header + lst.offsetTop + 30),
-			left = ((1.0 - 0.25) * lst.children[0].offsetWidth);
+			top = $ionicBackdrop.getElement()[0].clientHeight * 0.35,//(header + lst.offsetTop + 130),//30
+			left = "50%"
 
 		if (lst) {
 			mano.addClass("transicionSwipeDerecha");
@@ -105,7 +117,7 @@ var TutorialFactory = function($localStorage,
 				"display": "block",
 				"top": top + "px", 
 				"position": "absolute",
-				"left": left + "px",
+				"left": left,//left + "px",
 				"-webkit-animation": "transicionSwipeDerecha "+ duracion +"ms ease-in-out",
 				"-webkit-animation-fill-mode": "forwards",
 				"-webkit-transform": "translateX(0)",
@@ -116,15 +128,22 @@ var TutorialFactory = function($localStorage,
 			// se llama a timeout para que pueda acceder a los estilos computados
 			// http://goo.gl/R4JFtm
 			$timeout(function() {
-				var topTexto = top + mano[0].clientHeight + 50,
-					leftTexto = (1.0 - 0.80) * lst.children[0].offsetWidth;
 				
 				texto.css({
 					"display": "block",
-					"top": (topTexto)+ "px",
 					"position": "absolute",
-					"left": leftTexto + "px",
 					"z-index": "12"
+				});
+				var topTexto = top + mano[0].clientHeight + 50,
+					leftTexto = ($ionicBackdrop.getElement()[0].offsetWidth - texto[0].width) /2
+					+ "px";
+				
+				console.log($ionicBackdrop.getElement()[0].offsetWidth);
+				console.log(texto[0].clientWidth)
+
+				texto.css({
+					"left": leftTexto,
+					"top": (topTexto)+ "px"
 				});
 			})
 
@@ -137,7 +156,7 @@ var TutorialFactory = function($localStorage,
 				});
 				$timeout(function(){
 					mano.css({
-						left: left +"px", //79 equivale a la cantidad de pixeles que se corrio en .transicionSwipeDerecha
+						left: left,//left +"px", //79 equivale a la cantidad de pixeles que se corrio en .transicionSwipeDerecha
 						opacity: 1,
 						transition: "opacity 0.3s linear",
 					});

@@ -1,6 +1,7 @@
 var SubserviciosCtrl = function($scope, 
 							$stateParams,
-							$log, 
+							$log,
+							$ionicListDelegate,
 							ServiciosFactory,
 							TutorialFactory,
 							$timeout) {
@@ -31,9 +32,13 @@ var SubserviciosCtrl = function($scope,
 			}, 800);
 		}
 	});
-
+	
 	$scope.$on("$ionicView.beforeLeave", function() {
 		$timeout.cancel($scope.timeoutTutorial);
+	});
+
+	$scope.$on("limpiarLista", function() {
+		$ionicListDelegate.closeOptionButtons();
 	});
 
 	$scope.tutorial = TutorialFactory;

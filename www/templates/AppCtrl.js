@@ -123,6 +123,8 @@ var AppCtrl = function($scope,
 	$scope.logout = function() {
 		$log.debug("AppCtrl.logout():");	
 		AuthService.logout();
+		CarritoFactory.vaciar();
+		$rootScope.$broadcast("limpiarLista");
 		$state.go('autenticacion.inicio');
 	};		
 };
