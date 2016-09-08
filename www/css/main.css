@@ -10355,12 +10355,16 @@ p {
       height: auto;
       color: #111 !important; }
     .orden .item input[disabled] {
-      background-color: #fff; }
+      background-color: #fff;
+      color: #111 !important; }
     .orden .item .icon {
       color: #666;
       font-size: 26px; }
     .orden .item .ion-location {
       font-size: 36px; }
+
+html input[disabled] {
+  color: red; }
 
 .titulos, .acerca .titulo, .historial-ord .titulo, .ord-en-proceso .titulo {
   text-align: center;
@@ -10692,11 +10696,13 @@ p {
   .popover .scroll-content {
     border-radius: 10px; }
     .popover .scroll-content .list {
-      padding: 7px 15px 7px 18px; }
+      padding: 7px 15px 7px 18px;
+      background-color: #FAFAFA;
+      border-radius: 11px; }
       .popover .scroll-content .list .item {
         color: #333333;
         border: none;
-        background-color: #FAFAFA !important;
+        background-color: transparent !important;
         border-bottom: 1px solid #CCCCCC;
         margin: 0;
         padding: 8px 16px 10px; }

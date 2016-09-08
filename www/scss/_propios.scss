@@ -711,7 +711,8 @@ $menu: #52B1ED;
 			color: #111 !important;
 		}
 		input[disabled]{
-			background-color: $light;			
+			background-color: $light;
+			color: #111 !important;
 		}
 		.icon {
 			color: #666;
@@ -721,6 +722,9 @@ $menu: #52B1ED;
 			font-size: 36px;
 		}
 	}
+}
+html input[disabled] {
+	color: red;
 }
 .titulos {	
 	text-align: center;
@@ -1116,10 +1120,12 @@ $menu: #52B1ED;
 		border-radius: 10px;
 		.list {
 			padding: 7px 15px 7px 18px;
+			background-color: #FAFAFA;
+			border-radius: 11px;
 			.item {
 				color: #333333;
 				border: none;
-				background-color: #FAFAFA !important;
+				background-color: transparent !important;
 				border-bottom: 1px solid #CCCCCC;
 				margin: 0;
 				padding: 8px 16px 10px;
