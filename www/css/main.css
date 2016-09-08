@@ -10363,9 +10363,6 @@ p {
     .orden .item .ion-location {
       font-size: 36px; }
 
-html input[disabled] {
-  color: red; }
-
 .titulos, .acerca .titulo, .historial-ord .titulo, .ord-en-proceso .titulo {
   text-align: center;
   padding: 17px 0; }
