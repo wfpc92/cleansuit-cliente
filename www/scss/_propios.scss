@@ -186,7 +186,7 @@ $registro: #80A3CD;
 	top: 0;
 }
 .menu-content {
-    box-shadow: -10px -10px 34px rgba(37,73,2,0.55);
+	box-shadow: -10px -10px 34px rgba(37,73,2,0.55);
 }
 .bar button.ico-menu {
 	padding: 2px 8px 0;
@@ -318,10 +318,10 @@ p {
 	.imagen {
 		position: absolute;
 		width: 78px;
-	    top: 50%;
-	    left: 10px;
-	    margin-top: -38px;
-	    border: 1px solid #E9E9E9;
+		top: 50%;
+		left: 10px;
+		margin-top: -38px;
+		border: 1px solid #E9E9E9;
 		img {
 			display: block;
 			height: 76px;
@@ -708,10 +708,10 @@ $menu: #52B1ED;
 		input {
 			font-size: 1.2em;
 			height: auto;
+			color: #111 !important;
 		}
 		input[disabled]{
-			background-color: $light;
-			color: #111;
+			background-color: $light;			
 		}
 		.icon {
 			color: #666;
@@ -1109,6 +1109,9 @@ $menu: #52B1ED;
 	.overflow-scroll, .overflow-scroll .scroll { 
 		position: relative;
 	}
+	.popover-arrow:after{
+		display: none;
+	}
 	.scroll-content {
 		border-radius: 10px;
 		.list {
@@ -1116,7 +1119,7 @@ $menu: #52B1ED;
 			.item {
 				color: #333333;
 				border: none;
-				background-color: #FAFAFA;
+				background-color: #FAFAFA !important;
 				border-bottom: 1px solid #CCCCCC;
 				margin: 0;
 				padding: 8px 16px 10px;
@@ -1130,19 +1133,15 @@ $menu: #52B1ED;
 input[readonly]:not(.cloned-text-input) {
 	background-color: transparent;
 }
-/*.forma-pago.popover {
-	height: 100px;
-}*/
-.popover-hora {	
-	top: 76px !important; 
-    left: 54px !important;
-    .list {
-    	background-color: #FAFAFA;
-    	border-radius: 10px;
-    }
-    .popover-arrow:after{
-    	display: none;
-    }
+.popover-hora {
+	width: 240px;
+	top: 60px !important; 
+	left: 50% !important;
+	margin-left: -120px !important;
+	.list {
+		background-color: #FAFAFA;
+		border-radius: 10px;
+	}	
 }
 .cotizar {
 	background-color: #76A900;
@@ -1161,6 +1160,7 @@ input[readonly]:not(.cloned-text-input) {
 	box-shadow: none;
 	border-radius: 0;
 	padding: 17px 55px 14px 24px;
+	margin-top: 0;
 	color: #666666;
 	font-size: 14px;
 	h3 {
@@ -1262,7 +1262,7 @@ input[readonly]:not(.cloned-text-input) {
   margin-top: 16px;
   padding: 7px;
   line-height: 19px;
-  min-height: auto;
+  min-height: 0;
 }
 .loading-container .loading {
 	background-color: #44a01a;
