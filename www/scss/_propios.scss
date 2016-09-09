@@ -708,7 +708,8 @@ $menu: #52B1ED;
 		input {
 			font-size: 1.2em;
 			height: auto;
-			color: red !important;
+			color: #111 !important;
+			font-family: 'fira_sansregular';
 		}
 
 		input[disabled]{
@@ -724,7 +725,8 @@ $menu: #52B1ED;
 	}
 }
 .platform-ios input {
-	color: red;
+	color: #111;
+	font-family: 'fira_sansregular';
 }
 .titulos {	
 	text-align: center;
