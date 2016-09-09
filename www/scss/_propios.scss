@@ -708,11 +708,11 @@ $menu: #52B1ED;
 		input {
 			font-size: 1.2em;
 			height: auto;
-			color: #111 !important;
+			color: red !important;
 		}
+
 		input[disabled]{
 			background-color: $light;
-			color: #111 !important;
 		}
 		.icon {
 			color: #666;
@@ -722,6 +722,9 @@ $menu: #52B1ED;
 			font-size: 36px;
 		}
 	}
+}
+.platform-ios input {
+	color: red;
 }
 .titulos {	
 	text-align: center;
