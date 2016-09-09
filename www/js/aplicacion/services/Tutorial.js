@@ -1,11 +1,11 @@
-var TutorialFactory = function($localStorage, 
-							UsuarioFactory, 
+var TutorialFactory = function($localStorage,
+							UsuarioFactory,
 							$ionicBackdrop,
 							$timeout,
 							$document,
 							$ionicPopup,
 							$log) {
-	
+
 	var tP = false, // indica si ya seha mostrado en vista deproductos
 		tSs = false, // indica si ya seha mostrado en vista de subservicios
 		existe = false,// indica si existe registro de haber realizado tutorial en este dispositivo
@@ -15,29 +15,27 @@ var TutorialFactory = function($localStorage,
 		imgMano,
 		texto,
 		imgTexto,
-		colorFonfo = "rgba(19, 118, 229, 0.9)";
-		//90% de opacidad
-
-		/*
-		medidas de 320:
-		mano:
-			58ancho
-			41alto
-		nube: 
-			249ancho
-			169alto*/
-			//area de desplazamiento de 130px
+ 		fondoAzul = "rgba(19, 118, 229, 0.9)",
+		fondoNegro = "rgba(0,0,0,0.4)";
 
 	//buscar si el usuario ya realizo el tutorial anteriormente en este dispositivo.
 	if (typeof $localStorage.tutorial !== 'undefined') {
 		for (var i  in $localStorage.tutorial) {
-			//$log.debug($localStorage.tutorial[i]);	
+			//$log.debug($localStorage.tutorial[i]);
 			if ($localStorage.tutorial[i].correoUsuario == UsuarioFactory.getUsuario().correo) {
 				existe = true;
 				break;
 			}
 		}
 	}
+
+	var eventClick = function() {
+		mano.css({"display": "none"});
+		texto.css({"display": "none"});
+		$ionicBackdrop.release();
+		$ionicBackdrop.getElement().css("background-color", fondoNegro);
+		realizarTutorial(tipoTutorial);
+	};
 
 	var realizado = function(tipo) {
 		if (existe) {
@@ -69,7 +67,7 @@ var TutorialFactory = function($localStorage,
 			default:
 				break;
 		}
-		
+
 		if (tP && tSs) {
 			//$log.debug("TutorialFactory.realizarTutorial()2", tipo, tP, tSs)
 			if (typeof $localStorage.tutorial == 'undefined') {
@@ -89,21 +87,18 @@ var TutorialFactory = function($localStorage,
 		if (existe || realizado(tipo)) {
 			return false;
 		}
-		
+
 		tipoTutorial = tipo;
 		mano = mano || angular.element(document.getElementById("tutMano"));
 		texto = texto || angular.element(document.getElementById("tutTexto"));
 		imgMano = imgMano || document.body.appendChild(mano[0]);
 		imgTexto = imgTexto || document.body.appendChild(texto[0]);
-		
-		$ionicBackdrop.getElement().css("background-color", colorFonfo);
+
+		$ionicBackdrop.getElement().css("background-color", fondoAzul);
 		$ionicBackdrop.retain();
-		$ionicBackdrop.getElement().on("click", function() {
-			mano.css({"display": "none"});
-			texto.css({"display": "none"});
-			$ionicBackdrop.release();
-			realizarTutorial(tipoTutorial);
-		});
+		$ionicBackdrop.getElement().on("click", eventClick);
+		mano.on("click", eventClick);
+		texto.on("click", eventClick);
 
 		var header = 56,
 			lst = angular.element(document.querySelector(idLst))[0],
@@ -112,10 +107,10 @@ var TutorialFactory = function($localStorage,
 
 		if (lst) {
 			mano.addClass("transicionSwipeDerecha");
-			
+
 			mano.css({
 				"display": "block",
-				"top": top + "px", 
+				"top": top + "px",
 				"position": "absolute",
 				"left": left,//left + "px",
 				"-webkit-animation": "transicionSwipeDerecha "+ duracion +"ms ease-in-out",
@@ -128,7 +123,7 @@ var TutorialFactory = function($localStorage,
 			// se llama a timeout para que pueda acceder a los estilos computados
 			// http://goo.gl/R4JFtm
 			$timeout(function() {
-				
+
 				texto.css({
 					"display": "block",
 					"position": "absolute",
@@ -157,7 +152,7 @@ var TutorialFactory = function($localStorage,
 						transition: "opacity 0.3s linear",
 					});
 					mano.addClass("transicionSwipeIzquierda")
-					
+
 					mano.css({
 						"-webkit-animation": "transicionSwipeIzquierda "+ duracion +"ms ease-in-out",
 						"-webkit-animation-fill-mode": "forwards",
@@ -166,7 +161,7 @@ var TutorialFactory = function($localStorage,
 				}, 300);
 			}, duracion);
 		}
-		
+
 	};
 
 
@@ -190,7 +185,7 @@ var TutorialFactory = function($localStorage,
 
 		/**
 		 * el tutorial acaba de ser ejecutado y debe almacenarse en memoria para no volver a mostrar,
-		 * incluso si el usuario reinicia sesion. 
+		 * incluso si el usuario reinicia sesion.
 		 */
 		realizarTutorial: realizarTutorial
 	};
