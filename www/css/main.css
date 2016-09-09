@@ -10514,7 +10514,7 @@ p {
         font-size: 1em; }
       .historial-inf-ord .list .item input[disabled] {
         background-color: #fff;
-        color: #333333;
+        /*color: #333333;*/
         font-size: 1.2em;
         height: auto; }
   .historial-inf-ord .list-orden {
