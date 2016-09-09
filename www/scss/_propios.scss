@@ -708,12 +708,12 @@ $menu: #52B1ED;
 		input {
 			font-size: 1.2em;
 			height: auto;
-			color: green !important;
+			color: #666 !important;
 			font-family: 'fira_sansregular';
 		}
 
 		input[disabled]{
-			color: green !important; 
+			color: #666 !important; 
 			background-color: $light;
 		}
 		.icon { 
@@ -727,12 +727,12 @@ $menu: #52B1ED;
 }
 .platform-ios  {
 	input {
-		color: green;
+		color: #666;
 		font-family: 'fira_sansregular';
 	}
 	
 	input[disabled] {
-		color: black !important;
+		color: #666 !important;
 		font-family: 'fira_sansregular';
 	}
 

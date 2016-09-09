@@ -10353,10 +10353,10 @@ p {
     .orden .item input {
       font-size: 1.2em;
       height: auto;
-      color: green !important;
+      color: #666 !important;
       font-family: 'fira_sansregular'; }
     .orden .item input[disabled] {
-      color: green !important;
+      color: #666 !important;
       background-color: #fff; }
     .orden .item .icon {
       color: #666;
@@ -10365,11 +10365,11 @@ p {
       font-size: 36px; }
 
 .platform-ios input {
-  color: green;
+  color: #666;
   font-family: 'fira_sansregular'; }
 
 .platform-ios input[disabled] {
-  color: black !important;
+  color: #666 !important;
   font-family: 'fira_sansregular'; }
 
 .titulos, .acerca .titulo, .historial-ord .titulo, .ord-en-proceso .titulo {
