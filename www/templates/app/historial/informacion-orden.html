@@ -135,6 +135,16 @@
 					</div>
 				</ion-item>
 
+
+				<ion-item class="row" ng-if="orden.orden.abono">
+					<div class="col">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Abono</span>
+							<input type="tel" placeholder="Abono" ng-model="orden.orden.abono" name="abono" maxlength="12" ng-minlength="0" disabled>
+						</label>
+					</div>
+				</ion-item>
+
 				<ion-item class="row" ng-if="orden.orden.cupon">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
