@@ -725,10 +725,19 @@ $menu: #52B1ED;
 		}
 	}
 }
-.platform-ios input {
-	color: green;
-	font-family: 'fira_sansregular';
+.platform-ios  {
+	input {
+		color: green;
+		font-family: 'fira_sansregular';
+	}
+	
+	input[disabled] {
+		color: black !important;
+		font-family: 'fira_sansregular';
+	}
+
 }
+
 .titulos {	
 	text-align: center;
 	padding: 17px 0;

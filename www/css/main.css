@@ -10368,6 +10368,10 @@ p {
   color: green;
   font-family: 'fira_sansregular'; }
 
+.platform-ios input[disabled] {
+  color: black !important;
+  font-family: 'fira_sansregular'; }
+
 .titulos, .acerca .titulo, .historial-ord .titulo, .ord-en-proceso .titulo {
   text-align: center;
   padding: 17px 0; }
