@@ -708,15 +708,15 @@ $menu: #52B1ED;
 		input {
 			font-size: 1.2em;
 			height: auto;
-			color: black !important;
+			color: green !important;
 			font-family: 'fira_sansregular';
 		}
 
 		input[disabled]{
-			color: black !important; 
+			color: green !important; 
 			background-color: $light;
 		}
-		.icon {
+		.icon { 
 			color: #666;
 			font-size: 26px;
 		}
@@ -726,7 +726,7 @@ $menu: #52B1ED;
 	}
 }
 .platform-ios input {
-	color: black;
+	color: green;
 	font-family: 'fira_sansregular';
 }
 .titulos {	
