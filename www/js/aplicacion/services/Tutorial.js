@@ -137,10 +137,6 @@ var TutorialFactory = function($localStorage,
 				var topTexto = top + mano[0].clientHeight + 50,
 					leftTexto = ($ionicBackdrop.getElement()[0].offsetWidth - texto[0].width) /2
 					+ "px";
-				
-				console.log($ionicBackdrop.getElement()[0].offsetWidth);
-				console.log(texto[0].clientWidth)
-
 				texto.css({
 					"left": leftTexto,
 					"top": (topTexto)+ "px"
