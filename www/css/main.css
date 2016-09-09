@@ -10353,7 +10353,8 @@ p {
     .orden .item input {
       font-size: 1.2em;
       height: auto;
-      color: red !important; }
+      color: #111 !important;
+      font-family: 'fira_sansregular'; }
     .orden .item input[disabled] {
       background-color: #fff; }
     .orden .item .icon {
@@ -10363,7 +10364,8 @@ p {
       font-size: 36px; }
 
 .platform-ios input {
-  color: red; }
+  color: #111;
+  font-family: 'fira_sansregular'; }
 
 .titulos, .acerca .titulo, .historial-ord .titulo, .ord-en-proceso .titulo {
   text-align: center;
