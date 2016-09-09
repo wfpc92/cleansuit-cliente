@@ -129,7 +129,7 @@ var TutorialFactory = function($localStorage,
 					"position": "absolute",
 					"z-index": "12"
 				});
-				var topTexto = top + mano[0].clientHeight + 50,
+				var topTexto = top + mano[0].clientHeight + 10,
 					leftTexto = ($ionicBackdrop.getElement()[0].offsetWidth - texto[0].width) /2
 					+ "px";
 				texto.css({
