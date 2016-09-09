@@ -781,12 +781,6 @@ $menu: #52B1ED;
 		background-color: #3DA0EB;
 	}
 }
-/*, .has-tabs-top, .has-header.has-subheader.has-tabs-top,
-.platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-tabs-top,
-.platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-subheader.has-tabs-top,
-.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top,
-.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top*/
-
 .has-header.has-subheader.has-tabs-top,
 .platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-tabs-top,
 .platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-subheader.has-tabs-top,
@@ -794,7 +788,6 @@ $menu: #52B1ED;
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
 	top: 56px;
 }
-
 .estado-orden {
 	padding: 30px 15px;
 	background-color: #f8f8f8;
