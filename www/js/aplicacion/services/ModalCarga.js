@@ -37,7 +37,7 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 			}
 
 			if(active) {
-				//$ionicLoading.hide();
+				$ionicLoading.hide();
 				active = false;
 				$scope.cerrar = false; 
 			}
