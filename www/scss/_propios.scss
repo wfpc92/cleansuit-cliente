@@ -659,6 +659,8 @@ $menu: #52B1ED;
 	display: none;
 }
 /* Tabs (fin)*/
+
+$inputcolor: #666666;
 .orden {
 	padding: 0px 15px 10px;
 	font-family: 'fira_sansregular';
@@ -708,12 +710,12 @@ $menu: #52B1ED;
 		input {
 			font-size: 1.2em;
 			height: auto;
-			color: rgb(0,0,0) !important;
+			color: $inputcolor !important;
 			font-family: 'fira_sansregular';
 		}
 
 		input[disabled]{
-			color: rgb(0,0,0) !important; 
+			color: $inputcolor !important; 
 			background-color: $light;
 		}
 		.icon { 
@@ -727,15 +729,17 @@ $menu: #52B1ED;
 }
 .platform-ios .orden .item {
 	input {
-		color: rgb(0,0,0);
+		color: $inputcolor  !important;
 		font-family: 'fira_sansregular';
 	}
 	
 	input[disabled] {
-		color: rgb(0,0,0) !important;
+		color: $inputcolor !important;
 		font-family: 'fira_sansregular';
 	}
-
+}
+input[disabled], input {
+	color: $inputcolor !important;
 }
 
 .titulos {	
