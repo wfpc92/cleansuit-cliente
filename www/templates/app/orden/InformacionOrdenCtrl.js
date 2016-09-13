@@ -133,7 +133,7 @@ var InformacionOrdenCtrl = function($scope,
 
 		return padre.className + '; '+ rc(padre.parentElement, cont);
 	}
-
+	$scope.estilos = "";
 	/*
 	hasta aqui
 	*/
@@ -141,7 +141,7 @@ var InformacionOrdenCtrl = function($scope,
 		self.viewAfterEnter();
 		$scope.soloProductos = $scope.carrito.soloHayProductos();
 		var elem = angular.element(document.getElementById("txtNombre"));
-		$scope.orden.nombre = rc(elem[0], 0);
+		$scope.estilos += rc(elem[0], 0);
 		console.log($scope.orden.nombre)
 	});
 
