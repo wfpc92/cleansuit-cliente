@@ -126,12 +126,12 @@ var InformacionOrdenCtrl = function($scope,
 	borrar
 	*/
 
-	function rc (padre, cont) {
+	function rc (padre, cont, e) {
 		if(!padre) {
 			return;
 		}
-
-		return padre.className + '; '+ rc(padre.parentElement, cont);
+		e.push(padre.localName + ": " + padre.className);
+		return  rc(padre.parentElement, cont, e);
 	}
 	$scope.estilos = "";
 	/*
@@ -141,8 +141,9 @@ var InformacionOrdenCtrl = function($scope,
 		self.viewAfterEnter();
 		$scope.soloProductos = $scope.carrito.soloHayProductos();
 		var elem = angular.element(document.getElementById("txtNombre"));
-		$scope.estilos += rc(elem[0], 0);
-		console.log($scope.orden.nombre)
+		console.log(elem)
+		$scope.estilos = [];
+		rc(elem[0], 0, $scope.estilos);
 	});
 
 	//cancelar orden:

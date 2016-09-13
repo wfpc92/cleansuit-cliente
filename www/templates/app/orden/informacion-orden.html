@@ -13,7 +13,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
 							<span class="input-label">Nombres y Apellidos</span>
-							<input id="txtNombre" type="text" placeholder="Nombres y Apellidos" ng-model="estilos" disabled>
+							<input id="txtNombre" type="text" placeholder="Nombres y Apellidos" value="{{usuario.nombre}}">
 						</label>
 					</div>
 				
@@ -24,17 +24,8 @@
 						</label>
 					</div>-->
 				</ion-item>
-				{{estilos}}
-				<br>
-				<ion-item class="row">
-					<div class="col">
-						<label class="item-input item-stacked-label izq">
-							<span class="input-label">nothing</span>
-							<input ng-model="estilos"/>
-						</label>
-					</div>
-				</ion-item>
-
+				
+			
 				<!--<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
@@ -126,6 +117,36 @@
 						<i class="icon ico-flechaabajo" ng-click="openPopover('FORMAPAGO',$event)"></i>
 					</div>
 				</ion-item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<!--borrar-->
+				<ion-item class="item-text-wrap" ng-repeat="e in estilos">
+					{{e}}
+				</ion-item>
+				<!--borrar-->
+
+
+
+
+
+
+
+
+
+
+
+
 
 				<ion-item class="row">
 					<div class="col col-75">
