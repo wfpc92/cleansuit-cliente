@@ -718,6 +718,9 @@ $inputcolor: #666666;
 			color: $inputcolor !important; 
 			background-color: $light;
 		}
+		input::-webkit-input-placeholder {
+			color: $inputcolor !important;
+		}
 		.icon { 
 			color: #666;
 			font-size: 26px;
@@ -736,6 +739,10 @@ $inputcolor: #666666;
 	input[disabled] {
 		color: $inputcolor !important;
 		font-family: 'fira_sansregular';
+	}
+	
+	input::-webkit-input-placeholder {
+		color: $inputcolor !important;
 	}
 }
 input[disabled], input {
