@@ -11,7 +11,7 @@ var paths = {
   sass: ['./www/scss/**/*.scss']
 };
 
-gulp.task('default', []);
+gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
   gulp.src('./www/scss/main.scss')
