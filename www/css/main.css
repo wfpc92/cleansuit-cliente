@@ -10358,6 +10358,8 @@ p {
     .orden .item input[disabled] {
       color: #666666 !important;
       background-color: #fff; }
+    .orden .item input::-webkit-input-placeholder {
+      color: #666666 !important; }
     .orden .item .icon {
       color: #666;
       font-size: 26px; }
@@ -10371,6 +10373,9 @@ p {
 .platform-ios .orden .item input[disabled] {
   color: #666666 !important;
   font-family: 'fira_sansregular'; }
+
+.platform-ios .orden .item input::-webkit-input-placeholder {
+  color: #666666 !important; }
 
 input[disabled], input {
   color: #666666 !important; }

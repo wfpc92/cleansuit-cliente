@@ -659,6 +659,8 @@ $menu: #52B1ED;
 	display: none;
 }
 /* Tabs (fin)*/
+
+$inputcolor: #666666;
 .orden {
 	padding: 0px 15px 10px;
 	font-family: 'fira_sansregular';
@@ -708,15 +710,18 @@ $menu: #52B1ED;
 		input {
 			font-size: 1.2em;
 			height: auto;
-			color: rgb(255,255,255) !important;
+			color: $inputcolor !important;
 			font-family: 'fira_sansregular';
 		}
 
 		input[disabled]{
-			color: rgb(255,255,255) !important; 
+			color: $inputcolor !important; 
 			background-color: $light;
 		}
-		.icon { 
+		input::-webkit-input-placeholder {
+			color: $inputcolor !important;
+		}
+		.icon {
 			color: #666;
 			font-size: 26px;
 		}
@@ -727,15 +732,21 @@ $menu: #52B1ED;
 }
 .platform-ios .orden .item {
 	input {
-		color: rgb(255,255,255);
+		color: $inputcolor  !important;
 		font-family: 'fira_sansregular';
 	}
 	
 	input[disabled] {
-		color: rgb(255,255,255) !important;
+		color: $inputcolor !important;
 		font-family: 'fira_sansregular';
 	}
 
+	input::-webkit-input-placeholder {
+		color: $inputcolor !important;
+	}
+}
+input[disabled], input {
+	color: $inputcolor !important;
 }
 
 .titulos {	
@@ -906,7 +917,7 @@ $menu: #52B1ED;
 			}
 			input[disabled] {
 				background-color: $light;
-				//color: #333333;
+				/*color: #333333;*/
 				font-size: 1.2em;
 				height: auto;
 			}
