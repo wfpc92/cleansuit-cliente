@@ -10353,10 +10353,10 @@ p {
     .orden .item input {
       font-size: 1.2em;
       height: auto;
-      color: white !important;
+      color: #666666 !important;
       font-family: 'fira_sansregular'; }
     .orden .item input[disabled] {
-      color: white !important;
+      color: #666666 !important;
       background-color: #fff; }
     .orden .item .icon {
       color: #666;
@@ -10365,12 +10365,15 @@ p {
       font-size: 36px; }
 
 .platform-ios .orden .item input {
-  color: white;
+  color: #666666 !important;
   font-family: 'fira_sansregular'; }
 
 .platform-ios .orden .item input[disabled] {
-  color: white !important;
+  color: #666666 !important;
   font-family: 'fira_sansregular'; }
+
+input[disabled], input {
+  color: #666666 !important; }
 
 .titulos, .acerca .titulo, .historial-ord .titulo, .ord-en-proceso .titulo {
   text-align: center;
@@ -10514,7 +10517,7 @@ p {
         font-size: 1em; }
       .historial-inf-ord .list .item input[disabled] {
         background-color: #fff;
-        color: #333333;
+        /*color: #333333;*/
         font-size: 1.2em;
         height: auto; }
   .historial-inf-ord .list-orden {
