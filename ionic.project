@@ -19,6 +19,7 @@
     }
   ],
   "gulpStartupTasks": [
-    "watch"
+    "watch",
+    "sass"
   ]
 }

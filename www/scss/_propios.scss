@@ -716,7 +716,7 @@ $inputcolor: #666666;
 		}
 		input[disabled]{
 			color: $inputcolor !important;
-			opacity: 1.0; 
+			opacity: 1.0 !important; 
 			background-color: $light;
 		}
 		.icon {
@@ -731,16 +731,15 @@ $inputcolor: #666666;
 .platform-ios .orden .item {
 	input {
 		color: $inputcolor  !important;
-		opacity: 1.0; 
+		opacity: 1.0 !important; 
 		font-family: 'fira_sansregular';
 	}	
 	input[disabled] {
 		color: $inputcolor !important;
-		opacity: 1.0; 
+		opacity: 1.0 !important; 
 		font-family: 'fira_sansregular';
 	}
 }
-
 .titulos {	
 	text-align: center;
 	padding: 17px 0;
