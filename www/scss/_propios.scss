@@ -711,15 +711,13 @@ $inputcolor: #666666;
 			font-size: 1.2em;
 			height: auto;
 			color: $inputcolor !important;
+			opacity: 1.0; 
 			font-family: 'fira_sansregular';
 		}
-
 		input[disabled]{
-			color: $inputcolor !important; 
-			background-color: $light;
-		}
-		input::-webkit-input-placeholder {
 			color: $inputcolor !important;
+			opacity: 1.0; 
+			background-color: $light;
 		}
 		.icon {
 			color: #666;
@@ -733,20 +731,14 @@ $inputcolor: #666666;
 .platform-ios .orden .item {
 	input {
 		color: $inputcolor  !important;
+		opacity: 1.0; 
 		font-family: 'fira_sansregular';
-	}
-	
+	}	
 	input[disabled] {
 		color: $inputcolor !important;
+		opacity: 1.0; 
 		font-family: 'fira_sansregular';
 	}
-
-	input::-webkit-input-placeholder {
-		color: $inputcolor !important;
-	}
-}
-input[disabled], input {
-	color: $inputcolor !important;
 }
 
 .titulos {	
