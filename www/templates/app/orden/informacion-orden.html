@@ -13,7 +13,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
 							<span class="input-label">Nombres y Apellidos</span>
-							<input id="txtNombre" type="text" placeholder="Nombres y Apellidos" value="{{usuario.nombre}}" disabled>
+							<input type="text" placeholder="Nombres y Apellidos" value="{{usuario.nombre}}" disabled style="color: #000 !important; opacity: 1.0 !important">
 						</label>
 					</div>
 				
@@ -64,7 +64,7 @@
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Hora de recolección</span>
-							<input type="text" placeholder="Hora de recolección" ng-model="orden.recoleccion.hora" ng-disabled="true" required>
+							<input type="text" placeholder="Hora de recolección" ng-model="orden.recoleccion.hora" ng-disabled="true" required style="color: #000 !important; opacity: 1.0 !important">
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
 					</div>
@@ -93,7 +93,7 @@
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Hora de entrega</span>
-							<input type="text" placeholder="Hora de entrega" ng-model="orden.entrega.hora" ng-disabled="true" required>
+							<input type="text" placeholder="Hora de entrega" ng-model="orden.entrega.hora" ng-disabled="true" required style="color: #000 !important; opacity: 1.0 !important">
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORAENTREGA', $event)"></i>
 					</div>
@@ -112,41 +112,11 @@
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Forma de pago</span>
-							<input type="text" placeholder="Forma de pago" ng-model="orden.formaPago" ng-disabled="true" required>
+							<input type="text" placeholder="Forma de pago" ng-model="orden.formaPago" ng-disabled="true" required style="color: #000 !important; opacity: 1.0 !important">
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('FORMAPAGO',$event)"></i>
 					</div>
 				</ion-item>
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<!--borrar-->
-				<ion-item class="item-text-wrap" ng-repeat="e in estilos">
-					{{e}}
-				</ion-item>
-				<!--borrar-->
-
-
-
-
-
-
-
-
-
-
-
-
 
 				<ion-item class="row">
 					<div class="col col-75">

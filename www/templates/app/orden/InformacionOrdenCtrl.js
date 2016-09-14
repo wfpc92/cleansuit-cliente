@@ -122,28 +122,9 @@ var InformacionOrdenCtrl = function($scope,
 		}
 	});
 
-	/*
-	borrar
-	*/
-
-	function rc (padre, cont, e) {
-		if(!padre) {
-			return;
-		}
-		e.push(padre.localName + ": " + padre.className);
-		return  rc(padre.parentElement, cont, e);
-	}
-	$scope.estilos = "";
-	/*
-	hasta aqui
-	*/
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		self.viewAfterEnter();
 		$scope.soloProductos = $scope.carrito.soloHayProductos();
-		var elem = angular.element(document.getElementById("txtNombre"));
-		console.log(elem)
-		$scope.estilos = [];
-		rc(elem[0], 0, $scope.estilos);
 	});
 
 	//cancelar orden:

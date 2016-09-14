@@ -711,7 +711,7 @@ $inputcolor: #666666;
 			font-size: 1.2em;
 			height: auto;
 			color: $inputcolor !important;
-			opacity: 1.0; 
+			opacity: 1.0 !important;
 			font-family: 'fira_sansregular';
 		}
 		input[disabled]{
