@@ -7,7 +7,7 @@
 			</div> 
     	</div>
     	
-		<form name="formPerfil" novalidate>
+		<form name="formPerfil" ng-enter="formData.formValido ? actualizar() : noHacerNada()" novalidate>
 			<ion-list>
 				<ion-item class="row">
 					<div class="col">

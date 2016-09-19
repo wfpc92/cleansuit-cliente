@@ -53,6 +53,10 @@ var PerfilCtrl = function($scope,
 		};
 	});
 
+	$scope.noHacerNada = function() {
+		
+	}
+
 };
 
 app.controller("PerfilCtrl", PerfilCtrl);

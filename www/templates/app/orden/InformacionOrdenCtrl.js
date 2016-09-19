@@ -443,7 +443,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
 				minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
 			}
-
+			
 			datePicker.show({
 				date: $scope.orden.recoleccion.fecha,
 				mode: 'date',
@@ -452,9 +452,8 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				windowTitle: '',
 				doneButtonLabel: "Establecer",
 				cancelButtonLabel: "Cancelar",
-				clearButtonLabel: "Eliminar",
+				clearButtonLabel: "Eliminar"
 			}, function(fecha){
-				//self.$log.debug("FECHARECOLECCION", fecha);
 				if(fecha !== 'CANCEL') {
 					$scope.orden.recoleccion.fecha = fecha;
 					$scope.$digest();
@@ -484,6 +483,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				doneButtonLabel: "Establecer",
 				cancelButtonLabel: "Cancelar",
 				clearButtonLabel: "Eliminar",
+				androidTheme: "THEME_HOLO_LIGHT"
 			}, function(fecha){
 				//self.$log.debug("construirPopover.FECHAENTREGA: ", $scope.orden.entrega.fecha, fecha);
 				if(fecha !== 'CANCEL') {

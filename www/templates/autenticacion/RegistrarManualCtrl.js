@@ -15,6 +15,7 @@ var RegistrarManualCtrl = function($scope,
 	};
 
 	$scope.registrar = function() {
+		console.log("registrar enter")
 		if (!$scope.formValido[0]) {
 			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: "Escriba su nombre."});
 			return;

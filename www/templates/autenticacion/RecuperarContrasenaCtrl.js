@@ -22,9 +22,11 @@ var RecuperarContrasenaCtrl = function($scope,
 		    	template: mensaje
 		    })
 		});
-
-
 	};
+
+	$scope.noHacerNada = function() {
+		
+	}
 };
 
 app.controller('RecuperarContrasenaCtrl', RecuperarContrasenaCtrl);
