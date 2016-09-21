@@ -262,7 +262,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 			//el punto se encuentra dentro del area del poligono	
 			if(puntoEnPoligono){
 				$log.debug("si esta dentor del area " + posicionArea);
-				elemMarker.style.background = 'url("img/marker.png") no-repeat';
+				elemMarker.style.background = 'url("img/pin.svg") no-repeat';
 			}
 			else{
 				$log.debug("no esta dentro del area");
