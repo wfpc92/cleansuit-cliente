@@ -15,7 +15,7 @@ var AutenticacionInicioCtrl = function($scope,
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess, {msg: msg});
 		}, function(msg) {
 			$log.debug("AutenticacionInicioCtrl: err", msg);
-			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: msg.statusText});
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed, {msg: msg});
 		})
 		.finally(function(){
 			//$ionicLoading.hide()

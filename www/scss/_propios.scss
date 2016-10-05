@@ -915,7 +915,6 @@ $inputcolor: #000;
 		}
 	}
 	.list-orden {
-		background-color: $light;
 		padding: 10px;
 		.item {
 			position: relative;
@@ -968,6 +967,7 @@ $inputcolor: #000;
 			padding: 12px 52px 12px 90px;
 		}
 		.card.totales {
+			margin: 20px 0 0;
 			padding: 12px 15px;
 		}
 	}
@@ -1218,7 +1218,8 @@ input[readonly]:not(.cloned-text-input) {
 				left: 3px;
 				width: 24px;
 				height: 24px;
-				background: url('../img/checkbox.png');
+				background: url('../img/checkbox.svg');
+				background-size: 24px;
 				transform: rotate(0deg);
 				border-width: 0px;
 			}
@@ -1249,11 +1250,8 @@ input[readonly]:not(.cloned-text-input) {
 			color: #FFFFFF;
 		}
 		span.icon:before {
-			width: 30px;
-			height: 30px;
-			text-indent: -9999px;
-			background: url('../img/ico_cerrar.png');
-			margin-top: 7px;
+			margin-top: 5px;
+			color: #FFFFFF;
 		}
 	}
 	.contenido {
@@ -1286,4 +1284,9 @@ input[readonly]:not(.cloned-text-input) {
 		padding: 6px 6px 1px 6px;
 		box-shadow: 0px 2px 0px rgba(0,0,0,0.2);
 	}
-} 
+}
+html input[disabled] {
+	cursor: default;
+	color: #000;
+	opacity: 1.0;
+}
