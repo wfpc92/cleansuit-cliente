@@ -16,6 +16,8 @@ var FacebookSvc = function(ngFB,
 			*/
 			return ngFB.login({
 				scope: "email,public_profile"
+			}, function(e) {
+				console.log(e)
 			})
 			.then(function(respuestaFacebook) {
 				$log.debug(JSON.stringify(respuestaFacebook))
@@ -40,6 +42,7 @@ var FacebookSvc = function(ngFB,
 					return reject(respuestaFacebook.status);
 				}
 			}, function(err) {
+				$log.debug("Error ngFB.login", err);
 				//el usuario cancela, o no hay internet.
 				//no hacer nada
 			});

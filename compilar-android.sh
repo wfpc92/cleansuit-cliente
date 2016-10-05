@@ -19,6 +19,5 @@ echo "*** Optimizando APK ARM... ***\n"
 echo "*** Optimizando APK x86... ***\n"
 /opt/Android/Sdk/build-tools/23.0.2/zipalign -v 4 android-x86-release-unsigned.apk cleansuit-x86.apk
 
-cd ../../../../..
 
 echo "*** Proceso terminado. Revise platforms/android/build/outputs/apk. ***\n"
