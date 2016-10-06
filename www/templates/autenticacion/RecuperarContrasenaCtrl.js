@@ -6,7 +6,6 @@ var RecuperarContrasenaCtrl = function($scope,
 	$scope.usuario = {};
 
 	$scope.enviar = function() {
-		
 		RecursosFactory
 		.post("/cliente/reset", $scope.usuario)
 		.then(function(respuesta) {
