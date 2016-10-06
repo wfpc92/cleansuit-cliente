@@ -85,7 +85,6 @@ var TutorialFactory = function($localStorage,
 	};
 
 	var mostrarTutorial = function(tipo) {
-		console.log("TutorialFactory.mostrarTutorial", PopupFactory.active)
 		if (existe || realizado(tipo) || PopupFactory.active) {
 			return false;
 		}

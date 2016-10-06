@@ -29,10 +29,8 @@ var InformacionOrdenCtrl = function($scope,
 	this.$log = $log;
 
 	$scope.orden = OrdenesFactory.getOrden();
-	$log.debug($scope.carrito);
 
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
-	
 	if (!$scope.orden.recoleccion.fecha) {
 		var ahora = new Date();
 		//ahora = new Date(2016, 7, 11, 20, 00, 0, 0); //para probar varas fechas
@@ -123,8 +121,8 @@ var InformacionOrdenCtrl = function($scope,
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		self.viewAfterEnter();
 		$scope.soloProductos = $scope.carrito.soloHayProductos();
+		self.viewAfterEnter();
 	});
 
 	//cancelar orden:
@@ -297,7 +295,8 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 	var self = this;
 	self.$scope.formIncompleto = false;
 
-	if(self.$scope.soloProductos) { 
+	if(self.$scope.soloProductos) {
+		//console.log("view Solo productos:")
 		self.$scope.$watchGroup([
 			'orden.entrega.direccion',
 			'orden.entrega.fecha',
@@ -305,16 +304,17 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				//self.$log.debug("productos", JSON.stringify(newV))
 				if(newV[0] && newV[1] && newV[2] 
 					&& newV[3] && newV[4] && newV[5]){
-					self.$scope.formIncompleto = false;
+					self.$scope.formIncompleto = true;
 				}
 				else {
-					self.$scope.formIncompleto = true;	
+					self.$scope.formIncompleto = false;	
 				}
+				//self.$log.debug("watchProductos", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	} else {
+		//console.log("view servicios:")
 		self.$scope.$watchGroup([ 
 			'orden.recoleccion.direccion',
 			'orden.recoleccion.fecha',
@@ -325,15 +325,15 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				//self.$log.debug("servicios", JSON.stringify(newV))
 				if(newV[0] && newV[1] && newV[2] 
 					&& newV[3] && newV[4] && newV[5] 
 					&& newV[6] && newV[7] && newV[8] ){
-					self.$scope.formIncompleto = false;
+					self.$scope.formIncompleto = true;
 				}
 				else {
-					self.$scope.formIncompleto = true;	
+					self.$scope.formIncompleto = false;	
 				}
+				//self.$log.debug("watchServicios", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	}
 };

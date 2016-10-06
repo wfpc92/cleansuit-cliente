@@ -154,7 +154,13 @@ var CarritoFactory = function(RecursosFactory,
 				}
 			}
 
-			return !this.servicioDirecto && cont > 0 ? true : false;
+			console.log("CarritoFactory.soloHayProductos()",
+				this.servicioDirecto,
+				cont,
+				!this.servicioDirecto && (cont > 0 ? true : false),
+				items)
+
+			return !this.servicioDirecto && (cont > 0 ? true : false);
 		},
 
 		/**
