@@ -1,5 +1,6 @@
 var TutorialFactory = function($localStorage,
 							UsuarioFactory,
+							PopupFactory,
 							$ionicBackdrop,
 							$timeout,
 							$document,
@@ -84,7 +85,8 @@ var TutorialFactory = function($localStorage,
 	};
 
 	var mostrarTutorial = function(tipo) {
-		if (existe || realizado(tipo)) {
+		console.log("TutorialFactory.mostrarTutorial", PopupFactory.active)
+		if (existe || realizado(tipo) || PopupFactory.active) {
 			return false;
 		}
 
