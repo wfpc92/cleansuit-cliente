@@ -87,7 +87,7 @@ var AuthService = function($q,
 						'fb_uid': respuesta.fb_uid
 					})
 					.then(function(respuesta){
-						$log.debug("AuthService.ingresarFacebook", respuesta)
+						$log.debug("AuthService.ingresarFacebook", JSON.stringify(respuesta))
 						if(respuesta.data.success){
 							//si existe=true, el fb_uid ya esta registrado en el sistema
 							return authCallback(resolve, reject, respuesta); 

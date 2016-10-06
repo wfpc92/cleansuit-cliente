@@ -6,7 +6,8 @@ var InformacionOrdenCtrl = function($scope,
 									$ionicHistory, 
 									$ionicModal, 
 									$ionicPopup,   
-									$rootScope, 
+									$rootScope,
+									$ionicSideMenuDelegate,
 									MapasFactory, 
 									ModalCargaFactory,
 									PromocionesFactory,
@@ -14,6 +15,8 @@ var InformacionOrdenCtrl = function($scope,
 									ConfiguracionesFactory) {
 	
 	$log.debug("InformacionOrdenCtrl");
+	$ionicSideMenuDelegate.canDragContent(false);
+	
 	var self = this; 
 
 	this.$scope = $scope;
@@ -29,10 +32,8 @@ var InformacionOrdenCtrl = function($scope,
 	this.$log = $log;
 
 	$scope.orden = OrdenesFactory.getOrden();
-	$log.debug($scope.carrito);
 
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
-	
 	if (!$scope.orden.recoleccion.fecha) {
 		var ahora = new Date();
 		//ahora = new Date(2016, 7, 11, 20, 00, 0, 0); //para probar varas fechas
@@ -96,8 +97,8 @@ var InformacionOrdenCtrl = function($scope,
     	PromocionesFactory
     	.validar($scope.orden.cupon)
     	.then(function(respuesta) {
-    		//$log.debug("InformacionOrdenCtrl.validarCupon()")
-    		//$log.debug(JSON.stringify(respuesta))
+    		$log.debug("InformacionOrdenCtrl.validarCupon()")
+    		$log.debug(JSON.stringify(respuesta))
     		if(respuesta) {
     			tmp = respuesta.mensaje;
     			$scope.carrito.aplicarPromocion(respuesta.promocion);
@@ -123,8 +124,8 @@ var InformacionOrdenCtrl = function($scope,
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		self.viewAfterEnter();
 		$scope.soloProductos = $scope.carrito.soloHayProductos();
+		self.viewAfterEnter();
 	});
 
 	//cancelar orden:
@@ -297,7 +298,8 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 	var self = this;
 	self.$scope.formIncompleto = false;
 
-	if(self.$scope.soloProductos) { 
+	if(self.$scope.soloProductos) {
+		//console.log("view Solo productos:")
 		self.$scope.$watchGroup([
 			'orden.entrega.direccion',
 			'orden.entrega.fecha',
@@ -305,16 +307,17 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				//self.$log.debug("productos", JSON.stringify(newV))
 				if(newV[0] && newV[1] && newV[2] 
 					&& newV[3] && newV[4] && newV[5]){
-					self.$scope.formIncompleto = false;
+					self.$scope.formIncompleto = true;
 				}
 				else {
-					self.$scope.formIncompleto = true;	
+					self.$scope.formIncompleto = false;	
 				}
+				//self.$log.debug("watchProductos", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	} else {
+		//console.log("view servicios:")
 		self.$scope.$watchGroup([ 
 			'orden.recoleccion.direccion',
 			'orden.recoleccion.fecha',
@@ -325,15 +328,15 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				//self.$log.debug("servicios", JSON.stringify(newV))
 				if(newV[0] && newV[1] && newV[2] 
 					&& newV[3] && newV[4] && newV[5] 
 					&& newV[6] && newV[7] && newV[8] ){
-					self.$scope.formIncompleto = false;
+					self.$scope.formIncompleto = true;
 				}
 				else {
-					self.$scope.formIncompleto = true;	
+					self.$scope.formIncompleto = false;	
 				}
+				//self.$log.debug("watchServicios", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	}
 };
@@ -443,7 +446,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
 				minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
 			}
-
+			
 			datePicker.show({
 				date: $scope.orden.recoleccion.fecha,
 				mode: 'date',
@@ -452,9 +455,8 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				windowTitle: '',
 				doneButtonLabel: "Establecer",
 				cancelButtonLabel: "Cancelar",
-				clearButtonLabel: "Eliminar",
+				clearButtonLabel: "Eliminar"
 			}, function(fecha){
-				//self.$log.debug("FECHARECOLECCION", fecha);
 				if(fecha !== 'CANCEL') {
 					$scope.orden.recoleccion.fecha = fecha;
 					$scope.$digest();
@@ -484,6 +486,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				doneButtonLabel: "Establecer",
 				cancelButtonLabel: "Cancelar",
 				clearButtonLabel: "Eliminar",
+				androidTheme: "THEME_HOLO_LIGHT"
 			}, function(fecha){
 				//self.$log.debug("construirPopover.FECHAENTREGA: ", $scope.orden.entrega.fecha, fecha);
 				if(fecha !== 'CANCEL') {
@@ -544,11 +547,11 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 InformacionOrdenCtrl.prototype.cancelarOrden = function() {
 	var self = this;
 	self.OrdenesFactory.limpiarOrden();
-	self.$state.go("app.inicio");
 	self.$ionicHistory.clearHistory();
 	self.$ionicHistory.nextViewOptions({
 		disableBack:'true'
 	});
+	self.$state.go("app.inicio");
 };
 
 app.controller('InformacionOrdenCtrl', InformacionOrdenCtrl);

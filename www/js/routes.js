@@ -62,30 +62,7 @@ app.config(function($stateProvider,
 	$ionicConfigProvider.views.forwardCache(true);
 	$ionicConfigProvider.views.maxCache(5);
 
-	$httpProvider.interceptors.push(function ($rootScope, $q, $log, AUTH_EVENTS, APP_EVENTS) {
-		return {
-			responseError: function (response) {
-				$log.log("AuthInterceptor.responseError()");
-				$log.log(JSON.stringify(response));
-				
-				if(response.status == 0) {
-					response.status = 106;
-				}
-
-				$rootScope.$broadcast({
-					106: APP_EVENTS.noAccesoServidor,	
-					401: AUTH_EVENTS.noAutenticado,
-			    	403: AUTH_EVENTS.noAutorizado,
-			    	404: APP_EVENTS.servidorNoEncontrado,
-			    	500: APP_EVENTS.servidorNoEncontrado,
-			    	501: APP_EVENTS.servidorNoEncontrado,
-			    	502: APP_EVENTS.servidorNoEncontrado,
-			    	503: APP_EVENTS.servidorNoEncontrado,
-			  	}[response.status], response);
-			  	return $q.reject(response);
-			}
-		};
-	});
+	$httpProvider.interceptors.push("Interceptor");
 
 	$localStorageProvider.setKeyPrefix('CleanSuit-');
 

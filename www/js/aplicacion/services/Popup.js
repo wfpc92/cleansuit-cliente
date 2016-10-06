@@ -1,18 +1,20 @@
 
 var PopupFactory = function($ionicPopup) {
-	var active = false;
+	return {
+		active: false, 
 
-	return { 
 		alert : function(opt) {
-			if(active) {
+			var self = this;
+
+			if(self.active) {
 				return;
 			}
 
-			active = true;
+			self.active = true;
 
 			return $ionicPopup.alert(opt)
 			.then(function(res) {
-				active = false;
+				self.active = false;
 				return res;
 			});
 		}

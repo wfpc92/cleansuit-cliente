@@ -3,7 +3,7 @@
 	
 	<div class="bar bar-footer">
 		<ion-content class="form">
-			<div class="formulario">
+			<div class="formulario" ng-enter="form.valido ? enviar() : noHacerNada()">
 				<img class="burbujas" ng-src="img/burbujas.svg" />
 				<form name="formRecuperarContrasena" novalidate>
 					<h2>¿No recuerdas tu contraseña?<br>¡No te precoupes!</h2>
@@ -11,10 +11,10 @@
 						Escribe tu correo electrónico y te enviaremos<br>información para recuperar tu contraseña
 					</p>
 					<ion-list>
-						<ion-item>
+						<ion-item> 
 							<label class="item-input item-floating-label">
 								<span class="input-label">Correo Electrónico</span>
-								<input type="email" name="correo" ng-model="usuario.email" placeholder="CORREO ELECTRÓNICO" maxlength="320" ng-minlength="6" ng-maxlength="320" required>
+								<input type="email" name="correo" ng-model="usuario.correo" placeholder="CORREO ELECTRÓNICO" maxlength="320" ng-minlength="6" ng-maxlength="320" required>
 							</label>
 						</ion-item>
 					</ion-list>
