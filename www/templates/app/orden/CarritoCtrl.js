@@ -38,11 +38,11 @@ var CarritoCtrl = function($scope,
 		    		text: 'Si',
 		    		onTap: function(e) {
 		    			OrdenesFactory.limpiarOrden();
-						$state.go("app.inicio");
 						$ionicHistory.clearHistory();
 						$ionicHistory.nextViewOptions({
 							disableBack:'true'
 						});
+						$state.go("app.inicio");
 		    		}
 		    	},
 		      	{

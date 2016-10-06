@@ -6,7 +6,8 @@ var InformacionOrdenCtrl = function($scope,
 									$ionicHistory, 
 									$ionicModal, 
 									$ionicPopup,   
-									$rootScope, 
+									$rootScope,
+									$ionicSideMenuDelegate,
 									MapasFactory, 
 									ModalCargaFactory,
 									PromocionesFactory,
@@ -14,6 +15,8 @@ var InformacionOrdenCtrl = function($scope,
 									ConfiguracionesFactory) {
 	
 	$log.debug("InformacionOrdenCtrl");
+	$ionicSideMenuDelegate.canDragContent(false);
+	
 	var self = this; 
 
 	this.$scope = $scope;
@@ -94,8 +97,8 @@ var InformacionOrdenCtrl = function($scope,
     	PromocionesFactory
     	.validar($scope.orden.cupon)
     	.then(function(respuesta) {
-    		//$log.debug("InformacionOrdenCtrl.validarCupon()")
-    		//$log.debug(JSON.stringify(respuesta))
+    		$log.debug("InformacionOrdenCtrl.validarCupon()")
+    		$log.debug(JSON.stringify(respuesta))
     		if(respuesta) {
     			tmp = respuesta.mensaje;
     			$scope.carrito.aplicarPromocion(respuesta.promocion);
@@ -544,11 +547,11 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 InformacionOrdenCtrl.prototype.cancelarOrden = function() {
 	var self = this;
 	self.OrdenesFactory.limpiarOrden();
-	self.$state.go("app.inicio");
 	self.$ionicHistory.clearHistory();
 	self.$ionicHistory.nextViewOptions({
 		disableBack:'true'
 	});
+	self.$state.go("app.inicio");
 };
 
 app.controller('InformacionOrdenCtrl', InformacionOrdenCtrl);
