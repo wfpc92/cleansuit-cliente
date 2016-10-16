@@ -9,22 +9,17 @@ var RecuperarContrasenaCtrl = function($scope,
 		RecursosFactory
 		.post("/cliente/reset", $scope.usuario)
 		.then(function(respuesta) {
-			var mensaje = "";
-			if(respuesta.data.success) {
-				mensaje = 'Se ha enviado un enlace a tu correo.';
-			} else {
-				mensaje = respuesta.data.mensaje
-			}
 			PopupFactory
 			.alert({
 		    	title: 'Recuperar Contraseña',
-		    	template: mensaje
+		    	template: respuesta.data.mensaje
 		    })
 		});
 	};
 
 	$scope.noHacerNada = function() {
-		
+		//funcion no ejecuta nada, para moviles,
+		//dar enter en teclado nativo invoca a submit.
 	}
 };
 
