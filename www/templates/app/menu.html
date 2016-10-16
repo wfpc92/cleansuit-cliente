@@ -1,7 +1,7 @@
 <ion-side-menus enable-menu-with-back-views="false">
 
-	<ion-side-menu-content edge-drag-threshold="true" drag-content="true">
-		
+	<ion-side-menu-content edge-drag-threshold="true" drag-content="false">
+
 		<ion-nav-bar class="bar-positive">
 			<ion-nav-back-button></ion-nav-back-button>
 			<ion-nav-buttons side="left">
@@ -38,7 +38,7 @@
 					</div>
 					<div class="nombre">
 						<h2>{{usuario.nombre | uppercase}}</h2>
-					</div>					
+					</div>
 				</ion-item>
 
 				<ion-item menu-close ui-sref="app.inicio" class="item-icon-left">
@@ -56,17 +56,17 @@
 					Historial de órdenes
 					<i class="icon ico-historial"></i>
 				</ion-item>
-				
+
 				<ion-item menu-close ui-sref="app.perfil" class="item-icon-left">
 					Perfil
 					<i class="icon ico-perfil"></i>
 				</ion-item>
-				
+
 				<ion-item menu-close ui-sref="app.about" class="item-icon-left">
 					Sobre esta aplicación
 					<i class="icon ico-about"></i>
 				</ion-item>
-				
+
 				<ion-item menu-close ng-click="logout()" class="item-icon-left cerrar">
 					Cerrar sesión
 					<i class="icon ico-cerrar"></i>
