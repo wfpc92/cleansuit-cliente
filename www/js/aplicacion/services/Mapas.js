@@ -30,7 +30,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 					latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
 				}, function(error){
 					//mostrar ventana de error.
-					$log.debug("posicion no se puede obtener: ", error);
+					$log.debug("posicion no se puede obtener: ", JSON.stringify(error));
 					$log.debug(JSON.stringify(error));
 					
 					document.addEventListener("deviceready",function() {

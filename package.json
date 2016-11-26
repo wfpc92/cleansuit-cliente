@@ -24,9 +24,14 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-geolocation",
     "cordova-plugin-camera",
+    "cordova-plugin-compat",
     {
       "locator": "https://github.com/rodrigo-martinezd/cordova-dialog-gps.git",
       "id": "cl.rmd.cordova.dialoggps"
+    },
+    {
+      "locator": "https://github.com/okaybmd/cordova-plugin-datepicker.git",
+      "id": "com.okaybmd.cordova.plugin.datepicker"
     },
     "cordova-plugin-inappbrowser"
   ],
