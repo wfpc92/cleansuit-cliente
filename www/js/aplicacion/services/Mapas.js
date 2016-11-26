@@ -20,7 +20,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 	};
 
 	var detectarPosicionGPS = function(callback) {
-		$log.debug("detectando posicion actual...");
+		$log.debug("MapasFactory.detectarPosicionGPS()", "detectando posicion actual...");
 		
 		if(!latLng) {
 			$cordovaGeolocation

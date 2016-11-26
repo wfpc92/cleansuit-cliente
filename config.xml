@@ -77,5 +77,6 @@
     <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320"/>
   </platform>
   <allow-navigation href="*://api.cleansuit.co/*"/>
+  <allow-navigation href="https://*"/>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 </widget>

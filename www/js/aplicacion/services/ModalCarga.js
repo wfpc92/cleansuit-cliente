@@ -1,4 +1,6 @@
-var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
+var ModalCargaFactory = function($ionicLoading,
+								$timeout, 
+								$rootScope) {
 
 	var promise = null;
 	var $scope = null;
@@ -13,7 +15,9 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 			mensaje = mensaje || " Cargando datos...";
 			$scope.mensajeModal = $scope.mensajeModal || mensaje;
 			
+				console.log("ocultar");
 			$scope.hide = function() {
+				console.log("ocultar");
 				self.ocultar();
 			};
 			
@@ -32,11 +36,14 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 			}, 5000);
 		},
 		ocultar: function() {
+			console.log("ModalCargaFactory.ocultar()");
 			if(promise) {
+				console.log("promise");
 				$timeout.cancel(promise);
 			}
 
 			if(active) {
+				console.log("active")
 				$ionicLoading.hide();
 				active = false;
 				$scope.cerrar = false; 
