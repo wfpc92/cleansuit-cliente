@@ -1,36 +1,31 @@
-var FacebookSvc = function(ngFB,
+var FacebookSvc = function(//ngFB,
+						$openFB,
 						$q,
 						$log) {
-	
-	ngFB.init({
+	$openFB.init({
 		appId: "1732222377062073"
 	})
-	
+
 	return {
 		autenticar: function(resolve, reject) {
 			$log.debug("FacebookSvc.autenticar()")
-			/*return $q(function(resolve, reject, err) {
-				return resolve({fb_token: "token",
-				fb_uid: "id"})
-			});
-			*/
-			return ngFB.login({
+			
+			return $openFB.login({
 				scope: "email,public_profile"
-			}, function(e) {
-				console.log(e)
 			})
 			.then(function(respuestaFacebook) {
-				$log.debug(JSON.stringify(respuestaFacebook))
-				if("connected" === respuestaFacebook.status){
-					return ngFB.api({
+				$log.debug("FacebookSvc.login()", JSON.stringify(respuestaFacebook))
+				if(respuestaFacebook){
+					return $openFB.api({
 						path: "/me",
 						params: {
 							fields: "id"
 						}
 					})
 					.then(function(respuesta){
+						$log.debug("FacebookSvc.logon():api", JSON.stringify(respuesta));
 						return {
-							fb_token: respuestaFacebook.authResponse.accessToken,
+							fb_token: respuestaFacebook,
 							fb_uid: respuesta.id
 						}
 					}, function() {
@@ -42,31 +37,13 @@ var FacebookSvc = function(ngFB,
 					return reject(respuestaFacebook.status);
 				}
 			}, function(err) {
-				$log.debug("Error ngFB.login", err);
+				$log.debug("Error ngFB.login", JSON.stringify(err));
 				//el usuario cancela, o no hay internet.
 				//no hacer nada
 			});
 		},
 		logout: function() {
-			ngFB.logout()
-		},
-		getDatos: function(resolve, reject) {
-			return ngFB.api({
-				path: "/me",
-				params: {
-					fields: "email,name,first_name,last_name,id"
-				}
-			})
-			.then(function(respuestaFacebook) {
-				$log.debug("FacebookSvc.getDatos()", respuestaFacebook);
-				return {
-					fb_uid: respuestaFacebook.id,
-					nombre: respuestaFacebook.name,
-					correo: respuestaFacebook.email
-				}
-			}, function(err) {
-				return reject(err);
-			})
+			$openFB.revokePermissions();
 		}
 	}
 };

@@ -9,7 +9,7 @@ var CargarScriptsFactory = function(angularLoad,
 			var self = this;
 			if(!recursos.googleMaps) {
 				$log.debug("cargando Script google maps...")
-				angularLoad.loadScript('https://maps.googleapis.com/maps/api/js').then(function () {
+				angularLoad.loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyB3iWD6VMf3CmfEOU4gTZwy6rhiOcRCXLM').then(function () {
 					$log.debug("exito script google maps.")
 					recursos.googleMaps = true;
 					if(callback) {
