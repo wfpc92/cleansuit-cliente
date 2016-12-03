@@ -33,7 +33,15 @@
       "locator": "https://github.com/okaybmd/cordova-plugin-datepicker.git",
       "id": "com.okaybmd.cordova.plugin.datepicker"
     },
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    {
+      "variables": {
+        "CRASHLYTICS_API_SECRET": "cdd2023df83d7cd04346e191885d25d649ff4154",
+        "CRASHLYTICS_API_KEY": "ddfa481307edb137db5679d1521517b524c2ba5d611e6c609ee9b04dda026432"
+      },
+      "locator": "https://github.com/vianneyniji/cordova-fabric-crashlytics-plugin",
+      "id": "org.apache.cordova.crashlytics"
+    }
   ],
   "cordovaPlatforms": [
     "android"

@@ -11,7 +11,7 @@ var ProductoCtrl = function($scope,
 	$scope.producto = ProductosFactory.productos[indexProducto];
 
 	/*$scope.$on("$ionicView.beforeEnter", function() {
-		
+
 	});	*/
 
 	$scope.aumentarProducto = function(){

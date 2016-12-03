@@ -56,7 +56,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 
 					});
 
-					latLng = new google.maps.LatLng(2,-76);
+					latLng = new google.maps.LatLng(4.865046, -74.051923);
 				})
 				.finally(function() {
 					if(callback) {

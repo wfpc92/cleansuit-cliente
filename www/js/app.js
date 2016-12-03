@@ -24,8 +24,4 @@ var app = angular.module('ClienteCleanSuit', ['ionic',
 			StatusBar.styleDefault();
 		}
 	});
-
-	/*ngFB.init({
-		appId: "1732222377062073"
-	});*/
 });
