@@ -6,6 +6,7 @@ app.config(function($stateProvider,
 					$ionicConfigProvider,
 					$httpProvider,
 					$localStorageProvider,
+					UsuarioFactoryProvider,
 					USER_ROLES) {
 
 
@@ -51,6 +52,50 @@ app.config(function($stateProvider,
         return $delegate;
     });*/
 
+    $provide.decorator("$exceptionHandler", ['$delegate', function($delegate) {
+        return function(exception, cause) {
+        	$delegate(exception, cause);
+            // Decorating standard exception handling behaviour by sending exception to crashlytics plugin
+            var message = exception.toString();
+            // Here, I rely on stacktrace-js (http://www.stacktracejs.com/) to format exception stacktraces before
+            // sending it to the native bridge
+            var stacktrace = exception.stack.toLocaleString();
+        	var usuario = UsuarioFactoryProvider.$get().getUsuario();
+            	
+        	var data = {
+				type: 'angular',
+				url: window.location.hash,
+				localtime: Date.now(),
+				err: "ERROR: "+message+", stacktrace: "+stacktrace
+			};
+
+			if(cause) {
+				data.cause = cause;
+			}
+
+			if(exception){
+				if(exception.message) {
+					data.message = exception.message;
+				}
+				if(exception.name) {
+					data.name = exception.name;
+				}
+				if(exception.stack) {
+					data.stack = exception.stack;
+				}
+			}
+
+
+        	if(navigator.crashlytics) {
+            	if(usuario) {
+            		data.usuario = usuario.correo;
+            		navigator.crashlytics.setUserEmail(usuario.correo);	
+            	}
+            	navigator.crashlytics.logException(JSON.stringify(data));
+	        	navigator.crashlytics.simulateCrash();
+        	}
+        };
+    }]);
 
 	$compileProvider.debugInfoEnabled(false);
 	$ionicConfigProvider.scrolling.jsScrolling(false);
