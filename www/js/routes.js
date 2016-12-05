@@ -12,7 +12,8 @@ app.config(function($stateProvider,
 
 	//forzar a ionic que tenga las tabs arriba para todas las plataformas
 	$ionicConfigProvider.tabs.position('top');
-  
+  	$ionicConfigProvider.views.swipeBackEnabled(false);
+
 	$logProvider.debugEnabled(true);
 
 	var toJSON = function(arguments) {
@@ -86,13 +87,13 @@ app.config(function($stateProvider,
 			}
 
 
-        	if(navigator.crashlytics) {
+        	if(window.fabric && window.fabric.Crashlytics) {
             	if(usuario) {
             		data.usuario = usuario.correo;
-            		navigator.crashlytics.setUserEmail(usuario.correo);	
+            		window.fabric.Crashlytics.setUserEmail(usuario.correo);	
             	}
-            	navigator.crashlytics.logException(JSON.stringify(data));
-	        	navigator.crashlytics.simulateCrash();
+            	window.fabric.Crashlytics.addLog(JSON.stringify(data));
+            	window.fabric.Crashlytics.sendNonFatalCrash();
         	}
         };
     }]);
@@ -263,7 +264,6 @@ app.config(function($stateProvider,
 
 	.state('app.carrito', {
 		url: '/carrito',
-		cache: false,
 		views: {
 			'mi-carrito': {
 				templateUrl: 'templates/app/orden/carrito.html',
@@ -275,7 +275,6 @@ app.config(function($stateProvider,
 
 	.state('app.informacion-orden', {
 		url: '/informacion-orden',
-		cache: false,
 		views: {
 			'mi-carrito': {
 				templateUrl: 'templates/app/orden/informacion-orden.html',
