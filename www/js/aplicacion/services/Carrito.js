@@ -153,8 +153,9 @@ var CarritoFactory = function(RecursosFactory,
 					return false;
 				}
 			}
+			console.log("soloHayProductos: ",cont ,(!this.servicioDirecto && cont > 0) ? true : false)
 
-			return !this.servicioDirecto && cont > 0 ? true : false;
+			return (!this.servicioDirecto && cont > 0) ? true : false;
 		},
 
 		/**
