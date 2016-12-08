@@ -1,13 +1,13 @@
-
-var InformacionOrdenCtrl = function($scope,
-									OrdenesFactory,
-									$state,
-									$ionicPopover,
-									$ionicHistory,
-									$ionicModal,
-									$ionicPopup,
+var InformacionOrdenCtrl = function($scope, 
+									OrdenesFactory, 
+									$state, 
+									$ionicPopover, 
+									$ionicHistory, 
+									$ionicModal, 
+									$ionicPopup,   
 									$rootScope,
-									MapasFactory,
+									$ionicSideMenuDelegate,
+									MapasFactory, 
 									ModalCargaFactory,
 									PromocionesFactory,
 									$log,
@@ -15,6 +15,7 @@ var InformacionOrdenCtrl = function($scope,
 
 	$log.debug("InformacionOrdenCtrl");
 	var self = this;
+	$ionicSideMenuDelegate.canDragContent(false);
 
 	this.$scope = $scope;
 	this.$ionicModal = $ionicModal;
@@ -29,10 +30,8 @@ var InformacionOrdenCtrl = function($scope,
 	this.$log = $log;
 
 	$scope.orden = OrdenesFactory.getOrden();
-	$log.debug($scope.carrito);
 
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
-
 	if (!$scope.orden.recoleccion.fecha) {
 		var ahora = new Date();
 		//ahora = new Date(2016, 7, 11, 20, 00, 0, 0); //para probar varas fechas
@@ -96,8 +95,8 @@ var InformacionOrdenCtrl = function($scope,
     	PromocionesFactory
     	.validar($scope.orden.cupon)
     	.then(function(respuesta) {
-    		//$log.debug("InformacionOrdenCtrl.validarCupon()")
-    		//$log.debug(JSON.stringify(respuesta))
+    		$log.debug("InformacionOrdenCtrl.validarCupon()")
+    		$log.debug(JSON.stringify(respuesta))
     		if(respuesta) {
     			tmp = respuesta.mensaje;
     			$scope.carrito.aplicarPromocion(respuesta.promocion);
@@ -305,17 +304,18 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				//self.$log.debug("productos", JSON.stringify(newV))
-				if(newV[0] && newV[1] && newV[2]
+				if(newV[0] && newV[1] && newV[2] 
 					&& newV[3] && newV[4] && newV[5]){
-					self.$scope.formIncompleto = false;
-				}
-				else {
 					self.$scope.formIncompleto = true;
 				}
+				else {
+					self.$scope.formIncompleto = false;	
+				}
+				//self.$log.debug("watchProductos", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	} else {
-		self.$scope.$watchGroup([
+		//console.log("view servicios:")
+		self.$scope.$watchGroup([ 
 			'orden.recoleccion.direccion',
 			'orden.recoleccion.fecha',
 			'orden.recoleccion.hora',
@@ -325,15 +325,15 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
-				//self.$log.debug("servicios", JSON.stringify(newV))
-				if(newV[0] && newV[1] && newV[2]
-					&& newV[3] && newV[4] && newV[5]
+				if(newV[0] && newV[1] && newV[2] 
+					&& newV[3] && newV[4] && newV[5] 
 					&& newV[6] && newV[7] && newV[8] ){
-					self.$scope.formIncompleto = false;
-				}
-				else {
 					self.$scope.formIncompleto = true;
 				}
+				else {
+					self.$scope.formIncompleto = false;	
+				}
+				//self.$log.debug("watchServicios", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	}
 };
@@ -544,11 +544,11 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 InformacionOrdenCtrl.prototype.cancelarOrden = function() {
 	var self = this;
 	self.OrdenesFactory.limpiarOrden();
-	self.$state.go("app.inicio");
 	self.$ionicHistory.clearHistory();
 	self.$ionicHistory.nextViewOptions({
 		disableBack:'true'
 	});
+	self.$state.go("app.inicio");
 };
 
 app.controller('InformacionOrdenCtrl', InformacionOrdenCtrl);

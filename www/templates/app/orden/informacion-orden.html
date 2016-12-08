@@ -1,5 +1,5 @@
 <ion-view title="Cleansuit">
-	<ion-content class="pdBoton orden">
+	<ion-content class="pdBoton orden" overflow-scroll="false">
 
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
@@ -140,7 +140,7 @@
 						Acepto los <a ng-click="abrirModalTC()">Términos y Condiciones.</a>
 					</div>
 				</ion-item>
-			</div>
+			</ion-list>
 		</form>
 
 		<elemento-centrado>
@@ -149,7 +149,7 @@
 	</ion-content>
 
 	<div class="bar bar-footer">
-		<a ng-click="realizarOrden()" class="button button-calm button-full" ng-disabled="formIncompleto">REALIZAR ORDEN</a>
+		<a ng-click="realizarOrden()" class="button button-calm button-full" ng-disabled="!formIncompleto">REALIZAR ORDEN</a>
 	</div>
 
 </ion-view>

@@ -122,7 +122,24 @@ var OrdenesFactory = function(UsuarioFactory,
 		},
 		
 		limpiarOrden: function() {
-			orden = null;
+			/*
+			//_orden.recoleccion.direccion: '';
+			_orden.recoleccion.posicion = '';
+			_orden.recoleccion.fecha = null;
+			_orden.recoleccion.hora = '';
+			
+			//_orden.entrega.direccion: '';
+			_orden.entrega.posicion = '';
+			_orden.entrega.fecha = null;
+			_orden.entrega.hora = '';
+			
+			_orden.formaPago = '';
+			//_orden.telefono: '';
+			_orden.abono = '';
+			_orden.cupon = '';
+			_orden.terminosCondiciones = false;
+			*/
+			_orden = null;
 			CarritoFactory.vaciar();
 		}
 	};

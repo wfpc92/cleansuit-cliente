@@ -12,7 +12,7 @@ var ProductoCtrl = function($scope,
 
 	/*$scope.$on("$ionicView.beforeEnter", function() {
 		
-	});	*/
+	});*/	
 
 	$scope.aumentarProducto = function(){
 		$scope.carrito.agregar($scope.producto, "PRODUCTO", 1);

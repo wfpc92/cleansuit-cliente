@@ -20,7 +20,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 	};
 
 	var detectarPosicionGPS = function(callback) {
-		$log.debug("detectando posicion actual...");
+		$log.debug("MapasFactory.detectarPosicionGPS()", "detectando posicion actual...");
 		
 		if(!latLng) {
 			$cordovaGeolocation
@@ -30,7 +30,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 					latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
 				}, function(error){
 					//mostrar ventana de error.
-					$log.debug("posicion no se puede obtener: ", error);
+					$log.debug("posicion no se puede obtener: ", JSON.stringify(error));
 					$log.debug(JSON.stringify(error));
 					
 					document.addEventListener("deviceready",function() {
@@ -56,7 +56,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 
 					});
 
-					latLng = new google.maps.LatLng(2,-76);
+					latLng = new google.maps.LatLng(4.865046, -74.051923);
 				})
 				.finally(function() {
 					if(callback) {

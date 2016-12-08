@@ -6,12 +6,14 @@ app.config(function($stateProvider,
 					$ionicConfigProvider,
 					$httpProvider,
 					$localStorageProvider,
+					UsuarioFactoryProvider,
 					USER_ROLES) {
 
 
 	//forzar a ionic que tenga las tabs arriba para todas las plataformas
 	$ionicConfigProvider.tabs.position('top');
-  
+  	$ionicConfigProvider.views.swipeBackEnabled(false);
+
 	$logProvider.debugEnabled(true);
 
 	var toJSON = function(arguments) {
@@ -51,6 +53,50 @@ app.config(function($stateProvider,
         return $delegate;
     });*/
 
+    $provide.decorator("$exceptionHandler", ['$delegate', function($delegate) {
+        return function(exception, cause) {
+        	$delegate(exception, cause);
+            // Decorating standard exception handling behaviour by sending exception to crashlytics plugin
+            var message = exception.toString();
+            // Here, I rely on stacktrace-js (http://www.stacktracejs.com/) to format exception stacktraces before
+            // sending it to the native bridge
+            var stacktrace = exception.stack.toLocaleString();
+        	var usuario = UsuarioFactoryProvider.$get().getUsuario();
+            	
+        	var data = {
+				type: 'angular',
+				url: window.location.hash,
+				localtime: Date.now(),
+				err: "ERROR: "+message+", stacktrace: "+stacktrace
+			};
+
+			if(cause) {
+				data.cause = cause;
+			}
+
+			if(exception){
+				if(exception.message) {
+					data.message = exception.message;
+				}
+				if(exception.name) {
+					data.name = exception.name;
+				}
+				if(exception.stack) {
+					data.stack = exception.stack;
+				}
+			}
+
+
+        	if(window.fabric && window.fabric.Crashlytics) {
+            	if(usuario) {
+            		data.usuario = usuario.correo;
+            		window.fabric.Crashlytics.setUserEmail(usuario.correo);	
+            	}
+            	window.fabric.Crashlytics.addLog(JSON.stringify(data));
+            	window.fabric.Crashlytics.sendNonFatalCrash();
+        	}
+        };
+    }]);
 
 	$compileProvider.debugInfoEnabled(false);
 	$ionicConfigProvider.scrolling.jsScrolling(false);
@@ -62,30 +108,7 @@ app.config(function($stateProvider,
 	$ionicConfigProvider.views.forwardCache(true);
 	$ionicConfigProvider.views.maxCache(5);
 
-	$httpProvider.interceptors.push(function ($rootScope, $q, $log, AUTH_EVENTS, APP_EVENTS) {
-		return {
-			responseError: function (response) {
-				$log.log("AuthInterceptor.responseError()");
-				$log.log(JSON.stringify(response));
-				
-				if(response.status == 0) {
-					response.status = 106;
-				}
-
-				$rootScope.$broadcast({
-					106: APP_EVENTS.noAccesoServidor,	
-					401: AUTH_EVENTS.noAutenticado,
-			    	403: AUTH_EVENTS.noAutorizado,
-			    	404: APP_EVENTS.servidorNoEncontrado,
-			    	500: APP_EVENTS.servidorNoEncontrado,
-			    	501: APP_EVENTS.servidorNoEncontrado,
-			    	502: APP_EVENTS.servidorNoEncontrado,
-			    	503: APP_EVENTS.servidorNoEncontrado,
-			  	}[response.status], response);
-			  	return $q.reject(response);
-			}
-		};
-	});
+	$httpProvider.interceptors.push("Interceptor");
 
 	$localStorageProvider.setKeyPrefix('CleanSuit-');
 
@@ -241,7 +264,6 @@ app.config(function($stateProvider,
 
 	.state('app.carrito', {
 		url: '/carrito',
-		cache: false,
 		views: {
 			'mi-carrito': {
 				templateUrl: 'templates/app/orden/carrito.html',
@@ -253,7 +275,6 @@ app.config(function($stateProvider,
 
 	.state('app.informacion-orden', {
 		url: '/informacion-orden',
-		cache: false,
 		views: {
 			'mi-carrito': {
 				templateUrl: 'templates/app/orden/informacion-orden.html',

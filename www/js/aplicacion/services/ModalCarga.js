@@ -1,4 +1,6 @@
-var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
+var ModalCargaFactory = function($ionicLoading,
+								$timeout, 
+								$rootScope) {
 
 	var promise = null;
 	var $scope = null;
@@ -32,6 +34,7 @@ var ModalCargaFactory = function($ionicLoading, $timeout, $rootScope) {
 			}, 5000);
 		},
 		ocultar: function() {
+			console.log("ModalCargaFactory.ocultar()");
 			if(promise) {
 				$timeout.cancel(promise);
 			}
