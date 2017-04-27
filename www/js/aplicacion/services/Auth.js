@@ -18,7 +18,7 @@ var AuthService = function($q,
 	}
  
 	function guardarCredenciales(usuario) {
-		$log.debug("AuthService.guardarCredenciales()")
+		$log.debug("AuthService.guardarCredenciales()");
 		UsuarioFactory.setUsuario(usuario);
 		useCredentials(usuario);
 	}
@@ -55,8 +55,9 @@ var AuthService = function($q,
 	var registrar = function(usuario) {
 		return $q(function(resolve, reject) {
 			RecursosFactory
-			.post('/registrar', usuario)
-			.then(function(res) {
+			.post('/registrar', {
+				datos: usuario
+			}).then(function(res) {
  				$log.debug("AuthService.registrar()", res)
 				return authCallback(resolve, reject, res);
 			});
@@ -115,7 +116,8 @@ var AuthService = function($q,
 		if (!angular.isArray(rolesAutorizados)) {
 			rolesAutorizados = [rolesAutorizados];
 		}
-		return (estaAutenticado && rolesAutorizados.indexOf(UsuarioFactory.getUsuario().rol) !== -1);
+
+		return rolesAutorizados.indexOf(UsuarioFactory.getUsuario().rol) !== -1;
 	};
  
 	cargarCredenciales();

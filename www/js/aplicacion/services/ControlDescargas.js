@@ -22,6 +22,7 @@ var ControlDescargasFactory = function($q,
 			if(cb) {
 				cb();
 			}
+			deferred.resolve();
 		}
 	};
 
@@ -32,8 +33,6 @@ var ControlDescargasFactory = function($q,
 		.cargar()
 		.finally(function() {
 			comprobarCarga(++carga, n);
-			$log.debug("ControlDescargasFactory.inventario(),PromocionesFactory.cargar(), finally", PromocionesFactory.promociones)
-			deferred.resolve();
 		});
 
 		ProductosFactory

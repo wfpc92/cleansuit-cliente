@@ -2,6 +2,7 @@ var AppCtrl = function($scope,
 					$rootScope, 
 					$state, 
 					$log,
+					$cordovaInAppBrowser,
 					UsuarioFactory,
 					ControlDescargasFactory,
 					CarritoFactory,
@@ -34,7 +35,9 @@ var AppCtrl = function($scope,
 					$state.go('app.inicio');
 				} else {
 					//solicitud de estado desconocido
-					$state.go('autenticacion.inicio');
+					AuthService.logout();
+					CarritoFactory.vaciar();
+					$rootScope.$broadcast("limpiarLista");
 					$rootScope.$broadcast(AUTH_EVENTS.noAutorizado);
 				}
 				
@@ -57,6 +60,17 @@ var AppCtrl = function($scope,
 
 
 	$scope.$on(AUTH_EVENTS.loginFailed, function(event, args){
+		var alertPopup = PopupFactory.alert({
+			title: 'Verifica por favor!',
+			template: args.msg
+		});
+	});
+
+	$scope.$on(AUTH_EVENTS.loginFBFailed, function(event, args){
+		var navegador = cordova.InAppBrowser.open("http://www.cleansuit.co/", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+		navegador.close();
+		
+		console.log("ERRORORORORORORO", navegador) 
 		var alertPopup = PopupFactory.alert({
 			title: 'Verifica por favor!',
 			template: args.msg
