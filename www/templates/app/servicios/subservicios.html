@@ -13,7 +13,7 @@
             <div class="col text-center">{{servicio.descripcion}}</div> 
         </div>
 
-        <div clas="card" ng-show="servicio.subservicios.length == 0">
+        <div clas="card" ng-show="servicio.subservicios.length == 0 || !servicio.subservicios">
             <div class="item item-text-wrap">
                 No hay subservicios para mostrar.
             </div>

@@ -39,6 +39,7 @@ var PerfilCtrl = function($scope,
 	$scope.$on("$ionicView.beforeEnter", function () {
 		$scope.usuario = {};
 		$scope.usuario.nombre = UsuarioFactory.getUsuario().nombre;
+		$scope.usuario.cedula = UsuarioFactory.getUsuario().cedula;
 		$scope.usuario.direccion = UsuarioFactory.getUsuario().direccion;
 		$scope.usuario.telefono = UsuarioFactory.getUsuario().telefono;
 		$scope.usuario.correo = UsuarioFactory.getUsuario().correo;

@@ -118,9 +118,14 @@ var CarritoFactory = function(RecursosFactory,
 				subtotal += this.items[idItem].precio * this.items[idItem].cantidad;
 
 				//revisar en lista de descuentos del cupon si este item aplica para descuento
-				if(this.totales.promocion && this.totales.promocion.items[idItem]){
-					//$log.debug("CarritoFactory.calcularTotales: ",	this.totales.promocion, this.totales.promocion.items[idItem]);
-					descuento +=this.items[idItem].precio * this.items[idItem].cantidad * (this.totales.promocion.items[idItem].descuento / 100.0);
+				if(this.totales.promocion){
+					for (var i = this.totales.promocion.servicios.length - 1; i >= 0; i--) {
+						if (this.totales.promocion.servicios[i].servicio == idItem) {
+							//console.log("se aplica promocion de", this.totales.promocion.servicios[i].descuento, "para servicio", this.totales.promocion.servicios[i].servicio);
+							descuento += this.items[idItem].precio * this.items[idItem].cantidad * (this.totales.promocion.servicios[i].descuento / 100.0);
+							break;
+						}
+					}
 				}
 			}
 

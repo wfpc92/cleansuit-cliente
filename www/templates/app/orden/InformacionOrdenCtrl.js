@@ -31,6 +31,7 @@ var InformacionOrdenCtrl = function($scope,
 
 	$scope.orden = OrdenesFactory.getOrden();
 
+	/*
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
 	if (!$scope.orden.recoleccion.fecha) {
 		var ahora = new Date();
@@ -49,6 +50,7 @@ var InformacionOrdenCtrl = function($scope,
 		}
 		//$log.debug("recolecion.fecha", $scope.orden.recoleccion.fecha.toString())
 	}
+	*/
 
 	$scope.orden.entrega.fecha = $scope.orden.entrega.fecha || $scope.orden.recoleccion.fecha;
 
@@ -300,44 +302,45 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 		self.$scope.$watchGroup([
 			'orden.entrega.direccion',
 			'orden.entrega.fecha',
-			'orden.entrega.hora',
+			//'orden.entrega.hora',
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
 				if(newV[0] && newV[1] && newV[2] 
-					&& newV[3] && newV[4] && newV[5]){
+					&& newV[3] && newV[4] ){
 					self.$scope.formIncompleto = true;
 				}
 				else {
 					self.$scope.formIncompleto = false;	
 				}
-				//self.$log.debug("watchProductos", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
+				self.$log.debug("watchProductos", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	} else {
 		//console.log("view servicios:")
 		self.$scope.$watchGroup([ 
 			'orden.recoleccion.direccion',
 			'orden.recoleccion.fecha',
-			'orden.recoleccion.hora',
+			//'orden.recoleccion.hora',
 			'orden.entrega.direccion',
 			'orden.entrega.fecha',
-			'orden.entrega.hora',
+			//'orden.entrega.hora',
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
 				if(newV[0] && newV[1] && newV[2] 
 					&& newV[3] && newV[4] && newV[5] 
-					&& newV[6] && newV[7] && newV[8] ){
+					&& newV[6] ){
 					self.$scope.formIncompleto = true;
 				}
 				else {
 					self.$scope.formIncompleto = false;	
 				}
-				//self.$log.debug("watchServicios", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
+				self.$log.debug("watchServicios", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	}
 };
 
+/*
 InformacionOrdenCtrl.prototype.horasDelDia = [
 	"12:00 A.M. a 12:59 A.M.",
 	"1:00 A.M. a 1:59 A.M.",
@@ -420,6 +423,7 @@ InformacionOrdenCtrl.prototype.horasEntrega = function() {
 	result = this.horasDelDia.slice(inicio, fin);
 	return result;
 };
+*/
 
 InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 	var self = this,
@@ -437,12 +441,13 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			}
 
 			var minDate = new Date();
-			var unaHoraDespues = new Date(minDate.getTime() + (60 * 60 * 1000));
+			minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
+			/*var unaHoraDespues = new Date(minDate.getTime() + (60 * 60 * 1000));
 
 			if(unaHoraDespues.getHours() >= 22) {
 				//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
 				minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
-			}
+			}*/
 
 			datePicker.show({
 				date: $scope.orden.recoleccion.fecha,
@@ -498,7 +503,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			});
 			break;
 
-		case "HORARECOLECCION":
+		/*case "HORARECOLECCION":
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraRecoleccion";
 			//seleccionar las horas validas segun la fecha que seleccione.
@@ -519,7 +524,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				$scope.orden.entrega.hora = $scope.horas[$index];
 				$scope.closePopover();
 			};
-			break;
+			break;*/
 
 		case "FORMAPAGO":
 			tmpURL = 'templates/app/orden/popover-forma-pago.html';

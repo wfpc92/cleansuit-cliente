@@ -42,13 +42,13 @@ var OrdenesFactory = function(UsuarioFactory,
 				direccion: '',
 				posicion:'',
 				fecha: null,
-				hora:''
+				//hora:''
 			},
 			entrega : {
 				direccion: '',
 				posicion:'',
 				fecha: null,
-				hora:''
+				//hora:''
 			},
 			formaPago : '',
 			telefono: '',

@@ -17,12 +17,23 @@
 						</label>
 					</div>
 
+
 					<!--<div class="col">
 						<label class="item-input item-stacked-label der">
 							<span class="input-label">Apellidos</span>
 							<input type="text" placeholder="sus apellidos" value=" {{usuario.apellidos}} " disabled>
 						</label>
 					</div>-->
+				</ion-item>
+
+				
+				<ion-item class="row" ng-if="soloProductos && usuario.cedula.length > 0">
+					<div class="col">
+						<label class="item-input item-stacked-label izq">
+							<span class="input-label">Cédula o Nit</span>
+							<input type="text" placeholder="Cédula o Nit" value="{{usuario.cedula}}" pattern="(?=.*[a-zA-Z]).{3,20}" style="color: #000 !important; opacity: 1.0 !important" required>
+						</label>
+					</div>
 				</ion-item>
 
 
@@ -60,6 +71,7 @@
 					</div>
 				</ion-item>
 
+				<!--
 				<ion-item class="row" ng-hide="soloProductos">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
@@ -69,6 +81,7 @@
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
 					</div>
 				</ion-item>
+				-->
 
 				<ion-item class="row">
 					<div class="col item-icon-right">
@@ -89,6 +102,7 @@
 					</div>
 				</ion-item>
 
+				<!--
 				<ion-item class="row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
@@ -98,6 +112,7 @@
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORAENTREGA', $event)"></i>
 					</div>
 				</ion-item>
+				-->
 
 				<ion-item class="row">
 					<div class="col">
