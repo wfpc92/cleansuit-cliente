@@ -31,7 +31,7 @@ var InformacionOrdenCtrl = function($scope,
 
 	$scope.orden = OrdenesFactory.getOrden();
 
-	/*
+	
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
 	if (!$scope.orden.recoleccion.fecha) {
 		var ahora = new Date();
@@ -50,8 +50,7 @@ var InformacionOrdenCtrl = function($scope,
 		}
 		//$log.debug("recolecion.fecha", $scope.orden.recoleccion.fecha.toString())
 	}
-	*/
-
+	
 	$scope.orden.entrega.fecha = $scope.orden.entrega.fecha || $scope.orden.recoleccion.fecha;
 
 	//FLAGS:
@@ -441,7 +440,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			}
 
 			var minDate = new Date();
-			minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
+			//minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
 			/*var unaHoraDespues = new Date(minDate.getTime() + (60 * 60 * 1000));
 
 			if(unaHoraDespues.getHours() >= 22) {

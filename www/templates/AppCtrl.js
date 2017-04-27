@@ -70,7 +70,6 @@ var AppCtrl = function($scope,
 		var navegador = cordova.InAppBrowser.open("http://www.cleansuit.co/", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
 		navegador.close();
 		
-		console.log("ERRORORORORORORO", navegador) 
 		var alertPopup = PopupFactory.alert({
 			title: 'Verifica por favor!',
 			template: args.msg

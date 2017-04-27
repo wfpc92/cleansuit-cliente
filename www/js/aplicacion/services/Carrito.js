@@ -118,7 +118,9 @@ var CarritoFactory = function(RecursosFactory,
 				subtotal += this.items[idItem].precio * this.items[idItem].cantidad;
 
 				//revisar en lista de descuentos del cupon si este item aplica para descuento
-				if(this.totales.promocion){
+				if(this.totales.promocion 
+					&& (typeof this.totales.promocion.servicios !== 'undefined')
+					&& this.totales.promocion.servicios) {
 					for (var i = this.totales.promocion.servicios.length - 1; i >= 0; i--) {
 						if (this.totales.promocion.servicios[i].servicio == idItem) {
 							//console.log("se aplica promocion de", this.totales.promocion.servicios[i].descuento, "para servicio", this.totales.promocion.servicios[i].servicio);
