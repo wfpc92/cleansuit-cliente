@@ -5,9 +5,9 @@
 
 		<div class="titulo">
 			INFORMACIÓN DE ORDEN
-		</div> 
+		</div>
 
-		<form name="formInformacionOrden"> 
+		<form name="formInformacionOrden">
 			<ion-list>
 				<ion-item class="row">
 					<div class="col">
@@ -16,7 +16,8 @@
 							<input type="text" placeholder="Nombres y Apellidos" value="{{usuario.nombre}}" disabled style="color: #000 !important; opacity: 1.0 !important">
 						</label>
 					</div>
-				
+
+
 					<!--<div class="col">
 						<label class="item-input item-stacked-label der">
 							<span class="input-label">Apellidos</span>
@@ -24,8 +25,18 @@
 						</label>
 					</div>-->
 				</ion-item>
+
 				
-			
+				<ion-item class="row" ng-if="soloProductos && usuario.cedula.length > 0">
+					<div class="col">
+						<label class="item-input item-stacked-label izq">
+							<span class="input-label">Cédula o Nit</span>
+							<input type="text" placeholder="Cédula o Nit" value="{{usuario.cedula}}" pattern="(?=.*[a-zA-Z]).{3,20}" style="color: #000 !important; opacity: 1.0 !important" required>
+						</label>
+					</div>
+				</ion-item>
+
+
 				<!--<div class="item row">
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
@@ -60,6 +71,7 @@
 					</div>
 				</ion-item>
 
+				<!--
 				<ion-item class="row" ng-hide="soloProductos">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
@@ -69,6 +81,7 @@
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
 					</div>
 				</ion-item>
+				-->
 
 				<ion-item class="row">
 					<div class="col item-icon-right">
@@ -89,6 +102,7 @@
 					</div>
 				</ion-item>
 
+				<!--
 				<ion-item class="row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
@@ -97,8 +111,9 @@
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORAENTREGA', $event)"></i>
 					</div>
-				</ion-item>			
-				
+				</ion-item>
+				-->
+
 				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
@@ -138,7 +153,7 @@
 					<ion-checkbox ng-model="orden.terminosCondiciones" ng-checked="orden.terminosCondiciones"></ion-checkbox>
 					<div class="enlace">
 						Acepto los <a ng-click="abrirModalTC()">Términos y Condiciones.</a>
-					</div>			
+					</div>
 				</ion-item>
 			</ion-list>
 		</form>

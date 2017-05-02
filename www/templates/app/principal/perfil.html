@@ -18,6 +18,15 @@
 					</div>
 				</ion-item>
 
+				<ion-item class="row">
+					<div class="col">
+						<label class="item-input item-stacked-label izq">
+							<span class="input-label">Cédula o Nit</span>
+							<input type="text" placeholder="su cedula" name="cedula" ng-model="usuario.cedula" ng-maxlength="20" required>
+						</label>
+					</div>
+				</ion-item>
+
 				<!--
 				<div class="item row">
 					<div class="col">
@@ -128,6 +137,7 @@
 							&& (usuario.contrasena == usuario.repetirContrasena)
 						)
 						&& formPerfil.nombre.$valid
+						&& formPerfil.cedula.$valid
 						&& formPerfil.direccion.$valid
 						&& formPerfil.telefono.$valid
 						&& formPerfil.correo.$valid
@@ -136,6 +146,7 @@
 					|| (formPerfil.direccion.$dirty && formPerfil.direccion.$valid)
 					|| (formPerfil.telefono.$dirty && formPerfil.telefono.$valid)
 					|| (formPerfil.correo.$dirty && formPerfil.correo.$valid)
+					|| (formPerfil.cedula.$dirty && formPerfil.cedula.$valid)
 					|| (formData.actualizaFoto)
 					}}
 			</div>

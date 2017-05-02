@@ -5,7 +5,7 @@ export HOME_PROJ=$(pwd)
 
 cp release-signing.properties platforms/android/release-signing.properties
 
-ionic build --release android
+ionic build android --release
 
 cd platforms/android/build/outputs/apk
 

@@ -10,14 +10,15 @@ var app = angular.module('ClienteCleanSuit', ['ionic',
 											'angularLoad',
 											'ngCordova',
 											'ngStorage',
-											'ngOpenFB'])
+											'ngOpenFB',
+											'ngCordova.plugins.inAppBrowser'])
 
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
 		if(window.cordova && window.cordova.plugins.Keyboard) {
-			if(isIOS){
+			if(ionic.Platform.isIOS()){
 				console.log("es iosSSSSSSSsSssSSSSSSSSSS")
 				cordova.plugins.Keyboard.disableScroll(true);
 			} else {

@@ -1,4 +1,3 @@
-
 var InformacionOrdenCtrl = function($scope, 
 									OrdenesFactory, 
 									$state, 
@@ -13,15 +12,14 @@ var InformacionOrdenCtrl = function($scope,
 									PromocionesFactory,
 									$log,
 									ConfiguracionesFactory) {
-	
+
 	$log.debug("InformacionOrdenCtrl");
+	var self = this;
 	$ionicSideMenuDelegate.canDragContent(false);
-	
-	var self = this; 
 
 	this.$scope = $scope;
 	this.$ionicModal = $ionicModal;
-	this.$ionicPopup = $ionicPopup;	
+	this.$ionicPopup = $ionicPopup;
 	this.$ionicPopover = $ionicPopover;
 	this.$state = $state;
 	this.$ionicHistory = $ionicHistory;
@@ -33,14 +31,15 @@ var InformacionOrdenCtrl = function($scope,
 
 	$scope.orden = OrdenesFactory.getOrden();
 
+	
 	//aqui se configura la direccion por defecto para las ordenes, se debe programar la ultima direccion suministrada
 	if (!$scope.orden.recoleccion.fecha) {
 		var ahora = new Date();
 		//ahora = new Date(2016, 7, 11, 20, 00, 0, 0); //para probar varas fechas
 		var unaHoraDespues = new Date(ahora.getTime() + (60 * 60 * 1000));
-		//si se adiciona una hora despues y se pasa al siguiente dia: 
+		//si se adiciona una hora despues y se pasa al siguiente dia:
 		if(ahora.getDate() == unaHoraDespues.getDate()
-			&& ahora.getMonth() == unaHoraDespues.getMonth() 
+			&& ahora.getMonth() == unaHoraDespues.getMonth()
 			&& ahora.getFullYear() == unaHoraDespues.getFullYear()
 			&& unaHoraDespues.getHours() < 22) {
 			//verificar si es una hora valida: antes de las 10 de las noche
@@ -56,11 +55,11 @@ var InformacionOrdenCtrl = function($scope,
 
 	//FLAGS:
 	//si solo hay productos en el carrito de compra solo se debe mostrar la direccion de entrega
-	
+
 	//$log.debug("solo hay productos: "+ $scope.soloProductos);
 
 	//se ejecuta al dar click en el icono de ubicacion de las direcciones, muestra ventana modal
-	//con un mapa para ubicar un punto, basado en su ubicacion actual. 
+	//con un mapa para ubicar un punto, basado en su ubicacion actual.
 	$scope.openModal = function(tipo) {
 		self.abrirModal(tipo);
 	};
@@ -75,9 +74,9 @@ var InformacionOrdenCtrl = function($scope,
 	};
 
 	$scope.openPopover = function(tipo, $event) {
-		self.construirPopover(tipo, $event);  	
+		self.construirPopover(tipo, $event);
     };
-    
+
     $scope.closePopover = function() {
     	$scope.popover.hide();
     };
@@ -112,10 +111,10 @@ var InformacionOrdenCtrl = function($scope,
 			.alert({
 		    	title: 'Cupón de descuento',
 		    	template: tmp
-	    	});	
+	    	});
     	});
     };
-	
+
 	//Cleanup the modal when we're done with it!
 	$scope.$on('$destroy', function() {
 		if(typeof $scope.modal != 'undefined') {
@@ -159,7 +158,7 @@ var InformacionOrdenCtrl = function($scope,
 			$ionicHistory.clearCache()
 			$ionicHistory.nextViewOptions({
 				disableBack: 'true'
-			}); 
+			});
 			$state.go("app.realizar-orden");
 		}, function(err) {
 			//$log.debug(err)
@@ -170,11 +169,11 @@ var InformacionOrdenCtrl = function($scope,
 	$scope.mapa = null;
 	$scope.scopeModal = $rootScope.$new();
 	$scope.scopeModal.idModal = "id-modal-mapa";
-	
+
 	$scope.scopeModal.finalizaUbicacion = function(tipo) {
 		var posicion = $scope.mapa.getPosicion();
 		//$log.debug("finaliza ubicacion: ", posicion.lat(), posicion.lng() );
-		
+
 		switch(tipo) {
 			case "DIRECCIONRECOLECCION":
 				$scope.orden.recoleccion.posicion = posicion;
@@ -239,7 +238,7 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 		posicion = null;
 
 	//self.$log.debug("abriendo ventana modal para "+tipo+"...")
-	
+
 	switch(tipo) {
 		case "DIRECCIONRECOLECCION":
 			//ubicar la posicion en el mapa almacenada
@@ -272,7 +271,7 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 
 	if(!$scope.mapa) {
 		//self.$log.debug("no existe el mapa...");
-		//mostrar ventana de error 
+		//mostrar ventana de error
 		return;
 	}
 
@@ -286,8 +285,8 @@ InformacionOrdenCtrl.prototype.abrirModal = function(tipo) {
 			$scope.mapa.obtenerUbicacionGPS(function() {
 				//self.$log.debug("ubicacion obtenida GPS: ", $scope.mapa.getPosicion().lat(), $scope.mapa.getPosicion().lng());
 				ModalCargaFactory.ocultar();
-			}); 
-		});	
+			});
+		});
 	} else {
 		$scope.modalMapa.show();
 	}
@@ -299,48 +298,48 @@ InformacionOrdenCtrl.prototype.viewAfterEnter = function() {
 	self.$scope.formIncompleto = false;
 
 	if(self.$scope.soloProductos) {
-		//console.log("view Solo productos:")
 		self.$scope.$watchGroup([
 			'orden.entrega.direccion',
 			'orden.entrega.fecha',
-			'orden.entrega.hora',
+			//'orden.entrega.hora',
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
 				if(newV[0] && newV[1] && newV[2] 
-					&& newV[3] && newV[4] && newV[5]){
+					&& newV[3] && newV[4] ){
 					self.$scope.formIncompleto = true;
 				}
 				else {
 					self.$scope.formIncompleto = false;	
 				}
-				//self.$log.debug("watchProductos", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
+				self.$log.debug("watchProductos", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	} else {
 		//console.log("view servicios:")
 		self.$scope.$watchGroup([ 
 			'orden.recoleccion.direccion',
 			'orden.recoleccion.fecha',
-			'orden.recoleccion.hora',
+			//'orden.recoleccion.hora',
 			'orden.entrega.direccion',
 			'orden.entrega.fecha',
-			'orden.entrega.hora',
+			//'orden.entrega.hora',
 			'orden.telefono',
 			'orden.formaPago',
 			'orden.terminosCondiciones'], function(newV, oldV, scope){
 				if(newV[0] && newV[1] && newV[2] 
 					&& newV[3] && newV[4] && newV[5] 
-					&& newV[6] && newV[7] && newV[8] ){
+					&& newV[6] ){
 					self.$scope.formIncompleto = true;
 				}
 				else {
 					self.$scope.formIncompleto = false;	
 				}
-				//self.$log.debug("watchServicios", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
+				self.$log.debug("watchServicios", JSON.stringify(newV), JSON.stringify(self.$scope.formIncompleto))
 			});
 	}
 };
 
+/*
 InformacionOrdenCtrl.prototype.horasDelDia = [
 	"12:00 A.M. a 12:59 A.M.",
 	"1:00 A.M. a 1:59 A.M.",
@@ -370,22 +369,22 @@ InformacionOrdenCtrl.prototype.horasDelDia = [
 
 InformacionOrdenCtrl.prototype.horasRecoleccion = function() {
 	var self = this,
-		$scope = this.$scope, 
+		$scope = this.$scope,
 		fecha = $scope.orden.recoleccion.fecha;
 		hoy = new Date(),
 		result = [],
 		inicio = 10, //index de horasDelDia de la hora de inicio
 		fin = 22; //index de horasDelDia de la hora final
 
-	//si la fecha es hoy se debe comprobar las horas 
+	//si la fecha es hoy se debe comprobar las horas
 	if(fecha.getDate() == hoy.getDate()
-		&& fecha.getMonth() == hoy.getMonth() 
+		&& fecha.getMonth() == hoy.getMonth()
 		&& fecha.getFullYear() == hoy.getFullYear()) {
 		inicio = fecha.getHours() + 1;
 		if (inicio < 10) {
 			inicio = 10;
 		}
-		
+
 		result = this.horasDelDia.slice(inicio, fin);
 	} else {
 		result = this.horasDelDia.slice(inicio, fin);
@@ -396,7 +395,7 @@ InformacionOrdenCtrl.prototype.horasRecoleccion = function() {
 
 InformacionOrdenCtrl.prototype.horasEntrega = function() {
 	var self = this,
-		$scope = this.$scope, 
+		$scope = this.$scope,
 		ahora = new Date(),
 		result = [],
 		inicio = 10, //index de horasDelDia de la hora de inicio
@@ -405,9 +404,9 @@ InformacionOrdenCtrl.prototype.horasEntrega = function() {
 		fe = $scope.orden.entrega.fecha,
 		index = this.horasDelDia.indexOf($scope.orden.recoleccion.hora);
 
-	//si la fecha es hoy se debe comprobar las horas 
+	//si la fecha es hoy se debe comprobar las horas
 	if(fr.getDate() == fe.getDate()
-		&& fr.getMonth() == fe.getMonth() 
+		&& fr.getMonth() == fe.getMonth()
 		&& fr.getFullYear() == fe.getFullYear()) {
 		//self.$log.debug("fecha de recoleccion igual a fecha de entrega");
 
@@ -419,20 +418,21 @@ InformacionOrdenCtrl.prototype.horasEntrega = function() {
 				$scope.orden.entrega.fecha = new Date($scope.orden.entrega.fecha.getTime() + (24 * 3600 * 1000));
 			}
 		}
-	} 
+	}
 	result = this.horasDelDia.slice(inicio, fin);
 	return result;
 };
+*/
 
 InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 	var self = this,
-		$scope = this.$scope, 
+		$scope = this.$scope,
 		$ionicPopover = this.$ionicPopover,
 		tmpURL = null;
 
 	switch(tipo) {
 		case "FECHARECOLECCION":
-			
+
 			//datePicker, fuente:https://www.npmjs.com/package/cordova-okaybmd-date-picker-plugin
 			if(typeof datePicker == 'undefined'){
 				document.getElementById("inputFechaRecoleccion").readOnly = false;
@@ -440,13 +440,14 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			}
 
 			var minDate = new Date();
-			var unaHoraDespues = new Date(minDate.getTime() + (60 * 60 * 1000));
-			
+			//minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
+			/*var unaHoraDespues = new Date(minDate.getTime() + (60 * 60 * 1000));
+
 			if(unaHoraDespues.getHours() >= 22) {
 				//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
 				minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
-			}
-			
+			}*/
+
 			datePicker.show({
 				date: $scope.orden.recoleccion.fecha,
 				mode: 'date',
@@ -471,7 +472,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 
 		case "FECHAENTREGA":
 			//datePicker, fuente:https://www.npmjs.com/package/cordova-okaybmd-date-picker-plugin
-			
+
 			if(typeof datePicker == 'undefined'){
 				document.getElementById("inputFechaEntrega").readOnly = false;
 				break;
@@ -501,12 +502,12 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 			});
 			break;
 
-		case "HORARECOLECCION":
+		/*case "HORARECOLECCION":
 			tmpURL = 'templates/app/orden/popover-hora.html';
 			$scope.idPopover = "ppHoraRecoleccion";
 			//seleccionar las horas validas segun la fecha que seleccione.
 			$scope.horas = this.horasRecoleccion();
-			
+
 			$scope.setHora = function($index){
 				$scope.orden.recoleccion.hora = $scope.horas[$index];
 				$scope.closePopover();
@@ -522,7 +523,7 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 				$scope.orden.entrega.hora = $scope.horas[$index];
 				$scope.closePopover();
 			};
-			break;
+			break;*/
 
 		case "FORMAPAGO":
 			tmpURL = 'templates/app/orden/popover-forma-pago.html';
