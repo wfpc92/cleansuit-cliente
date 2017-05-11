@@ -82,8 +82,7 @@ var CarritoFactory = function(RecursosFactory,
 			//$log.debug("CarritoFactory.limpiar(): antes", this.items);
 			for(var i in this.items){
 				if(this.items[i].cantidad == 0 ){
-					this.items.splice(i, 1);
-
+					delete this.items[i];
 				}
 			}
 			//$log.debug("CarritoFactory.limpiar(): despues", this.items);
