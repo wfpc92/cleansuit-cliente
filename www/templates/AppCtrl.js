@@ -1,6 +1,7 @@
 var AppCtrl = function($scope,
 					$rootScope, 
 					$state, 
+					$ionicHistory,
 					$log,
 					$cordovaInAppBrowser,
 					UsuarioFactory,
@@ -138,6 +139,8 @@ var AppCtrl = function($scope,
 		AuthService.logout();
 		CarritoFactory.vaciar();
 		$rootScope.$broadcast("limpiarLista");
+		$ionicHistory.clearHistory();
+		$ionicHistory.clearCache();
 		$state.go('autenticacion.inicio');
 	};		
 };

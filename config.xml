@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget id="co.cleansuit.cliente" version="0.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>CleanSuit</name>
-  <description>
+    <name>CleanSuit</name>
+    <description>
     Limpieza del hogar, industria y lavado de tus prendas sin necesidad de salir de casa. ¡Dedica más tiempo a tu vida!
   </description>
     <author email="info@cautiva.co" href="http://cautiva.co">
@@ -78,5 +78,12 @@
     <plugin name="cordova-fabric-plugin" spec="~1.1.1">
         <variable name="FABRIC_API_KEY" value="ddfa481307edb137db5679d1521517b524c2ba5d611e6c609ee9b04dda026432" />
         <variable name="FABRIC_API_SECRET" value="cdd2023df83d7cd04346e191885d25d649ff4154" />
+    </plugin>
+    <plugin name="cordova-plugin-camera" spec="~2.4.1">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="Permite acceder a CleanSuit a album de fotos" />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Permite acceder a CleanSuit a album de fotos" />
+    </plugin>
+    <plugin name="cordova-plugin-geolocation" spec="~2.4.3">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Permite acceder a CleanSuit utilizar el GPS" />
     </plugin>
 </widget>
