@@ -155,7 +155,7 @@ var InformacionOrdenCtrl = function($scope,
 		.then(function() {
 			//$log.debug("exito")
 			$ionicHistory.clearHistory();
-			$ionicHistory.clearCache()
+			$ionicHistory.clearCache();
 			$ionicHistory.nextViewOptions({
 				disableBack: 'true'
 			});
@@ -547,8 +547,10 @@ InformacionOrdenCtrl.prototype.construirPopover = function(tipo, $event) {
 
 InformacionOrdenCtrl.prototype.cancelarOrden = function() {
 	var self = this;
+	console.log("cancelarOrden")
 	self.OrdenesFactory.limpiarOrden();
 	self.$ionicHistory.clearHistory();
+	self.$ionicHistory.clearCache();
 	self.$ionicHistory.nextViewOptions({
 		disableBack:'true'
 	});

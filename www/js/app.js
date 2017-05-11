@@ -19,12 +19,9 @@ var app = angular.module('ClienteCleanSuit', ['ionic',
 		// for form inputs)
 		if(window.cordova && window.cordova.plugins.Keyboard) {
 			if(ionic.Platform.isIOS()){
-				console.log("es iosSSSSSSSsSssSSSSSSSSSS")
 				cordova.plugins.Keyboard.disableScroll(true);
-			} else {
-				console.log("no es iosSSSSSSSsSssSSSSSSSSSS")
-			}
-			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+			} 
+			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
 		} else {
 			console.log("no hay pluign de teclado")
 		}
