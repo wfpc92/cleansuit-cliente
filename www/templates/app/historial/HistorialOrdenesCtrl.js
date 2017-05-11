@@ -3,13 +3,10 @@ var HistorialOrdenesCtrl = function ($scope,
 									OrdenesFactory) {
 	
 	$log.debug("HistorialOrdenesCtrl");
-	
-	$scope.ordenes = OrdenesFactory.historialOrdenes;
 
-	OrdenesFactory
-	.cargarHistorialOrdenes()
-	.finally(function() {
-		//$scope.ordenes = OrdenesFactory.historialOrdenes;
+	$scope.$on("$ionicView.beforeEnter", function () {
+		OrdenesFactory.cargarHistorialOrdenes()
+		$scope.ordenes = OrdenesFactory.historialOrdenes;
 	});
 
 	$scope.hayOrdenes = function() {

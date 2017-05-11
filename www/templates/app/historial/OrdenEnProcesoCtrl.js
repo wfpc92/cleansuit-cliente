@@ -7,20 +7,22 @@ var OrdenEnProcesoCtrl = function ($scope,
 								$state) {
 	
 	$log.debug("OrdenEnProcesoCtrl");
-	var indexOrden = $stateParams.indexOrden;
+	
+	$scope.$on("$ionicView.beforeEnter", function () {
+		var indexOrden = $stateParams.indexOrden;
+		$log.debug("index orden en proceso: "+indexOrden);
+		
+		$scope.orden = OrdenesFactory.ordenesEnProceso[indexOrden];
+		var pos = EstadosFactory.posEstadoOrden($scope.orden);
+		//indica que la vista que se muestra es la de ordenes en proceso.
+		$scope.esOrdenEnProceso = true;
+		$scope.soloProductos = $scope.carrito.soloHayProductos($scope.orden.items);
+		$scope.estados = EstadosFactory.estados($scope.orden);
+		$scope.estados[pos].activated = true;
+		$scope.miEstado = $scope.estados[pos];
+	});
 
-	$scope.orden = OrdenesFactory.ordenesEnProceso[indexOrden];
-	//indica que la vista que se muestra es la de ordenes en proceso.
-	$scope.esOrdenEnProceso = true;
-
-	$scope.soloProductos = $scope.carrito.soloHayProductos($scope.orden.items);
-
-	$log.debug("index orden en proceso: "+indexOrden);
-	$log.debug($scope.orden)
-
-	$scope.estados = EstadosFactory.estados($scope.orden);
-	$scope.miEstado = EstadosFactory.getEstado($scope.orden);
-
+	
 	$scope.regresarPrincipal = function() {
 		$ionicHistory.clearHistory();
 		$ionicHistory.clearCache()
