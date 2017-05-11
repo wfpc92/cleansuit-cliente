@@ -8,11 +8,9 @@ var ProductosFactory = function(RecursosFactory,
 
 	var setProductos = function(productos) {
 		init();
-
-		for (var i in $localStorage.productos) {
-			delete $localStorage.productos[i];
-		}	
-
+		var n = $localStorage.productos.length;
+		$localStorage.productos.splice(0, n - 1);
+			
 		for (var i in productos) {
 			$localStorage.productos[i] = productos[i];
 		}

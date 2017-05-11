@@ -3,12 +3,10 @@ var OrdenesEnProcesoCtrl =  function ($scope,
 									OrdenesFactory) {
 	
 	$log.debug("OrdenesEnProcesoCtrl")
-	$scope.ordenes = OrdenesFactory.ordenesEnProceso;
-
-	OrdenesFactory
-	.cargarOrdenesEnProceso() 
-	.then(function() {
-		//$scope.ordenes = OrdenesFactory.ordenesEnProceso;
+			
+	$scope.$on("$ionicView.beforeEnter", function () {
+		OrdenesFactory.cargarOrdenesEnProceso();
+		$scope.ordenes = OrdenesFactory.ordenesEnProceso;
 	});
 
 	$scope.hayOrdenes = function() {

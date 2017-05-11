@@ -13,7 +13,7 @@
 				<h3>Puedes observar cómo va tu pedido:</h3>
 				
 				<ion-list>
-					<ion-item class=" text-center" ng-repeat="estado in estados" ng-class="{activated: (estado.id == orden.estado)}">
+					<ion-item class="text-center" ng-repeat="estado in estados" ng-class="{activated: estado.activated}">
 						{{estado.titulo}}
 					</ion-item>
 				</ion-list>
@@ -46,8 +46,8 @@
 				<ion-item class="row">
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
-							<span class="input-label">Cédula o Nit</span>
-							<input type="text" placeholder="Cédula o Nit" value="{{orden.cliente_id.cedula}}" disabled style="color: #000 !important; opacity: 1.0 !important">
+							<span class="input-label">Cédula o Nit para facturar</span>
+							<input type="text" placeholder="Cédula o Nit para facturar" value="{{orden.cliente_id.docId}}" disabled style="color: #000 !important; opacity: 1.0 !important">
 						</label>
 					</div>
 				</ion-item>

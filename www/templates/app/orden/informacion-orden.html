@@ -27,15 +27,14 @@
 				</ion-item>
 
 				
-				<ion-item class="row" ng-if="soloProductos && usuario.cedula.length > 0">
+				<ion-item class="row">
 					<div class="col">
-						<label class="item-input item-stacked-label izq">
-							<span class="input-label">Cédula o Nit</span>
-							<input type="text" placeholder="Cédula o Nit" value="{{usuario.cedula}}" pattern="(?=.*[a-zA-Z]).{3,20}" style="color: #000 !important; opacity: 1.0 !important" required>
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label">Cédula o NIT para facturar</span>
+							<input type="text" placeholder="Cédula o NIT para facturar" ng-model="orden.docId" name="docId" pattern="(?=.*[a-zA-Z]).{3,20}" style="color: #000 !important; opacity: 1.0 !important" required>
 						</label>
 					</div>
 				</ion-item>
-
 
 				<!--<div class="item row">
 					<div class="col">
@@ -118,7 +117,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
-							<input type="tel" placeholder="Teléfono de contacto" ng-model="orden.telefono" name="telefono"maxlength="10" ng-minlength="7" ng-maxlength="10">
+							<input type="tel" placeholder="Teléfono de contacto" ng-model="orden.telefono" name="telefono" ng-minlength="7" ng-maxlength="15">
 						</label>
 					</div>
 				</ion-item>

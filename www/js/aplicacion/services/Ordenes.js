@@ -13,11 +13,9 @@ var OrdenesFactory = function(UsuarioFactory,
 
 	var setOrdenesEnProceso = function(ordenesEnProceso) {
 		init();
-
-		for (var i in $localStorage.ordenesEnProceso) {
-			delete $localStorage.ordenesEnProceso[i];
-		}
-		
+		var n = $localStorage.ordenesEnProceso.length;
+		$localStorage.ordenesEnProceso.splice(0, n - 1);
+				
 		for (var i in ordenesEnProceso) {
 			$localStorage.ordenesEnProceso[i] = ordenesEnProceso[i];
 		}
@@ -25,12 +23,9 @@ var OrdenesFactory = function(UsuarioFactory,
 
 	var setHistorialOrdenes = function(historialOrdenes) {
 		init();
-
-		for (var i in $localStorage.historialOrdenes) {
-			delete $localStorage.historialOrdenes[i];
-		}
-		
-		
+		var n = $localStorage.historialOrdenes.length;
+		$localStorage.historialOrdenes.splice(0, n - 1);
+				
 		for (var i in historialOrdenes) {
 			$localStorage.historialOrdenes[i] = historialOrdenes[i];
 		}
@@ -38,6 +33,7 @@ var OrdenesFactory = function(UsuarioFactory,
 
 	function nuevaOrden() {
 		_orden = {
+			docId : '', //número de cédula o NIT
 			recoleccion: {
 				direccion: '',
 				posicion:'',
@@ -57,6 +53,7 @@ var OrdenesFactory = function(UsuarioFactory,
 			terminosCondiciones : false
 		};
 		
+		_orden.docId = UsuarioFactory.getUsuario().docId;
 		_orden.recoleccion.direccion = UsuarioFactory.getUsuario().direccion;
 		_orden.entrega.direccion = UsuarioFactory.getUsuario().direccion;
 		_orden.telefono = UsuarioFactory.getUsuario().telefono;
@@ -122,23 +119,6 @@ var OrdenesFactory = function(UsuarioFactory,
 		},
 		
 		limpiarOrden: function() {
-			/*
-			//_orden.recoleccion.direccion: '';
-			_orden.recoleccion.posicion = '';
-			_orden.recoleccion.fecha = null;
-			_orden.recoleccion.hora = '';
-			
-			//_orden.entrega.direccion: '';
-			_orden.entrega.posicion = '';
-			_orden.entrega.fecha = null;
-			_orden.entrega.hora = '';
-			
-			_orden.formaPago = '';
-			//_orden.telefono: '';
-			_orden.abono = '';
-			_orden.cupon = '';
-			_orden.terminosCondiciones = false;
-			*/
 			_orden = null;
 			CarritoFactory.vaciar();
 		}

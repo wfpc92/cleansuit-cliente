@@ -10,7 +10,7 @@ var UsuarioFactory = function(RecursosFactory,
 				$log.debug("UsuarioFactory.actualizarPerfil(): ", response);
 				if(response.data.success) {
 					$localStorage.usuario.nombre = response.data.usuario.nombre;
-					$localStorage.usuario.cedula = response.data.usuario.cedula;
+					$localStorage.usuario.docId = response.data.usuario.docId;
 					$localStorage.usuario.direccion = response.data.usuario.direccion;
 					$localStorage.usuario.telefono = response.data.usuario.telefono;
 					$localStorage.usuario.correo = response.data.usuario.correo;

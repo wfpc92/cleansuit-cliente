@@ -8,11 +8,9 @@ var PromocionesFactory = function(RecursosFactory,
 
 	var setPromociones = function(promociones) {
 		init();
-
-		for (var i in $localStorage.promociones) {
-			delete $localStorage.promociones[i];
-		}
-	
+		var n = $localStorage.promociones.length;
+		$localStorage.promociones.splice(0, n - 1);
+			
 		for (var i in promociones) {
 			$localStorage.promociones[i] = promociones[i];
 		}

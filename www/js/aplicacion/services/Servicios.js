@@ -8,10 +8,8 @@ var ServiciosFactory = function(RecursosFactory,
 
 	var setServicios = function(servicios) {
 		init();
-
-		for (var i in $localStorage.servicios) {
-			delete $localStorage.servicios[i];
-		}
+		var n = $localStorage.servicios.length;
+		$localStorage.servicios.splice(0, n - 1);
 
 		for (var i in servicios) {
 			$localStorage.servicios[i] = servicios[i];
