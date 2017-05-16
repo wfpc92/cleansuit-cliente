@@ -31,7 +31,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label">Cédula o NIT para facturar</span>
-							<input type="text" placeholder="Cédula o NIT para facturar" ng-model="orden.docId" name="docId" pattern="(?=.*[a-zA-Z]).{3,20}" style="color: #000 !important; opacity: 1.0 !important" required>
+							<input type="text" placeholder="Cédula o NIT para facturar" ng-model="orden.docId" ng-minlength="3" ng-maxlength="20" style="color: #000 !important; opacity: 1.0 !important" required>
 						</label>
 					</div>
 				</ion-item>
